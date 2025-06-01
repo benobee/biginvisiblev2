@@ -47,6 +47,7 @@ const ServiceCard = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   
   &:hover {
     border-color: ${({ theme }) => theme.colors.accent};
@@ -160,6 +161,7 @@ const PricingCard = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   
   &:hover {
     border-color: ${({ theme }) => theme.colors.accent};

@@ -13,6 +13,20 @@ export const GlobalStyles = createGlobalStyle<{ theme: Theme }>`
     scroll-behavior: smooth;
   }
 
+  @keyframes fadeInFromNone {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+  }
+
   body {
     font-family: ${({ theme }) => theme.typography.fontFamily.primary};
     color: ${({ theme }) => theme.colors.text};
@@ -21,6 +35,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: Theme }>`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -29,6 +44,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: Theme }>`
     line-height: 1.1;
     margin-bottom: ${({ theme }) => theme.spacing.md};
     letter-spacing: -0.02em;
+    transition: color 0.3s ease;
   }
 
   h1 {
@@ -47,6 +63,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: Theme }>`
   p {
     margin-bottom: ${({ theme }) => theme.spacing.md};
     font-weight: ${({ theme }) => theme.typography.fontWeight.light};
+    transition: color 0.3s ease;
   }
 
   a {

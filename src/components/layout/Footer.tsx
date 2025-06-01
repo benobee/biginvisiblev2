@@ -1,13 +1,21 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const StyledFooter = styled.footer`
+interface FooterProps {
+  isLightMode?: boolean;
+}
+
+const StyledFooter = styled.footer<FooterProps>`
   background-color: ${({ theme }) => theme.colors.background};
   color: ${({ theme }) => theme.colors.text};
   padding: ${({ theme }) => `${theme.spacing.section} 0 ${theme.spacing.xl}`};
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid ${({ theme }) => 
+    theme.colors.text === '#FFFFFF' 
+      ? 'rgba(255, 255, 255, 0.1)' 
+      : 'rgba(0, 0, 0, 0.1)'};
   display: flex;
   justify-content: center;
+  transition: all ${({ theme }) => theme.transitions.default};
 `;
 
 const FooterContainer = styled.div`
@@ -36,6 +44,7 @@ const FooterColumn = styled.div`
     font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    transition: color ${({ theme }) => theme.transitions.default};
   }
   
   p {
@@ -43,6 +52,7 @@ const FooterColumn = styled.div`
     font-size: ${({ theme }) => theme.typography.fontSize.sm};
     opacity: 0.8;
     max-width: 300px;
+    transition: color ${({ theme }) => theme.transitions.default};
   }
 `;
 
@@ -79,7 +89,10 @@ const SocialLinks = styled.div`
     justify-content: center;
     width: 36px;
     height: 36px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid ${({ theme }) => 
+      theme.colors.text === '#FFFFFF' 
+        ? 'rgba(255, 255, 255, 0.2)' 
+        : 'rgba(0, 0, 0, 0.2)'};
     color: ${({ theme }) => theme.colors.text};
     transition: all ${({ theme }) => theme.transitions.fast};
     
@@ -94,12 +107,16 @@ const SocialLinks = styled.div`
 const Copyright = styled.div`
   margin-top: ${({ theme }) => theme.spacing.xl};
   padding-top: ${({ theme }) => theme.spacing.lg};
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid ${({ theme }) => 
+    theme.colors.text === '#FFFFFF' 
+      ? 'rgba(255, 255, 255, 0.1)' 
+      : 'rgba(0, 0, 0, 0.1)'};
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: ${({ theme }) => theme.typography.fontSize.xs};
   opacity: 0.6;
+  transition: border-color ${({ theme }) => theme.transitions.default};
   
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     flex-direction: column;
@@ -114,6 +131,7 @@ const LegalLinks = styled.div`
   
   a {
     color: ${({ theme }) => theme.colors.text};
+    transition: color ${({ theme }) => theme.transitions.default};
     
     &:hover {
       color: ${({ theme }) => theme.colors.accent};
@@ -126,11 +144,11 @@ const LegalLinks = styled.div`
   }
 `;
 
-const Footer = () => {
+const Footer = ({ isLightMode }: FooterProps) => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <StyledFooter>
+    <StyledFooter isLightMode={isLightMode}>
       <FooterContainer>
         <FooterGrid>
           <FooterColumn>

@@ -1,8 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
+import { ThemeModeContext } from '../ThemeModeContext';
 
-const StyledHeader = styled.header<{ isScrolled: boolean }>`
+
+interface HeaderProps {
+  isScrolled: boolean;
+}
+
+const StyledHeader = styled.header<HeaderProps>`
   background-color: ${({ theme, isScrolled }) => 
     isScrolled ? theme.colors.background : 'transparent'};
   padding: ${({ theme }) => theme.spacing.md} 0;
@@ -16,8 +22,8 @@ const StyledHeader = styled.header<{ isScrolled: boolean }>`
   justify-content: center;
   transition: all ${({ theme }) => theme.transitions.default};
   backdrop-filter: ${({ isScrolled }) => isScrolled ? 'blur(10px)' : 'none'};
-  border-bottom: ${({ isScrolled }) => 
-    isScrolled ? `1px solid rgba(255, 255, 255, 0.1)` : 'none'};
+  border-bottom: ${({ isScrolled, theme }) => 
+    isScrolled ? `1px solid ${theme.colors.text === '#FFFFFF' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}` : 'none'};
 `;
 
 const HeaderContainer = styled.div`
@@ -41,13 +47,18 @@ const Logo = styled(Link)`
   letter-spacing: -0.02em;
   position: relative;
   z-index: 1001;
+  transition: color ${({ theme }) => theme.transitions.default};
   
   span {
     color: ${({ theme }) => theme.colors.accent};
   }
 `;
 
-const NavLinks = styled.ul<{ isOpen: boolean }>`
+interface NavLinksProps {
+  isOpen: boolean;
+}
+
+const NavLinks = styled.ul<NavLinksProps>`
   display: flex;
   gap: ${({ theme }) => theme.spacing.xl};
   list-style: none;
@@ -65,7 +76,7 @@ const NavLinks = styled.ul<{ isOpen: boolean }>`
     flex-direction: column;
     justify-content: center;
     transform: ${({ isOpen }) => isOpen ? 'translateX(0)' : 'translateX(100%)'};
-    transition: transform ${({ theme }) => theme.transitions.default};
+    transition: transform ${({ theme }) => theme.transitions.default}, background-color ${({ theme }) => theme.transitions.default};
     z-index: 1000;
   }
 `;
@@ -82,6 +93,7 @@ const NavLink = styled(Link)<NavLinkProps>`
   letter-spacing: 0.05em;
   padding: 0.5rem 0;
   position: relative;
+  transition: color ${({ theme }) => theme.transitions.default};
   
   &:after {
     content: '';
@@ -108,9 +120,16 @@ const NavLink = styled(Link)<NavLinkProps>`
   }
 `;
 
-const CTAButton = styled(Link)<NavLinkProps>`
+interface CTAButtonProps {
+  isActive?: boolean;
+}
+
+const CTAButton = styled(Link)<CTAButtonProps>`
   background-color: ${({ isActive, theme }) => isActive ? theme.colors.accent : 'transparent'};
-  color: ${({ isActive, theme }) => isActive ? theme.colors.background : theme.colors.accent};
+  color: ${({ isActive, theme }) => 
+    isActive 
+      ? theme.colors.background 
+      : theme.colors.accent};
   padding: ${({ theme }) => `${theme.spacing.sm} ${theme.spacing.lg}`};
   border: 1px solid ${({ theme }) => theme.colors.accent};
   font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
@@ -130,7 +149,11 @@ const CTAButton = styled(Link)<NavLinkProps>`
   }
 `;
 
-const MenuButton = styled.button<{ isOpen: boolean }>`
+interface MenuButtonProps {
+  isOpen: boolean;
+}
+
+const MenuButton = styled.button<MenuButtonProps>`
   display: none;
   position: relative;
   z-index: 1001;
@@ -146,7 +169,7 @@ const MenuButton = styled.button<{ isOpen: boolean }>`
     opacity: 1;
     left: 0;
     transform: rotate(0deg);
-    transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out, background-color ${({ theme }) => theme.transitions.default};
     
     &:nth-child(1) {
       top: ${({ isOpen }) => isOpen ? '9px' : '0px'};
@@ -173,19 +196,28 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { setIsLightMode } = useContext(ThemeModeContext);
   
   useEffect(() => {
     const handleScroll = () => {
+      // Set isScrolled when scrolled down more than 50px
       if (window.scrollY > 50) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
+      
+      // Switch to light mode when scrolled down more than 300px
+      if (window.scrollY > 300) {
+        setIsLightMode(true);
+      } else {
+        setIsLightMode(false);
+      }
     };
     
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [setIsLightMode]);
   
   useEffect(() => {
     if (isMenuOpen) {

@@ -82,6 +82,7 @@ const TimelineItem = styled.div<{ align?: 'left' | 'right' }>`
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: ${({ theme }) => theme.spacing.xl};
     text-align: left;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     
     @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
       width: 100%;
@@ -90,13 +91,13 @@ const TimelineItem = styled.div<{ align?: 'left' | 'right' }>`
   
   .timeline-dot {
     position: absolute;
-    top: 15px;
+    top: 50%;
     width: 20px;
     height: 20px;
     background-color: ${({ theme }) => theme.colors.accent};
     border-radius: 50%;
-    left: ${({ align }) => align === 'left' ? 'auto' : '0'};
-    right: ${({ align }) => align === 'left' ? '0' : 'auto'};
+    left: ${({ align }) => align === 'left' ? 'auto' : '-11.25%'};
+    right: ${({ align }) => align === 'left' ? '-11.25%' : 'auto'};
     transform: translateX(${({ align }) => align === 'left' ? '50%' : '-50%'});
     z-index: 2;
     
@@ -169,7 +170,7 @@ const FrameworkSection = styled(Section)`
 
 const FrameworkGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: ${({ theme }) => theme.spacing.xl};
 `;
 
@@ -178,6 +179,7 @@ const FrameworkItem = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: ${({ theme }) => theme.spacing.xl};
   transition: all ${({ theme }) => theme.transitions.default};
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   
   &:hover {
     border-color: ${({ theme }) => theme.colors.accent};

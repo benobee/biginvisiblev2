@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
 
 /**
  * ScrollToTop component that scrolls the window to the top when the route changes

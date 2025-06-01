@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
 
 // Hero Section
 const Hero = styled.section`
@@ -195,6 +196,7 @@ const Services = styled.section`
   padding: ${({ theme }) => `${theme.spacing.section} 0`};
   background-color: ${({ theme }) => theme.colors.backgroundAlt};
   position: relative;
+  transition: 0.5s;
 `;
 
 const SectionHeader = styled.div`
@@ -224,7 +226,7 @@ const SectionHeader = styled.div`
 
 const ServicesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: ${({ theme }) => theme.spacing.xl};
 `;
 
@@ -233,10 +235,11 @@ const ServiceCard = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: ${({ theme }) => theme.spacing.xl};
   transition: all ${({ theme }) => theme.transitions.default};
-  
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+
   &:hover {
-    border-color: ${({ theme }) => theme.colors.accent};
     transform: translateY(-5px);
+    opacity: 1;
   }
   
   .service-icon {
@@ -290,12 +293,13 @@ const ProcessSteps = styled.div`
 
 const ProcessStep = styled.div`
   position: relative;
-  
+
   .step-number {
     font-size: ${({ theme }) => theme.typography.fontSize['5xl']};
     font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
     color: ${({ theme }) => theme.colors.accent};
-    opacity: 0.2;
+    opacity: 0.1;
+    animation: fadeInFromNone 0.5s ease-out;
     position: absolute;
     top: -40px;
     left: -10px;
@@ -365,6 +369,7 @@ const WorkItem = styled.div<{ span: number, start: number }>`
   h3 {
     font-size: ${({ theme }) => theme.typography.fontSize.xl};
     margin-bottom: ${({ theme }) => theme.spacing.xs};
+    color: white;
   }
   
   .category {
@@ -475,6 +480,7 @@ const WhiteButton = styled(Link)`
 
 const Home = () => {
   const servicesRef = useRef<HTMLDivElement>(null);
+  const { isDarkTheme } = useTheme();
   
   const scrollToServices = () => {
     servicesRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -505,7 +511,9 @@ const Home = () => {
   return (
     <>
       <Hero>
-        <HeroBackground>
+        <HeroBackground style={{
+          opacity: isDarkTheme ? 0 : 1
+        }}>
           <img src="https://images.unsplash.com/photo-1557682250-33bd709cbe85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80" alt="Hero background" />
         </HeroBackground>
         <HeroShape />

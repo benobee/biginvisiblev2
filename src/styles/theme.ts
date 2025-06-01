@@ -1,15 +1,15 @@
-export const theme = {
+export const lightTheme = {
   colors: {
-    primary: '#0F1923', // Dark navy/black like MetaLab
-    secondary: '#1A2C3B', // Slightly lighter navy
-    accent: '#ff005d', // Vibrant red like BASIC/DEPT
-    text: '#FFFFFF', // White text on dark backgrounds
-    textDark: '#0F1923', // Dark text for light backgrounds
-    lightText: '#F5F5F5', // Off-white text
-    background: '#0F1923', // Dark background
-    backgroundLight: '#FFFFFF', // White background for contrast sections
-    backgroundAlt: '#141E26', // Slightly lighter than primary for contrast
-    overlay: 'rgba(15, 25, 35, 0.8)', // For overlays
+    primary: '#FFFFFF',
+    secondary: '#F5F7FA',
+    accent: '#ff2356', // Keep the same accent color for brand consistency
+    text: '#0F1923', // Dark text on light background
+    textDark: '#FFFFFF', // Light text for dark backgrounds
+    lightText: '#4A5568',
+    background: '#FFFFFF',
+    backgroundLight: '#F5F7FA',
+    backgroundAlt: '#EDF2F7',
+    overlay: 'rgba(245, 247, 250, 0.8)',
   },
   typography: {
     fontFamily: {
@@ -55,8 +55,8 @@ export const theme = {
     '2xl': '1536px',
   },
   container: {
-    maxWidth: '1400px', // Increased from 1200px for wider content
-    padding: '2rem', // Increased from 1rem for more breathing room
+    maxWidth: '1400px',
+    padding: '2rem',
   },
   borderRadius: {
     sm: '0.125rem',
@@ -75,6 +75,29 @@ export const theme = {
     fast: '0.15s ease-in-out',
     slow: '0.5s ease-in-out',
   },
-} as const;
+};
 
-export type Theme = typeof theme;
+// Rename the current theme to darkTheme
+export const darkTheme = {
+  colors: {
+    primary: '#0F1923',
+    secondary: '#1A2C3B',
+    accent: '#ff2356',
+    text: '#FFFFFF',
+    textDark: '#0F1923',
+    lightText: '#F5F5F5',
+    background: '#0F1923',
+    backgroundLight: '#FFFFFF',
+    backgroundAlt: '#141E26',
+    overlay: 'rgba(15, 25, 35, 0.8)',
+  },
+  typography: lightTheme.typography,
+  spacing: lightTheme.spacing,
+  breakpoints: lightTheme.breakpoints,
+  container: lightTheme.container,
+  borderRadius: lightTheme.borderRadius,
+  shadows: lightTheme.shadows,
+  transitions: lightTheme.transitions,
+};
+
+export type Theme = typeof darkTheme;
