@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
-import { BrandStrategyIcon, VisualIdentityIcon, DigitalExperienceIcon } from '../components/ui/ProcessIcons';
 
 // Hero Section
 const Hero = styled.section`
@@ -13,6 +12,7 @@ const Hero = styled.section`
   align-items: center;
   position: relative;
   overflow: hidden;
+  transition: ${({ theme }) => theme.transitions.slow};
 `;
 
 const HeroContent = styled.div`
@@ -48,31 +48,48 @@ const HeroContent = styled.div`
 
 const HeroShape = styled.div`
   position: absolute;
-  top: 15%;
-  right: -5%;
-  width: 50%;
-  height: 70%;
+  top: 50%;
+  left:50%;
+  right: 50%;
+  bottom:50%;
+  width:100vw;
+  height:100vh;
   background: linear-gradient(135deg, rgba(255, 58, 70, 0.1) 0%, rgba(255, 58, 70, 0.05) 100%);
-  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  background-size: cover;
   filter: blur(40px);
   z-index: 1;
-  animation: morphing 15s ease-in-out infinite;
-  
+  animation: morphing 18s ease-in-out infinite;
+  background: center no-repeat url("public/images/inspiration/BigInvisible-background-pattern copy.png");
   @keyframes morphing {
     0% {
-      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      opacity:0;
+      transform: translate(-50%, -50%) scale(200%) rotate(0deg);
+      filter: blur(0px);
     }
     25% {
-      border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+      opacity:0.2;
+      transform: translate(-50%, -50%) scale(220%) rotate(0);
+      filter: blur(10px);
     }
     50% {
-      border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+      opacity:1;
+      transform: translate(-50%, -50%) scale(250%) rotate(0);
+      filter: blur(32px);
+    }
+    53% {
+      opacity:1;
+      transform: translate(-50%, -50%) scale(250%) rotate(0deg);
+      filter: blur(32px);
     }
     75% {
-      border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+      opacity:0.7;
+      transform: translate(-50%, -50%) scale(250%) rotate(0deg);
+      filter: blur(35px);
     }
     100% {
-      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      opacity:0;
+      transform: translate(-50%, -50%) scale(400%) rotate(0deg);
+      filter: blur(0);
     }
   }
 `;
@@ -231,13 +248,26 @@ const ServicesGrid = styled.div`
   gap: ${({ theme }) => theme.spacing.xl};
 `;
 
-const ServiceCard = styled.div`
-  background-color: rgba(255, 255, 255, 0.03);
+const ServiceImage = styled.div<{ url?: string; }>`
+  background: no-repeat ${(props) => `url("${props.url}");`} 
+  position: relative;
+  left:0;
+  top:0;
+  right:0;
+  bottom:0;
+  height:150px;
+  width:auto;
+  background-position: left;
+  background-size: contain;
+  z-index: -1;
+`;
+
+const ServiceCard = styled.div<{ position?: string; }>`
+  background-color: rgb(255, 255, 255);
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: ${({ theme }) => theme.spacing.xl};
   transition: all ${({ theme }) => theme.transitions.default};
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-
   &:hover {
     transform: translateY(-5px);
     opacity: 1;
@@ -255,7 +285,6 @@ const ServiceCard = styled.div`
   }
   
   p {
-    opacity: 0.8;
     margin-bottom: ${({ theme }) => theme.spacing.lg};
     line-height: 1.6;
   }
@@ -513,7 +542,7 @@ const Home = () => {
     <>
       <Hero>
         <HeroBackground style={{
-          opacity: isDarkTheme ? 0 : 1
+          opacity: isDarkTheme ? 0 : 1,
         }}>
           <img src="https://images.unsplash.com/photo-1557682250-33bd709cbe85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80" alt="Hero background" />
         </HeroBackground>
@@ -521,7 +550,7 @@ const Home = () => {
         <div className="container">
           <HeroContent>
             <div className="tagline reveal-text">Branding Studio</div>
-            <h1 className="reveal-text">We make the <span className="text-gradient">invisible</span> bonds between brands and people visible.</h1>
+            <h1 className="reveal-text">We make the <span className="text-gradient">invisible</span> bonds between brands and people.</h1>
             <p className="subtitle reveal-text">Transform your business into a trusted authority through our systematic approach — where strategic brand architecture meets meaningful community impact.</p>
             <div className="reveal-text">
               <CTAButton to="/contact">Start a project</CTAButton>
@@ -544,8 +573,8 @@ const Home = () => {
           </SectionHeader>
           
           <ServicesGrid>
-            <ServiceCard className="reveal-text">
-              <BrandStrategyIcon />
+            <ServiceCard className="reveal-text" position='left'>
+              {/* <ServiceImage url='public/images/Artboard 1 copy 8.png' /> */}
               <h3>Brand Strategy</h3>
               <p>Develop a clear, compelling brand strategy that differentiates your business and resonates with your target audience.</p>
               <Link to="/services" className="learn-more">
@@ -555,9 +584,8 @@ const Home = () => {
                 </svg>
               </Link>
             </ServiceCard>
-            
-            <ServiceCard className="reveal-text">
-              <VisualIdentityIcon />
+            <ServiceCard className="reveal-text" position='top'>
+              {/* <ServiceImage url='public/images/branding.gif' /> */}
               <h3>Visual Identity</h3>
               <p>Create a cohesive visual system that communicates your brand's personality and values across all touchpoints.</p>
               <Link to="/services" className="learn-more">
@@ -567,9 +595,8 @@ const Home = () => {
                 </svg>
               </Link>
             </ServiceCard>
-            
-            <ServiceCard className="reveal-text">
-              <DigitalExperienceIcon />
+            <ServiceCard className="reveal-text" position='right'>
+              {/* <ServiceImage url='public/images/monitor.gif' /> */}
               <h3>Digital Experience</h3>
               <p>Design intuitive, engaging digital experiences that strengthen your brand and drive meaningful connections.</p>
               <Link to="/services" className="learn-more">
@@ -667,10 +694,10 @@ const Home = () => {
         <div className="container">
           <TestimonialContent>
             <blockquote className="reveal-text">
-              Big Invisible didn't just redesign our brand — they transformed how our entire community sees us. We've gone from another local business to the trusted leader our neighbors turn to first.
+              People will forget what you said, but they will never forget how you made them feel.
             </blockquote>
-            <div className="client reveal-text">Sarah Mitchell</div>
-            <div className="position reveal-text">CEO • Kitsap County Local Business</div>
+            <div className="client reveal-text">Maya Angelou</div>
+            {/* <div className="position reveal-text">Author - Poet</div> */}
           </TestimonialContent>
         </div>
       </Testimonial>

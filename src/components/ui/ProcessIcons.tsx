@@ -60,8 +60,8 @@ const ScalingElement = styled.circle`
 
 // Clean icon container
 const IconContainer = styled.div`
-  width: 48px;
-  height: 48px;
+  width: 96px;
+  height: 96px;
   margin-bottom: ${({ theme }) => theme.spacing.lg};
   
   svg {
@@ -322,67 +322,161 @@ export const AdaptiveEvolutionIcon = () => (
 // Service Icons for Home Page
 export const BrandStrategyIcon = () => (
   <IconContainer>
-    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle
-        cx="24"
-        cy="24"
-        r="18"
+    <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Strategic Documents - Bottom Left */}
+      <rect
+        x="8"
+        y="60"
+        width="24"
+        height="28"
+        rx="2"
         fill="none"
-        stroke="#FF3A46"
-        strokeWidth="1.5"
-        opacity="0.2"
+        stroke="#4A90E2"
+        strokeWidth="2"
+        opacity="0.6"
       />
-      <circle
-        cx="24"
-        cy="24"
-        r="12"
-        fill="none"
-        stroke="#FF3A46"
-        strokeWidth="1.5"
+      <rect
+        x="12"
+        y="68"
+        width="16"
+        height="2"
+        rx="1"
+        fill="#4A90E2"
         opacity="0.4"
       />
-      <RotatingElement>
+      <rect
+        x="12"
+        y="72"
+        width="12"
+        height="2"
+        rx="1"
+        fill="#4A90E2"
+        opacity="0.4"
+      />
+      <rect
+        x="12"
+        y="76"
+        width="14"
+        height="2"
+        rx="1"
+        fill="#4A90E2"
+        opacity="0.4"
+      />
+      
+      {/* Chart/Graph */}
+      <path
+        d="M14 64l4-3 4 2 4-4 2 2"
+        stroke="#FF8A50"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity="0.7"
+      />
+      
+      {/* Central Lightbulb */}
+      <PulsingElement>
         <path
-          d="M24 6l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z"
+          d="M48 32c-6 0-10 4-10 10 0 3 1 6 3 8v6c0 2 2 4 4 4h6c2 0 4-2 4-4v-6c2-2 3-5 3-8 0-6-4-10-10-10z"
           fill="none"
           stroke="#FF3A46"
-          strokeWidth="1.5"
+          strokeWidth="2.5"
+          opacity="0.8"
+        />
+        <path
+          d="M42 56h12M44 60h8"
+          stroke="#FF3A46"
+          strokeWidth="2"
+          strokeLinecap="round"
           opacity="0.6"
         />
-      </RotatingElement>
+      </PulsingElement>
+      
+      {/* Idea spark lines */}
+      <path
+        d="M42 38l-3-3M54 38l3-3M48 28v-4"
+        stroke="#FF3A46"
+        strokeWidth="2"
+        strokeLinecap="round"
+        opacity="0.5"
+      />
+      
+      {/* Target - Top Right */}
       <circle
-        cx="24"
+        cx="72"
         cy="24"
-        r="3"
+        r="14"
+        fill="none"
+        stroke="#FF3A46"
+        strokeWidth="2"
+        opacity="0.3"
+      />
+      <circle
+        cx="72"
+        cy="24"
+        r="9"
+        fill="none"
+        stroke="#FF3A46"
+        strokeWidth="2"
+        opacity="0.5"
+      />
+      <circle
+        cx="72"
+        cy="24"
+        r="4"
         fill="#FF3A46"
         opacity="0.8"
       />
+      
+      {/* Arrows pointing to target */}
+      <path
+        d="M56 16l12 4-2-2 2-2z"
+        fill="#FF8A50"
+        opacity="0.7"
+      />
+      <path
+        d="M58 32l10-4-2 2 2 2z"
+        fill="#FF8A50"
+        opacity="0.7"
+      />
+      
+      {/* Strategic Connection Lines */}
+      <DrawingPath
+        d="M32 72c8-8 16-16 24-24"
+        stroke="#FF3A46"
+        strokeWidth="1.5"
+        strokeDasharray="4 4"
+        opacity="0.4"
+        strokeLinecap="round"
+      />
+      <DrawingPath
+        d="M54 48c6-8 12-16 18-24"
+        stroke="#FF3A46"
+        strokeWidth="1.5"
+        strokeDasharray="4 4"
+        opacity="0.4"
+        strokeLinecap="round"
+      />
+      
+      {/* Process indicators */}
       <GlowingElement
-        cx="24"
-        cy="12"
-        r="1.5"
-        fill="#FF3A46"
+        cx="20"
+        cy="52"
+        r="2"
+        fill="#4A90E2"
       />
       <GlowingElement
-        cx="33"
+        cx="48"
+        cy="42"
+        r="3"
+        fill="#FF3A46"
+        delay="0.5s"
+      />
+      <GlowingElement
+        cx="72"
         cy="24"
-        r="1.5"
-        fill="#FF3A46"
-        delay="0.6s"
-      />
-      <GlowingElement
-        cx="24"
-        cy="36"
-        r="1.5"
-        fill="#FF3A46"
-        delay="1.2s"
-      />
-      <GlowingElement
-        cx="15"
-        cy="24"
-        r="1.5"
-        fill="#FF3A46"
-        delay="1.8s"
+        r="2"
+        fill="#FF8A50"
+        delay="1s"
       />
     </svg>
   </IconContainer>
