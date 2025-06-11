@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
+import { BrandStrategyIcon, VisualIdentityIcon, DigitalExperienceIcon } from '../components/ui/ProcessIcons';
 
 // Hero Section
 const Hero = styled.section`
@@ -248,19 +249,7 @@ const ServicesGrid = styled.div`
   gap: ${({ theme }) => theme.spacing.xl};
 `;
 
-const ServiceImage = styled.div<{ url?: string; }>`
-  background: no-repeat ${(props) => `url("${props.url}");`} 
-  position: relative;
-  left:0;
-  top:0;
-  right:0;
-  bottom:0;
-  height:150px;
-  width:auto;
-  background-position: left;
-  background-size: contain;
-  z-index: -1;
-`;
+
 
 const ServiceCard = styled.div<{ position?: string; }>`
   background-color: rgb(255, 255, 255);
@@ -574,7 +563,7 @@ const Home = () => {
           
           <ServicesGrid>
             <ServiceCard className="reveal-text" position='left'>
-              {/* <ServiceImage url='public/images/Artboard 1 copy 8.png' /> */}
+              <BrandStrategyIcon />
               <h3>Brand Strategy</h3>
               <p>Develop a clear, compelling brand strategy that differentiates your business and resonates with your target audience.</p>
               <Link to="/services" className="learn-more">
@@ -585,7 +574,7 @@ const Home = () => {
               </Link>
             </ServiceCard>
             <ServiceCard className="reveal-text" position='top'>
-              {/* <ServiceImage url='public/images/branding.gif' /> */}
+              <VisualIdentityIcon />
               <h3>Visual Identity</h3>
               <p>Create a cohesive visual system that communicates your brand's personality and values across all touchpoints.</p>
               <Link to="/services" className="learn-more">
@@ -596,7 +585,7 @@ const Home = () => {
               </Link>
             </ServiceCard>
             <ServiceCard className="reveal-text" position='right'>
-              {/* <ServiceImage url='public/images/monitor.gif' /> */}
+              <DigitalExperienceIcon />
               <h3>Digital Experience</h3>
               <p>Design intuitive, engaging digital experiences that strengthen your brand and drive meaningful connections.</p>
               <Link to="/services" className="learn-more">

@@ -55,15 +55,7 @@ const ServiceCard = styled.div`
     transform: translateY(-5px);
   }
   
-  .service-icon {
-    margin-bottom: ${({ theme }) => theme.spacing.lg};
-    
-    svg {
-      width: 48px;
-      height: 48px;
-      color: ${({ theme }) => theme.colors.accent};
-    }
-  }
+
   
   h3 {
     font-size: ${({ theme }) => theme.typography.fontSize.xl};
