@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import { ThemeModeContext } from '../ThemeModeContext';
 
-
 interface HeaderProps {
   isScrolled: boolean;
 }
@@ -44,6 +43,9 @@ const Logo = styled(Link)`
   font-size: ${({ theme }) => theme.typography.fontSize.xl};
   font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
   color: ${({ theme }) => theme.colors.text};
+  width: 150px;
+  height: 40px;
+  background: center / contain no-repeat url("/images/logo/bigInvisible-logo.png");
   letter-spacing: -0.02em;
   position: relative;
   z-index: 1001;
@@ -196,7 +198,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
-  const { setIsLightMode } = useContext(ThemeModeContext);
+  const { setIsLightMode, isHomePage } = useContext(ThemeModeContext);
   
   useEffect(() => {
     const handleScroll = () => {
@@ -207,17 +209,19 @@ const Header = () => {
         setIsScrolled(false);
       }
       
-      // Switch to light mode when scrolled down more than 300px
-      if (window.scrollY > 300) {
-        setIsLightMode(true);
-      } else {
-        setIsLightMode(false);
+      // Switch to light mode when scrolled down more than 300px, but only on home page
+      if (isHomePage) {
+        if (window.scrollY > 300) {
+          setIsLightMode(true);
+        } else {
+          setIsLightMode(false);
+        }
       }
     };
     
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [setIsLightMode]);
+  }, [setIsLightMode, isHomePage]);
   
   useEffect(() => {
     if (isMenuOpen) {
@@ -243,7 +247,7 @@ const Header = () => {
     <StyledHeader isScrolled={isScrolled}>
       <HeaderContainer>
         <Nav>
-          <Logo to="/">Big<span>Invisible</span></Logo>
+          <Logo to="/" />
           
           <MenuButton isOpen={isMenuOpen} onClick={toggleMenu} aria-label="Toggle menu">
             <span></span>

@@ -54,6 +54,7 @@ const TeamMember = styled.div`
     background-color: rgba(255, 255, 255, 0.05);
     margin-bottom: ${({ theme }) => theme.spacing.lg};
     overflow: hidden;
+    border-radius: 12px;
     
     img {
       width: 100%;
@@ -87,25 +88,98 @@ const TeamMember = styled.div`
 
 const ValueGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: ${({ theme }) => theme.spacing.xl};
 `;
 
 const ValueItem = styled.div`
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  padding: ${({ theme }) => theme.spacing.xl};
+  border-radius: 16px;
+  text-align: left;
+  transition: all ${({ theme }) => theme.transitions.default};
+  position: relative;
+  overflow: hidden;
+  
+  &:hover {
+    transform: translateY(-8px);
+    border-color: ${({ theme }) => theme.colors.accent};
+    background: rgba(255, 58, 70, 0.05);
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 58, 70, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity ${({ theme }) => theme.transitions.default};
+    pointer-events: none;
+  }
+  
+  &:hover::before {
+    opacity: 1;
+  }
+  
   .value-icon {
-    color: ${({ theme }) => theme.colors.accent};
-    font-size: ${({ theme }) => theme.typography.fontSize['3xl']};
-    margin-bottom: ${({ theme }) => theme.spacing.md};
+    font-size: 4rem;
+    margin-bottom: ${({ theme }) => theme.spacing.lg};
+    display: block;
+    position: relative;
+    z-index: 2;
+    color: red;
   }
   
   h3 {
     font-size: ${({ theme }) => theme.typography.fontSize.xl};
     margin-bottom: ${({ theme }) => theme.spacing.md};
+    color: ${({ theme }) => theme.colors.accent};
+    position: relative;
+    z-index: 2;
   }
   
   p {
-    opacity: 0.8;
+    opacity: 0.9;
     line-height: 1.6;
+    position: relative;
+    z-index: 2;
+  }
+`;
+
+const QuirkySection = styled(Section)`
+  background: linear-gradient(135deg, 
+    ${({ theme }) => theme.colors.background} 0%, 
+    rgba(255, 58, 70, 0.05) 50%, 
+    ${({ theme }) => theme.colors.background} 100%
+  );
+`;
+
+const FunFactsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: ${({ theme }) => theme.spacing.lg};
+  margin-top: ${({ theme }) => theme.spacing.xl};
+`;
+
+const FunFact = styled.div`
+  background: rgba(255, 255, 255, 0.05);
+  padding: ${({ theme }) => theme.spacing.lg};
+  border-radius: 12px;
+  border-left: 4px solid ${({ theme }) => theme.colors.accent};
+  
+  .fact-emoji {
+    font-size: 2rem;
+    margin-bottom: ${({ theme }) => theme.spacing.sm};
+  }
+  
+  .fact-text {
+    font-size: ${({ theme }) => theme.typography.fontSize.sm};
+    opacity: 0.8;
+    font-style: italic;
   }
 `;
 
@@ -262,61 +336,82 @@ const About = () => {
             <div className="position">Digital Experience Designer</div>
             <p className="bio">David creates intuitive, engaging digital experiences that strengthen brands and drive meaningful connections.</p>
           </TeamMember>
+          
+          <TeamMember className="reveal-text">
+            <div className="member-image">
+              <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Pixel the Office Dog" />
+            </div>
+            <h3>Pixel</h3>
+            <div className="position">Chief Happiness Officer</div>
+            <p className="bio">Pixel keeps morale high and ensures no meeting goes too long. Expert in stress relief, treat negotiations, and unconditional support.</p>
+          </TeamMember>
         </TeamGrid>
       </Section>
       
-      <Section>
+      <QuirkySection>
         <SectionHeader
           subtitle="Our values"
-          title="What drives us"
-          description="These core principles guide our work and relationships with clients, partners, and communities."
+          title="What drives us (and makes us unique)"
+          description="These core principles guide our work, relationships, and daily coffee consumption."
           align="center"
         />
         
         <ValueGrid>
           <ValueItem className="reveal-text">
-            <div className="value-icon">&#9679;</div>
             <h3>Authenticity</h3>
-            <p>We believe in creating brands that are true to their core values and resonate authentically with their audiences.</p>
+            <p>We believe in creating brands that are true to their core values and resonate authentically with their audiences. No fake smiles or corporate jargon here.</p>
           </ValueItem>
           
           <ValueItem className="reveal-text">
-            <div className="value-icon">&#9679;</div>
             <h3>Community</h3>
-            <p>We focus on building brands that strengthen communities and create meaningful connections between businesses and people.</p>
+            <p>We focus on building brands that strengthen communities and create meaningful connections between businesses and people. Think less networking, more friendworking.</p>
           </ValueItem>
           
           <ValueItem className="reveal-text">
-            <div className="value-icon">&#9679;</div>
             <h3>Innovation</h3>
-            <p>We constantly explore new approaches and technologies to help our clients stay ahead in an ever-evolving landscape.</p>
+            <p>We constantly explore new approaches and technologies to help our clients stay ahead. We're basically professional curiosity cats (minus the danger).</p>
           </ValueItem>
           
           <ValueItem className="reveal-text">
-            <div className="value-icon">&#9679;</div>
             <h3>Impact</h3>
-            <p>We measure our success by the positive impact our work has on our clients' businesses and their communities.</p>
+            <p>We measure our success by the positive impact our work has on our clients' businesses and their communities. Good vibes only, but make it measurable.</p>
           </ValueItem>
           
           <ValueItem className="reveal-text">
-            <div className="value-icon">&#9679;</div>
             <h3>Collaboration</h3>
-            <p>We work closely with our clients, treating them as partners in the creative process to achieve the best possible outcomes.</p>
+            <p>We work closely with our clients, treating them as partners in the creative process. It's like a creative sandwich, but everyone gets fed.</p>
           </ValueItem>
           
           <ValueItem className="reveal-text">
-            <div className="value-icon">&#9679;</div>
             <h3>Excellence</h3>
-            <p>We hold ourselves to the highest standards in everything we do, from strategic thinking to design execution.</p>
+            <p>We hold ourselves to the highest standards in everything we do. Perfectionism with a smile and probably too much attention to detail.</p>
           </ValueItem>
         </ValueGrid>
-      </Section>
+        
+        <FunFactsGrid>
+          <FunFact className="reveal-text">
+            <div className="fact-text">We've consumed approximately 847 cups of coffee this quarter. Pixel prefers water.</div>
+          </FunFact>
+          
+          <FunFact className="reveal-text">
+            <div className="fact-text">Our Spotify wrapped shows 127 different genres. Creative minds need diverse soundtracks.</div>
+          </FunFact>
+          
+          <FunFact className="reveal-text">
+            <div className="fact-text">Tuesday is taco day. This is non-negotiable and has improved our brainstorming by 73%.</div>
+          </FunFact>
+          
+          <FunFact className="reveal-text">
+            <div className="fact-text">We've said "pivot" ironically so many times it's lost all meaning. We're working on rehabilitation.</div>
+          </FunFact>
+        </FunFactsGrid>
+      </QuirkySection>
       
       <StatsSection>
         <StatsGrid>
           <StatItem className="reveal-text">
             <div className="number">50+</div>
-            <div className="label">Clients Served</div>
+            <div className="label">Happy Clients</div>
           </StatItem>
           
           <StatItem className="reveal-text">
@@ -330,8 +425,8 @@ const About = () => {
           </StatItem>
           
           <StatItem className="reveal-text">
-            <div className="number">5+</div>
-            <div className="label">Years Experience</div>
+            <div className="number">∞</div>
+            <div className="label">Dog Treats Given</div>
           </StatItem>
         </StatsGrid>
       </StatsSection>
@@ -339,7 +434,7 @@ const About = () => {
       <Section background="accent">
         <div style={{ textAlign: 'center' }}>
           <h2 className="reveal-text">Ready to work with us?</h2>
-          <p className="reveal-text" style={{ marginBottom: '2rem', opacity: 0.9 }}>Let's create authentic connections that transform your business and strengthen your community.</p>
+          <p className="reveal-text" style={{ marginBottom: '2rem', opacity: 0.9 }}>Let's create authentic connections that transform your business and strengthen your community. Coffee and dog pics included.</p>
           <Button to="/contact" variant="secondary" className="reveal-text">Get in touch</Button>
         </div>
       </Section>

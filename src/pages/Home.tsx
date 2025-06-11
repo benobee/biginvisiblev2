@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
+import { BrandStrategyIcon, VisualIdentityIcon, DigitalExperienceIcon } from '../components/ui/ProcessIcons';
 
 // Hero Section
 const Hero = styled.section`
@@ -519,8 +520,8 @@ const Home = () => {
         <HeroShape />
         <div className="container">
           <HeroContent>
-            <div className="tagline reveal-text">Brand Architecture Studio</div>
-            <h1 className="reveal-text">We make the <span className="text-gradient">invisible</span> bonds between brands and people visible</h1>
+            <div className="tagline reveal-text">Branding Studio</div>
+            <h1 className="reveal-text">We make the <span className="text-gradient">invisible</span> bonds between brands and people visible.</h1>
             <p className="subtitle reveal-text">Transform your business into a trusted authority through our systematic approach — where strategic brand architecture meets meaningful community impact.</p>
             <div className="reveal-text">
               <CTAButton to="/contact">Start a project</CTAButton>
@@ -544,7 +545,7 @@ const Home = () => {
           
           <ServicesGrid>
             <ServiceCard className="reveal-text">
-              <div className="service-icon">&#9679;</div>
+              <BrandStrategyIcon />
               <h3>Brand Strategy</h3>
               <p>Develop a clear, compelling brand strategy that differentiates your business and resonates with your target audience.</p>
               <Link to="/services" className="learn-more">
@@ -556,7 +557,7 @@ const Home = () => {
             </ServiceCard>
             
             <ServiceCard className="reveal-text">
-              <div className="service-icon">&#9679;</div>
+              <VisualIdentityIcon />
               <h3>Visual Identity</h3>
               <p>Create a cohesive visual system that communicates your brand's personality and values across all touchpoints.</p>
               <Link to="/services" className="learn-more">
@@ -568,7 +569,7 @@ const Home = () => {
             </ServiceCard>
             
             <ServiceCard className="reveal-text">
-              <div className="service-icon">&#9679;</div>
+              <DigitalExperienceIcon />
               <h3>Digital Experience</h3>
               <p>Design intuitive, engaging digital experiences that strengthen your brand and drive meaningful connections.</p>
               <Link to="/services" className="learn-more">

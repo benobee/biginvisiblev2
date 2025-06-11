@@ -6,6 +6,7 @@ import Grid from '../components/ui/Grid';
 import GridItem from '../components/ui/GridItem';
 import Button from '../components/ui/Button';
 import { initRevealAnimations } from '../utils/animations';
+import { BrandStrategyIcon, VisualIdentityIcon, DigitalExperienceIcon, ContentStrategyIcon, BrandArchitectureIcon, CommunityBuildingIcon } from '../components/ui/ProcessIcons';
 
 const HeroSection = styled.section`
   min-height: 70vh;
@@ -152,78 +153,78 @@ const ProcessStep = styled.div`
   }
 `;
 
-const PricingCard = styled.div`
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: ${({ theme }) => theme.spacing.xl};
-  transition: all ${({ theme }) => theme.transitions.default};
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+// const PricingCard = styled.div`
+//   background: rgba(255, 255, 255, 0.03);
+//   border: 1px solid rgba(255, 255, 255, 0.1);
+//   padding: ${({ theme }) => theme.spacing.xl};
+//   transition: all ${({ theme }) => theme.transitions.default};
+//   height: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   text-align: center;
+//     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   
-  &:hover {
-    border-color: ${({ theme }) => theme.colors.accent};
-    transform: translateY(-5px);
-  }
+//   &:hover {
+//     border-color: ${({ theme }) => theme.colors.accent};
+//     transform: translateY(-5px);
+//   }
   
-  .package-name {
-    font-size: ${({ theme }) => theme.typography.fontSize.lg};
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: ${({ theme }) => theme.spacing.md};
-    color: ${({ theme }) => theme.colors.accent};
-  }
+//   .package-name {
+//     font-size: ${({ theme }) => theme.typography.fontSize.lg};
+//     text-transform: uppercase;
+//     letter-spacing: 0.05em;
+//     margin-bottom: ${({ theme }) => theme.spacing.md};
+//     color: ${({ theme }) => theme.colors.accent};
+//   }
   
-  .price {
-    font-size: ${({ theme }) => theme.typography.fontSize['3xl']};
-    font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
-    margin-bottom: ${({ theme }) => theme.spacing.lg};
+//   .price {
+//     font-size: ${({ theme }) => theme.typography.fontSize['3xl']};
+//     font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
+//     margin-bottom: ${({ theme }) => theme.spacing.lg};
     
-    .currency {
-      font-size: ${({ theme }) => theme.typography.fontSize.lg};
-      vertical-align: super;
-      font-weight: ${({ theme }) => theme.typography.fontWeight.normal};
-    }
+//     .currency {
+//       font-size: ${({ theme }) => theme.typography.fontSize.lg};
+//       vertical-align: super;
+//       font-weight: ${({ theme }) => theme.typography.fontWeight.normal};
+//     }
     
-    .period {
-      font-size: ${({ theme }) => theme.typography.fontSize.sm};
-      opacity: 0.6;
-      font-weight: ${({ theme }) => theme.typography.fontWeight.normal};
-    }
-  }
+//     .period {
+//       font-size: ${({ theme }) => theme.typography.fontSize.sm};
+//       opacity: 0.6;
+//       font-weight: ${({ theme }) => theme.typography.fontWeight.normal};
+//     }
+//   }
   
-  .description {
-    margin-bottom: ${({ theme }) => theme.spacing.lg};
-    opacity: 0.8;
-  }
+//   .description {
+//     margin-bottom: ${({ theme }) => theme.spacing.lg};
+//     opacity: 0.8;
+//   }
   
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 ${({ theme }) => theme.spacing.xl} 0;
-    text-align: left;
+//   ul {
+//     list-style: none;
+//     padding: 0;
+//     margin: 0 0 ${({ theme }) => theme.spacing.xl} 0;
+//     text-align: left;
     
-    li {
-      position: relative;
-      padding-left: ${({ theme }) => theme.spacing.lg};
-      margin-bottom: ${({ theme }) => theme.spacing.sm};
-      opacity: 0.8;
+//     li {
+//       position: relative;
+//       padding-left: ${({ theme }) => theme.spacing.lg};
+//       margin-bottom: ${({ theme }) => theme.spacing.sm};
+//       opacity: 0.8;
       
-      &:before {
-        content: '✓';
-        position: absolute;
-        left: 0;
-        color: ${({ theme }) => theme.colors.accent};
-      }
-    }
-  }
+//       &:before {
+//         content: '✓';
+//         position: absolute;
+//         left: 0;
+//         color: ${({ theme }) => theme.colors.accent};
+//       }
+//     }
+//   }
   
-  .cta {
-    margin-top: auto;
-  }
-`;
+//   .cta {
+//     margin-top: auto;
+//   }
+// `;
 
 const Services = () => {
   useEffect(() => {
@@ -282,11 +283,7 @@ const Services = () => {
         <Grid columns={3}>
           <GridItem span={1} className="reveal-text">
             <ServiceCard>
-              <div className="service-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-              </div>
+              <BrandStrategyIcon />
               <h3>Brand Strategy</h3>
               <p>Develop a clear, compelling brand strategy that differentiates your business and resonates with your target audience.</p>
               <ul>
@@ -306,11 +303,7 @@ const Services = () => {
           
           <GridItem span={1} className="reveal-text">
             <ServiceCard>
-              <div className="service-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-              </div>
+              <VisualIdentityIcon />
               <h3>Visual Identity</h3>
               <p>Create a cohesive visual system that communicates your brand's personality and values across all touchpoints.</p>
               <ul>
@@ -330,11 +323,7 @@ const Services = () => {
           
           <GridItem span={1} className="reveal-text">
             <ServiceCard>
-              <div className="service-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
+              <DigitalExperienceIcon />
               <h3>Digital Experience</h3>
               <p>Design intuitive, engaging digital experiences that strengthen your brand and drive meaningful connections.</p>
               <ul>
@@ -354,11 +343,7 @@ const Services = () => {
           
           <GridItem span={1} className="reveal-text">
             <ServiceCard>
-              <div className="service-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
-                </svg>
-              </div>
+              <ContentStrategyIcon />
               <h3>Content Strategy</h3>
               <p>Develop a content strategy that tells your brand story and engages your audience across all channels.</p>
               <ul>
@@ -378,11 +363,7 @@ const Services = () => {
           
           <GridItem span={1} className="reveal-text">
             <ServiceCard>
-              <div className="service-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
+              <BrandArchitectureIcon />
               <h3>Brand Architecture</h3>
               <p>Structure your brand portfolio to maximize clarity, relevance, and impact across all your offerings.</p>
               <ul>
@@ -402,11 +383,7 @@ const Services = () => {
           
           <GridItem span={1} className="reveal-text">
             <ServiceCard>
-              <div className="service-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </div>
+              <CommunityBuildingIcon />
               <h3>Community Building</h3>
               <p>Develop strategies to build and nurture communities around your brand, fostering loyalty and advocacy.</p>
               <ul>
@@ -497,7 +474,7 @@ const Services = () => {
         </Grid>
       </ProcessSection>
       
-      <Section>
+      {/* <Section>
         <SectionHeader
           subtitle="Pricing"
           title="Investment options"
@@ -574,7 +551,7 @@ const Services = () => {
           <p>Need a custom solution? We offer tailored packages to meet your specific needs.</p>
           <Button to="/contact" variant="text">Contact us for a custom quote</Button>
         </div>
-      </Section>
+      </Section> */}
       
       <Section background="accent">
         <div style={{ textAlign: 'center' }}>

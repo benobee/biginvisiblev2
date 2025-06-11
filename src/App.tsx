@@ -17,24 +17,70 @@ import { ThemeModeContext } from './components/ThemeModeContext';
 
 function App() {
   const [isLightMode, setIsLightMode] = useState(false);
+  const [currentPath, setCurrentPath] = useState('/');
+  const isHomePage = currentPath === '/';
   
-  // Listen for scroll to determine theme mode
+  // Update current path when location changes
   useEffect(() => {
-    const handleScroll = () => {
-      // Switch to light mode when scrolled down more than 300px
-      if (window.scrollY > 300) {
+    const updatePath = () => {
+      setCurrentPath(window.location.pathname);
+      
+      // Set light mode for all pages except home
+      if (window.location.pathname !== '/') {
         setIsLightMode(true);
       } else {
-        setIsLightMode(false);
+        // On home page, reset based on scroll position
+        if (window.scrollY > 300) {
+          setIsLightMode(true);
+        } else {
+          setIsLightMode(false);
+        }
+      }
+    };
+    
+    // Set initial path and theme
+    updatePath();
+    
+    // Listen for route changes
+    window.addEventListener('popstate', updatePath);
+    
+    // Also listen for clicks on links that might change the route
+    const handleClick = () => {
+      setTimeout(() => {
+        if (window.location.pathname !== currentPath) {
+          updatePath();
+        }
+      }, 0);
+    };
+    
+    document.addEventListener('click', handleClick);
+    
+    return () => {
+      window.removeEventListener('popstate', updatePath);
+      document.removeEventListener('click', handleClick);
+    };
+  }, [currentPath]);
+  
+  // Listen for scroll to determine theme mode, but only on home page
+  useEffect(() => {
+    const handleScroll = () => {
+      // Only switch themes on home page
+      if (currentPath === '/') {
+        // Switch to light mode when scrolled down more than 300px
+        if (window.scrollY > 300) {
+          setIsLightMode(true);
+        } else {
+          setIsLightMode(false);
+        }
       }
     };
     
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [currentPath]);
 
   return (
-    <ThemeModeContext.Provider value={{ isLightMode, setIsLightMode }}>
+    <ThemeModeContext.Provider value={{ isLightMode, setIsLightMode, isHomePage }}>
       <ThemeProvider theme={isLightMode ? lightTheme : darkTheme}>
         <GlobalStyles />
         <Router>

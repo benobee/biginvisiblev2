@@ -36,6 +36,7 @@ const StyledSectionHeader = styled.div<{ align?: 'left' | 'center' | 'right' }>`
     max-width: ${({ align }) => align === 'center' ? '700px' : '100%'};
     margin-left: ${({ align }) => align === 'center' ? 'auto' : '0'};
     margin-right: ${({ align }) => align === 'center' ? 'auto' : '0'};
+    text-align: left;
   }
 `;
 

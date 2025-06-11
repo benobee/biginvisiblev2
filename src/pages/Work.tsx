@@ -104,6 +104,7 @@ const ProjectItem = styled.div<{ span: number, start?: number }>`
   h3 {
     font-size: ${({ theme }) => theme.typography.fontSize.xl};
     margin-bottom: ${({ theme }) => theme.spacing.xs};
+    color: white;
   }
   
   .category {
@@ -131,6 +132,7 @@ const CaseStudyCard = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.1);
   height: 100%;
   overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   
   .image-container {
     width: 100%;

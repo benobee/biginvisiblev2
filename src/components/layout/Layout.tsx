@@ -24,13 +24,13 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  const { isLightMode } = useContext(ThemeModeContext);
+  const { isLightMode, isHomePage } = useContext(ThemeModeContext);
   
   return (
-    <LayoutWrapper className={isLightMode ? 'light-mode' : 'dark-mode'}>
+    <LayoutWrapper>
       <Header />
       <Main>{children}</Main>
-      <Footer isLightMode={isLightMode} />
+      <Footer isLightMode={isLightMode && isHomePage} />
     </LayoutWrapper>
   );
 };

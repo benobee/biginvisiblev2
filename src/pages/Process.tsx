@@ -6,6 +6,14 @@ import Grid from '../components/ui/Grid';
 import GridItem from '../components/ui/GridItem';
 import Button from '../components/ui/Button';
 import { initRevealAnimations } from '../utils/animations';
+import {
+  AuthenticConnectionIcon,
+  StrategicAlignmentIcon,
+  CommunityIntegrationIcon,
+  ConsistentExperienceIcon,
+  MeasurableImpactIcon,
+  AdaptiveEvolutionIcon
+} from '../components/ui/ProcessIcons';
 
 const HeroSection = styled.section`
   min-height: 70vh;
@@ -186,12 +194,6 @@ const FrameworkItem = styled.div`
     transform: translateY(-5px);
   }
   
-  .framework-icon {
-    color: ${({ theme }) => theme.colors.accent};
-    font-size: ${({ theme }) => theme.typography.fontSize['3xl']};
-    margin-bottom: ${({ theme }) => theme.spacing.lg};
-  }
-  
   h3 {
     font-size: ${({ theme }) => theme.typography.fontSize.xl};
     margin-bottom: ${({ theme }) => theme.spacing.md};
@@ -329,37 +331,37 @@ const Process = () => {
         
         <FrameworkGrid>
           <FrameworkItem className="reveal-text">
-            <div className="framework-icon">&#9679;</div>
+            <AuthenticConnectionIcon />
             <h3>Authentic Connection</h3>
             <p>Building genuine relationships between brands and their audiences based on shared values and transparent communication.</p>
           </FrameworkItem>
           
           <FrameworkItem className="reveal-text">
-            <div className="framework-icon">&#9679;</div>
+            <StrategicAlignmentIcon />
             <h3>Strategic Alignment</h3>
             <p>Ensuring all brand elements and experiences are purposefully aligned with business objectives and audience needs.</p>
           </FrameworkItem>
           
           <FrameworkItem className="reveal-text">
-            <div className="framework-icon">&#9679;</div>
+            <CommunityIntegrationIcon />
             <h3>Community Integration</h3>
             <p>Positioning brands as valuable contributors to their communities, fostering trust and loyalty beyond transactions.</p>
           </FrameworkItem>
           
           <FrameworkItem className="reveal-text">
-            <div className="framework-icon">&#9679;</div>
+            <ConsistentExperienceIcon />
             <h3>Consistent Experience</h3>
             <p>Creating cohesive brand experiences across all touchpoints that reinforce your brand promise and build recognition.</p>
           </FrameworkItem>
           
           <FrameworkItem className="reveal-text">
-            <div className="framework-icon">&#9679;</div>
+            <MeasurableImpactIcon />
             <h3>Measurable Impact</h3>
             <p>Defining clear metrics to track brand performance and business growth resulting from our strategic interventions.</p>
           </FrameworkItem>
           
           <FrameworkItem className="reveal-text">
-            <div className="framework-icon">&#9679;</div>
+            <AdaptiveEvolutionIcon />
             <h3>Adaptive Evolution</h3>
             <p>Building brands with flexibility to grow and evolve while maintaining their core essence and authentic connections.</p>
           </FrameworkItem>
