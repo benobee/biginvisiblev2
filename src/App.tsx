@@ -13,6 +13,12 @@ import Process from './pages/Process';
 import Services from './pages/Services';
 import Work from './pages/Work';
 import Contact from './pages/Contact';
+import BrandStrategy from './pages/services/BrandStrategy';
+import VisualIdentity from './pages/services/VisualIdentity';
+import DigitalExperience from './pages/services/DigitalExperience';
+import ContentStrategy from './pages/services/ContentStrategy';
+import BrandArchitecture from './pages/services/BrandArchitecture';
+import CommunityBuilding from './pages/services/CommunityBuilding';
 import { ThemeModeContext } from './components/ThemeModeContext';
 
 function App() {
@@ -91,6 +97,12 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/process" element={<Process />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/services/brand-strategy" element={<BrandStrategy />} />
+              <Route path="/services/visual-identity" element={<VisualIdentity />} />
+              <Route path="/services/digital-experience" element={<DigitalExperience />} />
+              <Route path="/services/content-strategy" element={<ContentStrategy />} />
+              <Route path="/services/brand-architecture" element={<BrandArchitecture />} />
+              <Route path="/services/community-building" element={<CommunityBuilding />} />
               <Route path="/work" element={<Work />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>

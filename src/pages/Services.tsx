@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Section from '../components/ui/Section';
 import SectionHeader from '../components/ui/SectionHeader';
@@ -99,6 +100,7 @@ const ServiceCard = styled.div`
     color: ${({ theme }) => theme.colors.accent};
     font-size: ${({ theme }) => theme.typography.fontSize.sm};
     font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
+    text-decoration: none;
     
     svg {
       margin-left: ${({ theme }) => theme.spacing.xs};
@@ -211,12 +213,12 @@ const Services = () => {
                 <li>Competitive analysis</li>
                 <li>Brand messaging</li>
               </ul>
-              <a href="#" className="learn-more">
+              <Link to="/services/brand-strategy" className="learn-more">
                 Learn more
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="currentColor"/>
                 </svg>
-              </a>
+              </Link>
             </ServiceCard>
           </GridItem>
           
@@ -231,12 +233,12 @@ const Services = () => {
                 <li>Typography system</li>
                 <li>Brand guidelines</li>
               </ul>
-              <a href="#" className="learn-more">
+              <Link to="/services/visual-identity" className="learn-more">
                 Learn more
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="currentColor"/>
                 </svg>
-              </a>
+              </Link>
             </ServiceCard>
           </GridItem>
           
@@ -251,12 +253,12 @@ const Services = () => {
                 <li>User interface (UI)</li>
                 <li>Digital strategy</li>
               </ul>
-              <a href="#" className="learn-more">
+              <Link to="/services/digital-experience" className="learn-more">
                 Learn more
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="currentColor"/>
                 </svg>
-              </a>
+              </Link>
             </ServiceCard>
           </GridItem>
           
@@ -271,12 +273,12 @@ const Services = () => {
                 <li>Content creation</li>
                 <li>Content distribution</li>
               </ul>
-              <a href="#" className="learn-more">
+              <Link to="/services/content-strategy" className="learn-more">
                 Learn more
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="currentColor"/>
                 </svg>
-              </a>
+              </Link>
             </ServiceCard>
           </GridItem>
           
@@ -291,12 +293,12 @@ const Services = () => {
                 <li>Brand extensions</li>
                 <li>Portfolio management</li>
               </ul>
-              <a href="#" className="learn-more">
+              <Link to="/services/brand-architecture" className="learn-more">
                 Learn more
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="currentColor"/>
                 </svg>
-              </a>
+              </Link>
             </ServiceCard>
           </GridItem>
           
@@ -311,12 +313,12 @@ const Services = () => {
                 <li>Ambassador programs</li>
                 <li>Community events</li>
               </ul>
-              <a href="#" className="learn-more">
+              <Link to="/services/community-building" className="learn-more">
                 Learn more
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="currentColor"/>
                 </svg>
-              </a>
+              </Link>
             </ServiceCard>
           </GridItem>
         </Grid>
@@ -392,85 +394,6 @@ const Services = () => {
           </GridItem>
         </Grid>
       </ProcessSection>
-      
-      {/* <Section>
-        <SectionHeader
-          subtitle="Pricing"
-          title="Investment options"
-          description="We offer flexible pricing options to meet the needs of businesses at different stages of growth."
-          align="center"
-        />
-        
-        <Grid columns={3}>
-          <GridItem span={1} className="reveal-text">
-            <PricingCard>
-              <div className="package-name">Starter</div>
-              <div className="price">
-                <span className="currency">$</span>5,000<span className="period">+</span>
-              </div>
-              <p className="description">Perfect for small businesses looking to establish a strong brand foundation.</p>
-              <ul>
-                <li>Brand strategy workshop</li>
-                <li>Visual identity essentials</li>
-                <li>Brand guidelines</li>
-                <li>Basic website design</li>
-                <li>30 days of support</li>
-              </ul>
-              <div className="cta">
-                <Button to="/contact" variant="outline" fullWidth>Get started</Button>
-              </div>
-            </PricingCard>
-          </GridItem>
-          
-          <GridItem span={1} className="reveal-text">
-            <PricingCard style={{ borderColor: 'rgba(255, 58, 70, 0.3)' }}>
-              <div className="package-name">Growth</div>
-              <div className="price">
-                <span className="currency">$</span>12,000<span className="period">+</span>
-              </div>
-              <p className="description">Ideal for growing businesses ready to strengthen their market position.</p>
-              <ul>
-                <li>Comprehensive brand strategy</li>
-                <li>Complete visual identity system</li>
-                <li>Detailed brand guidelines</li>
-                <li>Custom website design</li>
-                <li>Content strategy</li>
-                <li>90 days of support</li>
-              </ul>
-              <div className="cta">
-                <Button to="/contact" variant="primary" fullWidth>Get started</Button>
-              </div>
-            </PricingCard>
-          </GridItem>
-          
-          <GridItem span={1} className="reveal-text">
-            <PricingCard>
-              <div className="package-name">Enterprise</div>
-              <div className="price">
-                <span className="currency">$</span>25,000<span className="period">+</span>
-              </div>
-              <p className="description">For established businesses looking to transform their brand architecture.</p>
-              <ul>
-                <li>Advanced brand architecture</li>
-                <li>Multi-brand strategy</li>
-                <li>Comprehensive visual system</li>
-                <li>Full digital experience design</li>
-                <li>Content strategy & creation</li>
-                <li>Community building plan</li>
-                <li>12 months of support</li>
-              </ul>
-              <div className="cta">
-                <Button to="/contact" variant="outline" fullWidth>Get started</Button>
-              </div>
-            </PricingCard>
-          </GridItem>
-        </Grid>
-        
-        <div style={{ textAlign: 'center', marginTop: '3rem' }} className="reveal-text">
-          <p>Need a custom solution? We offer tailored packages to meet your specific needs.</p>
-          <Button to="/contact" variant="text">Contact us for a custom quote</Button>
-        </div>
-      </Section> */}
       
       <Section background="accent">
         <div style={{ textAlign: 'center' }}>

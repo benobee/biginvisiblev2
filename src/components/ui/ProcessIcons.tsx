@@ -18,7 +18,6 @@ import {
 const IconContainer = styled.div`
   width: 96px;
   height: 96px;
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
   display: flex;
   align-items: center;
   justify-content: center;

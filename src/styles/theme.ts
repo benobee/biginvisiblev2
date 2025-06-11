@@ -30,11 +30,11 @@ export const lightTheme = {
       '6xl': '4.5rem',
     },
     fontWeight: {
-      light: 300,
-      normal: 400,
-      medium: 500,
-      semibold: 600,
-      bold: 700,
+      light: 400,
+      normal: 500,
+      medium: 600,
+      semibold: 700,
+      bold: 800,
     },
   },
   spacing: {
