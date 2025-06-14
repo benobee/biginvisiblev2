@@ -566,7 +566,7 @@ const Home = () => {
               <BrandStrategyIcon />
               <h3>Brand Strategy</h3>
               <p>Develop a clear, compelling brand strategy that differentiates your business and resonates with your target audience.</p>
-              <Link to="/services" className="learn-more">
+              <Link to="/services/brand-strategy" className="learn-more">
                 Learn more
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="currentColor"/>
@@ -577,7 +577,7 @@ const Home = () => {
               <VisualIdentityIcon />
               <h3>Visual Identity</h3>
               <p>Create a cohesive visual system that communicates your brand's personality and values across all touchpoints.</p>
-              <Link to="/services" className="learn-more">
+              <Link to="/services/visual-identity" className="learn-more">
                 Learn more
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="currentColor"/>
@@ -588,7 +588,7 @@ const Home = () => {
               <DigitalExperienceIcon />
               <h3>Digital Experience</h3>
               <p>Design intuitive, engaging digital experiences that strengthen your brand and drive meaningful connections.</p>
-              <Link to="/services" className="learn-more">
+              <Link to="/services/digital-experience" className="learn-more">
                 Learn more
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="currentColor"/>
@@ -632,6 +632,11 @@ const Home = () => {
               <p>Continuous growth and adaptation that maintains authenticity while scaling impact.</p>
             </ProcessStep>
           </ProcessSteps>
+          <div style={{ textAlign: 'center', marginTop: '4rem' }}>
+            <CTAButton to="/process" className="reveal-text">
+              Learn About Our Process
+            </CTAButton>
+          </div>
         </div>
       </Process>
 

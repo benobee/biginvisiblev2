@@ -193,11 +193,12 @@ const Footer = ({ isLightMode }: FooterProps) => {
           <FooterColumn>
             <h4>Services</h4>
             <FooterLinks>
-              <li><Link to="/services">Brand Strategy</Link></li>
-              <li><Link to="/services">Visual Identity</Link></li>
-              <li><Link to="/services">Digital Experience</Link></li>
-              <li><Link to="/services">Content Strategy</Link></li>
-              <li><Link to="/services">Brand Architecture</Link></li>
+              <li><Link to="/services/brand-strategy">Brand Strategy</Link></li>
+              <li><Link to="/services/visual-identity">Visual Identity</Link></li>
+              <li><Link to="/services/digital-experience">Digital Experience</Link></li>
+              <li><Link to="/services/content-strategy">Content Strategy</Link></li>
+              <li><Link to="/services/brand-architecture">Brand Architecture</Link></li>
+              <li><Link to="/services/community-building">Community Building</Link></li>
             </FooterLinks>
           </FooterColumn>
           
