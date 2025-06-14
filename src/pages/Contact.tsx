@@ -41,6 +41,7 @@ const HeroContent = styled.div`
 const QuestionnaireContainer = styled.div`
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(114, 114, 114, 0.5);
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
   padding: ${({ theme }) => theme.spacing.xl};
   box-shadow: ${({ theme }) => theme.shadows.lg};
 `;
@@ -104,6 +105,7 @@ const Input = styled.input`
   width: 100%;
   background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(114, 114, 114, 0.5);
+  border-radius: ${({ theme }) => theme.borderRadius.md};
   color: ${({ theme }) => theme.colors.text};
   padding: ${({ theme }) => theme.spacing.md};
   font-size: ${({ theme }) => theme.typography.fontSize.base};
@@ -121,6 +123,7 @@ const Textarea = styled.textarea`
   width: 100%;
   background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(114, 114, 114, 0.5);
+  border-radius: ${({ theme }) => theme.borderRadius.md};
   color: ${({ theme }) => theme.colors.text};
   padding: ${({ theme }) => theme.spacing.md};
   font-size: ${({ theme }) => theme.typography.fontSize.base};
@@ -141,6 +144,7 @@ const Select = styled.select`
   width: 100%;
   background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(114, 114, 114, 0.5);
+  border-radius: ${({ theme }) => theme.borderRadius.md};
   color: ${({ theme }) => theme.colors.text};
   padding: ${({ theme }) => theme.spacing.md};
   font-size: ${({ theme }) => theme.typography.fontSize.base};
@@ -170,6 +174,7 @@ const OptionCard = styled.button<{ isSelected: boolean }>`
     isSelected ? 'rgba(255, 58, 70, 0.1)' : 'rgba(255, 255, 255, 0.03)'};
   border: 1px solid ${({ isSelected, theme }) => 
     isSelected ? theme.colors.accent : 'rgba(114, 114, 114, 0.5)'};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
   color: ${({ theme }) => theme.colors.text};
   padding: ${({ theme }) => theme.spacing.lg};
   text-align: left;
@@ -204,6 +209,7 @@ const ButtonGroup = styled.div`
 const RecommendationCard = styled.div`
   background: rgba(255, 58, 70, 0.1);
   border: 1px solid ${({ theme }) => theme.colors.accent};
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
   padding: ${({ theme }) => theme.spacing.xl};
   margin-top: ${({ theme }) => theme.spacing.xl};
   
@@ -235,6 +241,7 @@ const RecommendationCard = styled.div`
 const ContactInfo = styled.div`
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
   padding: ${({ theme }) => theme.spacing.xl};
   height: 100%;
 `;

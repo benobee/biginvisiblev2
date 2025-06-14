@@ -24,6 +24,7 @@ const ButtonStyles = css<{
   font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  border-radius: ${({ theme }) => theme.borderRadius.md};
   transition: all ${({ theme }) => theme.transitions.default};
   cursor: pointer;
   text-decoration: none;
