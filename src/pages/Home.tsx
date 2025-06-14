@@ -64,27 +64,27 @@ const HeroShape = styled.div`
   @keyframes morphing {
     0% {
       opacity:0;
-      transform: translate(-50%, -50%) scale(200%) rotate(0deg);
-      filter: blur(0px);
+      transform: translate(-50%, -50%) scale(300%) rotate(0deg);
+      filter: blur(32px);
     }
     25% {
-      opacity:0.2;
-      transform: translate(-50%, -50%) scale(220%) rotate(0);
-      filter: blur(10px);
+      opacity:0.5;
+      transform: translate(-50%, -50%) scale(280%) rotate(0);
+      filter: blur(32px);
     }
     50% {
       opacity:1;
-      transform: translate(-50%, -50%) scale(250%) rotate(0);
+      transform: translate(-50%, -50%) scale(270%) rotate(0);
       filter: blur(32px);
     }
     53% {
       opacity:1;
-      transform: translate(-50%, -50%) scale(250%) rotate(0deg);
+      transform: translate(-50%, -50%) scale(260%) rotate(0deg);
       filter: blur(32px);
     }
     75% {
       opacity:0.7;
-      transform: translate(-50%, -50%) scale(250%) rotate(0deg);
+      transform: translate(-50%, -50%) scale(270%) rotate(0deg);
       filter: blur(35px);
     }
     100% {
