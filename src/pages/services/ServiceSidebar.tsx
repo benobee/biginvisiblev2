@@ -1,43 +1,53 @@
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { getOtherServices, getServiceById, type Service } from '../../data/services';
+import { services, type Service } from '../../data/services';
 
 const SidebarContainer = styled.div`
-  background-color: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: ${({ theme }) => theme.spacing.lg};
-  height: fit-content;
-  position: sticky;
-  top: 140px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 280px;
+  height: 100vh;
+  background: #FFFFFF;
+  border-right: 1px solid #E2E8F0;
+  padding: 80px 20px 20px 20px;
+  overflow-y: auto;
+  z-index: 100;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  
+  @media (max-width: 768px) {
+    display: none;
+  }
   
   h3 {
     font-size: ${({ theme }) => theme.typography.fontSize.lg};
     margin-bottom: ${({ theme }) => theme.spacing.lg};
-    color: ${({ theme }) => theme.colors.text};
+    color: #0F1923;
     font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+    padding: 0 ${({ theme }) => theme.spacing.md};
   }
 `;
 
 const ServiceItem = styled(Link)<{ $isActive?: boolean }>`
   display: flex;
   align-items: center;
-  padding: ${({ theme }) => theme.spacing.md};
+  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
   margin-bottom: ${({ theme }) => theme.spacing.xs};
-  border: 1px solid ${({ $isActive, theme }) => 
-    $isActive ? theme.colors.accent : 'transparent'};
-  background-color: ${({ $isActive }) => 
-    $isActive ? 'rgba(255, 58, 70, 0.1)' : 'transparent'};
-  border-radius: 4px;
+  border-radius: 8px;
   transition: all ${({ theme }) => theme.transitions.default};
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.text};
+  color: #4A5568;
   position: relative;
-  min-height: 40px;
+  min-height: 44px;
+  background-color: ${({ $isActive }) => 
+    $isActive ? 'rgba(255, 58, 70, 0.1)' : 'transparent'};
+  border-left: ${({ $isActive, theme }) => 
+    $isActive ? `3px solid ${theme.colors.accent}` : '3px solid transparent'};
   
   &:hover {
-    border-color: ${({ theme }) => theme.colors.accent};
-    background-color: rgba(255, 255, 255, 0.05);
-    transform: translateX(3px);
+    background-color: ${({ $isActive }) => 
+      $isActive ? 'rgba(255, 58, 70, 0.15)' : 'rgba(0, 0, 0, 0.05)'};
+    transform: translateX(2px);
   }
   
   &:last-child {
@@ -48,17 +58,16 @@ const ServiceItem = styled(Link)<{ $isActive?: boolean }>`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
-    margin-right: ${({ theme }) => theme.spacing.md};
+    width: 20px;
+    height: 20px;
+    margin-right: ${({ theme }) => theme.spacing.sm};
     flex-shrink: 0;
-    margin-bottom:0;
     
     svg {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       color: ${({ $isActive, theme }) => 
-        $isActive ? theme.colors.accent : theme.colors.text};
+        $isActive ? theme.colors.accent : '#6B7280'};
     }
   }
   
@@ -66,24 +75,31 @@ const ServiceItem = styled(Link)<{ $isActive?: boolean }>`
     font-size: ${({ theme }) => theme.typography.fontSize.sm};
     font-weight: ${({ $isActive, theme }) => 
       $isActive ? theme.typography.fontWeight.semibold : theme.typography.fontWeight.medium};
-    line-height: 1.2;
+    line-height: 1.3;
     color: ${({ $isActive, theme }) => 
-      $isActive ? theme.colors.accent : theme.colors.text};
+      $isActive ? theme.colors.accent : '#374151'};
     display: flex;
     align-items: center;
   }
+`;
+
+const SidebarBrand = styled.div`
+  padding: 0 ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.xl} ${({ theme }) => theme.spacing.md};
+  border-bottom: 1px solid #E2E8F0;
+  margin-bottom: ${({ theme }) => theme.spacing.xl};
   
-  ${({ $isActive }) => $isActive && `
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background-color: currentColor;
-    }
-  `}
+  h2 {
+    font-size: ${({ theme }) => theme.typography.fontSize.xl};
+    color: #0F1923;
+    font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
+    margin: 0;
+  }
+  
+  p {
+    font-size: ${({ theme }) => theme.typography.fontSize.sm};
+    color: #6B7280;
+    margin: 4px 0 0 0;
+  }
 `;
 
 interface ServiceSidebarProps {
@@ -92,14 +108,17 @@ interface ServiceSidebarProps {
 
 const ServiceSidebar: React.FC<ServiceSidebarProps> = ({ currentServiceId }) => {
   const location = useLocation();
-  const otherServices = getOtherServices(currentServiceId);
-  const currentService = getServiceById(currentServiceId);
   
-  // Combine current service with other services for full navigation
-  const allServices = currentService ? [currentService, ...otherServices] : otherServices;
+  // Use services in their original order - no reordering based on current service
+  const allServices = services;
   
   return (
-    <SidebarContainer className="reveal-text">
+    <SidebarContainer>
+      <SidebarBrand>
+        <h2>BigInvisible</h2>
+        <p>Services</p>
+      </SidebarBrand>
+      
       <h3>All Services</h3>
       {allServices.map((service: Service) => {
         const IconComponent = service.icon;
