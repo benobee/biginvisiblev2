@@ -183,16 +183,10 @@ const FrameworkGrid = styled.div`
 `;
 
 const FrameworkItem = styled.div`
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   padding: ${({ theme }) => theme.spacing.xl};
   transition: all ${({ theme }) => theme.transitions.default};
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  
-  &:hover {
-    border-color: ${({ theme }) => theme.colors.accent};
-    transform: translateY(-5px);
-  }
+  border-radius: 10px;
   
   h3 {
     font-size: ${({ theme }) => theme.typography.fontSize.xl};

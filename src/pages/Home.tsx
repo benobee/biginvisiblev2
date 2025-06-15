@@ -252,7 +252,7 @@ const ServicesGrid = styled.div`
 
 
 const ServiceCard = styled.div<{ position?: string; }>`
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.52);
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: ${({ theme }) => theme.spacing.xl};
   transition: all ${({ theme }) => theme.transitions.default};

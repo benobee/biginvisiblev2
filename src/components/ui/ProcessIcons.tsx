@@ -28,11 +28,6 @@ const IconContainer = styled.div`
     color: ${({ theme }) => theme.colors.accent};
     transition: all ${({ theme }) => theme.transitions.default};
   }
-  
-  &:hover svg {
-    transform: scale(1.1);
-    color: ${({ theme }) => theme.colors.primary};
-  }
 `;
 
 // Service Icons - Using standard Lucide icons

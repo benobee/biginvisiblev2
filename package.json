@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@swc/core": "^1.12.1",
+    "@swc/plugin-styled-components": "^8.0.0",
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.34",
     "lucide-react": "^0.514.0",
