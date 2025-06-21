@@ -1,0 +1,158 @@
+/* Global Styles CSS Module */
+
+/* Reset and base styles */
+:global(*, *::before, *::after) {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:global(html) {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+@keyframes fadeInFromNone {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+:global(body) {
+  font-family: var(--font-family-primary);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Typography */
+:global(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+  margin-bottom: var(--spacing-md);
+  letter-spacing: -0.02em;
+  transition: color 0.3s ease;
+}
+
+:global(h1) {
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-bold);
+}
+
+:global(h2) {
+  font-size: var(--font-size-4xl);
+}
+
+:global(h3) {
+  font-size: var(--font-size-3xl);
+}
+
+:global(p) {
+  margin-bottom: var(--spacing-md);
+  font-weight: var(--font-weight-light);
+  transition: color 0.3s ease;
+}
+
+:global(a) {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+:global(a:hover) {
+  color: var(--color-accent);
+}
+
+:global(img) {
+  max-width: 100%;
+  height: auto;
+}
+
+:global(button) {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+:global(button:disabled) {
+  cursor: not-allowed;
+}
+
+/* Layout utilities */
+:global(.container) {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+:global(section) {
+  padding: var(--spacing-section) 0;
+}
+
+/* Utility classes */
+:global(.accent) {
+  color: var(--color-accent);
+}
+
+:global(.text-gradient) {
+  background: linear-gradient(135deg, var(--color-accent) 0%, #FF8A80 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  override-colors: transparent;
+}
+
+:global(.grid) {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-lg);
+}
+
+:global(.reveal-text) {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+:global(.reveal-text.visible) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  :global(html) {
+    font-size: 14px;
+  }
+
+  :global(h1) {
+    font-size: var(--font-size-4xl);
+  }
+
+  :global(h2) {
+    font-size: var(--font-size-3xl);
+  }
+
+  :global(h3) {
+    font-size: var(--font-size-2xl);
+  }
+  
+  :global(.grid) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
