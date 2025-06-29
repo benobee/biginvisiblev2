@@ -5,9 +5,10 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), vercel()],
+  integrations: [react()],
   output: 'static',
   build: {
     format: 'directory'
-  }
+  },
+  adapter: vercel(),
 });
