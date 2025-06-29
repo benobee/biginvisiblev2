@@ -9,12 +9,15 @@
   "scripts": {
     "lint": "eslint .",
     "dev": "astro dev",
-    "build": "astro build && next build",
+    "build": "yarn astro:build && yarn next:build",
     "preview": "astro preview",
+    "next:build": "next build",
+    "astro:build": "astro build",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
+    "@astrojs/vercel": "^8.2.0",
     "@swc/core": "^1.12.1",
     "@swc/plugin-styled-components": "^8.0.0",
     "@types/react-router-dom": "^5.3.3",
