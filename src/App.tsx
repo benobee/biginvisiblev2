@@ -5,18 +5,18 @@ import Layout from './components/layout/Layout';
 import ScrollToTop from './components/ScrollToTop';
 import './styles/globals.css';
 
-import Home from './pages/Home';
-import About from './pages/About';
-import Process from './pages/Process';
-import Services from './pages/Services';
-import Work from './pages/Work';
-import Contact from './pages/Contact';
-import BrandStrategy from './pages/services/BrandStrategy';
-import VisualIdentity from './pages/services/VisualIdentity';
-import DigitalExperience from './pages/services/DigitalExperience';
-import ContentStrategy from './pages/services/ContentStrategy';
-import BrandArchitecture from './pages/services/BrandArchitecture';
-import CommunityBuilding from './pages/services/CommunityBuilding';
+import Home from './pages-content/Home';
+import About from './pages-content/About';
+import Process from './pages-content/Process';
+import Services from './pages-content/Services';
+import Work from './pages-content/Work';
+import Contact from './pages-content/Contact';
+import BrandStrategy from './pages-content/services/BrandStrategy';
+import VisualIdentity from './pages-content/services/VisualIdentity';
+import DigitalExperience from './pages-content/services/DigitalExperience';
+import ContentStrategy from './pages-content/services/ContentStrategy';
+import BrandArchitecture from './pages-content/services/BrandArchitecture';
+import CommunityBuilding from './pages-content/services/CommunityBuilding';
 import { ThemeModeContext } from './components/ThemeModeContext';
 
 function App() {
