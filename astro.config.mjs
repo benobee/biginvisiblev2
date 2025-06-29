@@ -10,5 +10,10 @@ export default defineConfig({
   build: {
     format: 'directory'
   },
-  adapter: vercel(),
+  adapter: vercel({
+    imageService: true,
+    webAnalytics: {
+      enabled: true,
+    },
+  }),
 });
