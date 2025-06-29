@@ -4,7 +4,7 @@ interface ButtonProps {
   variant?: 'primary' | 'secondary' | 'outline' | 'text' | 'primaryInverse';
   size?: 'small' | 'medium' | 'large';
   fullWidth?: boolean;
-  as?: any;
+  as?: React.ElementType; // 'button' | 'a' | 'Link'
   to?: string;
   href?: string;
   onClick?: () => void;

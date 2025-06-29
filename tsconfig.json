@@ -1,7 +1,19 @@
 {
   "files": [],
   "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+  "include": [
+    "src",
+  ],
+  "exclude": [
+    "dist",
+    ".astro/content.d.ts"
+  ],
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "incremental": true
+  }
 }
-
