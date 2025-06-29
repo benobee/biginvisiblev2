@@ -9,11 +9,8 @@
   "scripts": {
     "lint": "eslint .",
     "dev": "astro dev",
-    "build": "yarn astro:build && yarn next:build",
-    "preview": "astro preview",
-    "next:build": "next build",
-    "astro:build": "astro build",
-    "astro": "astro"
+    "build": "astro build",
+    "preview": "astro preview"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
@@ -26,7 +23,6 @@
     "autoprefixer": "^10.4.21",
     "clsx": "^2.1.1",
     "lucide-react": "^0.514.0",
-    "next": "^15.3.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.1",

@@ -1,4 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [{ "source": "/(.*)", "destination": "dist/index.html" }]
+  "framework": "astro",
+  "buildCommand": "astro build",
+  "outputDirectory": "dist"
 }
