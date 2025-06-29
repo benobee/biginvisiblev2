@@ -42,7 +42,7 @@ export const initParallaxEffects = () => {
         const speed = element.getAttribute('data-speed') || '0.1';
         const yPos = -(elementTop * parseFloat(speed));
         
-        element.style.transform = `translateY(${yPos}px)`;
+        (element as HTMLElement).style.transform = `translateY(${yPos}px)`;
       }
     });
   };
