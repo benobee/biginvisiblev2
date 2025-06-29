@@ -41,3 +41,5 @@ node_modules/
 # jetbrains setting folder
 .idea/
 .next/cache/*
+.next/cache/.tsbuildinfo
+.next/cache/eslint/.cache_bnuyi3

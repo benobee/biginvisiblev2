@@ -9,7 +9,7 @@
   "scripts": {
     "lint": "eslint .",
     "dev": "astro dev",
-    "build": "next build",
+    "build": "astro build && next build",
     "preview": "astro preview",
     "astro": "astro"
   },
