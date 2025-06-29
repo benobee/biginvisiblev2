@@ -12,7 +12,7 @@
   filter: blur(40px);
   z-index: 1;
   animation: morphing 18s ease-in-out infinite;
-  background: center no-repeat url("../public/images/inspiration/BigInvisible-background-pattern copy.png");
+  background: center no-repeat url("/images/inspiration/BigInvisible-background-pattern copy.png");
 }
 
 @keyframes morphing {
