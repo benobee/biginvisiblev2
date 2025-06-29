@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 interface SectionHeaderProps {
   title: string;
   subtitle?: string;
@@ -8,38 +6,6 @@ interface SectionHeaderProps {
   className?: string;
 }
 
-const StyledSectionHeader = styled.div<{ align?: 'left' | 'center' | 'right' }>`
-  margin-bottom: ${({ theme }) => theme.spacing.section};
-  max-width: ${({ align }) => align === 'center' ? '800px' : '100%'};
-  margin-left: ${({ align }) => align === 'center' ? 'auto' : '0'};
-  margin-right: ${({ align }) => align === 'center' ? 'auto' : '0'};
-  text-align: ${({ align }) => align || 'left'};
-  
-  .section-title {
-    font-size: ${({ theme }) => theme.typography.fontSize.sm};
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: ${({ theme }) => theme.colors.accent};
-    margin-bottom: ${({ theme }) => theme.spacing.md};
-  }
-  
-  h2 {
-    font-size: clamp(2rem, 4vw, ${({ theme }) => theme.typography.fontSize['4xl']});
-    margin-bottom: ${({ theme }) => theme.spacing.lg};
-    line-height: 1.1;
-  }
-  
-  .description {
-    font-size: ${({ theme }) => theme.typography.fontSize.lg};
-    opacity: 0.8;
-    line-height: 1.6;
-    max-width: ${({ align }) => align === 'center' ? '700px' : '100%'};
-    margin-left: ${({ align }) => align === 'center' ? 'auto' : '0'};
-    margin-right: ${({ align }) => align === 'center' ? 'auto' : '0'};
-    text-align: left;
-  }
-`;
-
 const SectionHeader = ({
   title,
   subtitle,
@@ -47,12 +13,39 @@ const SectionHeader = ({
   align = 'left',
   className,
 }: SectionHeaderProps) => {
+  const getAlignmentClasses = () => {
+    switch (align) {
+      case 'center':
+        return 'mx-auto';
+      case 'right':
+        return 'text-right ml-auto';
+      default:
+        return 'text-left';
+    }
+  };
+
+  const getDescriptionClasses = () => {
+    return align === 'center' 
+      ? 'text-lg lg:text-xl opacity-80 leading-relaxed mx-auto text-left'
+      : 'text-lg lg:text-xl opacity-80 leading-relaxed text-left';
+  };
+
   return (
-    <StyledSectionHeader align={align} className={className}>
-      {subtitle && <div className="section-title reveal-text">{subtitle}</div>}
-      <h2 className="reveal-text">{title}</h2>
-      {description && <p className="description reveal-text">{description}</p>}
-    </StyledSectionHeader>
+    <div className={`mb-24 ${getAlignmentClasses()} ${className || ''}`}>
+      {subtitle && (
+        <div className="reveal-text text-sm uppercase tracking-widest text-accent mb-4">
+          {subtitle}
+        </div>
+      )}
+      <h2 className="reveal-text text-3xl md:text-3xl lg:text-5xl mb-8 font-bold leading-tight">
+        {title}
+      </h2>
+      {description && (
+        <p className={`reveal-text ${getDescriptionClasses()}`}>
+          {description}
+        </p>
+      )}
+    </div>
   );
 };
 

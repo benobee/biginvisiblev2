@@ -1,11 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
 import { useState, useEffect } from 'react';
-import { darkTheme } from './styles/theme';
-import { lightTheme } from './styles/lightTheme';
-import { GlobalStyles } from './styles/GlobalStyles';
+import { setTheme } from './utils/theme';
 import Layout from './components/layout/Layout';
 import ScrollToTop from './components/ScrollToTop';
+import './styles/globals.css';
 
 import Home from './pages/Home';
 import About from './pages/About';
@@ -34,12 +32,15 @@ function App() {
       // Set light mode for all pages except home
       if (window.location.pathname !== '/') {
         setIsLightMode(true);
+        setTheme('light');
       } else {
         // On home page, reset based on scroll position
         if (window.scrollY > 300) {
           setIsLightMode(true);
+          setTheme('light');
         } else {
           setIsLightMode(false);
+          setTheme('dark');
         }
       }
     };
@@ -75,8 +76,10 @@ function App() {
         // Switch to light mode when scrolled down more than 300px
         if (window.scrollY > 300) {
           setIsLightMode(true);
+          setTheme('light');
         } else {
           setIsLightMode(false);
+          setTheme('dark');
         }
       }
     };
@@ -87,28 +90,25 @@ function App() {
 
   return (
     <ThemeModeContext.Provider value={{ isLightMode, setIsLightMode, isHomePage }}>
-      <ThemeProvider theme={isLightMode ? lightTheme : darkTheme}>
-        <GlobalStyles />
-        <Router>
-          <ScrollToTop />
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/process" element={<Process />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/services/brand-strategy" element={<BrandStrategy />} />
-              <Route path="/services/visual-identity" element={<VisualIdentity />} />
-              <Route path="/services/digital-experience" element={<DigitalExperience />} />
-              <Route path="/services/content-strategy" element={<ContentStrategy />} />
-              <Route path="/services/brand-architecture" element={<BrandArchitecture />} />
-              <Route path="/services/community-building" element={<CommunityBuilding />} />
-              <Route path="/work" element={<Work />} />
-              <Route path="/contact" element={<Contact />} />
-            </Routes>
-          </Layout>
-        </Router>
-      </ThemeProvider>
+      <Router>
+        <ScrollToTop />
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/process" element={<Process />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/services/brand-strategy" element={<BrandStrategy />} />
+            <Route path="/services/visual-identity" element={<VisualIdentity />} />
+            <Route path="/services/digital-experience" element={<DigitalExperience />} />
+            <Route path="/services/content-strategy" element={<ContentStrategy />} />
+            <Route path="/services/brand-architecture" element={<BrandArchitecture />} />
+            <Route path="/services/community-building" element={<CommunityBuilding />} />
+            <Route path="/work" element={<Work />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </Layout>
+      </Router>
     </ThemeModeContext.Provider>
   );
 }

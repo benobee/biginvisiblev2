@@ -1,59 +1,43 @@
-import styled from 'styled-components';
-
 interface SectionProps {
   children: React.ReactNode;
   background?: 'primary' | 'secondary' | 'accent' | 'light';
   spacing?: 'normal' | 'large' | 'small';
   className?: string;
+  id?: string;
 }
 
-const StyledSection = styled.section<{
-  background?: 'primary' | 'secondary' | 'accent' | 'light';
-  spacing?: 'normal' | 'large' | 'small';
-}>`
-  position: relative;
+const getSectionClasses = (background: string, spacing: string) => {
+  const backgroundClasses = {
+    primary: 'bg-white',
+    secondary: 'bg-gray-100',
+    accent: 'bg-accent',
+    light: 'bg-gray-light'
+  };
   
-  ${({ background, theme }) => {
-    switch (background) {
-      case 'secondary':
-        return `background-color: ${theme.colors.backgroundAlt};`;
-      case 'accent':
-        return `background-color: ${theme.colors.accent};`;
-      case 'light':
-        return `background-color: ${theme.colors.backgroundLight};`;
-      default: // primary
-        return `background-color: ${theme.colors.background};`;
-    }
-  }}
+  const spacingClasses = {
+    large: 'py-36',
+    small: 'py-12',
+    normal: 'py-24'
+  };
   
-  ${({ spacing, theme }) => {
-    switch (spacing) {
-      case 'large':
-        return `padding: calc(${theme.spacing.section} * 1.5) 0;`;
-      case 'small':
-        return `padding: calc(${theme.spacing.section} * 0.5) 0;`;
-      default: // normal
-        return `padding: ${theme.spacing.section} 0;`;
-    }
-  }}
-`;
+  return `relative ${backgroundClasses[background as keyof typeof backgroundClasses]} ${spacingClasses[spacing as keyof typeof spacingClasses]}`;
+};
 
 const Section = ({
   children,
   background = 'primary',
   spacing = 'normal',
   className,
+  id,
 }: SectionProps) => {
+  const sectionClasses = `${getSectionClasses(background, spacing)} ${className || ''}`;
+  
   return (
-    <StyledSection
-      background={background}
-      spacing={spacing}
-      className={className}
-    >
-      <div className="container">
+    <section className={sectionClasses} id={id}>
+      <div className="section-container">
         {children}
       </div>
-    </StyledSection>
+    </section>
   );
 };
 

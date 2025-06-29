@@ -1,160 +1,17 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styles from './Footer.module.css';
 
-interface FooterProps {
-  isLightMode?: boolean;
-}
-
-const StyledFooter = styled.footer<FooterProps>`
-  background-color: ${({ theme }) => theme.colors.background};
-  color: ${({ theme }) => theme.colors.text};
-  padding: ${({ theme }) => `${theme.spacing.section} 0 ${theme.spacing.xl}`};
-  border-top: 1px solid ${({ theme }) => 
-    theme.colors.text === '#FFFFFF' 
-      ? 'rgba(255, 255, 255, 0.1)' 
-      : 'rgba(0, 0, 0, 0.1)'};
-  display: flex;
-  justify-content: center;
-  transition: all ${({ theme }) => theme.transitions.default};
-`;
-
-const FooterContainer = styled.div`
-  width: 100vw;
-  max-width: ${({ theme }) => theme.container.maxWidth};
-  padding: 0 ${({ theme }) => theme.container.padding};
-  margin: 0 auto;
-`;
-
-const FooterGrid = styled.div`
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: ${({ theme }) => theme.spacing.xl};
-  
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    grid-template-columns: 1fr;
-    gap: ${({ theme }) => theme.spacing.xl};
-  }
-`;
-
-const FooterColumn = styled.div`
-  h4 {
-    font-size: ${({ theme }) => theme.typography.fontSize.lg};
-    margin-bottom: ${({ theme }) => theme.spacing.lg};
-    color: ${({ theme }) => theme.colors.text};
-    font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    transition: color ${({ theme }) => theme.transitions.default};
-  }
-  
-  p {
-    margin-bottom: ${({ theme }) => theme.spacing.md};
-    font-size: ${({ theme }) => theme.typography.fontSize.sm};
-    opacity: 0.8;
-    max-width: 300px;
-    transition: color ${({ theme }) => theme.transitions.default};
-  }
-`;
-
-const FooterLinks = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  
-  li {
-    margin-bottom: ${({ theme }) => theme.spacing.sm};
-  }
-  
-  a {
-    color: ${({ theme }) => theme.colors.text};
-    opacity: 0.8;
-    font-size: ${({ theme }) => theme.typography.fontSize.sm};
-    transition: all ${({ theme }) => theme.transitions.fast};
-    
-    &:hover {
-      opacity: 1;
-      color: ${({ theme }) => theme.colors.accent};
-    }
-  }
-`;
-
-const SocialLinks = styled.div`
-  display: flex;
-  gap: ${({ theme }) => theme.spacing.md};
-  margin-top: ${({ theme }) => theme.spacing.lg};
-  
-  a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border: 1px solid ${({ theme }) => 
-      theme.colors.text === '#FFFFFF' 
-        ? 'rgba(255, 255, 255, 0.2)' 
-        : 'rgba(0, 0, 0, 0.2)'};
-    color: ${({ theme }) => theme.colors.text};
-    transition: all ${({ theme }) => theme.transitions.fast};
-    
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.accent};
-      border-color: ${({ theme }) => theme.colors.accent};
-      color: ${({ theme }) => theme.colors.background};
-    }
-  }
-`;
-
-const Copyright = styled.div`
-  margin-top: ${({ theme }) => theme.spacing.xl};
-  padding-top: ${({ theme }) => theme.spacing.lg};
-  border-top: 1px solid ${({ theme }) => 
-    theme.colors.text === '#FFFFFF' 
-      ? 'rgba(255, 255, 255, 0.1)' 
-      : 'rgba(0, 0, 0, 0.1)'};
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: ${({ theme }) => theme.typography.fontSize.xs};
-  opacity: 0.6;
-  transition: border-color ${({ theme }) => theme.transitions.default};
-  
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    flex-direction: column;
-    gap: ${({ theme }) => theme.spacing.md};
-    text-align: center;
-  }
-`;
-
-const LegalLinks = styled.div`
-  display: flex;
-  gap: ${({ theme }) => theme.spacing.md};
-  
-  a {
-    color: ${({ theme }) => theme.colors.text};
-    transition: color ${({ theme }) => theme.transitions.default};
-    
-    &:hover {
-      color: ${({ theme }) => theme.colors.accent};
-    }
-  }
-  
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    flex-direction: column;
-    gap: ${({ theme }) => theme.spacing.sm};
-  }
-`;
-
-const Footer = ({ isLightMode }: FooterProps) => {
+const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <StyledFooter isLightMode={isLightMode}>
-      <FooterContainer>
-        <FooterGrid>
-          <FooterColumn>
-            <h4>Big<span className="accent">Invisible</span></h4>
+    <footer className={styles.footer}>
+      <div className={styles.footerContainer}>
+        <div className={styles.footerGrid}>
+          <div className={styles.footerColumn}>
+            <h4>Big<span className={styles.accent}>Invisible</span></h4>
             <p>We architect the invisible bonds that transform businesses into trusted community leaders, building authentic relationships that drive sustainable growth.</p>
-            <SocialLinks>
+            <div className={styles.socialLinks}>
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                   <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
@@ -175,53 +32,53 @@ const Footer = ({ isLightMode }: FooterProps) => {
                   <path fill-rule="evenodd" d="M8 0C3.584 0 0 3.584 0 8s3.584 8 8 8c4.408 0 8-3.584 8-8s-3.592-8-8-8zm5.284 3.688a6.802 6.802 0 0 1 1.545 4.251c-.226-.043-2.482-.503-4.755-.217-.052-.112-.096-.224-.148-.338-.139-.33-.295-.668-.451-.99 2.516-1.023 3.662-2.498 3.81-2.706zM8 1.18c1.735 0 3.323.65 4.53 1.718-.122.174-1.155 1.553-3.584 2.464-1.12-2.056-2.36-3.74-2.551-4A6.95 6.95 0 0 1 8 1.18zm-2.907.642A43.123 43.123 0 0 1 7.627 5.77c-3.193.85-6.013.833-6.317.833a6.865 6.865 0 0 1 3.783-4.78zM1.163 8.01V7.8c.295.01 3.61.053 7.02-.971.199.381.381.772.555 1.162l-.27.078c-3.522 1.137-5.396 4.243-5.553 4.504a6.817 6.817 0 0 1-1.752-4.564zM8 14.837a6.785 6.785 0 0 1-4.19-1.44c.12-.252 1.509-2.924 5.361-4.269.018-.009.026-.009.044-.017a28.246 28.246 0 0 1 1.457 5.18A6.722 6.722 0 0 1 8 14.837zm3.81-1.171c-.07-.417-.435-2.412-1.328-4.868 2.143-.338 4.017.217 4.251.295a6.774 6.774 0 0 1-2.924 4.573z"/>
                 </svg>
               </a>
-            </SocialLinks>
-          </FooterColumn>
+            </div>
+          </div>
           
-          <FooterColumn>
+          <div className={styles.footerColumn}>
             <h4>Navigation</h4>
-            <FooterLinks>
+            <ul className={styles.footerLinks}>
               <li><Link to="/">Home</Link></li>
               <li><Link to="/about">About</Link></li>
               <li><Link to="/process">Process</Link></li>
               <li><Link to="/services">Services</Link></li>
               <li><Link to="/work">Work</Link></li>
               <li><Link to="/contact">Contact</Link></li>
-            </FooterLinks>
-          </FooterColumn>
+            </ul>
+          </div>
           
-          <FooterColumn>
+          <div className={styles.footerColumn}>
             <h4>Services</h4>
-            <FooterLinks>
+            <ul className={styles.footerLinks}>
               <li><Link to="/services/brand-strategy">Brand Strategy</Link></li>
               <li><Link to="/services/visual-identity">Visual Identity</Link></li>
               <li><Link to="/services/digital-experience">Digital Experience</Link></li>
               <li><Link to="/services/content-strategy">Content Strategy</Link></li>
               <li><Link to="/services/brand-architecture">Brand Architecture</Link></li>
               <li><Link to="/services/community-building">Community Building</Link></li>
-            </FooterLinks>
-          </FooterColumn>
+            </ul>
+          </div>
           
-          <FooterColumn>
+          <div className={styles.footerColumn}>
             <h4>Contact</h4>
-            <FooterLinks>
+            <ul className={styles.footerLinks}>
               <li><a href="mailto:hello@biginvisible.com">hello@biginvisible.com</a></li>
               <li><a href="tel:+12065551234">+1 (206) 555-1234</a></li>
               <li>Seattle, WA</li>
-            </FooterLinks>
-          </FooterColumn>
-        </FooterGrid>
+            </ul>
+          </div>
+        </div>
         
-        <Copyright>
+        <div className={styles.copyright}>
           <div>© {currentYear} Big Invisible. All rights reserved.</div>
-          <LegalLinks>
+          <div className={styles.legalLinks}>
             <Link to="/privacy">Privacy Policy</Link>
             <Link to="/terms">Terms of Service</Link>
             <Link to="/sitemap">Sitemap</Link>
-          </LegalLinks>
-        </Copyright>
-      </FooterContainer>
-    </StyledFooter>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 };
 

@@ -1,8 +1,7 @@
-import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 interface ButtonProps {
-  variant?: 'primary' | 'secondary' | 'outline' | 'text';
+  variant?: 'primary' | 'secondary' | 'outline' | 'text' | 'primaryInverse';
   size?: 'small' | 'medium' | 'large';
   fullWidth?: boolean;
   as?: any;
@@ -13,113 +12,33 @@ interface ButtonProps {
   className?: string;
 }
 
-const ButtonStyles = css<{
-  variant?: 'primary' | 'secondary' | 'outline' | 'text';
-  size?: 'small' | 'medium' | 'large';
-  fullWidth?: boolean;
-}>`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  transition: all ${({ theme }) => theme.transitions.default};
-  cursor: pointer;
-  text-decoration: none;
+const getButtonClasses = (variant: string, size: string, fullWidth: boolean) => {
+  const baseClasses = 'inline-flex items-center justify-center font-medium uppercase tracking-wider rounded-md transition-all duration-300 cursor-pointer no-underline';
   
-  ${({ fullWidth }) => fullWidth && `
-    width: 100%;
-  `}
+  const sizeClasses = {
+    small: 'px-4 py-2 text-xs',
+    large: 'px-8 py-4 text-lg',
+    medium: 'px-6 py-3 text-sm'
+  };
   
-  ${({ size, theme }) => {
-    switch (size) {
-      case 'small':
-        return `
-          padding: ${theme.spacing.xs} ${theme.spacing.md};
-          font-size: ${theme.typography.fontSize.xs};
-        `;
-      case 'large':
-        return `
-          padding: ${theme.spacing.lg} ${theme.spacing['2xl']};
-          font-size: ${theme.typography.fontSize.lg};
-        `;
-      default: // medium
-        return `
-          padding: ${theme.spacing.md} ${theme.spacing.xl};
-          font-size: ${theme.typography.fontSize.sm};
-        `;
-    }
-  }}
+  const variantClasses = {
+    primary: 'bg-accent text-white border border-accent hover:bg-transparent hover:text-accent',
+    primaryInverse: 'bg-white text-accent border border-white hover:bg-accent hover:text-white',
+    secondary: 'bg-backgroundAlt border',
+    outline: 'bg-transparent text-accent border border-accent hover:bg-accent hover:text-white',
+    text: 'bg-transparent text-white px-0 py-0 border-none hover:text-accent'
+  };
   
-  ${({ variant, theme }) => {
-    switch (variant) {
-      case 'secondary':
-        return `
-          background-color: ${theme.colors.backgroundAlt};
-          color: ${theme.colors.text};
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          
-          &:hover {
-            border-color: ${theme.colors.text};
-          }
-        `;
-      case 'outline':
-        return `
-          background-color: transparent;
-          color: ${theme.colors.accent};
-          border: 1px solid ${theme.colors.accent};
-          
-          &:hover {
-            background-color: ${theme.colors.accent};
-            color: ${theme.colors.background};
-          }
-        `;
-      case 'text':
-        return `
-          background-color: transparent;
-          color: ${theme.colors.text};
-          padding-left: 0;
-          padding-right: 0;
-          border: none;
-          
-          &:hover {
-            color: ${theme.colors.accent};
-          }
-        `;
-      default: // primary
-        return `
-          background-color: ${theme.colors.accent};
-          color: ${theme.colors.text};
-          border: 1px solid ${theme.colors.accent};
-          
-          &:hover {
-            background-color: transparent;
-            color: ${theme.colors.accent};
-          }
-        `;
-    }
-  }}
-`;
-
-const StyledButton = styled.button`
-  ${ButtonStyles}
-`;
-
-const StyledLink = styled(Link)`
-  ${ButtonStyles}
-`;
-
-const StyledAnchor = styled.a`
-  ${ButtonStyles}
-`;
+  const widthClass = fullWidth ? 'w-full' : '';
+  
+  return `${baseClasses} ${sizeClasses[size as keyof typeof sizeClasses]} ${variantClasses[variant as keyof typeof variantClasses]} ${widthClass}`.trim();
+};
 
 const Button = ({
   variant = 'primary',
   size = 'medium',
   fullWidth = false,
-  as,
+  as: Component = 'button',
   to,
   href,
   onClick,
@@ -127,48 +46,40 @@ const Button = ({
   className,
   ...props
 }: ButtonProps) => {
+  const buttonClasses = `${getButtonClasses(variant, size, fullWidth)} ${className || ''}`;
+  
   if (to) {
     return (
-      <StyledLink
+      <Link
         to={to}
-        variant={variant}
-        size={size}
-        fullWidth={fullWidth}
-        className={className}
+        className={buttonClasses}
         {...props}
       >
         {children}
-      </StyledLink>
+      </Link>
     );
   }
   
   if (href) {
     return (
-      <StyledAnchor
+      <a
         href={href}
-        variant={variant}
-        size={size}
-        fullWidth={fullWidth}
-        className={className}
+        className={buttonClasses}
         {...props}
       >
         {children}
-      </StyledAnchor>
+      </a>
     );
   }
   
   return (
-    <StyledButton
-      as={as}
-      variant={variant}
-      size={size}
-      fullWidth={fullWidth}
+    <Component
       onClick={onClick}
-      className={className}
+      className={buttonClasses}
       {...props}
     >
       {children}
-    </StyledButton>
+    </Component>
   );
 };
 

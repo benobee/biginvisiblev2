@@ -1,143 +1,50 @@
 import { Link, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
 import { services, type Service } from '../../data/services';
-
-const SidebarContainer = styled.div`
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 280px;
-  height: 100vh;
-  background: #FFFFFF;
-  border-right: 1px solid #E2E8F0;
-  padding: 80px 20px 20px 20px;
-  overflow-y: auto;
-  z-index: 100;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-  
-  @media (max-width: 768px) {
-    display: none;
-  }
-  
-  h3 {
-    font-size: ${({ theme }) => theme.typography.fontSize.lg};
-    margin-bottom: ${({ theme }) => theme.spacing.lg};
-    color: #0F1923;
-    font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
-    padding: 0 ${({ theme }) => theme.spacing.md};
-  }
-`;
-
-const ServiceItem = styled(Link)<{ $isActive?: boolean }>`
-  display: flex;
-  align-items: center;
-  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
-  margin-bottom: ${({ theme }) => theme.spacing.xs};
-  border-radius: 8px;
-  transition: all ${({ theme }) => theme.transitions.default};
-  text-decoration: none;
-  color: #4A5568;
-  position: relative;
-  min-height: 44px;
-  background-color: ${({ $isActive }) => 
-    $isActive ? 'rgba(255, 58, 70, 0.1)' : 'transparent'};
-  border-left: ${({ $isActive, theme }) => 
-    $isActive ? `3px solid ${theme.colors.accent}` : '3px solid transparent'};
-  
-  &:hover {
-    background-color: ${({ $isActive }) => 
-      $isActive ? 'rgba(255, 58, 70, 0.15)' : 'rgba(0, 0, 0, 0.05)'};
-    transform: translateX(2px);
-  }
-  
-  &:last-child {
-    margin-bottom: 0;
-  }
-  
-  .icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    margin-right: ${({ theme }) => theme.spacing.sm};
-    flex-shrink: 0;
-    
-    svg {
-      width: 16px;
-      height: 16px;
-      color: ${({ $isActive, theme }) => 
-        $isActive ? theme.colors.accent : '#6B7280'};
-    }
-  }
-  
-  .title {
-    font-size: ${({ theme }) => theme.typography.fontSize.sm};
-    font-weight: ${({ $isActive, theme }) => 
-      $isActive ? theme.typography.fontWeight.semibold : theme.typography.fontWeight.medium};
-    line-height: 1.3;
-    color: ${({ $isActive, theme }) => 
-      $isActive ? theme.colors.accent : '#374151'};
-    display: flex;
-    align-items: center;
-  }
-`;
-
-const SidebarBrand = styled.div`
-  padding: 0 ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.xl} ${({ theme }) => theme.spacing.md};
-  border-bottom: 1px solid #E2E8F0;
-  margin-bottom: ${({ theme }) => theme.spacing.xl};
-  
-  h2 {
-    font-size: ${({ theme }) => theme.typography.fontSize.xl};
-    color: #0F1923;
-    font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
-    margin: 0;
-  }
-  
-  p {
-    font-size: ${({ theme }) => theme.typography.fontSize.sm};
-    color: #6B7280;
-    margin: 4px 0 0 0;
-  }
-`;
 
 interface ServiceSidebarProps {
   currentServiceId: string;
 }
 
-const ServiceSidebar: React.FC<ServiceSidebarProps> = ({ currentServiceId }) => {
+const ServiceSidebar: React.FC<ServiceSidebarProps> = () => {
   const location = useLocation();
   
   // Use services in their original order - no reordering based on current service
   const allServices = services;
   
   return (
-    <SidebarContainer>
-      <SidebarBrand>
-        <h2>BigInvisible</h2>
-        <p>Services</p>
-      </SidebarBrand>
+    <div className="fixed left-0 top-0 w-[280px] h-screen bg-white border-r border-[#E2E8F0] pt-20 px-5 pb-5 overflow-y-auto z-[100] shadow-[2px_0_10px_rgba(0,0,0,0.1)] hidden md:block">
+      <div className="px-4 pb-8 border-b border-[#E2E8F0] mb-8">
+        <h2 className="text-xl text-[#0F1923] font-bold m-0">BigInvisible</h2>
+        <p className="text-sm text-[#6B7280] mt-1 mb-0">Services</p>
+      </div>
       
-      <h3>All Services</h3>
+      <h3 className="text-lg mb-6 text-[#0F1923] font-bold px-4">All Services</h3>
       {allServices.map((service: Service) => {
         const IconComponent = service.icon;
         const isActive = location.pathname === `/services/${service.id}`;
         
         return (
-          <ServiceItem 
+          <Link 
             key={service.id} 
             to={`/services/${service.id}`}
-            $isActive={isActive}
+            className={`flex items-center py-2 px-4 mb-1 rounded-lg transition-all duration-300 no-underline text-[#4A5568] relative min-h-[44px] border-l-[3px] hover:translate-x-0.5 last:mb-0 ${
+              isActive 
+                ? 'bg-[rgba(255,58,70,0.1)] border-l-[#ff2356] hover:bg-[rgba(255,58,70,0.15)]' 
+                : 'bg-transparent border-l-transparent hover:bg-black/5'
+            }`}
           >
-            <div className="icon">
+            <div className={`flex items-center justify-center w-5 h-5 mr-2 flex-shrink-0 ${isActive ? 'text-[#ff2356]' : 'text-[#6B7280]'} [&>svg]:w-4 [&>svg]:h-4`}>
               <IconComponent />
             </div>
-            <div className="title">{service.title}</div>
-          </ServiceItem>
+            <div className={`text-sm leading-[1.3] flex items-center ${
+              isActive ? 'font-bold text-[#ff2356]' : 'font-semibold text-[#374151]'
+            }`}>
+              {service.title}
+            </div>
+          </Link>
         );
       })}
-    </SidebarContainer>
+    </div>
   );
 };
 

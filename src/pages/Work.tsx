@@ -1,225 +1,13 @@
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import Section from '../components/ui/Section';
 import SectionHeader from '../components/ui/SectionHeader';
 import Grid from '../components/ui/Grid';
 import GridItem from '../components/ui/GridItem';
 import Button from '../components/ui/Button';
+import CTASection from '../components/ui/CTASection';
 import { initRevealAnimations } from '../utils/animations';
 import { projects } from '../data/projects';
 import { caseStudies } from '../data/caseStudies';
-
-const HeroSection = styled.section`
-  min-height: 70vh;
-  background-color: ${({ theme }) => theme.colors.background};
-  color: ${({ theme }) => theme.colors.text};
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  padding-top: 120px;
-`;
-
-const HeroContent = styled.div`
-  position: relative;
-  z-index: 2;
-  
-  h1 {
-    font-size: clamp(2.5rem, 5vw, ${({ theme }) => theme.typography.fontSize['5xl']});
-    margin-bottom: ${({ theme }) => theme.spacing.lg};
-    font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-
-  .subtitle {
-    font-size: clamp(1rem, 2vw, ${({ theme }) => theme.typography.fontSize.xl});
-    margin-bottom: ${({ theme }) => theme.spacing.xl};
-    opacity: 0.8;
-    line-height: 1.6;
-    max-width: 600px;
-  }
-`;
-
-const FilterBar = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: ${({ theme }) => theme.spacing.md};
-  margin-bottom: ${({ theme }) => theme.spacing.xl};
-`;
-
-const FilterButton = styled.button<{ active: boolean }>`
-  background-color: ${({ active, theme }) => active ? theme.colors.accent : 'transparent'};
-  color: ${({ active, theme }) => active ? theme.colors.text : theme.colors.text};
-  border: 1px solid ${({ active, theme }) => active ? theme.colors.accent : 'rgba(255, 255, 255, 0.2)'};
-  padding: ${({ theme }) => `${theme.spacing.sm} ${theme.spacing.lg}`};
-  font-size: ${({ theme }) => theme.typography.fontSize.sm};
-  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
-  transition: all ${({ theme }) => theme.transitions.default};
-  cursor: pointer;
-  
-  &:hover {
-    border-color: ${({ theme }) => theme.colors.accent};
-  }
-`;
-
-const ProjectGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: ${({ theme }) => theme.spacing.md};
-`;
-
-const ProjectItem = styled.div<{ span: number, start?: number }>`
-  grid-column: ${({ start, span }) => start ? `${start} / span ${span}` : `span ${span}`};
-  aspect-ratio: 16/9;
-  overflow: hidden;
-  position: relative;
-  
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    grid-column: 1 / -1;
-  }
-  
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform ${({ theme }) => theme.transitions.slow};
-  }
-  
-  .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(15, 25, 35, 0.7);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: ${({ theme }) => theme.spacing.lg};
-    opacity: 0;
-    transition: opacity ${({ theme }) => theme.transitions.default};
-  }
-  
-  h3 {
-    font-size: ${({ theme }) => theme.typography.fontSize.xl};
-    margin-bottom: ${({ theme }) => theme.spacing.xs};
-    color: white;
-  }
-  
-  .category {
-    font-size: ${({ theme }) => theme.typography.fontSize.sm};
-    color: ${({ theme }) => theme.colors.accent};
-  }
-  
-  &:hover {
-    img {
-      transform: scale(1.05);
-    }
-    
-    .overlay {
-      opacity: 1;
-    }
-  }
-`;
-
-const CaseStudySection = styled(Section)`
-  background: linear-gradient(135deg, ${({ theme }) => theme.colors.background} 0%, ${({ theme }) => theme.colors.backgroundAlt} 100%);
-`;
-
-const CaseStudyCard = styled.div`
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  height: 100%;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  
-  .image-container {
-    width: 100%;
-    height: 250px;
-    overflow: hidden;
-    
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform ${({ theme }) => theme.transitions.default};
-    }
-  }
-  
-  .content {
-    padding: ${({ theme }) => theme.spacing.xl};
-  }
-  
-  h3 {
-    font-size: ${({ theme }) => theme.typography.fontSize.xl};
-    margin-bottom: ${({ theme }) => theme.spacing.md};
-  }
-  
-  .category {
-    font-size: ${({ theme }) => theme.typography.fontSize.sm};
-    color: ${({ theme }) => theme.colors.accent};
-    margin-bottom: ${({ theme }) => theme.spacing.md};
-  }
-  
-  p {
-    opacity: 0.8;
-    line-height: 1.6;
-    margin-bottom: ${({ theme }) => theme.spacing.lg};
-  }
-  
-  &:hover {
-    img {
-      transform: scale(1.05);
-    }
-  }
-`;
-
-const TestimonialSection = styled(Section)`
-  background-color: ${({ theme }) => theme.colors.background};
-  text-align: center;
-`;
-
-const TestimonialContent = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-  
-  blockquote {
-    font-size: clamp(1.25rem, 3vw, ${({ theme }) => theme.typography.fontSize['3xl']});
-    line-height: 1.4;
-    margin-bottom: ${({ theme }) => theme.spacing.xl};
-    position: relative;
-    
-    &:before, &:after {
-      content: '"';
-      color: ${({ theme }) => theme.colors.accent};
-      font-size: ${({ theme }) => theme.typography.fontSize['5xl']};
-      position: absolute;
-      opacity: 0.3;
-    }
-    
-    &:before {
-      top: -20px;
-      left: -10px;
-    }
-    
-    &:after {
-      bottom: -40px;
-      right: -10px;
-    }
-  }
-  
-  .client {
-    font-size: ${({ theme }) => theme.typography.fontSize.lg};
-    font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
-  }
-  
-  .position {
-    font-size: ${({ theme }) => theme.typography.fontSize.sm};
-    opacity: 0.6;
-    margin-top: ${({ theme }) => theme.spacing.xs};
-  }
-`;
 
 const Work = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -240,44 +28,32 @@ const Work = () => {
   
   return (
     <>
-      <HeroSection>
-        <div className="container">
+      <section className="min-h-[70vh] bg-white text-dark flex items-center relative overflow-hidden pt-[120px]">
+        <div className="section-container">
           <Grid>
             <GridItem span={6}>
-              <HeroContent>
-                <h1 className="reveal-text">Our <span className="text-gradient">Work</span></h1>
-                <p className="subtitle reveal-text">
+              <div className="relative z-10">
+                <h1 className="reveal-text text-4xl lg:text-5xl xl:text-6xl mb-6 font-bold leading-tight tracking-tight text-dark">Our <span className="text-accent">Work</span></h1>
+                <p className="reveal-text text-lg lg:text-xl mb-8 opacity-80 leading-relaxed max-w-2xl text-dark">
                   Explore our portfolio of projects that have helped transform businesses into trusted community leaders.
                 </p>
-              </HeroContent>
+              </div>
             </GridItem>
             <GridItem span={6}>
-              <div className="reveal-text" style={{ height: '400px', position: 'relative' }}>
+              <div className="reveal-text relative h-96 rounded-xl overflow-hidden">
                 <img 
                   src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
                   alt="Our portfolio" 
-                  style={{ 
-                    width: '100%', 
-                    height: '100%', 
-                    objectFit: 'cover',
-                    opacity: '0.8'
-                  }} 
+                  className="w-full h-full object-cover opacity-80"
                 />
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  background: 'linear-gradient(135deg, rgba(15, 25, 35, 0.3) 0%, rgba(15, 25, 35, 0.8) 100%)'
-                }}></div>
+                <div className="absolute inset-0 bg-black/20"></div>
               </div>
             </GridItem>
           </Grid>
         </div>
-      </HeroSection>
+      </section>
       
-      <Section>
+      <Section background="secondary">
         <SectionHeader
           subtitle="Portfolio"
           title="Selected projects"
@@ -285,70 +61,96 @@ const Work = () => {
           align="center"
         />
         
-        <FilterBar className="reveal-text">
-          <FilterButton 
-            active={activeFilter === 'all'} 
+        <div className="flex flex-wrap gap-4 mb-8 reveal-text">
+          <button 
+            className={`px-6 py-2 text-sm font-medium transition-all duration-300 cursor-pointer border rounded ${
+              activeFilter === 'all' 
+                ? 'bg-accent text-white border-accent' 
+                : 'bg-transparent text-dark border-gray-300 hover:border-accent'
+            }`}
             onClick={() => setActiveFilter('all')}
           >
             All
-          </FilterButton>
-          <FilterButton 
-            active={activeFilter === 'branding'} 
+          </button>
+          <button 
+            className={`px-6 py-2 text-sm font-medium transition-all duration-300 cursor-pointer border rounded ${
+              activeFilter === 'branding' 
+                ? 'bg-accent text-white border-accent' 
+                : 'bg-transparent text-dark border-gray-300 hover:border-accent'
+            }`}
             onClick={() => setActiveFilter('branding')}
           >
             Brand Identity
-          </FilterButton>
-          <FilterButton 
-            active={activeFilter === 'strategy'} 
+          </button>
+          <button 
+            className={`px-6 py-2 text-sm font-medium transition-all duration-300 cursor-pointer border rounded ${
+              activeFilter === 'strategy' 
+                ? 'bg-accent text-white border-accent' 
+                : 'bg-transparent text-dark border-gray-300 hover:border-accent'
+            }`}
             onClick={() => setActiveFilter('strategy')}
           >
             Strategy
-          </FilterButton>
-          <FilterButton 
-            active={activeFilter === 'digital'} 
+          </button>
+          <button 
+            className={`px-6 py-2 text-sm font-medium transition-all duration-300 cursor-pointer border rounded ${
+              activeFilter === 'digital' 
+                ? 'bg-accent text-white border-accent' 
+                : 'bg-transparent text-dark border-gray-300 hover:border-accent'
+            }`}
             onClick={() => setActiveFilter('digital')}
           >
             Digital Experience
-          </FilterButton>
-          <FilterButton 
-            active={activeFilter === 'architecture'} 
+          </button>
+          <button 
+            className={`px-6 py-2 text-sm font-medium transition-all duration-300 cursor-pointer border rounded ${
+              activeFilter === 'architecture' 
+                ? 'bg-accent text-white border-accent' 
+                : 'bg-transparent text-dark border-gray-300 hover:border-accent'
+            }`}
             onClick={() => setActiveFilter('architecture')}
           >
             Brand Architecture
-          </FilterButton>
-          <FilterButton 
-            active={activeFilter === 'content'} 
+          </button>
+          <button 
+            className={`px-6 py-2 text-sm font-medium transition-all duration-300 cursor-pointer border rounded ${
+              activeFilter === 'content' 
+                ? 'bg-accent text-white border-accent' 
+                : 'bg-transparent text-dark border-gray-300 hover:border-accent'
+            }`}
             onClick={() => setActiveFilter('content')}
           >
             Content
-          </FilterButton>
-          <FilterButton 
-            active={activeFilter === 'packaging'} 
+          </button>
+          <button 
+            className={`px-6 py-2 text-sm font-medium transition-all duration-300 cursor-pointer border rounded ${
+              activeFilter === 'packaging' 
+                ? 'bg-accent text-white border-accent' 
+                : 'bg-transparent text-dark border-gray-300 hover:border-accent'
+            }`}
             onClick={() => setActiveFilter('packaging')}
           >
             Packaging
-          </FilterButton>
-        </FilterBar>
+          </button>
+        </div>
         
-        <ProjectGrid>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredProjects.map(project => (
-            <ProjectItem 
+            <div 
               key={project.id} 
-              span={project.span} 
-              start={project.start}
-              className="reveal-text"
+              className="reveal-text aspect-video overflow-hidden relative rounded-xl group"
             >
-              <img src={project.image} alt={project.title} />
-              <div className="overlay">
-                <h3>{project.title}</h3>
-                <div className="category">{project.category}</div>
+              <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-black/70 flex flex-col justify-end p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <h3 className="text-xl mb-2 text-white">{project.title}</h3>
+                <div className="text-sm text-accent">{project.category}</div>
               </div>
-            </ProjectItem>
+            </div>
           ))}
-        </ProjectGrid>
+        </div>
       </Section>
       
-      <CaseStudySection>
+      <Section>
         <SectionHeader
           subtitle="Case studies"
           title="Our success stories"
@@ -359,41 +161,41 @@ const Work = () => {
         <Grid columns={3}>
           {caseStudies.map(study => (
             <GridItem key={study.id} span={1} className="reveal-text">
-              <CaseStudyCard>
-                <div className="image-container">
-                  <img src={study.image} alt={study.title} />
+              <div className="bg-lightGray border border-gray-200 h-full overflow-hidden rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div className="w-full h-64 overflow-hidden">
+                  <img src={study.image} alt={study.title} className="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
                 </div>
-                <div className="content">
-                  <div className="category">{study.category}</div>
-                  <h3>{study.title}</h3>
-                  <p>{study.description}</p>
+                <div className="p-8">
+                  <div className="text-sm text-accent mb-4">{study.category}</div>
+                  <h3 className="text-xl mb-4 text-dark">{study.title}</h3>
+                  <p className="opacity-80 leading-relaxed mb-6 text-dark">{study.description}</p>
                   <Button variant="outline">Read case study</Button>
                 </div>
-              </CaseStudyCard>
+              </div>
             </GridItem>
           ))}
         </Grid>
-      </CaseStudySection>
+      </Section>
       
-      <TestimonialSection>
-        <TestimonialContent>
-          <blockquote className="reveal-text">
-            Big Invisible didn't just redesign our brand — they transformed how our entire community sees us. We've gone from another local business to the trusted leader our neighbors turn to first.
+      <Section background="secondary" className="text-center">
+        <div className="max-w-4xl mx-auto">
+          <blockquote className="reveal-text text-2xl lg:text-3xl leading-relaxed mb-8 relative text-dark">
+            <span className="text-accent text-1xl opacity-30">"</span>
+            <i className='text-1xl'>Big Invisible didn't just redesign our brand — they transformed how our entire community sees us. We've gone from another local business to the trusted leader our neighbors turn to first.</i>
+            <span className="text-accent text-1xl opacity-30">"</span>
           </blockquote>
-          <div className="client reveal-text">Sarah Mitchell</div>
-          <div className="position reveal-text">CEO • Coastal Heritage Foundation</div>
-        </TestimonialContent>
-      </TestimonialSection>
-      
-      <Section background="accent">
-        <div style={{ textAlign: 'center' }}>
-          <h2 className="reveal-text">Ready to build your brand's legacy?</h2>
-          <p className="reveal-text" style={{ marginBottom: '2rem', opacity: 0.9, maxWidth: '700px', margin: '0 auto 2rem' }}>
-            Let's create authentic connections that transform your business and strengthen your community.
-          </p>
-          <Button to="/contact" variant="secondary" className="reveal-text">Start a conversation</Button>
+          <div className="client reveal-text text-lg font-medium text-dark">Sarah Mitchell</div>
+          <div className="position reveal-text text-sm opacity-60 mt-2 text-dark">CEO • Coastal Heritage Foundation</div>
         </div>
       </Section>
+      
+      <CTASection
+        title="Ready to build your brand's legacy?"
+        description="Let's create authentic connections that transform your business and strengthen your community."
+        buttonText="Start a conversation"
+        buttonTo="/contact"
+        buttonVariant="primaryInverse"
+      />
     </>
   );
 };

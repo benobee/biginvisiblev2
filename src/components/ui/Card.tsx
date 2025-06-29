@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 interface CardProps {
   children: React.ReactNode;
   variant?: 'default' | 'hover' | 'outline';
@@ -7,46 +5,23 @@ interface CardProps {
   className?: string;
 }
 
-const StyledCard = styled.div<{
-  variant?: 'default' | 'hover' | 'outline';
-  padding?: 'small' | 'medium' | 'large';
-}>`
-  background-color: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: ${({ theme }) => theme.borderRadius.lg};
+const getCardClasses = (variant: string, padding: string) => {
+  const baseClasses = 'bg-white/5 border rounded-lg';
   
-  ${({ variant, theme }) => {
-    switch (variant) {
-      case 'hover':
-        return `
-          transition: all ${theme.transitions.default};
-          
-          &:hover {
-            border-color: ${theme.colors.accent};
-            transform: translateY(-5px);
-          }
-        `;
-      case 'outline':
-        return `
-          background-color: transparent;
-          border: 1px solid rgba(255, 255, 255, 0.2);
-        `;
-      default:
-        return '';
-    }
-  }}
+  const variantClasses = {
+    default: 'border-white/10',
+    hover: 'border-white/10 transition-all duration-300 hover:border-accent hover:-translate-y-1',
+    outline: 'bg-transparent shadow-md'
+  };
   
-  ${({ padding, theme }) => {
-    switch (padding) {
-      case 'small':
-        return `padding: ${theme.spacing.md};`;
-      case 'large':
-        return `padding: ${theme.spacing['2xl']};`;
-      default: // medium
-        return `padding: ${theme.spacing.xl};`;
-    }
-  }}
-`;
+  const paddingClasses = {
+    small: 'p-4',
+    medium: 'p-8',
+    large: 'p-12'
+  };
+  
+  return `${baseClasses} ${variantClasses[variant as keyof typeof variantClasses]} ${paddingClasses[padding as keyof typeof paddingClasses]}`;
+};
 
 const Card = ({
   children,
@@ -54,14 +29,12 @@ const Card = ({
   padding = 'medium',
   className,
 }: CardProps) => {
+  const cardClasses = `${getCardClasses(variant, padding)} ${className || ''}`;
+  
   return (
-    <StyledCard
-      variant={variant}
-      padding={padding}
-      className={className}
-    >
+    <div className={cardClasses}>
       {children}
-    </StyledCard>
+    </div>
   );
 };
 

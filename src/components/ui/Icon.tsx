@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 // Icon types
 export type IconName = 
@@ -27,33 +26,15 @@ interface IconProps {
   className?: string;
 }
 
-const StyledIcon = styled.span<{ size?: 'small' | 'medium' | 'large' }>`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+const getIconClasses = (size: string) => {
+  const sizeClasses = {
+    small: 'w-4 h-4',
+    medium: 'w-6 h-6', 
+    large: 'w-8 h-8'
+  };
   
-  svg {
-    ${({ size, theme }) => {
-      switch (size) {
-        case 'small':
-          return `
-            width: 16px;
-            height: 16px;
-          `;
-        case 'large':
-          return `
-            width: 32px;
-            height: 32px;
-          `;
-        default: // medium
-          return `
-            width: 24px;
-            height: 24px;
-          `;
-      }
-    }}
-  }
-`;
+  return `inline-flex items-center justify-center ${sizeClasses[size as keyof typeof sizeClasses]}`;
+};
 
 const Icon: React.FC<IconProps> = ({ name, size = 'medium', color, className }) => {
   const renderIcon = () => {
@@ -161,9 +142,9 @@ const Icon: React.FC<IconProps> = ({ name, size = 'medium', color, className }) 
   };
 
   return (
-    <StyledIcon size={size} className={className} style={{ color }}>
+    <div className={`${getIconClasses(size)} ${className}`} style={{ color }}>
       {renderIcon()}
-    </StyledIcon>
+    </div>
   );
 };
 

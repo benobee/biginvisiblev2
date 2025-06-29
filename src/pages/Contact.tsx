@@ -1,284 +1,9 @@
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import Section from '../components/ui/Section';
 import Grid from '../components/ui/Grid';
 import GridItem from '../components/ui/GridItem';
 import Button from '../components/ui/Button';
 import { initRevealAnimations } from '../utils/animations';
-
-const HeroSection = styled.section`
-  min-height: 50vh;
-  background-color: ${({ theme }) => theme.colors.background};
-  color: ${({ theme }) => theme.colors.text};
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  padding-top: 120px;
-`;
-
-const HeroContent = styled.div`
-  position: relative;
-  z-index: 2;
-  
-  h1 {
-    font-size: clamp(2.5rem, 5vw, ${({ theme }) => theme.typography.fontSize['5xl']});
-    margin-bottom: ${({ theme }) => theme.spacing.lg};
-    font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-
-  .subtitle {
-    font-size: clamp(1rem, 2vw, ${({ theme }) => theme.typography.fontSize.xl});
-    margin-bottom: ${({ theme }) => theme.spacing.xl};
-    opacity: 0.8;
-    line-height: 1.6;
-    max-width: 600px;
-  }
-`;
-
-const QuestionnaireContainer = styled.div`
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(114, 114, 114, 0.5);
-  border-radius: ${({ theme }) => theme.borderRadius.lg};
-  padding: ${({ theme }) => theme.spacing.xl};
-  box-shadow: ${({ theme }) => theme.shadows.lg};
-`;
-
-const ProgressBar = styled.div`
-  width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
-  margin-bottom: ${({ theme }) => theme.spacing.xl};
-  overflow: hidden;
-`;
-
-const ProgressFill = styled.div<{ progress: number }>`
-  height: 100%;
-  background: linear-gradient(90deg, ${({ theme }) => theme.colors.accent} 0%, #ff6b6b 100%);
-  width: ${({ progress }) => progress}%;
-  transition: width ${({ theme }) => theme.transitions.default};
-`;
-
-const QuestionStep = styled.div<{ isVisible: boolean }>`
-  display: ${({ isVisible }) => isVisible ? 'block' : 'none'};
-  animation: ${({ isVisible }) => isVisible ? 'fadeInUp 0.5s ease-out' : 'none'};
-  
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-`;
-
-const QuestionTitle = styled.h3`
-  font-size: ${({ theme }) => theme.typography.fontSize.xl};
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
-  color: ${({ theme }) => theme.colors.accent};
-`;
-
-const QuestionDescription = styled.p`
-  opacity: 0.8;
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
-  line-height: 1.6;
-`;
-
-const FormGroup = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
-`;
-
-const Label = styled.label`
-  display: block;
-  margin-bottom: ${({ theme }) => theme.spacing.sm};
-  font-size: ${({ theme }) => theme.typography.fontSize.sm};
-  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
-`;
-
-const Input = styled.input`
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(114, 114, 114, 0.5);
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  color: ${({ theme }) => theme.colors.text};
-  padding: ${({ theme }) => theme.spacing.md};
-  font-size: ${({ theme }) => theme.typography.fontSize.base};
-  transition: all ${({ theme }) => theme.transitions.fast};
-  box-shadow: ${({ theme }) => theme.shadows.sm} inset;
-  
-  &:focus {
-    outline: none;
-    border-color: ${({ theme }) => theme.colors.accent};
-    background-color: rgba(255, 255, 255, 0.08);
-  }
-`;
-
-const Textarea = styled.textarea`
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(114, 114, 114, 0.5);
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  color: ${({ theme }) => theme.colors.text};
-  padding: ${({ theme }) => theme.spacing.md};
-  font-size: ${({ theme }) => theme.typography.fontSize.base};
-  min-height: 150px;
-  resize: vertical;
-  font-family: ${({ theme }) => theme.typography.fontFamily.primary};
-  transition: all ${({ theme }) => theme.transitions.fast};
-  box-shadow: ${({ theme }) => theme.shadows.sm} inset;
-  
-  &:focus {
-    outline: none;
-    border-color: ${({ theme }) => theme.colors.accent};
-    background-color: rgba(255, 255, 255, 0.08);
-  }
-`;
-
-const Select = styled.select`
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(114, 114, 114, 0.5);
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  color: ${({ theme }) => theme.colors.text};
-  padding: ${({ theme }) => theme.spacing.md};
-  font-size: ${({ theme }) => theme.typography.fontSize.base};
-  transition: all ${({ theme }) => theme.transitions.fast};
-  box-shadow: ${({ theme }) => theme.shadows.sm} inset;
-  
-  &:focus {
-    outline: none;
-    border-color: ${({ theme }) => theme.colors.accent};
-    background-color: rgba(255, 255, 255, 0.08);
-  }
-  
-  option {
-    background-color: ${({ theme }) => theme.colors.background};
-  }
-`;
-
-const OptionGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: ${({ theme }) => theme.spacing.md};
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
-`;
-
-const OptionCard = styled.button<{ isSelected: boolean }>`
-  background: ${({ isSelected }) => 
-    isSelected ? 'rgba(255, 58, 70, 0.1)' : 'rgba(255, 255, 255, 0.03)'};
-  border: 1px solid ${({ isSelected, theme }) => 
-    isSelected ? theme.colors.accent : 'rgba(114, 114, 114, 0.5)'};
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  color: ${({ theme }) => theme.colors.text};
-  padding: ${({ theme }) => theme.spacing.lg};
-  text-align: left;
-  transition: all ${({ theme }) => theme.transitions.fast};
-  cursor: pointer;
-  
-  &:hover {
-    border-color: ${({ theme }) => theme.colors.accent};
-    background: rgba(255, 58, 70, 0.05);
-  }
-  
-  h4 {
-    font-size: ${({ theme }) => theme.typography.fontSize.base};
-    margin-bottom: ${({ theme }) => theme.spacing.xs};
-    color: ${({ isSelected, theme }) => isSelected ? theme.colors.accent : 'inherit'};
-  }
-  
-  p {
-    font-size: ${({ theme }) => theme.typography.fontSize.sm};
-    opacity: 0.7;
-    line-height: 1.4;
-  }
-`;
-
-const ButtonGroup = styled.div`
-  display: flex;
-  gap: ${({ theme }) => theme.spacing.md};
-  justify-content: space-between;
-  margin-top: ${({ theme }) => theme.spacing.xl};
-`;
-
-const RecommendationCard = styled.div`
-  background: rgba(255, 58, 70, 0.1);
-  border: 1px solid ${({ theme }) => theme.colors.accent};
-  border-radius: ${({ theme }) => theme.borderRadius.lg};
-  padding: ${({ theme }) => theme.spacing.xl};
-  margin-top: ${({ theme }) => theme.spacing.xl};
-  
-  h3 {
-    color: ${({ theme }) => theme.colors.accent};
-    margin-bottom: ${({ theme }) => theme.spacing.md};
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: ${({ theme }) => theme.spacing.md} 0;
-    
-    li {
-      position: relative;
-      padding-left: ${({ theme }) => theme.spacing.lg};
-      margin-bottom: ${({ theme }) => theme.spacing.sm};
-      
-      &:before {
-        content: '✓';
-        position: absolute;
-        left: 0;
-        color: ${({ theme }) => theme.colors.accent};
-      }
-    }
-  }
-`;
-
-const ContactInfo = styled.div`
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: ${({ theme }) => theme.borderRadius.lg};
-  padding: ${({ theme }) => theme.spacing.xl};
-  height: 100%;
-`;
-
-const ContactItem = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing.xl};
-  
-  &:last-child {
-    margin-bottom: 0;
-  }
-  
-  h3 {
-    font-size: ${({ theme }) => theme.typography.fontSize.lg};
-    margin-bottom: ${({ theme }) => theme.spacing.md};
-    display: flex;
-    align-items: center;
-    
-    svg {
-      margin-right: ${({ theme }) => theme.spacing.sm};
-      color: ${({ theme }) => theme.colors.accent};
-    }
-  }
-  
-  p {
-    opacity: 0.8;
-    line-height: 1.6;
-  }
-  
-  a {
-    color: ${({ theme }) => theme.colors.text};
-    transition: color ${({ theme }) => theme.transitions.fast};
-    
-    &:hover {
-      color: ${({ theme }) => theme.colors.accent};
-    }
-  }
-`;
 
 interface QuestionnaireData {
   // Basic info
@@ -404,49 +129,53 @@ const Contact = () => {
       content: (
         <Grid columns={2} gap="medium">
           <GridItem span={1}>
-            <FormGroup>
-              <Label>Your Name *</Label>
-              <Input
+            <div className="mb-6">
+              <label className="block text-sm font-medium mb-2 text-dark">Your Name *</label>
+              <input
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-colors text-dark bg-white"
                 value={formData.name}
                 onChange={(e) => handleInputChange('name', e.target.value)}
                 placeholder="John Smith"
                 required
               />
-            </FormGroup>
+            </div>
           </GridItem>
           <GridItem span={1}>
-            <FormGroup>
-              <Label>Email Address *</Label>
-              <Input
+            <div className="mb-6">
+              <label className="block text-sm font-medium mb-2 text-dark">Email Address *</label>
+              <input
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-colors text-dark bg-white"
                 type="email"
                 value={formData.email}
                 onChange={(e) => handleInputChange('email', e.target.value)}
                 placeholder="john@company.com"
                 required
               />
-            </FormGroup>
+            </div>
           </GridItem>
           <GridItem span={1}>
-            <FormGroup>
-              <Label>Company Name *</Label>
-              <Input
+            <div className="mb-6">
+              <label className="block text-sm font-medium mb-2 text-dark">Company Name *</label>
+              <input
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-colors text-dark bg-white"
                 value={formData.company}
                 onChange={(e) => handleInputChange('company', e.target.value)}
                 placeholder="Your Company"
                 required
               />
-            </FormGroup>
+            </div>
           </GridItem>
           <GridItem span={1}>
-            <FormGroup>
-              <Label>Phone Number</Label>
-              <Input
+            <div className="mb-6">
+              <label className="block text-sm font-medium mb-2 text-dark">Phone Number</label>
+              <input
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-colors text-dark bg-white"
                 type="tel"
                 value={formData.phone}
                 onChange={(e) => handleInputChange('phone', e.target.value)}
                 placeholder="(555) 123-4567"
               />
-            </FormGroup>
+            </div>
           </GridItem>
         </Grid>
       )
@@ -456,23 +185,27 @@ const Contact = () => {
       title: "What stage is your business in?",
       description: "This helps us understand your current position and needs.",
       content: (
-        <OptionGrid>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             { value: 'startup', title: 'Startup', desc: 'Early stage, building our foundation' },
             { value: 'growth', title: 'Growth Stage', desc: 'Established, ready to scale' },
             { value: 'mature', title: 'Mature Business', desc: 'Well-established, optimizing operations' },
             { value: 'pivot', title: 'Pivoting', desc: 'Changing direction or repositioning' }
           ].map(option => (
-            <OptionCard
+            <div
               key={option.value}
-              isSelected={formData.businessStage === option.value}
+              className={`p-6 border-2 rounded-xl cursor-pointer transition-all duration-300 ${
+                formData.businessStage === option.value
+                  ? 'border-accent bg-accent/5'
+                  : 'border-gray-200 hover:border-accent/50'
+              }`}
               onClick={() => handleInputChange('businessStage', option.value)}
             >
-              <h4>{option.title}</h4>
-              <p>{option.desc}</p>
-            </OptionCard>
+              <h4 className="text-lg font-semibold mb-2 text-dark">{option.title}</h4>
+              <p className="text-sm opacity-80 text-dark">{option.desc}</p>
+            </div>
           ))}
-        </OptionGrid>
+        </div>
       )
     },
     // Step 2: Company Size
@@ -480,7 +213,7 @@ const Contact = () => {
       title: "How large is your team?",
       description: "Understanding your company size helps us tailor our approach.",
       content: (
-        <OptionGrid>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
             { value: 'solo', title: 'Solo/Freelancer', desc: 'Just me or 1-2 people' },
             { value: 'small', title: 'Small Team', desc: '3-10 people' },
@@ -488,16 +221,20 @@ const Contact = () => {
             { value: 'large', title: 'Large Company', desc: '51-200 people' },
             { value: 'enterprise', title: 'Enterprise', desc: '200+ people' }
           ].map(option => (
-            <OptionCard
+            <div
               key={option.value}
-              isSelected={formData.companySize === option.value}
+              className={`p-6 border-2 rounded-xl cursor-pointer transition-all duration-300 ${
+                formData.companySize === option.value
+                  ? 'border-accent bg-accent/5'
+                  : 'border-gray-200 hover:border-accent/50'
+              }`}
               onClick={() => handleInputChange('companySize', option.value)}
             >
-              <h4>{option.title}</h4>
-              <p>{option.desc}</p>
-            </OptionCard>
+              <h4 className="text-lg font-semibold mb-2 text-dark">{option.title}</h4>
+              <p className="text-sm opacity-80 text-dark">{option.desc}</p>
+            </div>
           ))}
-        </OptionGrid>
+        </div>
       )
     },
     // Step 3: Industry
@@ -505,8 +242,9 @@ const Contact = () => {
       title: "What industry are you in?",
       description: "Industry context helps us understand your market and audience.",
       content: (
-        <FormGroup>
-          <Select
+        <div className="mb-6">
+          <select
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-colors text-dark bg-white"
             value={formData.industry}
             onChange={(e) => handleInputChange('industry', e.target.value)}
           >
@@ -523,8 +261,8 @@ const Contact = () => {
             <option value="real-estate">Real Estate</option>
             <option value="creative">Creative/Design</option>
             <option value="other">Other</option>
-          </Select>
-        </FormGroup>
+          </select>
+        </div>
       )
     },
     // Step 4: Current Challenges
@@ -532,7 +270,7 @@ const Contact = () => {
       title: "What are your biggest brand challenges?",
       description: "Select all that apply to help us understand your pain points.",
       content: (
-        <OptionGrid>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
             { value: 'brand-clarity', title: 'Brand Clarity', desc: 'Unclear brand message or positioning' },
             { value: 'visual-consistency', title: 'Visual Consistency', desc: 'Inconsistent visual identity' },
@@ -541,16 +279,20 @@ const Contact = () => {
             { value: 'digital-presence', title: 'Digital Presence', desc: 'Weak online presence or outdated website' },
             { value: 'community-building', title: 'Community Building', desc: 'Difficulty building loyal community' }
           ].map(option => (
-            <OptionCard
+            <div
               key={option.value}
-              isSelected={formData.currentChallenges.includes(option.value)}
+              className={`p-6 border-2 rounded-xl cursor-pointer transition-all duration-300 ${
+                formData.currentChallenges.includes(option.value)
+                  ? 'border-accent bg-accent/5'
+                  : 'border-gray-200 hover:border-accent/50'
+              }`}
               onClick={() => handleMultiSelect('currentChallenges', option.value)}
             >
-              <h4>{option.title}</h4>
-              <p>{option.desc}</p>
-            </OptionCard>
+              <h4 className="text-lg font-semibold mb-2 text-dark">{option.title}</h4>
+              <p className="text-sm opacity-80 text-dark">{option.desc}</p>
+            </div>
           ))}
-        </OptionGrid>
+        </div>
       )
     },
     // Step 5: Brand Maturity
@@ -558,23 +300,27 @@ const Contact = () => {
       title: "How would you describe your current brand?",
       description: "Understanding your brand's current state helps us recommend the right approach.",
       content: (
-        <OptionGrid>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             { value: 'early', title: 'Just Starting', desc: 'Brand new or very early stage' },
             { value: 'basic', title: 'Basic Brand', desc: 'Have logo/colors but need more development' },
             { value: 'established', title: 'Established', desc: 'Solid brand but could be stronger' },
             { value: 'needs-refresh', title: 'Needs Refresh', desc: 'Outdated brand that needs updating' }
           ].map(option => (
-            <OptionCard
+            <div
               key={option.value}
-              isSelected={formData.brandMaturity === option.value}
+              className={`p-6 border-2 rounded-xl cursor-pointer transition-all duration-300 ${
+                formData.brandMaturity === option.value
+                  ? 'border-accent bg-accent/5'
+                  : 'border-gray-200 hover:border-accent/50'
+              }`}
               onClick={() => handleInputChange('brandMaturity', option.value)}
             >
-              <h4>{option.title}</h4>
-              <p>{option.desc}</p>
-            </OptionCard>
+              <h4 className="text-lg font-semibold mb-2 text-dark">{option.title}</h4>
+              <p className="text-sm opacity-80 text-dark">{option.desc}</p>
+            </div>
           ))}
-        </OptionGrid>
+        </div>
       )
     },
     // Step 6: Digital Presence
@@ -582,23 +328,27 @@ const Contact = () => {
       title: "How's your current digital presence?",
       description: "This helps us understand your digital foundation and needs.",
       content: (
-        <OptionGrid>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             { value: 'none', title: 'No Website', desc: 'No website or very basic landing page' },
             { value: 'basic', title: 'Basic Website', desc: 'Simple website but needs improvement' },
             { value: 'good', title: 'Good Website', desc: 'Decent website but could be optimized' },
             { value: 'strong', title: 'Strong Presence', desc: 'Great website and digital strategy' }
           ].map(option => (
-            <OptionCard
+            <div
               key={option.value}
-              isSelected={formData.digitalPresence === option.value}
+              className={`p-6 border-2 rounded-xl cursor-pointer transition-all duration-300 ${
+                formData.digitalPresence === option.value
+                  ? 'border-accent bg-accent/5'
+                  : 'border-gray-200 hover:border-accent/50'
+              }`}
               onClick={() => handleInputChange('digitalPresence', option.value)}
             >
-              <h4>{option.title}</h4>
-              <p>{option.desc}</p>
-            </OptionCard>
+              <h4 className="text-lg font-semibold mb-2 text-dark">{option.title}</h4>
+              <p className="text-sm opacity-80 text-dark">{option.desc}</p>
+            </div>
           ))}
-        </OptionGrid>
+        </div>
       )
     },
     // Step 7: Community Goals
@@ -606,23 +356,27 @@ const Contact = () => {
       title: "What are your community-building goals?",
       description: "Understanding your community aspirations helps us recommend the right strategy.",
       content: (
-        <OptionGrid>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             { value: 'build', title: 'Build Community', desc: 'Create a new community from scratch' },
             { value: 'grow', title: 'Grow Existing', desc: 'Expand and strengthen current community' },
             { value: 'engage', title: 'Increase Engagement', desc: 'Improve interaction with existing audience' },
             { value: 'convert', title: 'Convert to Customers', desc: 'Turn community members into customers' }
           ].map(option => (
-            <OptionCard
+            <div
               key={option.value}
-              isSelected={formData.communityGoals === option.value}
+              className={`p-6 border-2 rounded-xl cursor-pointer transition-all duration-300 ${
+                formData.communityGoals === option.value
+                  ? 'border-accent bg-accent/5'
+                  : 'border-gray-200 hover:border-accent/50'
+              }`}
               onClick={() => handleInputChange('communityGoals', option.value)}
             >
-              <h4>{option.title}</h4>
-              <p>{option.desc}</p>
-            </OptionCard>
+              <h4 className="text-lg font-semibold mb-2 text-dark">{option.title}</h4>
+              <p className="text-sm opacity-80 text-dark">{option.desc}</p>
+            </div>
           ))}
-        </OptionGrid>
+        </div>
       )
     },
     // Step 8: Timeline & Budget
@@ -632,9 +386,10 @@ const Contact = () => {
       content: (
         <Grid columns={2} gap="medium">
           <GridItem span={1}>
-            <FormGroup>
-              <Label>Project Timeline</Label>
-              <Select
+            <div className="mb-6">
+              <label className="block text-sm font-medium mb-2 text-dark">Project Timeline</label>
+              <select
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-colors text-dark bg-white"
                 value={formData.projectTimeline}
                 onChange={(e) => handleInputChange('projectTimeline', e.target.value)}
               >
@@ -643,13 +398,14 @@ const Contact = () => {
                 <option value="soon">Soon (2-3 months)</option>
                 <option value="flexible">Flexible (3-6 months)</option>
                 <option value="planning">Planning phase (6+ months)</option>
-              </Select>
-            </FormGroup>
+              </select>
+            </div>
           </GridItem>
           <GridItem span={1}>
-            <FormGroup>
-              <Label>Investment Range</Label>
-              <Select
+            <div className="mb-6">
+              <label className="block text-sm font-medium mb-2 text-dark">Investment Range</label>
+              <select
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-colors text-dark bg-white"
                 value={formData.budget}
                 onChange={(e) => handleInputChange('budget', e.target.value)}
               >
@@ -658,8 +414,8 @@ const Contact = () => {
                 <option value="medium">$10,000 - $25,000</option>
                 <option value="high">$25,000+</option>
                 <option value="discuss">Let's discuss</option>
-              </Select>
-            </FormGroup>
+              </select>
+            </div>
           </GridItem>
         </Grid>
       )
@@ -669,7 +425,7 @@ const Contact = () => {
       title: "What are your primary goals?",
       description: "Select your top priorities to help us create the perfect recommendation.",
       content: (
-        <OptionGrid>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
             { value: 'brand-strategy', title: 'Brand Strategy', desc: 'Define brand positioning and messaging' },
             { value: 'visual-identity', title: 'Visual Identity', desc: 'Create or refresh logo and visual system' },
@@ -678,16 +434,20 @@ const Contact = () => {
             { value: 'community-building', title: 'Community Building', desc: 'Build and nurture brand community' },
             { value: 'brand-architecture', title: 'Brand Architecture', desc: 'Structure multi-brand portfolio' }
           ].map(option => (
-            <OptionCard
+            <div
               key={option.value}
-              isSelected={formData.primaryGoals.includes(option.value)}
+              className={`p-6 border-2 rounded-xl cursor-pointer transition-all duration-300 ${
+                formData.primaryGoals.includes(option.value)
+                  ? 'border-accent bg-accent/5'
+                  : 'border-gray-200 hover:border-accent/50'
+              }`}
               onClick={() => handleMultiSelect('primaryGoals', option.value)}
             >
-              <h4>{option.title}</h4>
-              <p>{option.desc}</p>
-            </OptionCard>
+              <h4 className="text-lg font-semibold mb-2 text-dark">{option.title}</h4>
+              <p className="text-sm opacity-80 text-dark">{option.desc}</p>
+            </div>
           ))}
-        </OptionGrid>
+        </div>
       )
     },
     // Step 10: Additional Info & Results
@@ -696,42 +456,43 @@ const Contact = () => {
       description: "Share any additional information that would help us understand your needs better.",
       content: (
         <div>
-          <FormGroup>
-            <Label>Additional Information (Optional)</Label>
-            <Textarea
+          <div className="mb-6">
+            <label className="block text-sm font-medium mb-2 text-dark">Additional Information (Optional)</label>
+            <textarea
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-colors text-dark bg-white min-h-[120px] resize-y"
               value={formData.additionalInfo}
               onChange={(e) => handleInputChange('additionalInfo', e.target.value)}
               placeholder="Tell us about specific challenges, goals, or anything else that would help us understand your needs..."
             />
-          </FormGroup>
+          </div>
           
           {currentStep === totalSteps - 1 && (
-            <RecommendationCard>
-              <h3>Our Recommendations for {formData.company || 'Your Business'}</h3>
-              <p>Based on your responses, here's what we recommend:</p>
+            <div className="bg-accent/5 border border-accent/20 p-8 rounded-xl mt-8">
+              <h3 className="text-xl font-bold mb-4 text-dark">Our Recommendations for {formData.company || 'Your Business'}</h3>
+              <p className="text-sm opacity-80 mb-6 text-dark">Based on your responses, here's what we recommend:</p>
               
-              <div style={{ marginTop: '1.5rem' }}>
-                <h4>Recommended Services:</h4>
-                <ul>
+              <div className="mb-6">
+                <h4 className="font-semibold mb-3 text-dark">Recommended Services:</h4>
+                <ul className="list-disc list-inside space-y-1">
                   {getRecommendations().services.length > 0 ? (
                     getRecommendations().services.map(service => (
-                      <li key={service}>{service}</li>
+                      <li key={service} className="text-sm text-dark">{service}</li>
                     ))
                   ) : (
-                    <li>Complete the questionnaire to see personalized recommendations</li>
+                    <li className="text-sm text-dark">Complete the questionnaire to see personalized recommendations</li>
                   )}
                 </ul>
               </div>
               
-              <div style={{ marginTop: '1.5rem' }}>
-                <h4>Suggested Package: {getRecommendations().packageTier}</h4>
-                <p>This package aligns with your company size, budget, and goals.</p>
+              <div className="mb-6">
+                <h4 className="font-semibold mb-2 text-dark">Suggested Package: {getRecommendations().packageTier}</h4>
+                <p className="text-sm opacity-80 text-dark">This package aligns with your company size, budget, and goals.</p>
               </div>
               
-              <p style={{ marginTop: '1.5rem', fontSize: '0.9rem', opacity: 0.8 }}>
+              <p className="text-xs opacity-70 text-dark">
                 We'll send you a detailed proposal within 24 hours with customized recommendations and pricing.
               </p>
-            </RecommendationCard>
+            </div>
           )}
         </div>
       )
@@ -740,38 +501,27 @@ const Contact = () => {
 
   return (
     <>
-      <HeroSection>
-        <div className="container">
-          <HeroContent>
-            <h1 className="reveal-text">Let's Find Your Perfect <span className="text-gradient">Brand Solution</span></h1>
-            <p className="subtitle reveal-text">
-              Answer a few questions about your business and we'll recommend the ideal services and approach to transform your brand and build authentic community connections.
-            </p>
-          </HeroContent>
-        </div>
-      </HeroSection>
-      
-      <Section>
+      <Section background="accent" className="pt-80">
         <Grid>
           <GridItem span={8}>
-            <QuestionnaireContainer className="reveal-text">
-              <ProgressBar>
-                <ProgressFill progress={progress} />
-              </ProgressBar>
+            <div className="reveal-text bg-white border border-gray-200 p-8 rounded-xl shadow-sm">
+              <div className="w-full bg-gray-200 rounded-full h-2 mb-6">
+                <div className="bg-accent h-2 rounded-full transition-all duration-500" style={{ width: `${progress}%` }}></div>
+              </div>
               
               <div style={{ marginBottom: '1rem', fontSize: '0.9rem', opacity: 0.7 }}>
                 Step {currentStep + 1} of {totalSteps}
               </div>
               
               {questions.map((question, index) => (
-                <QuestionStep key={index} isVisible={currentStep === index}>
-                  <QuestionTitle>{question.title}</QuestionTitle>
-                  <QuestionDescription>{question.description}</QuestionDescription>
+                <div key={index} className={currentStep === index ? 'block' : 'hidden'}>
+                  <h2 className="text-2xl font-bold mb-4 text-dark">{question.title}</h2>
+                  <p className="text-base opacity-80 mb-8 leading-relaxed text-dark">{question.description}</p>
                   {question.content}
-                </QuestionStep>
+                </div>
               ))}
               
-              <ButtonGroup>
+              <div className="flex justify-between mt-8">
                 <div>
                   {currentStep > 0 && (
                     <Button variant="outline" onClick={prevStep}>
@@ -790,71 +540,71 @@ const Contact = () => {
                     </Button>
                   )}
                 </div>
-              </ButtonGroup>
-            </QuestionnaireContainer>
+              </div>
+            </div>
           </GridItem>
           
           <GridItem span={4}>
-            <ContactInfo className="reveal-text">
-              <ContactItem>
-                <h3>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <div className="reveal-text space-y-8">
+              <div className="bg-white border border-gray-200 p-6 rounded-xl shadow-sm">
+                <h3 className="flex items-center text-lg font-semibold mb-4 text-dark">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="mr-3 text-accent">
                     <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                   </svg>
                   Get in Touch
                 </h3>
-                <p>
+                <p className="text-sm leading-relaxed opacity-80 text-dark">
                   Ready to transform your brand? We'd love to hear from you. 
                   Complete the questionnaire and we'll get back to you within 24 hours 
                   with personalized recommendations.
                 </p>
-              </ContactItem>
+              </div>
 
-              <ContactItem>
-                <h3>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <div className="bg-white border border-gray-200 p-6 rounded-xl shadow-sm">
+                <h3 className="flex items-center text-lg font-semibold mb-4 text-dark">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="mr-3 text-accent">
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                   </svg>
                   Our Location
                 </h3>
-                <p>
+                <p className="text-sm leading-relaxed opacity-80 text-dark">
                   Based in the Pacific Northwest<br />
                   Serving clients worldwide<br />
                   <em>Remote collaboration available</em>
                 </p>
-              </ContactItem>
+              </div>
 
-              <ContactItem>
-                <h3>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <div className="bg-white border border-gray-200 p-6 rounded-xl shadow-sm">
+                <h3 className="flex items-center text-lg font-semibold mb-4 text-dark">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="mr-3 text-accent">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                   </svg>
                   What to Expect
                 </h3>
-                <p>
+                <p className="text-sm leading-relaxed opacity-80 text-dark">
                   <strong>Quick Response:</strong> We'll review your questionnaire and respond within 24 hours
                   <br /><br />
                   <strong>Custom Proposal:</strong> Receive a tailored proposal with specific recommendations and pricing
                   <br /><br />
                   <strong>Strategy Call:</strong> Schedule a complimentary 30-minute strategy session to discuss your project
                 </p>
-              </ContactItem>
+              </div>
 
-              <ContactItem>
-                <h3>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <div className="bg-white border border-gray-200 p-6 rounded-xl shadow-sm">
+                <h3 className="flex items-center text-lg font-semibold mb-4 text-dark">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="mr-3 text-accent">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                   </svg>
                   Direct Contact
                 </h3>
-                <p>
+                <p className="text-sm leading-relaxed opacity-80 text-dark">
                   Prefer to reach out directly?<br />
-                  <a href="mailto:hello@biginvisible.com">hello@biginvisible.com</a>
+                  <a href="mailto:hello@biginvisible.com" className="text-accent hover:underline">hello@biginvisible.com</a>
                   <br /><br />
                   <em>We typically respond to emails within 4-6 hours during business days.</em>
                 </p>
-              </ContactItem>
-            </ContactInfo>
+              </div>
+            </div>
           </GridItem>
         </Grid>
       </Section>

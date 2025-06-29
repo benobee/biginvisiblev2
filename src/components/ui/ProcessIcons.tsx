@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import {
   Target,
   Palette,
@@ -14,92 +13,85 @@ import {
   Zap
 } from 'lucide-react';
 
-// Clean icon container with consistent styling
-const IconContainer = styled.div`
-  width: 96px;
-  height: 96px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  svg {
-    width: 48px;
-    height: 48px;
-    color: ${({ theme }) => theme.colors.accent};
-    transition: all ${({ theme }) => theme.transitions.default};
-  }
-`;
+// Clean icon container with consistent styling using Tailwind
+const IconContainer = ({ children }: { children: React.ReactNode }) => (
+  <div className="w-24 h-24 flex items-center justify-center">
+    <div className="text-accent transition-all duration-300">
+      {children}
+    </div>
+  </div>
+);
 
 // Service Icons - Using standard Lucide icons
 export const BrandStrategyIcon = () => (
   <IconContainer>
-    <Target />
+    <Target className="w-full h-full" />
   </IconContainer>
 );
 
 export const VisualIdentityIcon = () => (
   <IconContainer>
-    <Palette />
+    <Palette className="w-full h-full" />
   </IconContainer>
 );
 
 export const DigitalExperienceIcon = () => (
   <IconContainer>
-    <Monitor />
+    <Monitor className="w-full h-full" />
   </IconContainer>
 );
 
 export const ContentStrategyIcon = () => (
   <IconContainer>
-    <FileText />
+    <FileText className="w-full h-full" />
   </IconContainer>
 );
 
 export const BrandArchitectureIcon = () => (
   <IconContainer>
-    <Layers />
+    <Layers className="w-full h-full" />
   </IconContainer>
 );
 
 export const CommunityBuildingIcon = () => (
   <IconContainer>
-    <Users />
+    <Users className="w-full h-full" />
   </IconContainer>
 );
 
 // Process Icons - using unique icons for the Process page
 export const AuthenticConnectionIcon = () => (
   <IconContainer>
-    <Heart />
+    <Heart className="w-full h-full" />
   </IconContainer>
 );
 
 export const StrategicAlignmentIcon = () => (
   <IconContainer>
-    <Compass />
+    <Compass className="w-full h-full" />
   </IconContainer>
 );
 
 export const CommunityIntegrationIcon = () => (
   <IconContainer>
-    <Network />
+    <Network className="w-full h-full" />
   </IconContainer>
 );
 
 export const ConsistentExperienceIcon = () => (
   <IconContainer>
-    <CheckCircle />
+    <CheckCircle className="w-full h-full" />
   </IconContainer>
 );
 
 export const MeasurableImpactIcon = () => (
   <IconContainer>
-    <TrendingUp />
+    <TrendingUp className="w-full h-full" />
   </IconContainer>
 );
 
 export const AdaptiveEvolutionIcon = () => (
   <IconContainer>
-    <Zap />
+    <Zap className="w-full h-full" />
   </IconContainer>
 );

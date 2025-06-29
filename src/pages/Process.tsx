@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import styled from 'styled-components';
 import Section from '../components/ui/Section';
 import SectionHeader from '../components/ui/SectionHeader';
 import Grid from '../components/ui/Grid';
 import GridItem from '../components/ui/GridItem';
 import Button from '../components/ui/Button';
+import CTASection from '../components/ui/CTASection';
 import { initRevealAnimations } from '../utils/animations';
 import {
   AuthenticConnectionIcon,
@@ -15,190 +15,6 @@ import {
   AdaptiveEvolutionIcon
 } from '../components/ui/ProcessIcons';
 
-const HeroSection = styled.section`
-  min-height: 70vh;
-  background-color: ${({ theme }) => theme.colors.background};
-  color: ${({ theme }) => theme.colors.text};
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  padding-top: 120px;
-`;
-
-const HeroContent = styled.div`
-  position: relative;
-  z-index: 2;
-  
-  h1 {
-    font-size: clamp(2.5rem, 5vw, ${({ theme }) => theme.typography.fontSize['5xl']});
-    margin-bottom: ${({ theme }) => theme.spacing.lg};
-    font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-
-  .subtitle {
-    font-size: clamp(1rem, 2vw, ${({ theme }) => theme.typography.fontSize.xl});
-    margin-bottom: ${({ theme }) => theme.spacing.xl};
-    opacity: 0.8;
-    line-height: 1.6;
-    max-width: 600px;
-  }
-`;
-
-const ProcessTimeline = styled.div`
-  position: relative;
-  padding: ${({ theme }) => theme.spacing.section} 0;
-  
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 1px;
-    background: ${({ theme }) => theme.colors.accent};
-    transform: translateX(-50%);
-    opacity: 0.3;
-    
-    @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-      left: 20px;
-    }
-  }
-`;
-
-const TimelineItem = styled.div<{ align?: 'left' | 'right' }>`
-  display: flex;
-  justify-content: ${({ align }) => align === 'left' ? 'flex-start' : 'flex-end'};
-  margin-bottom: ${({ theme }) => theme.spacing.section};
-  position: relative;
-  
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    justify-content: flex-start;
-    padding-left: 50px;
-  }
-  
-  &:last-child {
-    margin-bottom: 0;
-  }
-  
-  .timeline-content {
-    width: 45%;
-    position: relative;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: ${({ theme }) => theme.spacing.xl};
-    text-align: left;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    
-    @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-      width: 100%;
-    }
-  }
-  
-  .timeline-dot {
-    position: absolute;
-    top: 50%;
-    width: 20px;
-    height: 20px;
-    background-color: ${({ theme }) => theme.colors.accent};
-    border-radius: 50%;
-    left: ${({ align }) => align === 'left' ? 'auto' : '-11.25%'};
-    right: ${({ align }) => align === 'left' ? '-11.25%' : 'auto'};
-    transform: translateX(${({ align }) => align === 'left' ? '50%' : '-50%'});
-    z-index: 2;
-    
-    @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-      left: -40px;
-      right: auto;
-      transform: translateX(0);
-    }
-    
-    &::before {
-      content: '';
-      position: absolute;
-      top: -5px;
-      left: -5px;
-      right: -5px;
-      bottom: -5px;
-      border-radius: 50%;
-      border: 1px solid ${({ theme }) => theme.colors.accent};
-      opacity: 0.5;
-    }
-  }
-  
-  .timeline-number {
-    font-size: ${({ theme }) => theme.typography.fontSize['4xl']};
-    font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
-    color: ${({ theme }) => theme.colors.accent};
-    opacity: 0.2;
-    margin-bottom: ${({ theme }) => theme.spacing.md};
-  }
-  
-  h3 {
-    font-size: ${({ theme }) => theme.typography.fontSize['2xl']};
-    margin-bottom: ${({ theme }) => theme.spacing.md};
-  }
-  
-  p {
-    opacity: 0.8;
-    line-height: 1.6;
-    margin-bottom: ${({ theme }) => theme.spacing.lg};
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 ${({ theme }) => theme.spacing.lg} 0;
-    
-    li {
-      position: relative;
-      padding-left: ${({ theme }) => theme.spacing.lg};
-      margin-bottom: ${({ theme }) => theme.spacing.sm};
-      opacity: 0.8;
-      
-      &:before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 10px;
-        width: 6px;
-        height: 6px;
-        background-color: ${({ theme }) => theme.colors.accent};
-        border-radius: 50%;
-      }
-    }
-  }
-`;
-
-const FrameworkSection = styled(Section)`
-  background: linear-gradient(135deg, ${({ theme }) => theme.colors.background} 0%, ${({ theme }) => theme.colors.backgroundAlt} 100%);
-`;
-
-const FrameworkGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: ${({ theme }) => theme.spacing.xl};
-`;
-
-const FrameworkItem = styled.div`
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  padding: ${({ theme }) => theme.spacing.xl};
-  transition: all ${({ theme }) => theme.transitions.default};
-  border-radius: 10px;
-  
-  h3 {
-    font-size: ${({ theme }) => theme.typography.fontSize.xl};
-    margin-bottom: ${({ theme }) => theme.spacing.md};
-  }
-  
-  p {
-    opacity: 0.8;
-    line-height: 1.6;
-  }
-`;
-
 const Process = () => {
   useEffect(() => {
     const cleanup = initRevealAnimations();
@@ -207,115 +23,97 @@ const Process = () => {
   
   return (
     <>
-      <HeroSection>
-        <div className="container">
-          <Grid>
-            <GridItem span={6}>
-              <HeroContent>
-                <h1 className="reveal-text">The <span className="text-gradient">Invisible Bond</span> Framework™</h1>
-                <p className="subtitle reveal-text">
-                  Our systematic approach to building lasting brand relationships that strengthen entire business ecosystems.
-                </p>
-              </HeroContent>
-            </GridItem>
-            <GridItem span={6}>
-              <div className="reveal-text" style={{ height: '400px', position: 'relative' }}>
-                <img 
-                  src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
-                  alt="Our process" 
-                  style={{ 
-                    width: '100%', 
-                    height: '100%', 
-                    objectFit: 'cover',
-                    opacity: '0.8'
-                  }} 
-                />
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  background: 'linear-gradient(135deg, rgba(15, 25, 35, 0.3) 0%, rgba(15, 25, 35, 0.8) 100%)'
-                }}></div>
-              </div>
-            </GridItem>
-          </Grid>
-        </div>
-      </HeroSection>
+      <Section background="primary" className="min-h-[70vh] flex items-center relative overflow-hidden pt-[120px]">
+        <Grid>
+          <GridItem span={6}>
+            <div className="relative z-10">
+              <h1 className="reveal-text text-4xl lg:text-5xl xl:text-6xl mb-6 font-bold leading-tight tracking-tight text-dark">The <span className="text-accent">Invisible Bond</span> Framework™</h1>
+              <p className="reveal-text text-lg lg:text-xl mb-8 opacity-80 leading-relaxed max-w-2xl text-dark">
+                Our systematic approach to building lasting brand relationships that strengthen entire business ecosystems.
+              </p>
+            </div>
+          </GridItem>
+          <GridItem span={6}>
+            <div className="reveal-text relative h-96 rounded-xl overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
+                alt="Our process" 
+                className="w-full h-full object-cover opacity-80"
+              />
+              <div className="absolute inset-0 bg-black/20"></div>
+            </div>
+          </GridItem>
+        </Grid>
+      </Section>
       
-      <Section>
+      <Section background="light">
         <SectionHeader
           title="Our process"
           description="We follow a structured yet flexible process that ensures we deliver results that exceed expectations while adapting to your unique needs."
           align="center"
         />
         
-        <ProcessTimeline>
-          <TimelineItem align="right" className="reveal-text">
-            <div className="timeline-content">
-              <div className="timeline-dot"></div>
-              <div className="timeline-number">01</div>
-              <h3>Discovery</h3>
-              <p>We begin by deeply understanding your brand, business goals, audience, and market position. This foundational phase ensures all subsequent work is strategically aligned with your objectives.</p>
-              <ul>
-                <li>Stakeholder interviews</li>
-                <li>Market research and analysis</li>
-                <li>Audience insights gathering</li>
-                <li>Competitive landscape review</li>
+        <div className="relative py-20 before:content-[''] before:absolute before:top-0 before:bottom-0 before:left-1/2 before:w-px before:bg-accent before:-translate-x-1/2 before:opacity-30 md:before:left-1/2">
+          <div className="flex justify-end mb-20 relative reveal-text md:justify-end md:pl-0 pl-12">
+            <div className="w-full md:w-5/12 relative bg-white border border-gray-200 p-8 text-left shadow-sm rounded-xl">
+              <div className="text-4xl font-bold text-accent opacity-20 mb-4">01</div>
+              <h3 className="text-2xl mb-4 text-dark">Discovery</h3>
+              <p className="opacity-80 leading-relaxed mb-6 text-dark">We begin by deeply understanding your brand, business goals, audience, and market position. This foundational phase ensures all subsequent work is strategically aligned with your objectives.</p>
+              <ul className="list-none p-0 mb-6">
+                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Stakeholder interviews</li>
+                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Market research and analysis</li>
+                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Audience insights gathering</li>
+                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Competitive landscape review</li>
               </ul>
               <Button variant="outline" to="/contact">Start here</Button>
             </div>
-          </TimelineItem>
+          </div>
           
-          <TimelineItem align="left" className="reveal-text">
-            <div className="timeline-content">
-              <div className="timeline-dot"></div>
-              <div className="timeline-number">02</div>
-              <h3>Strategy Development</h3>
-              <p>Based on our discoveries, we craft a comprehensive brand strategy that defines your unique market position and systematic approach to building trust with your audience.</p>
-              <ul>
-                <li>Brand positioning</li>
-                <li>Messaging framework</li>
-                <li>Brand architecture</li>
-                <li>Communication strategy</li>
+          <div className="flex justify-start mb-20 relative reveal-text md:justify-start md:pl-0 pl-12">
+            <div className="w-full md:w-5/12 relative bg-white border border-gray-200 p-8 text-left shadow-sm rounded-xl">
+              <div className="text-4xl font-bold text-accent opacity-20 mb-4">02</div>
+              <h3 className="text-2xl mb-4 text-dark">Strategy Development</h3>
+              <p className="opacity-80 leading-relaxed mb-6 text-dark">Based on our discoveries, we craft a comprehensive brand strategy that defines your unique market position and systematic approach to building trust with your audience.</p>
+              <ul className="list-none p-0 mb-6">
+                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Brand positioning</li>
+                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Messaging framework</li>
+                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Brand architecture</li>
+                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Communication strategy</li>
               </ul>
             </div>
-          </TimelineItem>
+          </div>
           
-          <TimelineItem align="right" className="reveal-text">
-            <div className="timeline-content">
-              <div className="timeline-dot"></div>
-              <div className="timeline-number">03</div>
-              <h3>Design Implementation</h3>
-              <p>We bring your brand to life through cohesive visual identity and consistent experiences across all touchpoints, ensuring every interaction reinforces your brand promise.</p>
-              <ul>
-                <li>Visual identity development</li>
-                <li>Brand guidelines creation</li>
-                <li>Digital experience design</li>
-                <li>Marketing collateral design</li>
+          <div className="flex justify-end mb-20 relative reveal-text md:justify-end md:pl-0 pl-12">
+            <div className="w-full md:w-5/12 relative bg-white border border-gray-200 p-8 text-left shadow-sm rounded-xl">
+              <div className="text-4xl font-bold text-accent opacity-20 mb-4">03</div>
+              <h3 className="text-2xl mb-4 text-dark">Design Implementation</h3>
+              <p className="opacity-80 leading-relaxed mb-6 text-dark">We bring your brand to life through cohesive visual identity and consistent experiences across all touchpoints, ensuring every interaction reinforces your brand promise.</p>
+              <ul className="list-none p-0 mb-6">
+                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Visual identity development</li>
+                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Brand guidelines creation</li>
+                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Digital experience design</li>
+                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Marketing collateral design</li>
               </ul>
             </div>
-          </TimelineItem>
+          </div>
           
-          <TimelineItem align="left" className="reveal-text">
-            <div className="timeline-content">
-              <div className="timeline-dot"></div>
-              <div className="timeline-number">04</div>
-              <h3>Brand Evolution</h3>
-              <p>We provide ongoing support to help your brand grow and adapt while maintaining authenticity and scaling impact in your community and market.</p>
-              <ul>
-                <li>Performance measurement</li>
-                <li>Brand refinement</li>
-                <li>Growth strategy</li>
-                <li>Community engagement</li>
+          <div className="flex justify-start mb-0 relative reveal-text md:justify-start md:pl-0 pl-12">
+            <div className="w-full md:w-5/12 relative bg-white border border-gray-200 p-8 text-left shadow-sm rounded-xl">
+              <div className="text-4xl font-bold text-accent opacity-20 mb-4">04</div>
+              <h3 className="text-2xl mb-4 text-dark">Brand Evolution</h3>
+              <p className="opacity-80 leading-relaxed mb-6 text-dark">We provide ongoing support to help your brand grow and adapt while maintaining authenticity and scaling impact in your community and market.</p>
+              <ul className="list-none p-0 mb-6">
+                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Performance measurement</li>
+                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Brand refinement</li>
+                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Growth strategy</li>
+                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Community engagement</li>
               </ul>
             </div>
-          </TimelineItem>
-        </ProcessTimeline>
+          </div>
+        </div>
       </Section>
       
-      <FrameworkSection>
+      <Section background="primary">
         <SectionHeader
           subtitle="Our framework"
           title="The pillars of our approach"
@@ -323,90 +121,76 @@ const Process = () => {
           align="center"
         />
         
-        <FrameworkGrid>
-          <FrameworkItem className="reveal-text">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="reveal-text border-2 border-gray-200 p-8 transition-all duration-300 rounded-xl hover:border-accent">
             <AuthenticConnectionIcon />
-            <h3>Authentic Connection</h3>
-            <p>Building genuine relationships between brands and their audiences based on shared values and transparent communication.</p>
-          </FrameworkItem>
+            <h3 className="text-xl mb-4 text-dark">Authentic Connection</h3>
+            <p className="opacity-80 leading-relaxed text-dark">Building genuine relationships between brands and their audiences based on shared values and transparent communication.</p>
+          </div>
           
-          <FrameworkItem className="reveal-text">
+          <div className="reveal-text border-2 border-gray-200 p-8 transition-all duration-300 rounded-xl hover:border-accent">
             <StrategicAlignmentIcon />
-            <h3>Strategic Alignment</h3>
-            <p>Ensuring all brand elements and experiences are purposefully aligned with business objectives and audience needs.</p>
-          </FrameworkItem>
+            <h3 className="text-xl mb-4 text-dark">Strategic Alignment</h3>
+            <p className="opacity-80 leading-relaxed text-dark">Ensuring all brand elements and experiences are purposefully aligned with business objectives and audience needs.</p>
+          </div>
           
-          <FrameworkItem className="reveal-text">
+          <div className="reveal-text border-2 border-gray-200 p-8 transition-all duration-300 rounded-xl hover:border-accent">
             <CommunityIntegrationIcon />
-            <h3>Community Integration</h3>
-            <p>Positioning brands as valuable contributors to their communities, fostering trust and loyalty beyond transactions.</p>
-          </FrameworkItem>
+            <h3 className="text-xl mb-4 text-dark">Community Integration</h3>
+            <p className="opacity-80 leading-relaxed text-dark">Positioning brands as valuable contributors to their communities, fostering trust and loyalty beyond transactions.</p>
+          </div>
           
-          <FrameworkItem className="reveal-text">
+          <div className="reveal-text border-2 border-gray-200 p-8 transition-all duration-300 rounded-xl hover:border-accent">
             <ConsistentExperienceIcon />
-            <h3>Consistent Experience</h3>
-            <p>Creating cohesive brand experiences across all touchpoints that reinforce your brand promise and build recognition.</p>
-          </FrameworkItem>
+            <h3 className="text-xl mb-4 text-dark">Consistent Experience</h3>
+            <p className="opacity-80 leading-relaxed text-dark">Creating cohesive brand experiences across all touchpoints that reinforce your brand promise and build recognition.</p>
+          </div>
           
-          <FrameworkItem className="reveal-text">
+          <div className="reveal-text border-2 border-gray-200 p-8 transition-all duration-300 rounded-xl hover:border-accent">
             <MeasurableImpactIcon />
-            <h3>Measurable Impact</h3>
-            <p>Defining clear metrics to track brand performance and business growth resulting from our strategic interventions.</p>
-          </FrameworkItem>
+            <h3 className="text-xl mb-4 text-dark">Measurable Impact</h3>
+            <p className="opacity-80 leading-relaxed text-dark">Defining clear metrics to track brand performance and business growth resulting from our strategic interventions.</p>
+          </div>
           
-          <FrameworkItem className="reveal-text">
+          <div className="reveal-text border-2 border-gray-200 p-8 transition-all duration-300 rounded-xl hover:border-accent">
             <AdaptiveEvolutionIcon />
-            <h3>Adaptive Evolution</h3>
-            <p>Building brands with flexibility to grow and evolve while maintaining their core essence and authentic connections.</p>
-          </FrameworkItem>
-        </FrameworkGrid>
-      </FrameworkSection>
+            <h3 className="text-xl mb-4 text-dark">Adaptive Evolution</h3>
+            <p className="opacity-80 leading-relaxed text-dark">Building brands with flexibility to grow and evolve while maintaining their core essence and authentic connections.</p>
+          </div>
+        </div>
+      </Section>
       
-      <Section>
+      <Section background="light">
         <Grid>
           <GridItem span={6}>
             <div className="reveal-text">
-              <h2>Our collaborative approach</h2>
-              <p>We believe the best results come from true collaboration. Throughout our process, we work closely with you, treating you as a partner rather than just a client.</p>
-              <p>This collaborative approach ensures that the final outcome not only meets your business objectives but also authentically represents your brand's unique voice and values.</p>
-              <p>We maintain open communication, regular check-ins, and collaborative workshops to keep you involved and informed at every stage of the process.</p>
+              <h2 className="text-4xl font-bold mb-6 text-dark">Our collaborative approach</h2>
+              <p className="text-base leading-relaxed mb-4 opacity-80 text-dark">We believe the best results come from true collaboration. Throughout our process, we work closely with you, treating you as a partner rather than just a client.</p>
+              <p className="text-base leading-relaxed mb-4 opacity-80 text-dark">This collaborative approach ensures that the final outcome not only meets your business objectives but also authentically represents your brand's unique voice and values.</p>
+              <p className="text-base leading-relaxed mb-8 opacity-80 text-dark">We maintain open communication, regular check-ins, and collaborative workshops to keep you involved and informed at every stage of the process.</p>
               <Button to="/contact" variant="primary" className="reveal-text">Start your project</Button>
             </div>
           </GridItem>
           <GridItem span={6}>
-            <div className="reveal-text" style={{ height: '400px', position: 'relative' }}>
+            <div className="reveal-text relative h-96 rounded-xl overflow-hidden">
               <img 
                 src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
                 alt="Collaborative approach" 
-                style={{ 
-                  width: '100%', 
-                  height: '100%', 
-                  objectFit: 'cover',
-                  opacity: '0.8'
-                }} 
+                className="w-full h-full object-cover opacity-80"
               />
-              <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                background: 'linear-gradient(135deg, rgba(15, 25, 35, 0.3) 0%, rgba(15, 25, 35, 0.8) 100%)'
-              }}></div>
+              <div className="absolute inset-0 bg-black/20"></div>
             </div>
           </GridItem>
         </Grid>
       </Section>
       
-      <Section background="accent">
-        <div style={{ textAlign: 'center' }}>
-          <h2 className="reveal-text">Ready to transform your brand?</h2>
-          <p className="reveal-text" style={{ marginBottom: '2rem', opacity: 0.9, maxWidth: '700px', margin: '0 auto 2rem' }}>
-            Let's apply our Invisible Bond Framework™ to create authentic connections that drive sustainable growth for your business.
-          </p>
-          <Button to="/contact" variant="secondary" className="reveal-text">Schedule a consultation</Button>
-        </div>
-      </Section>
+      <CTASection
+        title="Ready to transform your brand?"
+        description="Let's apply our Invisible Bond Framework™ to create authentic connections that drive sustainable growth for your business."
+        buttonText="Schedule a consultation"
+        buttonTo="/contact"
+        buttonVariant="primaryInverse"
+      />
     </>
   );
 };

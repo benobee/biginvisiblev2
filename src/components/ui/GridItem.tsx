@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { cn } from "../../lib/utils";
 
 interface GridItemProps {
   children: React.ReactNode;
@@ -7,18 +7,6 @@ interface GridItemProps {
   className?: string;
 }
 
-const StyledGridItem = styled.div<{
-  span?: number;
-  start?: number;
-}>`
-  grid-column: ${({ start, span }) => 
-    start ? `${start} / span ${span || 1}` : `span ${span || 1}`};
-  
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    grid-column: 1 / -1;
-  }
-`;
-
 const GridItem = ({
   children,
   span = 1,
@@ -26,13 +14,17 @@ const GridItem = ({
   className,
 }: GridItemProps) => {
   return (
-    <StyledGridItem
-      span={span}
-      start={start}
-      className={className}
+    <div
+      className={cn(
+        "md:col-span-full",
+        className
+      )}
+      style={{
+        gridColumn: start ? `${start} / span ${span}` : `span ${span}`
+      }}
     >
       {children}
-    </StyledGridItem>
+    </div>
   );
 };
 

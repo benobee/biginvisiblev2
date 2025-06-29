@@ -1,0 +1,146 @@
+.footer {
+  background-color: #FFFFFF;
+  color: #0F1923;
+  padding: 5rem 0 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.footerContainer {
+  width: 100vw;
+  max-width: var(--container-max-width);
+  padding: 0 var(--container-padding);
+  margin: 0 auto;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .footerGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.footerColumn h4 {
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+  color: #0F1923;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease-in-out;
+}
+
+.footerColumn p {
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  color: #0F1923;
+  opacity: 0.8;
+  max-width: 300px;
+  transition: color 0.3s ease-in-out;
+}
+
+.footerLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerLinks li {
+  margin-bottom: 0.5rem;
+}
+
+.footerLinks a {
+  color: #0F1923;
+  opacity: 0.8;
+  font-size: 0.875rem;
+  transition: all 0.15s ease-in-out;
+  text-decoration: none;
+}
+
+.footerLinks a:hover {
+  opacity: 1;
+  color: #ff2356;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.socialLinks a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: #0F1923;
+  transition: all 0.15s ease-in-out;
+  text-decoration: none;
+}
+
+.socialLinks a:hover {
+  background-color: #ff2356;
+  border-color: #ff2356;
+  color: #FFFFFF;
+}
+
+.copyright {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #0F1923;
+  opacity: 0.6;
+  transition: border-color 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .copyright {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}
+
+.legalLinks {
+  display: flex;
+  gap: 1rem;
+}
+
+.legalLinks a {
+  color: #0F1923;
+  transition: color 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+.legalLinks a:hover {
+  color: #ff2356;
+}
+
+@media (max-width: 768px) {
+  .footerContainer {
+    padding: 0 1rem;
+  }
+
+  .legalLinks {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.accent {
+  color: #ff2356;
+}

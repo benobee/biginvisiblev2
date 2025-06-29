@@ -1,0 +1,211 @@
+.header {
+  background-color: transparent;
+  padding: 1rem 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.header.scrolled {
+  background-color: #FFFFFF;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.headerContainer {
+  width: 100%;
+  max-width: var(--container-max-width);
+  padding: 0 var(--container-padding);
+  margin: 0 auto;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0F1923;
+  width: 150px;
+  height: 40px;
+  background: center / contain no-repeat url("/images/logo/bigInvisible-logo.png");
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 1001;
+  transition: color 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+.logo span {
+  color: #ff2356;
+}
+
+.navLinks {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .navLinks {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #FFFFFF;
+    flex-direction: column;
+    justify-content: center;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    z-index: 1000;
+  }
+  
+  .navLinks.open {
+    transform: translateX(0);
+  }
+}
+
+.navLink {
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: #ff2356;
+  transition: width 0.3s ease-in-out;
+}
+
+.navLink.active::after {
+  width: 100%;
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+.navLink.active {
+  color: #ff2356;
+}
+
+@media (max-width: 768px) {
+  .navLink {
+    font-size: 1.25rem;
+    margin: 1rem 0;
+  }
+}
+
+.ctaButton {
+  background-color: transparent;
+  color: #ff2356;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #ff2356;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.ctaButton.active {
+  background-color: #ff2356;
+  color: #FFFFFF;
+}
+
+.ctaButton:hover {
+  background-color: #ff2356;
+  color: #FFFFFF;
+}
+
+@media (max-width: 768px) {
+  .ctaButton {
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+  }
+}
+
+.menuButton {
+  display: none;
+  position: relative;
+  z-index: 1001;
+  width: 30px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menuButton span {
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background: #0F1923;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: all 0.25s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.menuButton span:nth-child(1) {
+  top: 0px;
+}
+
+.menuButton span:nth-child(2) {
+  top: 9px;
+}
+
+.menuButton span:nth-child(3) {
+  top: 18px;
+}
+
+.menuButton.open span:nth-child(1) {
+  top: 9px;
+  transform: rotate(135deg);
+}
+
+.menuButton.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menuButton.open span:nth-child(3) {
+  top: 9px;
+  transform: rotate(-135deg);
+}
+
+@media (max-width: 768px) {
+  .headerContainer {
+    padding: 0 1rem;
+  }
+
+  .menuButton {
+    display: block;
+  }
+}

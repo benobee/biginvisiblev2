@@ -1,0 +1,28 @@
+/* Custom animations that can't be done with Tailwind alone */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes progressFill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--progress-width);
+  }
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 1s ease-out both;
+}
+
+.animate-progressFill {
+  animation: progressFill 2s ease-out;
+}
