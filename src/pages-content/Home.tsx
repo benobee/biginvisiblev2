@@ -141,11 +141,11 @@ const Home = () => {
             </GridItem>
           </Grid>
           
-          <div className="mt-16">
+          <div className="mt-8 text-center">
             <Button 
               to="/process" 
               variant="outline" 
-              size="large"
+              size="medium"
               className="reveal-text"
             >
               Learn about our process
