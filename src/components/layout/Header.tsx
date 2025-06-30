@@ -6,6 +6,9 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   
+  // Hide navigation on individual service pages
+  const isServicePage = location.pathname.startsWith('/services/');
+  
   useEffect(() => {
     const handleScroll = () => {
       // Set isScrolled when scrolled down more than 50px
@@ -19,6 +22,10 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+  
+  if (isServicePage) {
+    return null;
+  }
   
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>

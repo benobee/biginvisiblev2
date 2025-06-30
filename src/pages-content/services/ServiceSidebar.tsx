@@ -14,7 +14,13 @@ const ServiceSidebar: React.FC<ServiceSidebarProps> = () => {
   return (
     <div className="fixed left-0 top-0 w-[280px] h-screen bg-white border-r border-[#E2E8F0] pt-20 px-5 pb-5 overflow-y-auto z-[100] shadow-[2px_0_10px_rgba(0,0,0,0.1)] hidden md:block">
       <div className="px-4 pb-8 border-b border-[#E2E8F0] mb-8">
-        <h2 className="text-xl text-[#0F1923] font-bold m-0">BigInvisible</h2>
+        <Link to="/" className="block mb-2">
+          <img 
+            src="/images/logo/bigInvisible-logo.png" 
+            alt="Big Invisible" 
+            className="h-8 w-auto"
+          />
+        </Link>
         <p className="text-sm text-[#6B7280] mt-1 mb-0">Services</p>
       </div>
       
