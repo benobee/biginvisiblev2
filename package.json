@@ -15,8 +15,6 @@
   "dependencies": {
     "@astrojs/react": "^4.3.0",
     "@astrojs/vercel": "^8.2.0",
-    "@swc/core": "^1.12.1",
-    "@swc/plugin-styled-components": "^8.0.0",
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.34",
     "astro": "^5.10.1",

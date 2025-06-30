@@ -135,7 +135,7 @@ const About = () => {
           align="center"
         />
         
-        <Grid columns={3} gap="xl">
+        <Grid columns={3} gap="xl" className="pb-12">
           <GridItem span={1}>
             <ValueCard
               title="Authenticity"
