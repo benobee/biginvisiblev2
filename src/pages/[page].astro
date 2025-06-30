@@ -1,0 +1,66 @@
+---
+import App from "../App";
+
+export async function getStaticPaths() {
+  const pages = [
+    {
+      params: { page: 'about' },
+      props: {
+        title: 'About - Big Invisible',
+        description: 'What makes us tick? Learn more about our mission and values.',
+        keywords: 'biginvisible, about, mission, values'
+      }
+    },
+    {
+      params: { page: 'process' },
+      props: {
+        title: 'Process - Big Invisible',
+        description: 'Our proven process for creating powerful brands that resonate.',
+        keywords: 'biginvisible, process, branding process, methodology'
+      }
+    },
+    {
+      params: { page: 'services' },
+      props: {
+        title: 'Services - Big Invisible',
+        description: 'Comprehensive branding and design services to elevate your business.',
+        keywords: 'biginvisible, services, branding, design, strategy'
+      }
+    },
+    {
+      params: { page: 'work' },
+      props: {
+        title: 'Work - Big Invisible',
+        description: 'Explore our portfolio of successful branding and design projects.',
+        keywords: 'biginvisible, work, portfolio, case studies, projects'
+      }
+    },
+    {
+      params: { page: 'contact' },
+      props: {
+        title: 'Contact - Big Invisible',
+        description: 'Get in touch with Big Invisible for your branding and design needs.',
+        keywords: 'biginvisible, contact, get in touch, branding consultation'
+      }
+    }
+  ];
+  return pages;
+}
+
+const { title, description, keywords } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<App client:only="react" />
+	</body>
+</html>

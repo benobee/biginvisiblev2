@@ -1,0 +1,74 @@
+---
+import App from "../../App";
+
+export async function getStaticPaths() {
+  const services = [
+    {
+      params: { service: 'brand-strategy' },
+      props: {
+        title: 'Brand Strategy - Big Invisible',
+        description: 'Strategic brand development and positioning services.',
+        keywords: 'brand strategy, brand positioning, brand development'
+      }
+    },
+    {
+      params: { service: 'visual-identity' },
+      props: {
+        title: 'Visual Identity - Big Invisible',
+        description: 'Logo design and visual identity systems that make an impact.',
+        keywords: 'visual identity, logo design, brand identity'
+      }
+    },
+    {
+      params: { service: 'digital-experience' },
+      props: {
+        title: 'Digital Experience - Big Invisible',
+        description: 'User-centered digital experiences and web design.',
+        keywords: 'digital experience, web design, UX design'
+      }
+    },
+    {
+      params: { service: 'content-strategy' },
+      props: {
+        title: 'Content Strategy - Big Invisible',
+        description: 'Strategic content planning and development.',
+        keywords: 'content strategy, content planning, content development'
+      }
+    },
+    {
+      params: { service: 'brand-architecture' },
+      props: {
+        title: 'Brand Architecture - Big Invisible',
+        description: 'Comprehensive brand architecture and structure.',
+        keywords: 'brand architecture, brand structure, brand hierarchy'
+      }
+    },
+    {
+      params: { service: 'community-building' },
+      props: {
+        title: 'Community Building - Big Invisible',
+        description: 'Building engaged communities around your brand.',
+        keywords: 'community building, brand community, engagement'
+      }
+    }
+  ];
+  return services;
+}
+
+const { title, description, keywords } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<App client:only="react" />
+	</body>
+</html>
