@@ -33,7 +33,7 @@ const SectionHeader = ({
   return (
     <div className={`mb-24 ${getAlignmentClasses()} ${className || ''}`}>
       {subtitle && (
-        <div className="reveal-text text-sm uppercase tracking-widest text-accent mb-4">
+        <div className="reveal-text text-sm uppercase tracking-widest text-accent mb-4 font-medium">
           {subtitle}
         </div>
       )}

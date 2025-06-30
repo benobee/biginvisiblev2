@@ -1,11 +1,13 @@
+type Padding = 'none' | 'small' | 'medium' | 'large';
+
 interface CardProps {
   children: React.ReactNode;
   variant?: 'default' | 'hover' | 'outline';
-  padding?: 'small' | 'medium' | 'large';
+  padding?: Padding;
   className?: string;
 }
 
-const getCardClasses = (variant: string, padding: string) => {
+const getCardClasses = (variant: string, padding: Padding) => {
   const baseClasses = 'bg-white/5 border rounded-lg';
   
   const variantClasses = {
@@ -20,7 +22,7 @@ const getCardClasses = (variant: string, padding: string) => {
     large: 'p-12'
   };
   
-  return `${baseClasses} ${variantClasses[variant as keyof typeof variantClasses]} ${paddingClasses[padding as keyof typeof paddingClasses]}`;
+  return `${baseClasses} ${variantClasses[variant as keyof typeof variantClasses]} ${padding !== 'none' && paddingClasses[padding as keyof typeof paddingClasses]}`;
 };
 
 const Card = ({

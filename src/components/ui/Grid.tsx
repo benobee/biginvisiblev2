@@ -3,7 +3,7 @@ import { cn } from "../../lib/utils";
 interface GridProps {
   children: React.ReactNode;
   columns?: number;
-  gap?: 'small' | 'medium' | 'large';
+  gap?: 'small' | 'medium' | 'large' | 'xl' | 'xxl';
   className?: string;
 }
 
@@ -16,7 +16,9 @@ const Grid = ({
   const gapClasses = {
     small: 'gap-4',
     medium: 'gap-6',
-    large: 'gap-8'
+    large: 'gap-12',
+    xl: 'gap-24',
+    xxl: 'gap-48',
   };
 
   return (
