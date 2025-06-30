@@ -5,6 +5,8 @@ import Grid from '../components/ui/Grid';
 import GridItem from '../components/ui/GridItem';
 import Button from '../components/ui/Button';
 import CTASection from '../components/ui/CTASection';
+import TimelineStep from '../components/TimelineStep';
+import { Search, Target, Palette, TrendingUp } from 'lucide-react';
 import { initRevealAnimations } from '../utils/animations';
 import {
   AuthenticConnectionIcon,
@@ -53,63 +55,54 @@ const Process = () => {
           align="center"
         />
         
-        <div className="relative py-20 before:content-[''] before:absolute before:top-0 before:bottom-0 before:left-1/2 before:w-px before:bg-accent before:-translate-x-1/2 before:opacity-30 md:before:left-1/2">
-          <div className="flex justify-end mb-20 relative reveal-text md:justify-end md:pl-0 pl-12">
-            <div className="w-full md:w-5/12 relative bg-white border border-gray-200 p-8 text-left shadow-sm rounded-xl">
-              <div className="text-4xl font-bold text-accent opacity-20 mb-4">01</div>
-              <h3 className="text-2xl mb-4 text-dark">Discovery</h3>
-              <p className="opacity-80 leading-relaxed mb-6 text-dark">We begin by deeply understanding your brand, business goals, audience, and market position. This foundational phase ensures all subsequent work is strategically aligned with your objectives.</p>
-              <ul className="list-none p-0 mb-6">
-                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Stakeholder interviews</li>
-                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Market research and analysis</li>
-                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Audience insights gathering</li>
-                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Competitive landscape review</li>
-              </ul>
-              <Button variant="outline" to="/contact">Start here</Button>
-            </div>
-          </div>
-          
-          <div className="flex justify-start mb-20 relative reveal-text md:justify-start md:pl-0 pl-12">
-            <div className="w-full md:w-5/12 relative bg-white border border-gray-200 p-8 text-left shadow-sm rounded-xl">
-              <div className="text-4xl font-bold text-accent opacity-20 mb-4">02</div>
-              <h3 className="text-2xl mb-4 text-dark">Strategy Development</h3>
-              <p className="opacity-80 leading-relaxed mb-6 text-dark">Based on our discoveries, we craft a comprehensive brand strategy that defines your unique market position and systematic approach to building trust with your audience.</p>
-              <ul className="list-none p-0 mb-6">
-                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Brand positioning</li>
-                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Messaging framework</li>
-                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Brand architecture</li>
-                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Communication strategy</li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="flex justify-end mb-20 relative reveal-text md:justify-end md:pl-0 pl-12">
-            <div className="w-full md:w-5/12 relative bg-white border border-gray-200 p-8 text-left shadow-sm rounded-xl">
-              <div className="text-4xl font-bold text-accent opacity-20 mb-4">03</div>
-              <h3 className="text-2xl mb-4 text-dark">Design Implementation</h3>
-              <p className="opacity-80 leading-relaxed mb-6 text-dark">We bring your brand to life through cohesive visual identity and consistent experiences across all touchpoints, ensuring every interaction reinforces your brand promise.</p>
-              <ul className="list-none p-0 mb-6">
-                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Visual identity development</li>
-                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Brand guidelines creation</li>
-                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Digital experience design</li>
-                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Marketing collateral design</li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="flex justify-start mb-0 relative reveal-text md:justify-start md:pl-0 pl-12">
-            <div className="w-full md:w-5/12 relative bg-white border border-gray-200 p-8 text-left shadow-sm rounded-xl">
-              <div className="text-4xl font-bold text-accent opacity-20 mb-4">04</div>
-              <h3 className="text-2xl mb-4 text-dark">Brand Evolution</h3>
-              <p className="opacity-80 leading-relaxed mb-6 text-dark">We provide ongoing support to help your brand grow and adapt while maintaining authenticity and scaling impact in your community and market.</p>
-              <ul className="list-none p-0 mb-6">
-                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Performance measurement</li>
-                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Brand refinement</li>
-                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Growth strategy</li>
-                <li className="relative pl-6 mb-3 opacity-80 text-dark before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-accent before:rounded-full">Community engagement</li>
-              </ul>
-            </div>
-          </div>
+        <div>
+          <TimelineStep
+            phase={1}
+            title="Discovery"
+            description="We begin by deeply understanding your brand, business goals, audience, and market position. This foundational phase ensures all subsequent work is strategically aligned with your objectives."
+            deliverables={[
+              "Stakeholder interviews",
+              "Market research and analysis",
+              "Audience insights gathering",
+              "Competitive landscape review"
+            ]}
+          />
+
+          <TimelineStep
+            phase={2}
+            title="Strategy Development"
+            description="Based on our discoveries, we craft a comprehensive brand strategy that defines your unique market position and systematic approach to building trust with your audience."
+            deliverables={[
+              "Brand positioning",
+              "Messaging framework",
+              "Brand architecture",
+              "Communication strategy"
+            ]}
+          />
+
+          <TimelineStep
+            phase={3}
+            title="Design Implementation"
+            description="We bring your brand to life through cohesive visual identity and consistent experiences across all touchpoints, ensuring every interaction reinforces your brand promise."
+            deliverables={[
+              "Visual identity development",
+              "Brand guidelines creation",
+              "Digital experience design",
+              "Marketing collateral design"
+            ]}
+          />
+
+          <TimelineStep
+            phase={4}
+            title="Brand Evolution"
+            description="We provide ongoing support to help your brand grow and adapt while maintaining authenticity and scaling impact in your community and market."
+            deliverables={[
+              "Performance measurement",
+              "Brand refinement",
+              "Growth strategy",
+              "Community engagement"
+            ]}
+          />
         </div>
       </Section>
       
