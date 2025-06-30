@@ -7,7 +7,6 @@ import Button from '../components/ui/Button';
 import CTASection from '../components/ui/CTASection';
 import TimelineStep from '../components/TimelineStep';
 import FrameworkCard from '../components/FrameworkCard';
-import { Search, Target, Palette, TrendingUp } from 'lucide-react';
 import { initRevealAnimations } from '../utils/animations';
 import {
   AuthenticConnectionIcon,

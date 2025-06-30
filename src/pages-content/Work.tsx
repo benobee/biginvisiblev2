@@ -5,6 +5,7 @@ import Grid from '../components/ui/Grid';
 import GridItem from '../components/ui/GridItem';
 import Button from '../components/ui/Button';
 import CTASection from '../components/ui/CTASection';
+import Quote from '../components/Quote';
 import { initRevealAnimations } from '../utils/animations';
 import { projects } from '../data/projects';
 import { caseStudies } from '../data/caseStudies';
@@ -178,15 +179,14 @@ const Work = () => {
       </Section>
       
       <Section background="secondary" className="text-center">
-        <div className="max-w-4xl mx-auto">
-          <blockquote className="reveal-text text-2xl lg:text-3xl leading-relaxed mb-8 relative text-dark">
-            <span className="text-accent text-1xl opacity-30">"</span>
-            <i className='text-1xl'>Big Invisible didn't just redesign our brand — they transformed how our entire community sees us. We've gone from another local business to the trusted leader our neighbors turn to first.</i>
-            <span className="text-accent text-1xl opacity-30">"</span>
-          </blockquote>
-          <div className="client reveal-text text-lg font-medium text-dark">Sarah Mitchell</div>
-          <div className="position reveal-text text-sm opacity-60 mt-2 text-dark">CEO • Coastal Heritage Foundation</div>
-        </div>
+        <Quote 
+          variant="work"
+          text="Working with Big Invisible was transformational. They didn't just create a beautiful brand—they helped us understand who we really are and gave us the tools to communicate that authentically to our community."
+          author="Sarah Mitchell"
+          role="CEO"
+          company="Coastal Heritage Foundation"
+          className="reveal-text"
+        />
       </Section>
       
       <CTASection

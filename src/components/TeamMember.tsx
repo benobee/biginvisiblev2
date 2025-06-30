@@ -19,7 +19,7 @@ const TeamMember = ({ name, role, bio, image, className }: TeamMemberProps) => {
         />
       </div>
       <h3 className="text-xl mb-2 text-dark">{name}</h3>
-      <div className="text-sm text-accent mb-4">{role}</div>
+      <div className="text-sm text-accent mb-4 font-medium">{role}</div>
       <p className="text-sm opacity-80 leading-relaxed text-dark">{bio}</p>
     </Card>
   );

@@ -7,6 +7,7 @@ import Grid from '../components/ui/Grid';
 import GridItem from '../components/ui/GridItem';
 import CTASection from '../components/ui/CTASection';
 import Button from '../components/ui/Button';
+import Quote from '../components/Quote';
 import { initRevealAnimations } from '../utils/animations';
 import Card from '../components/ui/Card';
 
@@ -198,16 +199,14 @@ const Home = () => {
 
       {/* Testimonial Section */}
       <Section background="primary">
-        <div className="max-w-4xl mx-auto text-center">
-          <blockquote className="text-2xl md:text-3xl font-medium leading-relaxed mb-8 reveal-text">
-            "BigInvisible didn't just redesign our brand—they fundamentally transformed how our customers see us. 
-            The invisible bonds they created between our brand and our community are now our greatest business asset."
-          </blockquote>
-          <div className="reveal-text">
-            <div className="text-accent font-semibold">Sarah Chen</div>
-            <div>CEO, TechFlow Solutions</div>
-          </div>
-        </div>
+        <Quote 
+          variant="work"
+          text="Big Invisible didn't just redesign our brand — they transformed how our entire community sees us. We've gone from another local business to the trusted leader our neighbors turn to first."
+          author="Sarah Chen"
+          role="CEO"
+          company="TechFlow Solutions"
+          className="reveal-text"
+        />
       </Section>
 
       {/* Contact CTA Section */}

@@ -80,39 +80,21 @@ const About = () => {
         />
         
         <Grid columns={6} gap="small">
-          <GridItem span={3}>
+          <GridItem span={2}>
             <TeamMember
-              name="Ingrid Obee"
-              role="Founder & Creative Director"
-              bio="With over 20 years of experience in brand strategy and design, Ingrid leads our creative vision and strategic direction."
+              name="Ingrid"
+              role="Founder, Creative Director & Brand Strategist"
+              bio="With over 20 years of experience in brand strategy and design, Ingrid leads our creative vision and strategic direction. She specializes in developing The Invisible Bond Framework™, helping businesses uncover their authentic brand essence and translate it into compelling strategies that foster deep community connections and drive sustainable growth."
               image="/images/ingrid.jpg"
             />
           </GridItem>
           
-          <GridItem span={3}>
-            <TeamMember
-              name="Michael Chen"
-              role="Brand Strategist"
-              bio="Michael specializes in developing brand strategies that create meaningful connections between businesses and their communities."
-              image="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-            />
-          </GridItem>
-          
           <GridItem span={2}>
             <TeamMember
-              name="Emma Rodriguez"
-              role="Design Lead"
-              bio="Emma brings brands to life through cohesive visual identities and engaging digital experiences that resonate with audiences."
-              image="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-            />
-          </GridItem>
-          
-          <GridItem span={2}>
-            <TeamMember
-              name="David Kim"
-              role="Digital Experience Designer"
-              bio="David creates intuitive, engaging digital experiences that strengthen brands and drive meaningful connections."
-              image="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+              name="Ben"
+              role="Technical Lead & Creative Strategist"
+              bio="As our technical lead, Ben architects digital solutions and oversees implementation of complex brand systems across multiple platforms. He also brings creative expertise to brand naming, strategic positioning, and visual storytelling, bridging the gap between technical innovation and authentic brand expression."
+              image="/images/1553234405011.jpeg"
             />
           </GridItem>
           
