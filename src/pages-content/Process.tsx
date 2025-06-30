@@ -6,6 +6,7 @@ import GridItem from '../components/ui/GridItem';
 import Button from '../components/ui/Button';
 import CTASection from '../components/ui/CTASection';
 import TimelineStep from '../components/TimelineStep';
+import FrameworkCard from '../components/FrameworkCard';
 import { Search, Target, Palette, TrendingUp } from 'lucide-react';
 import { initRevealAnimations } from '../utils/animations';
 import {
@@ -114,43 +115,55 @@ const Process = () => {
           align="center"
         />
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="reveal-text border-2 border-gray-200 p-8 transition-all duration-300 rounded-xl hover:border-accent">
-            <AuthenticConnectionIcon />
-            <h3 className="text-xl mb-4 text-dark">Authentic Connection</h3>
-            <p className="opacity-80 leading-relaxed text-dark">Building genuine relationships between brands and their audiences based on shared values and transparent communication.</p>
-          </div>
+        <Grid columns={3} gap="xl">
+          <GridItem span={1}>
+            <FrameworkCard
+              icon={<AuthenticConnectionIcon />}
+              title="Authentic Connection"
+              description="Building genuine relationships between brands and their audiences based on shared values and transparent communication."
+            />
+          </GridItem>
           
-          <div className="reveal-text border-2 border-gray-200 p-8 transition-all duration-300 rounded-xl hover:border-accent">
-            <StrategicAlignmentIcon />
-            <h3 className="text-xl mb-4 text-dark">Strategic Alignment</h3>
-            <p className="opacity-80 leading-relaxed text-dark">Ensuring all brand elements and experiences are purposefully aligned with business objectives and audience needs.</p>
-          </div>
+          <GridItem span={1}>
+            <FrameworkCard
+              icon={<StrategicAlignmentIcon />}
+              title="Strategic Alignment"
+              description="Ensuring all brand elements and experiences are purposefully aligned with business objectives and audience needs."
+            />
+          </GridItem>
           
-          <div className="reveal-text border-2 border-gray-200 p-8 transition-all duration-300 rounded-xl hover:border-accent">
-            <CommunityIntegrationIcon />
-            <h3 className="text-xl mb-4 text-dark">Community Integration</h3>
-            <p className="opacity-80 leading-relaxed text-dark">Positioning brands as valuable contributors to their communities, fostering trust and loyalty beyond transactions.</p>
-          </div>
+          <GridItem span={1}>
+            <FrameworkCard
+              icon={<CommunityIntegrationIcon />}
+              title="Community Integration"
+              description="Positioning brands as valuable contributors to their communities, fostering trust and loyalty beyond transactions."
+            />
+          </GridItem>
           
-          <div className="reveal-text border-2 border-gray-200 p-8 transition-all duration-300 rounded-xl hover:border-accent">
-            <ConsistentExperienceIcon />
-            <h3 className="text-xl mb-4 text-dark">Consistent Experience</h3>
-            <p className="opacity-80 leading-relaxed text-dark">Creating cohesive brand experiences across all touchpoints that reinforce your brand promise and build recognition.</p>
-          </div>
+          <GridItem span={1}>
+            <FrameworkCard
+              icon={<ConsistentExperienceIcon />}
+              title="Consistent Experience"
+              description="Creating cohesive brand experiences across all touchpoints that reinforce your brand promise and build recognition."
+            />
+          </GridItem>
           
-          <div className="reveal-text border-2 border-gray-200 p-8 transition-all duration-300 rounded-xl hover:border-accent">
-            <MeasurableImpactIcon />
-            <h3 className="text-xl mb-4 text-dark">Measurable Impact</h3>
-            <p className="opacity-80 leading-relaxed text-dark">Defining clear metrics to track brand performance and business growth resulting from our strategic interventions.</p>
-          </div>
+          <GridItem span={1}>
+            <FrameworkCard
+              icon={<MeasurableImpactIcon />}
+              title="Measurable Impact"
+              description="Defining clear metrics to track brand performance and business growth resulting from our strategic interventions."
+            />
+          </GridItem>
           
-          <div className="reveal-text border-2 border-gray-200 p-8 transition-all duration-300 rounded-xl hover:border-accent">
-            <AdaptiveEvolutionIcon />
-            <h3 className="text-xl mb-4 text-dark">Adaptive Evolution</h3>
-            <p className="opacity-80 leading-relaxed text-dark">Building brands with flexibility to grow and evolve while maintaining their core essence and authentic connections.</p>
-          </div>
-        </div>
+          <GridItem span={1}>
+            <FrameworkCard
+              icon={<AdaptiveEvolutionIcon />}
+              title="Adaptive Evolution"
+              description="Building brands with flexibility to grow and evolve while maintaining their core essence and authentic connections."
+            />
+          </GridItem>
+        </Grid>
       </Section>
       
       <Section background="light">
@@ -158,9 +171,9 @@ const Process = () => {
           <GridItem span={6}>
             <div className="reveal-text">
               <h2 className="text-4xl font-bold mb-6 text-dark">Our collaborative approach</h2>
-              <p className="text-base leading-relaxed mb-4 opacity-80 text-dark">We believe the best results come from true collaboration. Throughout our process, we work closely with you, treating you as a partner rather than just a client.</p>
-              <p className="text-base leading-relaxed mb-4 opacity-80 text-dark">This collaborative approach ensures that the final outcome not only meets your business objectives but also authentically represents your brand's unique voice and values.</p>
-              <p className="text-base leading-relaxed mb-8 opacity-80 text-dark">We maintain open communication, regular check-ins, and collaborative workshops to keep you involved and informed at every stage of the process.</p>
+              <p>We believe the best results come from true collaboration. Throughout our process, we work closely with you, treating you as a partner rather than just a client.</p>
+              <p>This collaborative approach ensures that the final outcome not only meets your business objectives but also authentically represents your brand's unique voice and values.</p>
+              <p>We maintain open communication, regular check-ins, and collaborative workshops to keep you involved and informed at every stage of the process.</p>
               <Button to="/contact" variant="primary" className="reveal-text">Start your project</Button>
             </div>
           </GridItem>
