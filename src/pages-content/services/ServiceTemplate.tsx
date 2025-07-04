@@ -154,7 +154,7 @@ const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
             </Grid>
         </Section>
         
-        <Section background="light" className="py-20 relative">
+        <Section background="light">
           <SectionHeader
             subtitle="What we do"
             title={`${service.title} Services`}
@@ -171,7 +171,7 @@ const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
           </div>
         </Section>
         
-        <Section background="light">
+        <Section background="primary">
           <SectionHeader
             subtitle="Our process"
             title="How we deliver results"
@@ -203,7 +203,6 @@ const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
           <div className="mt-16">
             <Grid columns={4} gap="small">
               {service.outcomes.map((outcome, index) => {
-                const outcomeImage = getOutcomeImage(index);
                 return (
                   <GridItem key={index} span={1} className="reveal-text">
                     <div className="bg-white rounded-2xl h-96 shadow-2xl border border-gray-100 transition-all duration-500 hover:-translate-y-2 hover:shadow-3xl group relative">
@@ -217,7 +216,7 @@ const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
                       {/* Content */}
                       <div className="p-12 h-full flex flex-col justify-center">
                         {/* Outcome Description */}
-                        <p className="text-xl lg:text-2xl text-center leading-relaxed text-gray-700 font-bold">
+                        <p className="text-xl lg:text-2xl leading-relaxed text-gray-700 font-bold">
                           {outcome}
                         </p>
                       </div>
