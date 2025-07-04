@@ -7,10 +7,11 @@ import Button from '../../components/ui/Button';
 import CTASection from '../../components/ui/CTASection';
 import ServiceCarousel from '../../components/ServiceCarousel';
 import TimelineStep from '../../components/TimelineStep';
-import { Target, TrendingUp, Users, Award, Lightbulb, Rocket, Heart, Star, Zap, CheckCircle, Check } from 'lucide-react';
 import { initRevealAnimations } from '../../utils/animations';
 import ServiceSidebar from './ServiceSidebar';
 import { type Service } from '../../data/services';
+import StatisticsGrid from '../../components/StatisticsGrid';
+import TestimonialsCarousel from '../../components/TestimonialsCarousel';
 import './ServiceTemplate.css';
 
 // Design/Graphics focused images for carousel from Unsplash - all unique images
@@ -89,22 +90,50 @@ const generateCTAText = (featureTitle: string) => {
   return ctaMap[featureTitle] || 'Get Started';
 };
 
-// Get outcome images based on index
-const getOutcomeImage = (index: number) => {
-  const images = [
-    'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=200&h=200&fit=crop&auto=format', // Target/goal achievement
-    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop&auto=format', // Growth/trending up
-    'https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&h=200&fit=crop&auto=format', // Team/users
-    'https://images.unsplash.com/photo-1552508744-1696d4464960?w=200&h=200&fit=crop&auto=format', // Award/achievement
-    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200&h=200&fit=crop&auto=format', // Innovation/lightbulb
-    'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=200&h=200&fit=crop&auto=format', // Launch/rocket
-    'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=200&h=200&fit=crop&auto=format', // Care/heart
-    'https://images.unsplash.com/photo-1536431311719-398b6704d4cc?w=200&h=200&fit=crop&auto=format', // Excellence/star
-    'https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=200&h=200&fit=crop&auto=format', // Energy/zap
-    'https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=200&h=200&fit=crop&auto=format'  // Success/check
-  ];
-  return images[index % images.length];
-};
+// Sample testimonials data
+const getTestimonials = () => [
+  {
+    id: '1',
+    quote: 'Working with this team transformed our brand identity completely. The strategic approach and attention to detail exceeded our expectations.',
+    author: 'Sarah Johnson',
+    position: 'Marketing Director',
+    company: 'TechFlow Solutions',
+    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b647?w=150&h=150&fit=crop&auto=format'
+  },
+  {
+    id: '2',
+    quote: 'Their expertise in digital strategy helped us reach new audiences and significantly increase our online engagement. Highly recommended!',
+    author: 'Michael Chen',
+    position: 'CEO',
+    company: 'InnovateLab',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&auto=format'
+  },
+  {
+    id: '3',
+    quote: 'The team delivered exceptional results on time and within budget. Their collaborative approach made the entire process smooth and enjoyable.',
+    author: 'Emily Rodriguez',
+    position: 'Brand Manager',
+    company: 'Creative Dynamics',
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&auto=format'
+  },
+  {
+    id: '4',
+    quote: 'Outstanding work! They understood our vision perfectly and brought it to life with creativity and professionalism.',
+    author: 'David Thompson',
+    position: 'Founder',
+    company: 'StartupVenture',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&auto=format'
+  },
+  {
+    id: '5',
+    quote: 'The strategic insights and execution quality were phenomenal. Our brand now stands out in a competitive market.',
+    author: 'Lisa Park',
+    position: 'VP of Marketing',
+    company: 'GlobalTech',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&auto=format'
+  }
+];
+
 
 interface ServiceTemplateProps {
   service: Service;
@@ -112,6 +141,7 @@ interface ServiceTemplateProps {
 
 const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
   const carouselImages = getCarouselImages(service.id);
+  const testimonials = getTestimonials();
   
   // Create carousel items from expanded features
   const carouselItems = service.expandedFeatures.map((feature, index) => ({
@@ -196,35 +226,36 @@ const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
           <SectionHeader
             subtitle="Outcomes"
             title="What you can expect"
-            description="Here's what you'll achieve when working with us on your project."
+            description={`When you work with us, you'll get ${service.outcomes[0].toLowerCase()}, ${service.outcomes[1].toLowerCase()}, ${service.outcomes[2].toLowerCase()}, and ${service.outcomes[3].toLowerCase()}.`}
             align="center"
           />
           
-          <div className="mt-16">
-            <Grid columns={4} gap="small">
-              {service.outcomes.map((outcome, index) => {
-                return (
-                  <GridItem key={index} span={1} className="reveal-text">
-                    <div className="bg-white rounded-2xl h-96 shadow-2xl border border-gray-100 transition-all duration-500 hover:-translate-y-2 hover:shadow-3xl group relative">
-                      {/* Checkbox Icon - Top Right */}
-                      <div className="absolute top-4 right-4">
-                        <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center shadow-md">
-                          <Check className="w-5 h-5 text-white" />
-                        </div>
-                      </div>
-                      
-                      {/* Content */}
-                      <div className="p-12 h-full flex flex-col justify-center">
-                        {/* Outcome Description */}
-                        <p className="text-xl lg:text-2xl leading-relaxed text-gray-700 font-bold">
-                          {outcome}
-                        </p>
-                      </div>
-                    </div>
-                  </GridItem>
-                );
-              })}
-            </Grid>
+          <div className="mt-16 reveal-text">
+            
+            <StatisticsGrid
+              category={service.id}
+              columns={3}
+              gap="large"
+              variant="default"
+              showSource={false}
+              limit={6}
+            />
+          </div>
+        </Section>
+        
+        <Section background="primary">
+          <SectionHeader
+            subtitle="Client testimonials"
+            title="What our clients say"
+            description="Don't just take our word for it. Here's what our clients have to say about working with us."
+            align="center"
+          />
+          
+          <div className="mt-16 reveal-text">
+            <TestimonialsCarousel 
+              testimonials={testimonials}
+              autoPlayDelay={6000}
+            />
           </div>
         </Section>
         
