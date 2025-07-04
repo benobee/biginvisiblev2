@@ -5,37 +5,86 @@ import Grid from '../../components/ui/Grid';
 import GridItem from '../../components/ui/GridItem';
 import Button from '../../components/ui/Button';
 import CTASection from '../../components/ui/CTASection';
+import ServiceCarousel from '../../components/ServiceCarousel';
 import { initRevealAnimations } from '../../utils/animations';
 import ServiceSidebar from './ServiceSidebar';
 import { type Service } from '../../data/services';
 import './ServiceTemplate.css';
 
-// Service-specific images from Unsplash
-const getServiceImages = (serviceId: string) => {
+// Design/Graphics focused images for carousel from Unsplash
+const getCarouselImages = (serviceId: string) => {
   const imageMap: { [key: string]: string[] } = {
     'brand-strategy': [
-      'https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=500&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1551135049-8a33b5883817?w=500&h=300&fit=crop'
+      'https://images.unsplash.com/photo-1558655146-d09347e92766?w=1200&h=500&fit=crop&auto=format', // Abstract geometric design
+      'https://images.unsplash.com/photo-1559028006-448665bd7c7f?w=1200&h=500&fit=crop&auto=format', // Colorful design patterns
+      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=500&fit=crop&auto=format', // Strategy diagrams/charts
+      'https://images.unsplash.com/photo-1634387477071-95b5d3fc15fa?w=1200&h=500&fit=crop&auto=format'  // Brand elements
     ],
     'visual-identity': [
-      'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=500&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1542744094-3a31f272c490?w=500&h=300&fit=crop'
+      'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=1200&h=500&fit=crop&auto=format', // Color palette design
+      'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=500&fit=crop&auto=format', // Typography/design elements
+      'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=1200&h=500&fit=crop&auto=format', // Logo design process
+      'https://images.unsplash.com/photo-1609877546074-5a03c93b5a5f?w=1200&h=500&fit=crop&auto=format'  // Design mockups
     ],
     'digital-experience': [
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=500&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop'
+      '/images/photo-1544237526-cae15a57ed1e.jpeg', // Silver iMac website design
+      'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=500&fit=crop&auto=format', // Digital wireframes
+      'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=1200&h=500&fit=crop&auto=format', // Interactive design
+      'https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=1200&h=500&fit=crop&auto=format'  // Person holding smartphone
     ],
     'content-strategy': [
-      'https://images.unsplash.com/photo-1552664688-cf412ec27db2?w=500&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1542435503-956c469947f6?w=500&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=500&h=300&fit=crop'
+      'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=1200&h=500&fit=crop&auto=format', // Content planning graphics
+      'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=1200&h=500&fit=crop&auto=format', // Editorial design
+      'https://images.unsplash.com/photo-1634387477071-95b5d3fc15fa?w=1200&h=500&fit=crop&auto=format', // Content frameworks
+      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=500&fit=crop&auto=format'  // Strategy visualization
+    ],
+    'brand-architecture': [
+      'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=500&fit=crop&auto=format', // Architectural design elements
+      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=500&fit=crop&auto=format', // Structure diagrams
+      'https://images.unsplash.com/photo-1559028006-448665bd7c7f?w=1200&h=500&fit=crop&auto=format', // Framework graphics
+      'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=1200&h=500&fit=crop&auto=format'  // System design
+    ],
+    'community-building': [
+      'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=1200&h=500&fit=crop&auto=format', // Network graphics
+      'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=1200&h=500&fit=crop&auto=format', // Connection patterns
+      'https://images.unsplash.com/photo-1634387477071-95b5d3fc15fa?w=1200&h=500&fit=crop&auto=format', // Community visualization
+      'https://images.unsplash.com/photo-1609877546074-5a03c93b5a5f?w=1200&h=500&fit=crop&auto=format'  // Engagement design
     ]
   };
   
   return imageMap[serviceId] || imageMap['brand-strategy'];
+};
+
+// Generate CTA text based on feature title
+const generateCTAText = (featureTitle: string) => {
+  const ctaMap: { [key: string]: string } = {
+    'Brand Positioning': 'Define Your Position',
+    'Audience Research': 'Understand Your Audience',
+    'Competitive Analysis': 'Analyze Competition',
+    'Brand Messaging': 'Craft Your Message',
+    'Logo Design': 'Design Your Logo',
+    'Visual Systems': 'Build Visual Systems',
+    'Brand Guidelines': 'Create Guidelines',
+    'Digital Assets': 'Develop Assets',
+    'Website Design': 'Design Your Site',
+    'User Experience': 'Enhance UX',
+    'Digital Strategy': 'Distribute Web Content',
+    'Platform Integration': 'Integrate Platforms',
+    'Content Planning': 'Plan Your Content',
+    'Editorial Strategy': 'Develop Strategy',
+    'Content Creation': 'Create Content',
+    'Content Distribution': 'Distribute Content',
+    'Brand Hierarchy': 'Structure Your Brand',
+    'Portfolio Strategy': 'Optimize Portfolio',
+    'Brand Extensions': 'Extend Your Brand',
+    'Sub-brand Development': 'Develop Sub-brands',
+    'Community Strategy': 'Build Community',
+    'Engagement Planning': 'Plan Engagement',
+    'Stakeholder Alignment': 'Align Stakeholders',
+    'Community Activation': 'Activate Community'
+  };
+  
+  return ctaMap[featureTitle] || 'Get Started';
 };
 
 interface ServiceTemplateProps {
@@ -43,7 +92,15 @@ interface ServiceTemplateProps {
 }
 
 const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
-  const serviceImages = getServiceImages(service.id);
+  const carouselImages = getCarouselImages(service.id);
+  
+  // Create carousel items from expanded features
+  const carouselItems = service.expandedFeatures.map((feature, index) => ({
+    title: feature.title,
+    description: feature.description,
+    image: carouselImages[index % carouselImages.length],
+    ctaText: generateCTAText(feature.title)
+  }));
   
   useEffect(() => {
     const cleanup = initRevealAnimations();
@@ -86,17 +143,12 @@ const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
             align="center"
           />
           
-          <div className="mt-16 relative">
-            <Grid columns={2}>
-              {service.expandedFeatures.map((feature, index) => (
-                <GridItem key={index} span={1} className="reveal-text">
-                  <div className="bg-white border border-[#E2E8F0] rounded p-10 h-full relative transition-all duration-300 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] hover:-translate-y-2 hover:shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1)] hover:border-[#ff2356] group">
-                    <h3 className="text-2xl mb-4 text-[#0F1923] font-bold">{feature.title}</h3>
-                    <p className="text-[#4A5568] leading-[1.7] text-lg">{feature.description}</p>
-                  </div>
-                </GridItem>
-              ))}
-            </Grid>
+          <div className="mt-16 reveal-text">
+            <ServiceCarousel 
+              items={carouselItems}
+              autoPlayDelay={6000}
+              className="shadow-2xl"
+            />
           </div>
         </Section>
         
@@ -137,7 +189,7 @@ const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
                 <GridItem key={index} span={1} className="reveal-text">
                   <div className="bg-white rounded overflow-hidden shadow-[0_10px_25px_-5px_rgba(0,0,0,0.1)] transition-all duration-300 h-full">
                     <div className="h-[200px] overflow-hidden">
-                      <img src={serviceImages[index]} alt={`Outcome ${index + 1}`} className="w-full h-full object-cover transition-transform duration-300" />
+                      <img src={carouselImages[index]} alt={`Outcome ${index + 1}`} className="w-full h-full object-cover transition-transform duration-300" />
                     </div>
                     <div className="p-8">
                       <h3 className="text-xl mb-4 text-[#0F1923] font-bold">Expected Result {index + 1}</h3>
