@@ -36,7 +36,7 @@ const convertSizeToNumber = (size?: IconSize): number => {
 
 // Clean icon container with consistent styling using Tailwind
 const IconContainer = ({ children }: { children: React.ReactNode }) => (
-  <div className="w-24 h-24 flex items-center justify-center">
+  <div className="flex items-center justify-center">
     <div className="text-accent transition-all duration-300">
       {children}
     </div>

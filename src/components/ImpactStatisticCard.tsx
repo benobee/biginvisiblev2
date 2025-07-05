@@ -1,27 +1,23 @@
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import type { BrandingStatistic } from '../data/brandingStatistics';
+import type { ServiceImpactStatistic } from '../data/serviceImpactStatistics';
 
-interface StatisticCardProps {
-  statistic: BrandingStatistic;
+interface ImpactStatisticCardProps {
+  statistic: ServiceImpactStatistic;
   variant?: 'default' | 'large' | 'minimal' | 'featured';
   showSource?: boolean;
   className?: string;
-  clickable?: boolean;
 }
 
-const StatisticCard = ({ 
+const ImpactStatisticCard = ({ 
   statistic, 
   variant = 'default', 
   showSource = false,
-  className = '',
-  clickable = false
-}: StatisticCardProps) => {
+  className = '' 
+}: ImpactStatisticCardProps) => {
   const [currentValue, setCurrentValue] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -31,8 +27,8 @@ const StatisticCard = ({
         }
       },
       {
-        threshold: 0.3, // Trigger when 30% of the element is visible
-        rootMargin: '0px 0px -50px 0px' // Trigger slightly before the element is fully visible
+        threshold: 0.3,
+        rootMargin: '0px 0px -50px 0px'
       }
     );
 
@@ -49,7 +45,7 @@ const StatisticCard = ({
 
   useEffect(() => {
     if (isVisible && !hasAnimated) {
-      const duration = 2000; // 2 seconds
+      const duration = 2000;
       const steps = 60;
       const increment = statistic.percentage / steps;
       const stepDuration = duration / steps;
@@ -69,6 +65,8 @@ const StatisticCard = ({
       return () => clearInterval(timer);
     }
   }, [isVisible, statistic.percentage, hasAnimated]);
+
+
   const getVariantClasses = () => {
     switch (variant) {
       case 'large':
@@ -94,7 +92,7 @@ const StatisticCard = ({
         };
       default:
         return {
-          container: `bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 h-64 ${clickable ? 'cursor-pointer hover:-translate-y-1' : ''}`,
+          container: 'bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-64',
           percentage: 'text-5xl lg:text-6xl font-bold text-accent mb-3',
           statement: 'text-base leading-relaxed text-gray-700',
           source: 'text-xs text-gray-500 mt-3'
@@ -104,18 +102,8 @@ const StatisticCard = ({
 
   const classes = getVariantClasses();
 
-  const handleClick = () => {
-    if (clickable) {
-      navigate(`/statistics/${statistic.id}`);
-    }
-  };
-
   return (
-    <div 
-      ref={cardRef} 
-      className={`${classes.container} ${className} reveal-text`}
-      onClick={handleClick}
-    >
+    <div ref={cardRef} className={`${classes.container} ${className} reveal-text`}>
       {/* Featured variant background elements */}
       {variant === 'featured' && (
         <>
@@ -146,4 +134,4 @@ const StatisticCard = ({
   );
 };
 
-export default StatisticCard;
+export default ImpactStatisticCard;

@@ -17,6 +17,7 @@ import DigitalExperience from './pages-content/services/DigitalExperience';
 import ContentStrategy from './pages-content/services/ContentStrategy';
 import BrandArchitecture from './pages-content/services/BrandArchitecture';
 import CommunityBuilding from './pages-content/services/CommunityBuilding';
+import StatisticPage from './pages-content/statistics/StatisticPage';
 import { ThemeModeContext } from './components/ThemeModeContext';
 
 function App() {
@@ -104,6 +105,7 @@ function App() {
             <Route path="/services/content-strategy" element={<ContentStrategy />} />
             <Route path="/services/brand-architecture" element={<BrandArchitecture />} />
             <Route path="/services/community-building" element={<CommunityBuilding />} />
+            <Route path="/statistics/:statisticId" element={<StatisticPage />} />
             <Route path="/work" element={<Work />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>

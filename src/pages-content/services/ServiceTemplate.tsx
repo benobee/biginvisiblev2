@@ -10,7 +10,7 @@ import TimelineStep from '../../components/TimelineStep';
 import { initRevealAnimations } from '../../utils/animations';
 import ServiceSidebar from './ServiceSidebar';
 import { type Service } from '../../data/services';
-import StatisticsGrid from '../../components/StatisticsGrid';
+import ImpactStatisticsGrid from '../../components/ImpactStatisticsGrid';
 import TestimonialsCarousel from '../../components/TestimonialsCarousel';
 import './ServiceTemplate.css';
 
@@ -231,14 +231,13 @@ const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
           />
           
           <div className="mt-16 reveal-text">
-            
-            <StatisticsGrid
-              category={service.id}
-              columns={3}
+            <ImpactStatisticsGrid
+              serviceCategory={service.id}
+              columns={4}
               gap="large"
               variant="default"
               showSource={false}
-              limit={6}
+              limit={4}
             />
           </div>
         </Section>

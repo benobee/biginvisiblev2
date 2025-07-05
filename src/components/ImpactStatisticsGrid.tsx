@@ -1,16 +1,13 @@
 import Grid from './ui/Grid';
 import GridItem from './ui/GridItem';
-import StatisticCard from './StatisticCard';
-import { getStatisticsByCategory, getStatisticsByCategories, getRandomStatistics, type BrandingStatistic } from '../data/brandingStatistics';
+import ImpactStatisticCard from './ImpactStatisticCard';
+import { getImpactStatisticsByService, type ServiceImpactStatistic } from '../data/serviceImpactStatistics';
 
-interface StatisticsGridProps {
-  // Specify statistics by category
-  category?: string;
-  categories?: string[];
+interface ImpactStatisticsGridProps {
+  // Specify statistics by service category
+  serviceCategory?: string;
   // Or provide specific statistics
-  statistics?: BrandingStatistic[];
-  // Or show random statistics
-  randomCount?: number;
+  statistics?: ServiceImpactStatistic[];
   // Grid configuration
   columns?: number;
   gap?: 'small' | 'medium' | 'large' | 'xl' | 'xxl';
@@ -18,34 +15,26 @@ interface StatisticsGridProps {
   variant?: 'default' | 'large' | 'minimal' | 'featured';
   showSource?: boolean;
   limit?: number;
-  clickable?: boolean;
   className?: string;
 }
 
-const StatisticsGrid = ({
-  category,
-  categories,
+const ImpactStatisticsGrid = ({
+  serviceCategory,
   statistics,
-  randomCount,
-  columns = 3,
+  columns = 4,
   gap = 'large',
   variant = 'default',
   showSource = false,
   limit,
-  clickable = false,
   className = ''
-}: StatisticsGridProps) => {
+}: ImpactStatisticsGridProps) => {
   // Determine which statistics to show
-  let statsToShow: BrandingStatistic[] = [];
+  let statsToShow: ServiceImpactStatistic[] = [];
   
   if (statistics) {
     statsToShow = statistics;
-  } else if (category) {
-    statsToShow = getStatisticsByCategory(category);
-  } else if (categories) {
-    statsToShow = getStatisticsByCategories(categories);
-  } else if (randomCount) {
-    statsToShow = getRandomStatistics(randomCount);
+  } else if (serviceCategory) {
+    statsToShow = getImpactStatisticsByService(serviceCategory);
   }
   
   // Apply limit if specified
@@ -62,11 +51,10 @@ const StatisticsGrid = ({
       <Grid columns={columns} gap={gap}>
         {statsToShow.map((statistic) => (
           <GridItem key={statistic.id} span={1}>
-            <StatisticCard 
+            <ImpactStatisticCard 
               statistic={statistic}
               variant={variant}
               showSource={showSource}
-              clickable={clickable}
             />
           </GridItem>
         ))}
@@ -75,4 +63,4 @@ const StatisticsGrid = ({
   );
 };
 
-export default StatisticsGrid;
+export default ImpactStatisticsGrid;

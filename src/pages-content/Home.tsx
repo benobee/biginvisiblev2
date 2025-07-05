@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import HomePageHero from '../components/HomePageHero';
 import Section from '../components/ui/Section';
 import SectionHeader from '../components/ui/SectionHeader';
@@ -10,11 +9,18 @@ import Button from '../components/ui/Button';
 import Quote from '../components/Quote';
 import { initRevealAnimations } from '../utils/animations';
 import Card from '../components/ui/Card';
+import StatisticsGrid from '../components/StatisticsGrid';
+import ServiceCard from '../components/ServiceCard';
+import { services } from '../data/services';
+import { getResearchSummary } from '../data/statisticsResearch';
+import { brandingStatistics } from '../data/brandingStatistics';
 
 const Home = () => {
   
   
   useEffect(() => {
+    const report = getResearchSummary();
+    console.log({ report: report.total, stats: brandingStatistics.length })
     const cleanup = initRevealAnimations();
     return cleanup;
   }, []);
@@ -33,59 +39,11 @@ const Home = () => {
           
           {/* Services Grid */}
           <Grid gap="large" className="mt-16">
-            <GridItem span={4}>
-              <div className="reveal-text border-gray-border hover:border-brand-accent transition-all duration-300 group">
-              <h3 className="text-xl font-bold mb-4">Brand Strategy</h3>
-              <p className="text-gray-medium mb-6 leading-relaxed">
-                Develop a clear, compelling brand strategy that differentiates your business and resonates with your target audience.
-              </p>
-              <Link 
-                to="/services/brand-strategy" 
-                className="inline-flex items-center text-brand-accent hover:text-brand-dark transition-colors duration-150 font-medium group"
-              >
-                Learn more
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-2 transition-transform group-hover:translate-x-1">
-                  <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="currentColor"/>
-                </svg>
-              </Link>
-              </div>
-            </GridItem>
-
-            <GridItem span={4}>
-              <div className="reveal-text border-gray-border hover:border-brand-accent transition-all duration-300 group">
-                <h3 className="text-xl font-bold mb-4">Visual Identity</h3>
-              <p className="text-gray-medium mb-6 leading-relaxed">
-                Create a cohesive visual system that communicates your brand's personality and values across all touchpoints.
-              </p>
-              <Link 
-                to="/services/visual-identity" 
-                className="inline-flex items-center text-brand-accent hover:text-brand-dark transition-colors duration-150 font-medium group"
-              >
-                Learn more
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-2 transition-transform group-hover:translate-x-1">
-                  <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="currentColor"/>
-                </svg>
-              </Link>
-              </div>
-            </GridItem>
-
-            <GridItem span={4}>
-              <div className="reveal-text border-gray-border hover:border-brand-accent transition-all duration-300 group">
-                <h3 className="text-xl font-bold mb-4">Digital Experience</h3>
-              <p className="text-gray-medium mb-6 leading-relaxed">
-                Design intuitive, engaging digital experiences that strengthen your brand and drive meaningful connections.
-              </p>
-              <Link 
-                to="/services/digital-experience" 
-                className="inline-flex items-center text-brand-accent hover:text-brand-dark transition-colors duration-150 font-medium group"
-              >
-                Learn more
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-2 transition-transform group-hover:translate-x-1">
-                  <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="currentColor"/>
-                </svg>
-              </Link>
-              </div>
-            </GridItem>
+            {services.slice(0, 3).map((service) => (
+              <GridItem key={service.id} span={4} className="reveal-text">
+                <ServiceCard service={service} variant="home" />
+              </GridItem>
+            ))}
           </Grid>
       </Section>
 
@@ -153,8 +111,29 @@ const Home = () => {
           </div>
       </Section>
 
-      {/* Featured Work Section */}
+      {/* Branding Statistics Section */}
       <Section background="light">
+        <SectionHeader
+          subtitle="The power of branding"
+          title="Why strategic branding matters"
+          description="Data-driven insights that demonstrate the real impact of thoughtful brand development on business growth and customer relationships."
+          align="center"
+        />
+        
+        <div className="mt-16 reveal-text">
+          <StatisticsGrid
+            randomCount={6}
+            columns={3}
+            gap="large"
+            variant="default"
+            showSource={false}
+            clickable={true}
+          />
+        </div>
+      </Section>
+
+      {/* Featured Work Section */}
+      <Section background="primary">
         <SectionHeader
           subtitle="Featured Work"
           title="Building brands that matter"
@@ -198,7 +177,7 @@ const Home = () => {
       </Section>
 
       {/* Testimonial Section */}
-      <Section background="primary">
+      <Section background="light">
         <Quote 
           variant="work"
           text="Big Invisible didn't just redesign our brand — they transformed how our entire community sees us. We've gone from another local business to the trusted leader our neighbors turn to first."

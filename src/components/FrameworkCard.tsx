@@ -14,7 +14,10 @@ const FrameworkCard = ({ icon, title, description }: FrameworkCardProps) => {
       padding="none" 
       className={`reveal-text`}
     >
-      {icon}
+      <div className='w-12 h-20'>
+        {icon}
+      </div>
+
       <h3 className="text-xl mb-4 text-dark">{title}</h3>
       <p className="opacity-80 leading-relaxed text-dark">{description}</p>
     </Card>
