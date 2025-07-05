@@ -42,7 +42,15 @@ export async function getStaticPaths() {
         description: 'Get in touch with Big Invisible for your branding and design needs.',
         keywords: 'biginvisible, contact, get in touch, branding consultation'
       }
-    }
+    },
+    {
+      params: { page: 'stat-detail' },
+      props: {
+        title: 'Statistic - Big Invisible',
+        description: 'Get in touch with Big Invisible for your branding and design needs.',
+        keywords: 'biginvisible, statistic'
+      }
+    },
   ];
   return pages;
 }

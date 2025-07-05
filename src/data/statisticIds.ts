@@ -4,7 +4,7 @@
  * for consistent referencing and to prevent typos when referencing statistics.
  * 
  * Generated from: brandingStatistics.ts
- * Total IDs: 76
+ * Total IDs: 72
  */
 
 export const STATISTIC_IDS = {
@@ -40,7 +40,6 @@ export const STATISTIC_IDS = {
   CONSISTENT_PRESENTATION_GROWTH: 'consistent-presentation-growth',
 
   // Brand Recognition and Names
-  BRAND_NAME_DECISIONS: 'brand-name-decisions',
   BRAND_NAME_PURCHASE_FACTOR: 'brand-name-purchase-factor',
   BRAND_RECOGNITION_IMPORTANCE: 'brand-recognition-importance',
   BRAND_RECOGNITION_PURCHASE: 'brand-recognition-purchase',
@@ -56,7 +55,6 @@ export const STATISTIC_IDS = {
   COLOR_BRAND_RECOGNITION_INCREASE: 'color-brand-recognition-increase',
   COLOR_READING_COMPREHENSION_IMPROVEMENT: 'color-reading-comprehension-improvement',
   COLORS_BRAND_VISIBILITY: 'colors-brand-visibility',
-  SIGNATURE_COLOR: 'signature-color',
   SIGNATURE_COLOR_RECALL_ASSOCIATION: 'signature-color-recall-association',
 
   // Content Marketing
@@ -102,7 +100,6 @@ export const STATISTIC_IDS = {
   FACEBOOK_PRIMARY_PLATFORM_USAGE: 'facebook-primary-platform-usage',
   FACEBOOK_ROI_DRIVER: 'facebook-roi-driver',
   GENZ_DISCOVERY: 'genz-discovery',
-  SOCIAL_MEDIA_FACEBOOK: 'social-media-facebook',
   SOCIAL_MEDIA_FOLLOWING: 'social-media-following',
   SOCIAL_MEDIA_PURCHASE: 'social-media-purchase',
   SOCIAL_MEDIA_RECOGNITION: 'social-media-recognition',
@@ -120,7 +117,6 @@ export const STATISTIC_IDS = {
 
   // Video Marketing
   VIDEO_ONLINE_CONFIDENCE_BOOST: 'video-online-confidence-boost',
-  VIDEO_PURCHASE: 'video-purchase',
   VIDEO_PURCHASE_CONVICTION: 'video-purchase-conviction',
   VIDEO_PURCHASE_LIKELIHOOD_INCREASE: 'video-purchase-likelihood-increase',
 

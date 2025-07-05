@@ -255,7 +255,7 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
   return (
     <>
       {/* Hero Section */}
-      <Section background="primary" className="min-h-[70vh] !bg-[#0F1923] text-white flex items-center relative overflow-hidden pt-[120px] pb-[60px]">
+      <Section background="primary" className="min-h-[100vh] !bg-[#0F1923] text-white flex items-center relative overflow-hidden pt-[120px] pb-[60px]">
         <Grid>
           <GridItem span={8}>
             <div className="relative z-[3]">
@@ -265,10 +265,10 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
               
               <div className="mb-8 reveal-text">
                 <div className="text-7xl lg:text-8xl font-bold text-accent mb-4">
-                  {statistic.percentage}%
+                  {statistic.title}
                 </div>
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.2] tracking-[-0.02em] text-white">
-                  {statistic.statement}
+                  {statistic.percentage}% {statistic.statement}
                 </h1>
               </div>
               
@@ -279,10 +279,11 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
               <div className="flex flex-wrap gap-4 reveal-text">
                 {sourceUrl && (
                   <Button 
-                    href={sourceUrl} 
+                    href={`${sourceUrl}`} 
                     variant="outline" 
                     size="medium"
                     className="text-white border-white hover:bg-white hover:text-gray-900"
+                    isExternalLink
                   >
                     <ExternalLink className="w-4 h-4 mr-2" />
                     View Source
@@ -314,7 +315,7 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
                 <div className="pr-8">
                   <h3 className="text-3xl font-bold text-gray-900 mb-6">Key Insights</h3>
                   <p className="text-xl leading-relaxed text-gray-700 mb-6">
-                    {explanation.whatItMeans}
+                    {statistic.synopsis}
                   </p>
                   <p className="text-lg leading-relaxed text-gray-600">
                     This statistic reveals important patterns in consumer behavior that smart businesses can leverage to build stronger market positions and drive sustainable growth.
@@ -335,7 +336,7 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
           </div>
 
           {/* Why This Matters - Right Text, Left Image */}
-          <div className="mb-32 reveal-text">
+          <div className="mb-32 reveal-text">≈
             <Grid>
               <GridItem span={6}>
                 <div className="relative h-80 rounded-2xl overflow-hidden shadow-lg">

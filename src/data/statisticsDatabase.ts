@@ -3,15 +3,16 @@
  * Combines branding statistics with research verification data
  * 
  * Created: 2025-01-05
- * Total statistics: 82
- * Verified statistics: 39 (47%)
- * Unverified statistics: 43 (53%)
+ * Total statistics: 78
+ * Verified statistics: 39 (50%)
+ * Unverified statistics: 39 (50%)
  */
 
 import { STATISTIC_IDS } from './statisticIds';
 
 export interface StatisticEntry {
   id: string;
+  title: string;
   percentage: number;
   statement: string;
   source: string;
@@ -30,69 +31,11 @@ export interface StatisticEntry {
 
 export const statisticsDatabase: StatisticEntry[] = [
   {
-    id: STATISTIC_IDS.SOCIAL_MEDIA_FACEBOOK,
-    percentage: 79,
-    statement: 'of marketers say Facebook is the top social media platform for experiential marketing',
-    source: 'WiserNotify 2025',
-    categories: ['digital-experience', 'content-strategy', 'community-building'],
-    verified: false,
-    sourceUrl: 'https://wisernotify.com/blog/branding-stats/',
-    researchDate: '2025-01-05',
-    synopsis: 'This statistic claiming that 79% of marketers consider Facebook the top social media platform specifically for experiential marketing could not be verified through available research sources. While Facebook remains the most widely used social media platform among marketers globally, with 86% of marketers utilizing it as their primary platform, the specific claim about experiential marketing appears to lack supporting evidence. The distinction between general Facebook marketing usage and experiential marketing specifically makes this statistic questionable, as most research focuses on broader social media marketing effectiveness rather than experiential marketing subcategories.',
-    relatedFindings: [
-      STATISTIC_IDS.FACEBOOK_PRIMARY_PLATFORM_USAGE,
-      STATISTIC_IDS.FACEBOOK_ROI_DRIVER,
-      STATISTIC_IDS.EXPERIENTIAL_MARKETING_INVESTMENT_GROWTH
-    ],
-    credibilityScore: 'low',
-    statisticType: 'percentage',
-    notes: 'Statistic appears to be fabricated or from an unavailable source'
-  },
-  {
-    id: STATISTIC_IDS.VIDEO_PURCHASE,
-    percentage: 64,
-    statement: 'of consumers purchase after watching a brand video',
-    source: 'WiserNotify 2025',
-    categories: ['digital-experience', 'content-strategy', 'visual-identity'],
-    verified: false,
-    originalSource: 'Tubular Insights 2017 Social Video Report',
-    sourceUrl: 'https://tubularlabs.com/',
-    researchDate: '2025-01-05',
-    synopsis: 'This statistic claiming that 64% of consumers purchase after watching branded video content is widely cited across marketing literature but the original 2017 Tubular Insights research is not publicly accessible for verification. While multiple sources reference this figure from Tubular Insights 2017 social video research, the methodology and exact parameters of the study cannot be confirmed without access to the original report. The organization (now Tubular Labs) exists but has not made their historical research reports readily available for verification.',
-    relatedFindings: [
-      STATISTIC_IDS.VIDEO_PURCHASE_LIKELIHOOD_INCREASE,
-      STATISTIC_IDS.VIDEO_PURCHASE_CONVICTION,
-      STATISTIC_IDS.VIDEO_ONLINE_CONFIDENCE_BOOST
-    ],
-    credibilityScore: 'low',
-    statisticType: 'percentage',
-    notes: 'Original 2017 research not publicly accessible for verification'
-  },
-  {
-    id: STATISTIC_IDS.BRAND_NAME_DECISIONS,
-    percentage: 77,
-    statement: 'of consumers make purchase decisions based on brand name',
-    source: 'WiserNotify 2025',
-    categories: ['brand-strategy', 'visual-identity', 'brand-architecture'],
-    verified: false,
-    originalSource: 'No verifiable primary research identified',
-    sourceUrl: 'https://onbuy.com/gb/insights/71-of-consumers-more-likely-to-buy-a-product-or-service-from-a-name-they-recognise/',
-    researchDate: '2025-01-05',
-    synopsis: 'The widely cited claim that 77% of consumers make purchase decisions based on brand name lacks verifiable primary source attribution despite appearing in numerous marketing compilations. While brand name recognition is undoubtedly important in consumer decision-making, this specific percentage cannot be traced to credible research methodology or original studies. Alternative verified research from OnBuy found that 71% of consumers consider brand recognition important before making purchases, suggesting the general concept is valid but this specific statistic may be unsubstantiated.',
-    relatedFindings: [
-      STATISTIC_IDS.BRAND_RECOGNITION_IMPORTANCE,
-      STATISTIC_IDS.FAMILIAR_BRAND_PREFERENCE,
-      STATISTIC_IDS.BRAND_NAME_PURCHASE_FACTOR
-    ],
-    credibilityScore: 'low',
-    statisticType: 'percentage',
-    notes: 'No verifiable primary source found despite widespread citation'
-  },
-  {
     id: STATISTIC_IDS.TRUST_REQUIREMENT,
+    title: 'Trust Required for Purchase',
     percentage: 81,
     statement: 'of consumers need to trust a brand to consider buying from it',
-    source: 'WiserNotify 2025',
+    source: 'Edelman 2019',
     categories: ['brand-strategy', 'community-building', 'brand-architecture'],
     verified: true,
     originalSource: '2019 Edelman Trust Barometer Special Report: In Brands We Trust?',
@@ -109,30 +52,11 @@ export const statisticsDatabase: StatisticEntry[] = [
     notes: 'Verified primary source with accessible methodology and direct PDF'
   },
   {
-    id: STATISTIC_IDS.SIGNATURE_COLOR,
-    percentage: 80,
-    statement: 'increase in brand recognition when using a signature color',
-    source: 'WiserNotify 2025',
-    categories: ['visual-identity', 'brand-strategy'],
-    verified: false,
-    originalSource: 'Dr. Ellen Hoadley (Loyola University) - Information Processing Research',
-    sourceUrl: 'https://www.loyola.edu/academics/psychology',
-    researchDate: '2025-01-05',
-    synopsis: 'The widely cited claim that signature colors increase brand recognition by 80% has been debunked as a misattribution of academic research. Investigation reveals that Dr. Ellen Hoadley at Loyola University Maryland conducted studies on color usage in information processing and educational materials, not brand recognition specifically. The 80% figure appears to have originated from a 2005 Xerox marketing leaflet about color in business communications, not from peer-reviewed academic research. This represents a classic case of marketing materials being misrepresented as academic findings and subsequently spreading through secondary sources.',
-    relatedFindings: [
-      STATISTIC_IDS.COLOR_BRAND_RECOGNITION_INCREASE,
-      STATISTIC_IDS.COLOR_READING_COMPREHENSION_IMPROVEMENT,
-      STATISTIC_IDS.SIGNATURE_COLOR_RECALL_ASSOCIATION
-    ],
-    credibilityScore: 'low',
-    statisticType: 'percentage',
-    notes: 'Debunked statistic - misattributed from marketing materials to academic research'
-  },
-  {
     id: STATISTIC_IDS.CONSISTENT_BRANDING_REVENUE,
+    title: 'Brand Consistency Drives Revenue',
     percentage: 60,
     statement: 'of companies reported that consistent branding added 10-20% to their revenue growth',
-    source: 'WiserNotify 2025',
+    source: 'Lucidpress',
     categories: ['brand-strategy', 'visual-identity', 'brand-architecture'],
     verified: true,
     originalSource: 'State of Brand Consistency Report',
@@ -150,6 +74,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.DOMESTIC_BRAND_TRUST,
+    title: 'Domestic Brands More Trusted',
     percentage: 15,
     statement: 'average trust gap favoring domestically headquartered brands over foreign counterparts',
     source: 'Edelman Trust Barometer 2025',
@@ -169,6 +94,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.TRUST_BRANDS_OVER_INSTITUTIONS,
+    title: 'Brands Beat Institutions in Trust',
     percentage: 80,
     statement: 'of people trust brands they use more than business, media, government, NGOs, and employers',
     source: 'Edelman Trust Barometer 2025',
@@ -188,6 +114,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.CULTURAL_AUTHENTICITY,
+    title: 'Cultural Authenticity Builds Trust',
     percentage: 73,
     statement: 'say their trust in a brand would increase if it authentically reflected today\'s culture',
     source: 'Edelman Trust Barometer 2025',
@@ -207,6 +134,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.AI_PLATFORM_USAGE,
+    title: 'Consumer AI Platform Adoption',
     percentage: 55,
     statement: 'of consumers use generative AI platforms',
     source: 'Edelman Trust Barometer 2025',
@@ -226,6 +154,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.AI_SHOPPING_USAGE,
+    title: 'AI Users Shop with AI',
     percentage: 91,
     statement: 'of AI platform users use them for shopping-related activities',
     source: 'Edelman Trust Barometer 2025',
@@ -245,6 +174,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.FACEBOOK_PRIMARY_PLATFORM_USAGE,
+    title: 'Facebook Primary Marketing Platform',
     percentage: 86,
     statement: 'of marketers worldwide use Facebook as their primary platform',
     source: 'Sprout Social Index 2024',
@@ -264,6 +194,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.FACEBOOK_ROI_DRIVER,
+    title: 'Facebook Drives Marketing ROI',
     percentage: 40,
     statement: 'of marketers cite Facebook as one of their top three drivers of ROI',
     source: 'Sprout Social Index 2024',
@@ -283,6 +214,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.EXPERIENTIAL_MARKETING_INVESTMENT_GROWTH,
+    title: 'Experiential Marketing Investment Rise',
     percentage: 47,
     statement: 'of marketers increased investments in experiential marketing in 2023',
     source: 'Event Marketing Institute',
@@ -302,6 +234,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.VIDEO_PURCHASE_LIKELIHOOD_INCREASE,
+    title: 'Video Increases Purchase Intent',
     percentage: 64,
     statement: 'of consumers are more likely to purchase a product after watching a video about it',
     source: 'Wyzowl Video Marketing Statistics',
@@ -311,7 +244,6 @@ export const statisticsDatabase: StatisticEntry[] = [
     researchDate: '2025-01-05',
     synopsis: 'Wyzowl\'s comprehensive video marketing research demonstrates that 64% of consumers are more likely to purchase a product after watching a video about it. This statistic is based on extensive consumer surveys conducted by Wyzowl, a leading video marketing research organization. The research methodology involves large-scale consumer behavior studies focused specifically on video content\'s impact on purchasing decisions, providing credible insights into video marketing effectiveness.',
     relatedFindings: [
-      STATISTIC_IDS.VIDEO_PURCHASE,
       STATISTIC_IDS.VIDEO_PURCHASE_CONVICTION,
       STATISTIC_IDS.VIDEO_ONLINE_CONFIDENCE_BOOST
     ],
@@ -321,6 +253,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.VIDEO_PURCHASE_CONVICTION,
+    title: 'Video Convinces Consumers to Buy',
     percentage: 84,
     statement: 'of people say they have been convinced to buy a product by watching a brand video',
     source: 'Wyzowl Video Marketing Statistics',
@@ -340,6 +273,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.VIDEO_ONLINE_CONFIDENCE_BOOST,
+    title: 'Video Boosts Online Shopping Confidence',
     percentage: 52,
     statement: 'of consumers say watching a video makes them more confident in buying online',
     source: 'Animoto Video Marketing Study',
@@ -359,6 +293,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.BRAND_RECOGNITION_IMPORTANCE,
+    title: 'Brand Recognition Matters to Consumers',
     percentage: 71,
     statement: 'of consumers said it was important that they recognize a brand before making a purchase',
     source: 'OnBuy Brand Recognition Study',
@@ -368,7 +303,6 @@ export const statisticsDatabase: StatisticEntry[] = [
     researchDate: '2025-01-05',
     synopsis: 'OnBuy\'s brand recognition study demonstrates that 71% of consumers said it was important that they recognize a brand before making a purchase. This research involved comprehensive consumer surveys examining brand recognition\'s role in purchasing decisions. The study provides credible evidence of brand familiarity\'s critical importance in consumer decision-making processes across various product categories and price points.',
     relatedFindings: [
-      STATISTIC_IDS.BRAND_NAME_DECISIONS,
       STATISTIC_IDS.FAMILIAR_BRANDS,
       STATISTIC_IDS.BRAND_NAME_PURCHASE_FACTOR
     ],
@@ -378,6 +312,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.FAMILIAR_BRAND_PREFERENCE,
+    title: 'Consumers Prefer Familiar Brands',
     percentage: 63,
     statement: 'of customers are more willing to buy from familiar brands',
     source: 'Nielsen Consumer Trust Survey',
@@ -397,6 +332,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.BRAND_NAME_PURCHASE_FACTOR,
+    title: 'Brand Name Most Important Factor',
     percentage: 52,
     statement: 'of respondents selected recognizing a brand name as the most important purchase factor',
     source: 'OnBuy Brand Recognition Study',
@@ -407,7 +343,6 @@ export const statisticsDatabase: StatisticEntry[] = [
     synopsis: 'OnBuy\'s research reveals that 52% of respondents selected recognizing a brand name as the most important purchase factor, highlighting the critical role of brand recognition in consumer decision-making. This statistic demonstrates that brand name recognition often outweighs other factors like price or features in purchase decisions. The research methodology involved comprehensive consumer surveys examining various purchase decision factors and their relative importance to consumers.',
     relatedFindings: [
       STATISTIC_IDS.BRAND_RECOGNITION_IMPORTANCE,
-      STATISTIC_IDS.BRAND_NAME_DECISIONS,
       STATISTIC_IDS.FAMILIAR_BRAND_PREFERENCE
     ],
     credibilityScore: 'high',
@@ -416,6 +351,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.CONSUMER_BRAND_TRUST_GAP,
+    title: 'Consumer Brand Trust Gap',
     percentage: 34,
     statement: 'of consumers trust most of the brands they buy',
     source: 'Edelman Trust Barometer 2019',
@@ -435,6 +371,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.TRUST_AS_DECIDING_FACTOR,
+    title: 'Trust as Purchase Deal-Breaker',
     percentage: 81,
     statement: 'say trust is a deciding factor or deal-breaker in purchasing decisions',
     source: 'Edelman Trust Barometer 2019',
@@ -454,6 +391,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.TRUST_RANKING_AMONG_FACTORS,
+    title: 'Quality Beats Trust in Rankings',
     percentage: 85,
     statement: 'rank quality as top factor, with trust (81%), convenience (84%), and value (84%) following',
     source: 'Edelman Trust Barometer 2019',
@@ -473,6 +411,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.COLOR_BRAND_RECOGNITION_INCREASE,
+    title: 'Color Increases Brand Recognition',
     percentage: 80,
     statement: 'increase in brand recognition when using consistent color schemes',
     source: 'University of Loyola Color Psychology Study',
@@ -482,7 +421,6 @@ export const statisticsDatabase: StatisticEntry[] = [
     researchDate: '2025-01-05',
     synopsis: 'Research from Loyola University demonstrates that consistent color schemes can increase brand recognition by up to 80%, based on academic studies examining color psychology in branding and marketing contexts. This finding represents peer-reviewed academic research on color\'s impact on brand memory and recognition. The university\'s psychology department has conducted extensive research on color perception and its applications in marketing and brand identity.',
     relatedFindings: [
-      STATISTIC_IDS.SIGNATURE_COLOR,
       STATISTIC_IDS.COLOR_READING_COMPREHENSION_IMPROVEMENT,
       STATISTIC_IDS.SIGNATURE_COLOR_RECALL_ASSOCIATION
     ],
@@ -492,6 +430,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.COLOR_READING_COMPREHENSION_IMPROVEMENT,
+    title: 'Color Improves Reading Comprehension',
     percentage: 40,
     statement: 'improvement in reading comprehension when using appropriate colors',
     source: 'University of Loyola Color Psychology Study',
@@ -511,6 +450,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.SIGNATURE_COLOR_RECALL_ASSOCIATION,
+    title: 'Colors Linked to Brand Recall',
     percentage: 67,
     statement: 'of consumers associate signature colors with brand recall',
     source: 'Color Marketing Group Study',
@@ -521,7 +461,6 @@ export const statisticsDatabase: StatisticEntry[] = [
     synopsis: 'The Color Marketing Group research shows that 67% of consumers associate signature colors with brand recall, demonstrating the powerful connection between specific colors and brand memory. This research comes from a professional organization dedicated to color research and marketing applications. The study methodology involves consumer surveys and brand recognition tests examining how color associations impact brand memory and recall patterns.',
     relatedFindings: [
       STATISTIC_IDS.COLOR_BRAND_RECOGNITION_INCREASE,
-      STATISTIC_IDS.SIGNATURE_COLOR,
       STATISTIC_IDS.COLORS_BRAND_VISIBILITY
     ],
     credibilityScore: 'high',
@@ -530,6 +469,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.BRAND_CONSISTENCY_REVENUE_IMPACT,
+    title: 'Brand Consistency Boosts Revenue',
     percentage: 68,
     statement: 'of businesses say brand consistency has contributed to revenue growth of 10% or more',
     source: 'Lucidpress Brand Consistency Report',
@@ -549,6 +489,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.BRAND_CONSISTENCY_VISIBILITY_INCREASE,
+    title: 'Consistent Branding Increases Revenue',
     percentage: 23,
     statement: 'increase in revenue from consistent brand presentation across all platforms',
     source: 'Lucidpress Brand Consistency Report',
@@ -568,6 +509,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.CONSUMERS_EXPECT_BRAND_SOCIAL_STANCE,
+    title: 'Consumers Want Brand Social Stances',
     percentage: 64,
     statement: 'of consumers expect brands to take a stand on social issues',
     source: 'Sprout Social Consumer Index',
@@ -587,6 +529,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.SUSTAINABLE_PRODUCT_PREMIUM_WILLINGNESS,
+    title: 'Pay More for Sustainable Products',
     percentage: 73,
     statement: 'of consumers are willing to pay more for sustainable products',
     source: 'Nielsen Sustainability Report',
@@ -606,6 +549,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.PURPOSE_DRIVEN_BRAND_GROWTH_ADVANTAGE,
+    title: 'Purpose-Driven Brands Grow Faster',
     percentage: 200,
     statement: 'faster growth rate for purpose-driven brands compared to traditional brands',
     source: 'Kantar Purpose 2020 Study',
@@ -625,6 +569,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.AUDIO_BRANDING_RECALL_INCREASE,
+    title: 'Audio Branding Boosts Recall',
     percentage: 96,
     statement: 'increase in brand recall when using audio branding elements',
     source: 'Audio Branding Academy Study',
@@ -644,6 +589,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.SOUND_LOGO_RECOGNITION_SPEED,
+    title: 'Sound Logos Recognized Faster',
     percentage: 800,
     statement: 'faster recognition speed for sound logos compared to visual logos',
     source: 'Audio Branding Academy Study',
@@ -663,6 +609,7 @@ export const statisticsDatabase: StatisticEntry[] = [
   },
   {
     id: STATISTIC_IDS.SONIC_BRANDING_PURCHASE_INTENT,
+    title: 'Audio Branding Drives Purchase Intent',
     percentage: 30,
     statement: 'increase in purchase intent when brands use consistent sonic branding',
     source: 'Audio Branding Academy Study',
@@ -734,8 +681,15 @@ const statisticsIndexes = (() => {
 })();
 
 // Optimized helper functions using pre-computed indexes
-export const getStatisticEntry = (id: string): StatisticEntry | undefined => {
-  return statisticsIndexes.byId.get(id);
+export const getStatisticEntry = (id: string): StatisticEntry | undefined  => {
+  // Try to get from pre-computed index first
+  const indexedResult = statisticsIndexes.byId.get(id);
+  if (indexedResult) {
+    return indexedResult;
+  }
+  
+  // Fallback to array search if index isn't ready yet
+  return statisticsDatabase.find(entry => entry.id === id);
 };
 
 export const getVerifiedStatistics = (): StatisticEntry[] => {

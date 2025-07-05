@@ -106,7 +106,7 @@ const StatisticCard = ({
 
   const handleClick = () => {
     if (clickable) {
-      navigate(`/statistics/${statistic.id}`);
+      navigate(`/stat-detail?id=${statistic.id}`);
     }
   };
 

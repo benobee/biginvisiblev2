@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 
 interface ButtonProps {
   variant?: 'primary' | 'secondary' | 'outline' | 'text' | 'primaryInverse';
+  isExternalLink?: boolean;
   size?: 'small' | 'medium' | 'large';
   fullWidth?: boolean;
   as?: React.ElementType; // 'button' | 'a' | 'Link'
@@ -64,6 +65,7 @@ const Button = ({
     return (
       <a
         href={href}
+        target={props.isExternalLink ? '_blank' : undefined}
         className={buttonClasses}
         {...props}
       >

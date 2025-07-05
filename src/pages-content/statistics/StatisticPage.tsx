@@ -1,18 +1,34 @@
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import StatisticDetail from './StatisticDetail';
 import { getStatisticEntry } from '../../data/statisticsDatabase';
 
 const StatisticPage = () => {
-  const { statisticId } = useParams<{ statisticId: string }>();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const statisticId = searchParams.get('id');
   
   if (!statisticId) {
-    return <div>Statistic not found</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Statistic Not Found</h1>
+          <p className="text-gray-600">Please provide a valid statistic ID.</p>
+        </div>
+      </div>
+    );
   }
   
   const statistic = getStatisticEntry(statisticId);
   
   if (!statistic) {
-    return <div>Statistic not found</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Statistic Not Found</h1>
+          <p className="text-gray-600">The requested statistic could not be found.</p>
+        </div>
+      </div>
+    );
   }
   
   return <StatisticDetail statistic={statistic} />;
