@@ -17,10 +17,9 @@ import { brandingStatistics } from '../data/brandingStatistics';
 
 const Home = () => {
   
-  
   useEffect(() => {
     const report = getResearchSummary();
-    console.log({ report: report.total, stats: brandingStatistics.length })
+    console.log({ researchStats: report.total, totalStats: brandingStatistics.length })
     const cleanup = initRevealAnimations();
     return cleanup;
   }, []);
