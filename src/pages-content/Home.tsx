@@ -12,14 +12,10 @@ import Card from '../components/ui/Card';
 import StatisticsGrid from '../components/StatisticsGrid';
 import ServiceCard from '../components/ServiceCard';
 import { services } from '../data/services';
-import { getResearchSummary } from '../data/statisticsResearch';
-import { brandingStatistics } from '../data/brandingStatistics';
 
 const Home = () => {
   
   useEffect(() => {
-    const report = getResearchSummary();
-    console.log({ researchStats: report.total, totalStats: brandingStatistics.length })
     const cleanup = initRevealAnimations();
     return cleanup;
   }, []);

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import StatisticDetail from './StatisticDetail';
-import { getStatisticById } from '../../data/brandingStatistics';
+import { getStatisticEntry } from '../../data/statisticsDatabase';
 
 const StatisticPage = () => {
   const { statisticId } = useParams<{ statisticId: string }>();
@@ -9,7 +9,7 @@ const StatisticPage = () => {
     return <div>Statistic not found</div>;
   }
   
-  const statistic = getStatisticById(statisticId);
+  const statistic = getStatisticEntry(statisticId);
   
   if (!statistic) {
     return <div>Statistic not found</div>;

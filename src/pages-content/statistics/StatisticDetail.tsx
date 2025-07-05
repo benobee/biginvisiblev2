@@ -8,15 +8,15 @@ import CTASection from '../../components/ui/CTASection';
 import ServiceCard from '../../components/ServiceCard';
 import { ExternalLink, TrendingUp, Users, Target, Zap } from 'lucide-react';
 import { initRevealAnimations } from '../../utils/animations';
-import { type BrandingStatistic } from '../../data/brandingStatistics';
+import { type StatisticEntry } from '../../data/statisticsDatabase';
 import { services, type Service } from '../../data/services';
 
 interface StatisticDetailProps {
-  statistic: BrandingStatistic;
+  statistic: StatisticEntry;
 }
 
 // Expanded explanations for each statistic type
-const getStatisticExplanation = (statistic: BrandingStatistic) => {
+const getStatisticExplanation = (statistic: StatisticEntry) => {
   const explanations: { [key: string]: { 
     overview: string; 
     whatItMeans: string; 
@@ -99,7 +99,7 @@ const getStatisticExplanation = (statistic: BrandingStatistic) => {
 };
 
 // Get related services based on statistic categories
-const getRelatedServices = (statistic: BrandingStatistic): Service[] => {
+const getRelatedServices = (statistic: StatisticEntry): Service[] => {
   return services.filter(service => 
     statistic.categories.some(category => service.id === category)
   );
@@ -116,7 +116,7 @@ const getSourceUrl = (source: string) => {
 };
 
 // Get unique images for each specific statistic
-const getStatisticImages = (statistic: BrandingStatistic) => {
+const getStatisticImages = (statistic: StatisticEntry) => {
   // Create a clean pool of unique, verified business images
   const imagePool = [
     'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop&auto=format',

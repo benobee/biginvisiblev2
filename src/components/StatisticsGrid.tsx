@@ -1,14 +1,14 @@
 import Grid from './ui/Grid';
 import GridItem from './ui/GridItem';
 import StatisticCard from './StatisticCard';
-import { getStatisticsByCategory, getStatisticsByCategories, getRandomStatistics, type BrandingStatistic } from '../data/brandingStatistics';
+import { getStatisticsByCategory, getStatisticsByCategories, getRandomStatistics, type StatisticEntry } from '../data/statisticsDatabase';
 
 interface StatisticsGridProps {
   // Specify statistics by category
   category?: string;
   categories?: string[];
   // Or provide specific statistics
-  statistics?: BrandingStatistic[];
+  statistics?: StatisticEntry[];
   // Or show random statistics
   randomCount?: number;
   // Grid configuration
@@ -36,7 +36,7 @@ const StatisticsGrid = ({
   className = ''
 }: StatisticsGridProps) => {
   // Determine which statistics to show
-  let statsToShow: BrandingStatistic[] = [];
+  let statsToShow: StatisticEntry[] = [];
   
   if (statistics) {
     statsToShow = statistics;
