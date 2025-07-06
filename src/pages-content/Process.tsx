@@ -173,7 +173,6 @@ const Process = () => {
               <p>We believe the best results come from true collaboration. Throughout our process, we work closely with you, treating you as a partner rather than just a client.</p>
               <p>This collaborative approach ensures that the final outcome not only meets your business objectives but also authentically represents your brand's unique voice and values.</p>
               <p>We maintain open communication, regular check-ins, and collaborative workshops to keep you involved and informed at every stage of the process.</p>
-              <Button to="/contact" variant="primary" className="reveal-text">Start your project</Button>
             </div>
           </GridItem>
           <GridItem span={6}>

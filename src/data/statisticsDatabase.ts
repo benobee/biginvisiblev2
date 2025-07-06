@@ -553,7 +553,7 @@ export const statisticsDatabase: StatisticEntry[] = [
       STATISTIC_IDS.BRAND_GUIDELINES
     ],
     credibilityScore: 'high',
-    statisticType: 'percentage',
+    statisticType: 'multiplier',
     notes: 'Quantified business impact data from established brand research',
     impactStatement: 'Multi-platform brand consistency and revenue increase',
     impactPercentage: 40

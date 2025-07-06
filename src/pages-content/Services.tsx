@@ -26,7 +26,6 @@ const Services = () => {
                 <p className="reveal-text text-lg lg:text-xl mb-8 opacity-80 leading-relaxed max-w-2xl text-dark">
                   We offer a comprehensive suite of brand architecture services designed to build authentic connections between your business and your community.
                 </p>
-                <Button to="/contact" variant="primary" className="reveal-text">Get started</Button>
               </div>
             </GridItem>
             <GridItem span={6}>

@@ -351,7 +351,7 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
 
                       <div className="bg-white rounded-xl pt-8 pl-8 pr-8 pb-3 border-l-4 border-accent shadow-sm">
                         <div className='flex flex-auto'>
-                        <div className='h-32 w-1/4'>
+                        <div className='h-32 w-1/6'>
                           <DonutChart 
                             percentage={relatedStatistic.percentage} 
                             size="medium" 
@@ -359,7 +359,7 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
                             statisticType={relatedStatistic.statisticType}
                           />
                         </div>
-                        <p className="text-lg text-gray-700 leading-relaxed mb-6 w-3/4">
+                        <p className="text-lg text-gray-700 leading-relaxed mb-6 w-5/6">
                           {index < connectors.length ? connectors[index] : `Research also reveals an important insight from ${relatedStatistic.source}`}. 
                           {' '}{relatedStatistic.synopsis} 
                         </p>
