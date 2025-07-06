@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
-import type { ServiceImpactStatistic } from '../data/serviceImpactStatistics';
+import { ExternalLink } from 'lucide-react';
+import type { StatisticEntry } from '../data/statisticsDatabase';
 
 interface ImpactStatisticCardProps {
-  statistic: ServiceImpactStatistic;
+  statistic: StatisticEntry;
   variant?: 'default' | 'large' | 'minimal' | 'featured';
   showSource?: boolean;
   className?: string;
@@ -47,13 +48,13 @@ const ImpactStatisticCard = ({
     if (isVisible && !hasAnimated) {
       const duration = 2000;
       const steps = 60;
-      const increment = statistic.percentage / steps;
+      const increment = statistic.impactPercentage / steps;
       const stepDuration = duration / steps;
 
       let step = 0;
       const timer = setInterval(() => {
         step++;
-        const value = Math.min(increment * step, statistic.percentage);
+        const value = Math.min(increment * step, statistic.impactPercentage);
         setCurrentValue(Math.round(value));
         
         if (step >= steps) {
@@ -64,7 +65,7 @@ const ImpactStatisticCard = ({
 
       return () => clearInterval(timer);
     }
-  }, [isVisible, statistic.percentage, hasAnimated]);
+  }, [isVisible, statistic.impactPercentage, hasAnimated]);
 
 
   const getVariantClasses = () => {
@@ -120,13 +121,23 @@ const ImpactStatisticCard = ({
         
         {/* Statement */}
         <p className={classes.statement}>
-          {statistic.statement}
+          {statistic.impactStatement}
         </p>
         
         {/* Source */}
         {showSource && (
           <div className={classes.source}>
             Source: {statistic.source}
+            {statistic.sourceUrl && (
+              <a 
+                href={statistic.sourceUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 ml-2 text-accent hover:text-accent-dark transition-colors"
+              >
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            )}
           </div>
         )}
       </div>

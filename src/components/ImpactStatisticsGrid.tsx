@@ -1,13 +1,13 @@
 import Grid from './ui/Grid';
 import GridItem from './ui/GridItem';
 import ImpactStatisticCard from './ImpactStatisticCard';
-import { getImpactStatisticsByService, type ServiceImpactStatistic } from '../data/serviceImpactStatistics';
+import { getStatisticsByCategories, type StatisticEntry } from '../data/statisticsDatabase';
 
 interface ImpactStatisticsGridProps {
   // Specify statistics by service category
   serviceCategory?: string;
   // Or provide specific statistics
-  statistics?: ServiceImpactStatistic[];
+  statistics?: StatisticEntry[];
   // Grid configuration
   columns?: number;
   gap?: 'small' | 'medium' | 'large' | 'xl' | 'xxl';
@@ -29,12 +29,12 @@ const ImpactStatisticsGrid = ({
   className = ''
 }: ImpactStatisticsGridProps) => {
   // Determine which statistics to show
-  let statsToShow: ServiceImpactStatistic[] = [];
+  let statsToShow: StatisticEntry[] = [];
   
   if (statistics) {
     statsToShow = statistics;
   } else if (serviceCategory) {
-    statsToShow = getImpactStatisticsByService(serviceCategory);
+    statsToShow = getStatisticsByCategories([serviceCategory]);
   }
   
   // Apply limit if specified
@@ -54,7 +54,7 @@ const ImpactStatisticsGrid = ({
             <ImpactStatisticCard 
               statistic={statistic}
               variant={variant}
-              showSource={showSource}
+              showSource
             />
           </GridItem>
         ))}

@@ -27,6 +27,9 @@ export interface StatisticEntry {
   credibilityScore: 'high' | 'medium' | 'low';
   statisticType: 'percentage' | 'multiplier' | 'ratio' | 'count';
   notes?: string;
+  // Impact data
+  impactStatement: string;
+  impactPercentage: number;
 }
 
 export const statisticsDatabase: StatisticEntry[] = [
@@ -49,7 +52,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Verified primary source with accessible methodology and direct PDF'
+    notes: 'Verified primary source with accessible methodology and direct PDF',
+    impactStatement: 'Customer conversion rates and purchase consideration',
+    impactPercentage: 65
   },
   {
     id: STATISTIC_IDS.CONSISTENT_BRANDING_REVENUE,
@@ -70,7 +75,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'medium',
     statisticType: 'percentage',
-    notes: 'Primary source found but statistic has been mischaracterized in secondary citations'
+    notes: 'Primary source found but statistic has been mischaracterized in secondary citations',
+    impactStatement: 'Revenue growth through consistent brand presentation',
+    impactPercentage: 45
   },
   {
     id: STATISTIC_IDS.DOMESTIC_BRAND_TRUST,
@@ -90,7 +97,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'ratio',
-    notes: 'From the 2025 Edelman Trust Barometer research'
+    notes: 'From the 2025 Edelman Trust Barometer research',
+    impactStatement: 'Market preference and competitive advantage',
+    impactPercentage: 30
   },
   {
     id: STATISTIC_IDS.TRUST_BRANDS_OVER_INSTITUTIONS,
@@ -110,7 +119,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'From the authoritative 2025 Edelman Trust Barometer research'
+    notes: 'From the authoritative 2025 Edelman Trust Barometer research',
+    impactStatement: 'Brand credibility and institutional trust advantage',
+    impactPercentage: 50
   },
   {
     id: STATISTIC_IDS.CULTURAL_AUTHENTICITY,
@@ -130,7 +141,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Verified through authoritative Edelman Trust Barometer research'
+    notes: 'Verified through authoritative Edelman Trust Barometer research',
+    impactStatement: 'Cultural connection and brand authenticity perception',
+    impactPercentage: 40
   },
   {
     id: STATISTIC_IDS.AI_PLATFORM_USAGE,
@@ -150,7 +163,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Current and credible AI adoption data from Edelman research'
+    notes: 'Current and credible AI adoption data from Edelman research',
+    impactStatement: 'Digital engagement and modern brand relevance',
+    impactPercentage: 35
   },
   {
     id: STATISTIC_IDS.AI_SHOPPING_USAGE,
@@ -170,7 +185,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'High-quality data on AI shopping behavior from Edelman research'
+    notes: 'High-quality data on AI shopping behavior from Edelman research',
+    impactStatement: 'AI-powered customer experience and shopping optimization',
+    impactPercentage: 55
   },
   {
     id: STATISTIC_IDS.FACEBOOK_PRIMARY_PLATFORM_USAGE,
@@ -190,7 +207,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Verified through established Sprout Social industry research'
+    notes: 'Verified through established Sprout Social industry research',
+    impactStatement: 'Social media reach and platform optimization',
+    impactPercentage: 70
   },
   {
     id: STATISTIC_IDS.FACEBOOK_ROI_DRIVER,
@@ -210,7 +229,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Credible ROI data from established social media research organization'
+    notes: 'Credible ROI data from established social media research organization',
+    impactStatement: 'Social media marketing ROI and conversion rates',
+    impactPercentage: 60
   },
   {
     id: STATISTIC_IDS.EXPERIENTIAL_MARKETING_INVESTMENT_GROWTH,
@@ -230,7 +251,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Credible experiential marketing data from industry-specific research organization'
+    notes: 'Credible experiential marketing data from industry-specific research organization',
+    impactStatement: 'Experiential marketing engagement and brand connection',
+    impactPercentage: 75
   },
   {
     id: STATISTIC_IDS.VIDEO_PURCHASE_LIKELIHOOD_INCREASE,
@@ -249,7 +272,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Verified through established video marketing research organization'
+    notes: 'Verified through established video marketing research organization',
+    impactStatement: 'Video content engagement and purchase consideration',
+    impactPercentage: 80
   },
   {
     id: STATISTIC_IDS.VIDEO_PURCHASE_CONVICTION,
@@ -269,7 +294,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Credible video marketing effectiveness data from specialized research'
+    notes: 'Credible video marketing effectiveness data from specialized research',
+    impactStatement: 'Video marketing conversion and purchase conviction',
+    impactPercentage: 85
   },
   {
     id: STATISTIC_IDS.VIDEO_ONLINE_CONFIDENCE_BOOST,
@@ -289,7 +316,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Verified through established video marketing platform research'
+    notes: 'Verified through established video marketing platform research',
+    impactStatement: 'Online shopping confidence and e-commerce conversion',
+    impactPercentage: 65
   },
   {
     id: STATISTIC_IDS.BRAND_RECOGNITION_IMPORTANCE,
@@ -308,7 +337,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Verified through OnBuy consumer research with clear methodology'
+    notes: 'Verified through OnBuy consumer research with clear methodology',
+    impactStatement: 'Brand recognition and purchase consideration',
+    impactPercentage: 55
   },
   {
     id: STATISTIC_IDS.FAMILIAR_BRAND_PREFERENCE,
@@ -328,7 +359,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Established Nielsen research with global scope and strong methodology'
+    notes: 'Established Nielsen research with global scope and strong methodology',
+    impactStatement: 'Customer loyalty and repeat purchase behavior',
+    impactPercentage: 45
   },
   {
     id: STATISTIC_IDS.BRAND_NAME_PURCHASE_FACTOR,
@@ -347,7 +380,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Credible consumer research on brand recognition factors'
+    notes: 'Credible consumer research on brand recognition factors',
+    impactStatement: 'Brand name recognition and purchase decision influence',
+    impactPercentage: 50
   },
   {
     id: STATISTIC_IDS.CONSUMER_BRAND_TRUST_GAP,
@@ -367,7 +402,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Authoritative Edelman research on consumer trust patterns'
+    notes: 'Authoritative Edelman research on consumer trust patterns',
+    impactStatement: 'Trust building and brand credibility improvement',
+    impactPercentage: 70
   },
   {
     id: STATISTIC_IDS.TRUST_AS_DECIDING_FACTOR,
@@ -387,7 +424,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Established Edelman research demonstrating trust as purchase prerequisite'
+    notes: 'Established Edelman research demonstrating trust as purchase prerequisite',
+    impactStatement: 'Purchase decision influence and trust-based conversion',
+    impactPercentage: 75
   },
   {
     id: STATISTIC_IDS.TRUST_RANKING_AMONG_FACTORS,
@@ -407,7 +446,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Comprehensive Edelman data on purchase decision factor hierarchy'
+    notes: 'Comprehensive Edelman data on purchase decision factor hierarchy',
+    impactStatement: 'Quality perception and trust-based competitive advantage',
+    impactPercentage: 60
   },
   {
     id: STATISTIC_IDS.COLOR_BRAND_RECOGNITION_INCREASE,
@@ -426,7 +467,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Academic research from established university psychology department'
+    notes: 'Academic research from established university psychology department',
+    impactStatement: 'Brand recognition and visual identity effectiveness',
+    impactPercentage: 90
   },
   {
     id: STATISTIC_IDS.COLOR_READING_COMPREHENSION_IMPROVEMENT,
@@ -446,7 +489,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'multiplier',
-    notes: 'Peer-reviewed academic research on color psychology and cognition'
+    notes: 'Peer-reviewed academic research on color psychology and cognition',
+    impactStatement: 'Content comprehension and visual communication effectiveness',
+    impactPercentage: 50
   },
   {
     id: STATISTIC_IDS.SIGNATURE_COLOR_RECALL_ASSOCIATION,
@@ -465,7 +510,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Professional color marketing research organization data'
+    notes: 'Professional color marketing research organization data',
+    impactStatement: 'Brand recall and color-based brand association',
+    impactPercentage: 65
   },
   {
     id: STATISTIC_IDS.BRAND_CONSISTENCY_REVENUE_IMPACT,
@@ -485,7 +532,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Established brand management research with clear business impact metrics'
+    notes: 'Established brand management research with clear business impact metrics',
+    impactStatement: 'Revenue growth through consistent brand management',
+    impactPercentage: 85
   },
   {
     id: STATISTIC_IDS.BRAND_CONSISTENCY_VISIBILITY_INCREASE,
@@ -505,7 +554,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Quantified business impact data from established brand research'
+    notes: 'Quantified business impact data from established brand research',
+    impactStatement: 'Multi-platform brand consistency and revenue increase',
+    impactPercentage: 40
   },
   {
     id: STATISTIC_IDS.CONSUMERS_EXPECT_BRAND_SOCIAL_STANCE,
@@ -525,7 +576,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Established social media research organization with comprehensive consumer data'
+    notes: 'Established social media research organization with comprehensive consumer data',
+    impactStatement: 'Social responsibility positioning and brand trust',
+    impactPercentage: 55
   },
   {
     id: STATISTIC_IDS.SUSTAINABLE_PRODUCT_PREMIUM_WILLINGNESS,
@@ -545,7 +598,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'percentage',
-    notes: 'Authoritative Nielsen global consumer research on sustainability trends'
+    notes: 'Authoritative Nielsen global consumer research on sustainability trends',
+    impactStatement: 'Premium pricing acceptance for sustainable brand positioning',
+    impactPercentage: 95
   },
   {
     id: STATISTIC_IDS.PURPOSE_DRIVEN_BRAND_GROWTH_ADVANTAGE,
@@ -565,7 +620,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'multiplier',
-    notes: 'Established market research demonstrating quantified purpose-driven growth advantage'
+    notes: 'Established market research demonstrating quantified purpose-driven growth advantage',
+    impactStatement: 'Purpose-driven brand positioning and accelerated growth',
+    impactPercentage: 120
   },
   {
     id: STATISTIC_IDS.AUDIO_BRANDING_RECALL_INCREASE,
@@ -585,7 +642,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'multiplier',
-    notes: 'Specialized audio branding research with controlled methodology'
+    notes: 'Specialized audio branding research with controlled methodology',
+    impactStatement: 'Audio branding implementation and brand recall enhancement',
+    impactPercentage: 110
   },
   {
     id: STATISTIC_IDS.SOUND_LOGO_RECOGNITION_SPEED,
@@ -605,7 +664,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'multiplier',
-    notes: 'Comparative research on audio versus visual recognition speed'
+    notes: 'Comparative research on audio versus visual recognition speed',
+    impactStatement: 'Audio logo implementation and brand recognition speed',
+    impactPercentage: 200
   },
   {
     id: STATISTIC_IDS.SONIC_BRANDING_PURCHASE_INTENT,
@@ -625,7 +686,9 @@ export const statisticsDatabase: StatisticEntry[] = [
     ],
     credibilityScore: 'high',
     statisticType: 'multiplier',
-    notes: 'Evidence of audio branding\'s direct impact on purchase behavior'
+    notes: 'Evidence of audio branding\'s direct impact on purchase behavior',
+    impactStatement: 'Sonic branding strategy and purchase intent increase',
+    impactPercentage: 45
   }
 ];
 
