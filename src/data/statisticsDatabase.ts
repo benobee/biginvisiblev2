@@ -445,7 +445,7 @@ export const statisticsDatabase: StatisticEntry[] = [
       STATISTIC_IDS.SIGNATURE_COLOR_RECALL_ASSOCIATION
     ],
     credibilityScore: 'high',
-    statisticType: 'percentage',
+    statisticType: 'multiplier',
     notes: 'Peer-reviewed academic research on color psychology and cognition'
   },
   {
@@ -584,7 +584,7 @@ export const statisticsDatabase: StatisticEntry[] = [
       STATISTIC_IDS.SOUND_JINGLE_VALUE
     ],
     credibilityScore: 'high',
-    statisticType: 'percentage',
+    statisticType: 'multiplier',
     notes: 'Specialized audio branding research with controlled methodology'
   },
   {
@@ -624,7 +624,7 @@ export const statisticsDatabase: StatisticEntry[] = [
       STATISTIC_IDS.VIDEO_PURCHASE_CONVICTION
     ],
     credibilityScore: 'high',
-    statisticType: 'percentage',
+    statisticType: 'multiplier',
     notes: 'Evidence of audio branding\'s direct impact on purchase behavior'
   }
 ];
