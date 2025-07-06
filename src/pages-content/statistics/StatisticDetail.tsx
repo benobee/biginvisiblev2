@@ -8,8 +8,10 @@ import CTASection from '../../components/ui/CTASection';
 import ServiceCard from '../../components/ServiceCard';
 import { ExternalLink, TrendingUp, Users, Target, Zap } from 'lucide-react';
 import { initRevealAnimations } from '../../utils/animations';
-import { type StatisticEntry } from '../../data/statisticsDatabase';
+import { type StatisticEntry, getStatisticEntry } from '../../data/statisticsDatabase';
 import { services, type Service } from '../../data/services';
+import { useNavigate } from 'react-router-dom';
+import DonutChart from '../../components/ui/DonutChart';
 
 interface StatisticDetailProps {
   statistic: StatisticEntry;
@@ -246,6 +248,7 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
   const relatedServices = getRelatedServices(statistic);
   const sourceUrl = getSourceUrl(statistic.source);
   const images = getStatisticImages(statistic);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const cleanup = initRevealAnimations();
@@ -275,7 +278,6 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
               <p className="text-xl text-white/90 leading-[1.6] max-w-[600px] mb-8 reveal-text">
                 {explanation.overview}
               </p>
-              
               <div className="flex flex-wrap gap-4 reveal-text">
                 {sourceUrl && (
                   <Button 
@@ -283,7 +285,7 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
                     variant="outline" 
                     size="medium"
                     className="text-white border-white hover:bg-white hover:text-gray-900"
-                    isExternalLink
+                    
                   >
                     <ExternalLink className="w-4 h-4 mr-2" />
                     View Source
@@ -307,36 +309,122 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
           align="center"
         />
         
-        <div className="mt-16 mx-auto">
+        <div className="mt-16 mb-16 mx-auto">
           {/* Key Insights - Left Text, Right Image */}
-          <div className="mb-32 reveal-text">
+          <div className="reveal-text">
             <Grid>
-              <GridItem span={6}>
+              <GridItem span={12}>
                 <div className="pr-8">
                   <h3 className="text-3xl font-bold text-gray-900 mb-6">Key Insights</h3>
                   <p className="text-xl leading-relaxed text-gray-700 mb-6">
                     {statistic.synopsis}
                   </p>
-                  <p className="text-lg leading-relaxed text-gray-600">
-                    This statistic reveals important patterns in consumer behavior that smart businesses can leverage to build stronger market positions and drive sustainable growth.
-                  </p>
-                </div>
-              </GridItem>
-              <GridItem span={6}>
-                <div className="relative h-80 rounded-2xl overflow-hidden shadow-lg">
-                  <img 
-                    src={images.insights} 
-                    alt="Business insights and data analysis"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                 </div>
               </GridItem>
             </Grid>
           </div>
+        </div>
+      {/* Related Findings Section */}
+      {statistic.relatedFindings.length > 0 && (
+        <div>
+         <h3 className="text-3xl font-bold text-gray-900">Supporting research confirms this insight</h3>
+          <div className="mt-16 mx-auto">
+            <div className="prose prose-lg max-w-none">
+              <p className="text-xl leading-relaxed text-gray-700 mb-8">
+                  The {statistic.percentage}% figure we've explored becomes even more compelling when we look at supporting research. 
+                  Multiple studies have examined this phenomenon from different angles, each adding crucial context to our understanding.
+              </p>
+              <Grid className="reveal-text" columns={1}>                
+                {statistic.relatedFindings.map((relatedId, index) => {
+                  const relatedStatistic = getStatisticEntry(relatedId);
+                  if (!relatedStatistic) return null;
+                  
+                  const connectors = [
+                    "Additionally, let's look at another statistic",
+                    "Building on this trend, research brings further evidence",
+                    "This pattern is reinforced by findings that",
+                    "Further supporting this insight,"
+                  ];
+                  
+                  return (
+                    <GridItem key={relatedId} className="last:mb-0">
 
+                      <div className="bg-white rounded-xl pt-8 pl-8 pr-8 pb-3 border-l-4 border-accent shadow-sm">
+                        <div className='flex flex-auto'>
+                        <div className='h-32 w-1/4'>
+                          <DonutChart percentage={relatedStatistic.percentage} size="medium" />
+                        </div>
+                        <p className="text-lg text-gray-700 leading-relaxed mb-6 w-3/4">
+                          {index < connectors.length ? connectors[index] : `Research also reveals an important insight from ${relatedStatistic.source}`}. 
+                          {' '}{relatedStatistic.synopsis} 
+                        </p>
+                        </div>
+                        
+                        {/* Metadata section */}
+                        <div className="border-t border-gray-100 pt-6 pb-4">
+                          <div className="flex items-center justify-between text-sm text-gray-500">
+                            <div className="flex items-center gap-4">
+                              <span>Source: {relatedStatistic.source}</span>
+                              {relatedStatistic.sourceUrl && (
+                                <a 
+                                  href={relatedStatistic.sourceUrl} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-accent hover:text-accent-dark transition-colors"
+                                >
+                                  <ExternalLink className="w-3 h-3" />
+                                  View Source
+                                </a>
+                              )}
+                            </div>
+                          <div className="flex items-end justify-end">
+                              <Button 
+                                variant="primaryInverse" 
+                                size="small"
+                                onClick={() => {
+                                  navigate(`/stat-detail?id=${relatedStatistic.id}`)
+                                  window.scrollTo({ top: 0, behavior: 'instant' });
+                                }}
+                              >
+                                Explore this insight →
+                              </Button>
+                          </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+                    
+                    </GridItem>
+                  );
+                })}
+                
+              </Grid>
+               <div className="flex justify-center my-8">
+                    <div className="w-12 h-0.5 bg-gray-200"></div>
+              </div>
+               <div className="mt-12 p-6 bg-accent/5 rounded-xl border border-accent/20">
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    <strong>The collective insight:</strong> These interconnected findings paint a comprehensive picture of current market dynamics. 
+                    When viewed together, they reveal patterns that individual statistics might miss, providing a more complete foundation for strategic decision-making.
+                  </p>
+                </div>
+            </div>
+          </div>
+        </div>
+      )}
+      </Section>
+
+            {/* What It Means Section */}
+      <Section background="primary">
+        <SectionHeader
+          subtitle="Using on the data"
+          title="How it relates to your brand"
+          align="center"
+        />
+        
+        <div className="mt-16 mx-auto">
           {/* Why This Matters - Right Text, Left Image */}
-          <div className="mb-32 reveal-text">≈
+          <div className="mb-32 reveal-text">
             <Grid>
               <GridItem span={6}>
                 <div className="relative h-80 rounded-2xl overflow-hidden shadow-lg">
@@ -420,7 +508,7 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
 
       {/* Related Services Section */}
       {relatedServices.length > 0 && (
-        <Section background="primary">
+        <Section background="light">
           <SectionHeader
             subtitle="Related services"
             title="How we can help you leverage this insight"

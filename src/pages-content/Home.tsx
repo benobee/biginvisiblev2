@@ -117,13 +117,24 @@ const Home = () => {
         
         <div className="mt-16 reveal-text">
           <StatisticsGrid
-            randomCount={6}
+            randomCount={3}
             columns={3}
-            gap="large"
+            gap="small"
             variant="default"
             showSource={false}
             clickable={true}
           />
+        </div>
+        
+        <div className="mt-8 text-center">
+          <Button 
+            to="/statistics" 
+            variant="outline" 
+            size="medium"
+            className="reveal-text"
+          >
+            See more statistics
+          </Button>
         </div>
       </Section>
 
