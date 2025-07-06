@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
-import { UserRound } from 'lucide-react';
+import { Users, TrendingUp } from 'lucide-react';
 
 interface DonutChartProps {
   percentage: number;
-  variant?: 'default' | 'people' | 'pie';
+  variant?: 'default' | 'people' | 'pie' | 'icon';
   size?: 'small' | 'medium' | 'large' | 'xlarge';
   color?: 'accent' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
   textSize?: 'small' | 'medium' | 'large' | 'xlarge';
@@ -12,6 +12,7 @@ interface DonutChartProps {
   label?: string;
   animated?: boolean;
   className?: string;
+  statisticType?: 'percentage' | 'multiplier' | 'ratio' | 'count';
 }
 
 const DonutChart = ({ 
@@ -24,7 +25,8 @@ const DonutChart = ({
   showLabel = false,
   label = '',
   animated = true,
-  className = ''
+  className = '',
+  statisticType = 'percentage'
 }: DonutChartProps) => {
   const [currentPercentage, setCurrentPercentage] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
@@ -177,7 +179,7 @@ const DonutChart = ({
       <div ref={chartRef} className={`flex flex-col items-center ${className}`}>
         <div className="flex flex-wrap justify-center mb-4">
           {Array.from({ length: totalPeople }, (_, index) => (
-            <UserRound
+            <Users
               size={config.centerSize}
               key={index}
               className={`${index < activePeople ? colors.peopleActive : colors.peopleInactive
@@ -264,6 +266,32 @@ const DonutChart = ({
     );
   }
 
+  // Icon only variant (for multiplier types)
+  if (variant === 'icon') {
+    const iconSize = config.containerSize * 0.4; // 40% of container size
+    
+    return (
+      <div ref={chartRef} className={`flex flex-col items-center justify-center ${className}`}>
+        <div 
+          className="flex items-center justify-center"
+          style={{ width: config.containerSize, height: config.containerSize }}
+        >
+          <TrendingUp 
+            size={iconSize}
+            className={`${colors.text} opacity-90`}
+            strokeWidth={2.5}
+          />
+        </div>
+        
+        {showLabel && label && (
+          <div className="text-sm text-gray-600 mt-2 text-center">
+            {label}
+          </div>
+        )}
+      </div>
+    );
+  }
+
   // Default donut chart variant
   return (
     <div ref={chartRef} className={`flex flex-col items-center ${className}`}>
@@ -300,11 +328,13 @@ const DonutChart = ({
           />
         </svg>
         
-        {/* Center percentage text */}
+        {/* Center icon */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className={`${textClass} font-bold ${colors.text}`}>
-            {currentPercentage}%
-          </div>
+          <Users 
+            size={config.centerSize}
+            className={`${colors.text} opacity-90`}
+            strokeWidth={2.5}
+          />
         </div>
       </div>
       
