@@ -65,33 +65,6 @@ const StatisticBrowseCard = ({
             </span>
           ))}
         </div>
-        
-        {/* Verification Status */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            {statistic.verified && (
-              <>
-                <CheckCircle className="w-4 h-4 text-green-500" />
-                <span className="text-xs text-green-600 font-medium">Verified</span>
-              </>
-            )}
-            {!statistic.verified && (
-              <span className="text-xs text-gray-500">Unverified</span>
-            )}
-          </div>
-          
-          {/* Credibility Score */}
-          <div className="flex items-center gap-1">
-            <span className="text-xs text-gray-500">Credibility:</span>
-            <span className={`text-xs font-medium ${
-              statistic.credibilityScore === 'high' ? 'text-green-600' :
-              statistic.credibilityScore === 'medium' ? 'text-yellow-600' :
-              'text-red-600'
-            }`}>
-              {statistic.credibilityScore}
-            </span>
-          </div>
-        </div>
       </div>
     </div>
   );
