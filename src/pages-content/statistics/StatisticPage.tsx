@@ -1,11 +1,14 @@
-import { useLocation } from 'react-router-dom';
 import StatisticDetail from './StatisticDetail';
 import { getStatisticEntry } from '../../data/statisticsDatabase';
 
-const StatisticPage = () => {
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const statisticId = searchParams.get('id');
+interface StatisticPageProps {
+  currentPath?: string;
+}
+
+const StatisticPage = ({ currentPath }: StatisticPageProps) => {
+  // Extract query params from the current URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const statisticId = urlParams.get('id');
   
   if (!statisticId) {
     return (

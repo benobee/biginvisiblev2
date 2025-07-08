@@ -137,9 +137,10 @@ const getTestimonials = () => [
 
 interface ServiceTemplateProps {
   service: Service;
+  currentPath?: string;
 }
 
-const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
+const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service, currentPath }) => {
   const carouselImages = getCarouselImages(service.id);
   const testimonials = getTestimonials();
   
@@ -158,7 +159,7 @@ const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
   
   return (
     <div className="flex min-h-screen">
-      <ServiceSidebar currentServiceId={service.id} />
+      <ServiceSidebar currentServiceId={service.id} currentPath={currentPath} />
       
       <main className="flex-1 ml-0 md:ml-[280px]">
         <Section background="primary" className="min-h-[85vh] !bg-[#0F1923] text-white flex items-center relative overflow-hidden pt-[120px] pb-[60px]">

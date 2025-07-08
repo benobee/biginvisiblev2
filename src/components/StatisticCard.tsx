@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import type { BrandingStatistic } from '../data/brandingStatistics';
+import type { StatisticEntry } from '../data/statisticsDatabase';
 
 interface StatisticCardProps {
-  statistic: BrandingStatistic;
+  statistic: StatisticEntry;
   variant?: 'default' | 'large' | 'minimal' | 'featured';
   showSource?: boolean;
   className?: string;
@@ -21,7 +20,6 @@ const StatisticCard = ({
   const [hasAnimated, setHasAnimated] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -106,7 +104,7 @@ const StatisticCard = ({
 
   const handleClick = () => {
     if (clickable) {
-      navigate(`/stat-detail?id=${statistic.id}`);
+      window.location.href = `/stat-detail?id=${statistic.id}`;
     }
   };
 

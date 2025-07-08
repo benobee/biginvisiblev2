@@ -3,12 +3,13 @@ import Footer from './Footer';
 
 interface LayoutProps {
   children: React.ReactNode;
+  currentPath?: string;
 }
 
-const Layout = ({ children }: LayoutProps) => {
+const Layout = ({ children, currentPath }: LayoutProps) => {
   return (
     <div>
-      <Header />
+      <Header currentPath={currentPath} />
       <main className="min-h-[calc(100vh-100px)] w-full transition-colors duration-300">
         {children}
       </main>

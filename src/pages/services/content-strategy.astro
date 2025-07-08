@@ -1,0 +1,13 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageWrapper from '../../PageWrapper';
+import ContentStrategy from '../../pages-content/services/ContentStrategy';
+
+const currentPath = Astro.url.pathname;
+---
+
+<Layout title="Content Strategy - Big Invisible" description="Strategic content planning and development." keywords="content strategy, content planning, content development">
+	<PageWrapper client:load currentPath={currentPath}>
+		<ContentStrategy currentPath={currentPath} />
+	</PageWrapper>
+</Layout>

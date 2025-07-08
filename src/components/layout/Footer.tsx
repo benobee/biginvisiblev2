@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styles from './Footer.module.css';
 
 const Footer = () => {
@@ -38,25 +37,25 @@ const Footer = () => {
           <div className={styles.footerColumn}>
             <h4>Navigation</h4>
             <ul className={styles.footerLinks}>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/about">About</Link></li>
-              <li><Link to="/process">Process</Link></li>
-              <li><Link to="/services">Services</Link></li>
-              <li><Link to="/work">Work</Link></li>
-              <li><Link to="/statistics">Statistics</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/process">Process</a></li>
+              <li><a href="/services">Services</a></li>
+              <li><a href="/work">Work</a></li>
+              <li><a href="/statistics">Statistics</a></li>
+              <li><a href="/contact">Contact</a></li>
             </ul>
           </div>
           
           <div className={styles.footerColumn}>
             <h4>Services</h4>
             <ul className={styles.footerLinks}>
-              <li><Link to="/services/brand-strategy">Brand Strategy</Link></li>
-              <li><Link to="/services/visual-identity">Visual Identity</Link></li>
-              <li><Link to="/services/digital-experience">Digital Experience</Link></li>
-              <li><Link to="/services/content-strategy">Content Strategy</Link></li>
-              <li><Link to="/services/brand-architecture">Brand Architecture</Link></li>
-              <li><Link to="/services/community-building">Community Building</Link></li>
+              <li><a href="/services/brand-strategy">Brand Strategy</a></li>
+              <li><a href="/services/visual-identity">Visual Identity</a></li>
+              <li><a href="/services/digital-experience">Digital Experience</a></li>
+              <li><a href="/services/content-strategy">Content Strategy</a></li>
+              <li><a href="/services/brand-architecture">Brand Architecture</a></li>
+              <li><a href="/services/community-building">Community Building</a></li>
             </ul>
           </div>
           
@@ -73,9 +72,9 @@ const Footer = () => {
         <div className={styles.copyright}>
           <div>© {currentYear} Big Invisible. All rights reserved.</div>
           <div className={styles.legalLinks}>
-            <Link to="/privacy">Privacy Policy</Link>
-            <Link to="/terms">Terms of Service</Link>
-            <Link to="/sitemap">Sitemap</Link>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
+            <a href="/sitemap">Sitemap</a>
           </div>
         </div>
       </div>

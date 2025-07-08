@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../PageWrapper';
+import ProcessPage from '../pages-content/Process';
+
+const currentPath = Astro.url.pathname;
+---
+
+<Layout title="Process - Big Invisible" description="Our proven process for creating powerful brands that resonate." keywords="biginvisible, process, branding process, methodology">
+	<PageWrapper client:load currentPath={currentPath}>
+		<ProcessPage currentPath={currentPath} />
+	</PageWrapper>
+</Layout>

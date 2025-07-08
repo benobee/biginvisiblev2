@@ -17,7 +17,11 @@ import {
   AdaptiveEvolutionIcon
 } from '../components/ui/ProcessIcons';
 
-const Process = () => {
+interface ProcessProps {
+  currentPath?: string;
+}
+
+const Process = ({ currentPath }: ProcessProps) => {
   useEffect(() => {
     const cleanup = initRevealAnimations();
     return cleanup;

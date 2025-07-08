@@ -1,0 +1,13 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageWrapper from '../../PageWrapper';
+import CommunityBuildingPage from '../../pages-content/services/CommunityBuilding';
+
+const currentPath = Astro.url.pathname;
+---
+
+<Layout title="Community Building - Big Invisible" description="Building engaged communities around your brand." keywords="community building, brand community, engagement">
+	<PageWrapper client:load currentPath={currentPath}>
+		<CommunityBuildingPage currentPath={currentPath} />
+	</PageWrapper>
+</Layout>

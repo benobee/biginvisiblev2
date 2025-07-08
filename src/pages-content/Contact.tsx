@@ -28,7 +28,11 @@ interface QuestionnaireData {
   additionalInfo: string;
 }
 
-const Contact = () => {
+interface ContactProps {
+  currentPath?: string;
+}
+
+const Contact = ({ currentPath }: ContactProps) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<QuestionnaireData>({
     name: '',

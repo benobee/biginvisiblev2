@@ -10,7 +10,11 @@ import { initRevealAnimations } from '../utils/animations';
 import { projects } from '../data/projects';
 import { caseStudies } from '../data/caseStudies';
 
-const Work = () => {
+interface WorkProps {
+  currentPath?: string;
+}
+
+const Work = ({ currentPath }: WorkProps) => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [filteredProjects, setFilteredProjects] = useState(projects);
   

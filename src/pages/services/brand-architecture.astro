@@ -1,0 +1,13 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageWrapper from '../../PageWrapper';
+import BrandArchitecture from '../../pages-content/services/BrandArchitecture';
+
+const currentPath = Astro.url.pathname;
+---
+
+<Layout title="Brand Architecture - Big Invisible" description="Comprehensive brand architecture and structure." keywords="brand architecture, brand structure, brand hierarchy">
+	<PageWrapper client:load currentPath={currentPath}>
+		<BrandArchitecture currentPath={currentPath} />
+	</PageWrapper>
+</Layout>

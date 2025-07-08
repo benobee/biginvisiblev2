@@ -1,5 +1,4 @@
 import { useEffect, useRef, useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { ThemeModeContext } from './ThemeModeContext';
 import { initRevealAnimations } from '../utils/animations';
 import styles from './HomePageHero.module.css';
@@ -45,18 +44,18 @@ const HomePageHero = () => {
               Transform your business into a trusted authority through our systematic approach — where strategic brand architecture meets meaningful community impact.
             </p>
             <div className="reveal-text flex flex-wrap gap-4">
-              <Link 
-                to="/contact" 
+              <a 
+                href="/contact" 
                 className="inline-block bg-accent text-white px-8 py-4 font-medium text-sm uppercase tracking-wider transition-all duration-300 border border-accent hover:bg-transparent hover:text-accent no-underline"
               >
                 Start a project
-              </Link>
-              <Link 
-                to="/work" 
+              </a>
+              <a 
+                href="/work" 
                 className="inline-block bg-transparent text-white px-8 py-4 font-medium text-sm uppercase tracking-wider transition-all duration-300 border border-white/20 hover:border-white no-underline"
               >
                 View our work
-              </Link>
+              </a>
             </div>
           </div>
         </div>

@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../PageWrapper';
+import StatisticPage from '../pages-content/statistics/StatisticPage';
+
+const currentPath = Astro.url.pathname;
+---
+
+<Layout title="Statistic - Big Invisible" description="Understand branding statistics. Discover insights on brand strategy, visual identity, digital experience, and more." keywords="branding statistics, brand insights, marketing data, brand strategy, visual identity, digital experience, content strategy, community building, brand architecture">
+	<PageWrapper client:load currentPath={currentPath}>
+		<StatisticPage currentPath={currentPath} />
+	</PageWrapper>
+</Layout>

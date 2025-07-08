@@ -1,11 +1,9 @@
-import { Link } from 'react-router-dom';
-
 interface ButtonProps {
   variant?: 'primary' | 'secondary' | 'outline' | 'text' | 'primaryInverse';
   isExternalLink?: boolean;
   size?: 'small' | 'medium' | 'large';
   fullWidth?: boolean;
-  as?: React.ElementType; // 'button' | 'a' | 'Link'
+  as?: React.ElementType; // 'button' | 'a'
   to?: string;
   href?: string;
   onClick?: () => void;
@@ -51,13 +49,13 @@ const Button = ({
   
   if (to) {
     return (
-      <Link
-        to={to}
+      <a
+        href={to}
         className={buttonClasses}
         {...props}
       >
         {children}
-      </Link>
+      </a>
     );
   }
   

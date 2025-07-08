@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import type { Service } from '../data/services';
 
@@ -17,15 +16,15 @@ const ServiceCard = ({ service, className = '', variant = 'services' }: ServiceC
         <p className="text-gray-medium mb-6 leading-relaxed">
           {service.shortDescription}
         </p>
-        <Link 
-          to={`/services/${service.id}`} 
+        <a 
+          href={`/services/${service.id}`} 
           className="inline-flex items-center text-brand-accent hover:text-brand-dark transition-colors duration-150 font-medium group"
         >
           Learn more
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-2 transition-transform group-hover:translate-x-1">
             <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="currentColor"/>
           </svg>
-        </Link>
+        </a>
       </div>
     );
   }
@@ -59,13 +58,13 @@ const ServiceCard = ({ service, className = '', variant = 'services' }: ServiceC
       </ul>
       
       {/* Learn More Link */}
-      <Link 
-        to={`/services/${service.id}`} 
+      <a 
+        href={`/services/${service.id}`} 
         className="mt-auto inline-flex items-center text-accent text-sm font-medium no-underline group hover:text-accent-dark transition-colors duration-150"
       >
         Learn more
         <ArrowRight className="w-4 h-4 ml-1 transition-transform duration-150 group-hover:translate-x-1" />
-      </Link>
+      </a>
     </div>
   );
 };

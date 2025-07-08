@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../PageWrapper';
+import About from '../pages-content/About';
+
+const currentPath = Astro.url.pathname;
+---
+
+<Layout title="About - Big Invisible" description="What makes us tick? Learn more about our mission and values." keywords="biginvisible, about, mission, values">
+	<PageWrapper client:load currentPath={currentPath}>
+		<About currentPath={currentPath} />
+	</PageWrapper>
+</Layout>

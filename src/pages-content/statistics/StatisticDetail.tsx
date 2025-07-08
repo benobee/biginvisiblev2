@@ -10,7 +10,6 @@ import { ExternalLink, TrendingUp, Users, Target, Zap } from 'lucide-react';
 import { initRevealAnimations } from '../../utils/animations';
 import { type StatisticEntry, getStatisticEntry } from '../../data/statisticsDatabase';
 import { services, type Service } from '../../data/services';
-import { useNavigate } from 'react-router-dom';
 import DonutChart from '../../components/ui/DonutChart';
 
 interface StatisticDetailProps {
@@ -248,7 +247,6 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
   const relatedServices = getRelatedServices(statistic);
   const sourceUrl = getSourceUrl(statistic.source);
   const images = getStatisticImages(statistic);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const cleanup = initRevealAnimations();
@@ -387,8 +385,7 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
                                 variant="primaryInverse" 
                                 size="small"
                                 onClick={() => {
-                                  navigate(`/stat-detail?id=${relatedStatistic.id}`)
-                                  window.scrollTo({ top: 0, behavior: 'instant' });
+                                  window.location.href = `/stat-detail?id=${relatedStatistic.id}`;
                                 }}
                               >
                                 Explore this insight →

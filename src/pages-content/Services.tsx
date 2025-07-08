@@ -9,7 +9,11 @@ import ServiceCard from '../components/ServiceCard';
 import { initRevealAnimations } from '../utils/animations';
 import { services } from '../data/services';
 
-const Services = () => {
+interface ServicesProps {
+  currentPath?: string;
+}
+
+const Services = ({ currentPath }: ServicesProps) => {
   useEffect(() => {
     const cleanup = initRevealAnimations();
     return cleanup;

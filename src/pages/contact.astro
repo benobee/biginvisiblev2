@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../PageWrapper';
+import Contact from '../pages-content/Contact';
+
+const currentPath = Astro.url.pathname;
+---
+
+<Layout title="Contact - Big Invisible" description="Get in touch with Big Invisible for your branding and design needs." keywords="biginvisible, contact, get in touch, branding consultation">
+	<PageWrapper client:load currentPath={currentPath}>
+		<Contact currentPath={currentPath} />
+	</PageWrapper>
+</Layout>

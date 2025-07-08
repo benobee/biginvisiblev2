@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { CheckCircle } from 'lucide-react';
 import type { StatisticEntry } from '../data/statisticsDatabase';
 
@@ -11,10 +10,8 @@ const StatisticBrowseCard = ({
   statistic, 
   className = ''
 }: StatisticBrowseCardProps) => {
-  const navigate = useNavigate();
-
   const handleClick = () => {
-    navigate(`/stat-detail?id=${statistic.id}`);
+    window.location.href = `/stat-detail?id=${statistic.id}`;
   };
 
   const categoryInfo = {

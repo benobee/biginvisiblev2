@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import styles from './Header.module.css';
 
-const Header = () => {
+interface HeaderProps {
+  currentPath?: string;
+}
+
+const Header = ({ currentPath = '/' }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation();
   
   // Hide navigation on individual service pages
-  const isServicePage = location.pathname.startsWith('/services/');
+  const isServicePage = currentPath.startsWith('/services/') && currentPath !== '/services';
   
   useEffect(() => {
     const handleScroll = () => {
@@ -31,7 +33,7 @@ const Header = () => {
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.headerContainer}>
         <nav className={styles.nav}>
-          <Link to="/" className={styles.logo} />
+          <a href="/" className={styles.logo} />
           
           <button 
             className={`${styles.menuButton}`} 
@@ -44,44 +46,44 @@ const Header = () => {
           
           <ul className={`${styles.navLinks}`}>
             <li>
-              <Link 
-                to="/about" 
-                className={`${styles.navLink} ${location.pathname === '/about' ? styles.active : ''}`}
+              <a 
+                href="/about" 
+                className={`${styles.navLink} ${currentPath === '/about' ? styles.active : ''}`}
               >
                 About
-              </Link>
+              </a>
             </li>
             <li>
-              <Link 
-                to="/process" 
-                className={`${styles.navLink} ${location.pathname === '/process' ? styles.active : ''}`}
+              <a 
+                href="/process" 
+                className={`${styles.navLink} ${currentPath === '/process' ? styles.active : ''}`}
               >
                 Process
-              </Link>
+              </a>
             </li>
             <li>
-              <Link 
-                to="/services" 
-                className={`${styles.navLink} ${location.pathname === '/services' ? styles.active : ''}`}
+              <a 
+                href="/services" 
+                className={`${styles.navLink} ${currentPath === '/services' ? styles.active : ''}`}
               >
                 Services
-              </Link>
+              </a>
             </li>
             <li>
-              <Link 
-                to="/work" 
-                className={`${styles.navLink} ${location.pathname === '/work' ? styles.active : ''}`}
+              <a 
+                href="/work" 
+                className={`${styles.navLink} ${currentPath === '/work' ? styles.active : ''}`}
               >
                 Work
-              </Link>
+              </a>
             </li>
             <li>
-              <Link 
-                to="/contact" 
-                className={`${styles.ctaButton} ${location.pathname === '/contact' ? styles.active : ''}`}
+              <a 
+                href="/contact" 
+                className={`${styles.ctaButton} ${currentPath === '/contact' ? styles.active : ''}`}
               >
                 Contact
-              </Link>
+              </a>
             </li>
           </ul>
         </nav>

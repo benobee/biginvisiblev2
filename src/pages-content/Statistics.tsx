@@ -43,7 +43,11 @@ const categoryInfo = {
   }
 };
 
-const Statistics = () => {
+interface StatisticsProps {
+  currentPath?: string;
+}
+
+const Statistics = ({ currentPath }: StatisticsProps) => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<'percentage' | 'credibility'>('percentage');
   const [showVerifiedOnly, setShowVerifiedOnly] = useState(false);
