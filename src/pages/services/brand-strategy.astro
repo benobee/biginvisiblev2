@@ -1,13 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageWrapper from '../../PageWrapper';
-import BrandStrategy from '../../pages-content/services/BrandStrategy';
+import BrandStrategyPage from '../../pages-content/services/BrandStrategy';
 
 const currentPath = Astro.url.pathname;
 ---
 
 <Layout title="Brand Strategy - Big Invisible" description="Strategic brand development and positioning services." keywords="brand strategy, brand positioning, brand development">
 	<PageWrapper client:load currentPath={currentPath}>
-		<BrandStrategy currentPath={currentPath} />
+		<BrandStrategyPage currentPath={currentPath} />
 	</PageWrapper>
 </Layout>

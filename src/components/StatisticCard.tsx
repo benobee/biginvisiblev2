@@ -101,19 +101,16 @@ const StatisticCard = ({
   };
 
   const classes = getVariantClasses();
-
-  const handleClick = () => {
-    if (clickable) {
-      window.location.href = `/stat-detail?id=${statistic.id}`;
-    }
-  };
+  const cardProps = clickable 
+    ? { href: `/stat-detail?id=${statistic.id}`, className: `${classes.container} ${className} reveal-text no-underline` }
+    : { className: `${classes.container} ${className} reveal-text` };
 
   return (
     <div 
       ref={cardRef} 
-      className={`${classes.container} ${className} reveal-text`}
-      onClick={handleClick}
+      {...cardProps}
     >
+      <a href={cardProps.href}>
       {/* Featured variant background elements */}
       {variant === 'featured' && (
         <>
@@ -140,6 +137,7 @@ const StatisticCard = ({
           </div>
         )}
       </div>
+      </a>
     </div>
   );
 };

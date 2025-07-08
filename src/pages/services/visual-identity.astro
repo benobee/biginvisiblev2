@@ -1,13 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageWrapper from '../../PageWrapper';
-import VisualIdentity from '../../pages-content/services/VisualIdentity';
+import VisualIdentityPage from '../../pages-content/services/VisualIdentity';
 
 const currentPath = Astro.url.pathname;
 ---
 
 <Layout title="Visual Identity - Big Invisible" description="Logo design and visual identity systems that make an impact." keywords="visual identity, logo design, brand identity">
 	<PageWrapper client:load currentPath={currentPath}>
-		<VisualIdentity currentPath={currentPath} />
+		<VisualIdentityPage currentPath={currentPath} />
 	</PageWrapper>
 </Layout>

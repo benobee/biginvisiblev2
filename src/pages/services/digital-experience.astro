@@ -1,13 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageWrapper from '../../PageWrapper';
-import DigitalExperience from '../../pages-content/services/DigitalExperience';
+import DigitalExperiencePage from '../../pages-content/services/DigitalExperience';
 
 const currentPath = Astro.url.pathname;
 ---
 
 <Layout title="Digital Experience - Big Invisible" description="User-centered digital experiences and web design." keywords="digital experience, web design, UX design">
 	<PageWrapper client:load currentPath={currentPath}>
-		<DigitalExperience currentPath={currentPath} />
+		<DigitalExperiencePage currentPath={currentPath} />
 	</PageWrapper>
 </Layout>

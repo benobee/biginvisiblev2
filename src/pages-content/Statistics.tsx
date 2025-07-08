@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
-import { Filter, BarChart3, TrendingUp, Target, Palette, Monitor, FileText, Layers, Users, Search, X } from 'lucide-react';
+import { Filter, TrendingUp, Target, Palette, Monitor, FileText, Layers, Users, Search, X } from 'lucide-react';
 import { statisticsDatabase, getStatisticsByCategory, getDatabaseSummary } from '../data/statisticsDatabase';
 import StatisticBrowseCard from '../components/StatisticBrowseCard';
 import Grid from '../components/ui/Grid';

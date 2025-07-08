@@ -10,9 +10,6 @@ const StatisticBrowseCard = ({
   statistic, 
   className = ''
 }: StatisticBrowseCardProps) => {
-  const handleClick = () => {
-    window.location.href = `/stat-detail?id=${statistic.id}`;
-  };
 
   const categoryInfo = {
     'brand-strategy': 'Brand Strategy',
@@ -28,9 +25,9 @@ const StatisticBrowseCard = ({
   };
 
   return (
-    <div 
-      className={`bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 cursor-pointer hover:-translate-y-1 h-full flex flex-col ${className}`}
-      onClick={handleClick}
+    <a 
+      href={`/stat-detail?id=${statistic.id}`}
+      className={`bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 cursor-pointer hover:-translate-y-1 h-full flex flex-col no-underline ${className}`}
     >
       {/* Main Content */}
       <div className="flex-grow">
@@ -63,7 +60,7 @@ const StatisticBrowseCard = ({
           ))}
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 

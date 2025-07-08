@@ -379,9 +379,7 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
                               <Button 
                                 variant="primaryInverse" 
                                 size="small"
-                                onClick={() => {
-                                  window.location.href = `/stat-detail?id=${relatedStatistic.id}`;
-                                }}
+                                to={`/stat-detail?id=${relatedStatistic.id}`}
                               >
                                 Explore this insight →
                               </Button>

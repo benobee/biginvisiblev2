@@ -1,13 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageWrapper from '../PageWrapper';
-import Services from '../pages-content/Services';
+import ServicesPage from '../pages-content/Services';
 
 const currentPath = Astro.url.pathname;
 ---
 
 <Layout title="Services - Big Invisible" description="Comprehensive branding and design services to elevate your business." keywords="biginvisible, services, branding, design, strategy">
 	<PageWrapper client:load currentPath={currentPath}>
-		<Services currentPath={currentPath} />
+		<ServicesPage currentPath={currentPath} />
 	</PageWrapper>
 </Layout>

@@ -119,7 +119,7 @@ const Home = ({ currentPath }: HomeProps) => {
             gap="small"
             variant="default"
             showSource={false}
-            clickable={true}
+            clickable
           />
         </div>
         

@@ -1,16 +1,15 @@
+import { useEffect, useState } from 'react';
 import StatisticDetail from './StatisticDetail';
 import { getStatisticEntry } from '../../data/statisticsDatabase';
 
 interface StatisticPageProps {
   currentPath?: string;
+  statisticId?: string | null;
 }
 
-const StatisticPage = ({ currentPath }: StatisticPageProps) => {
-  // Extract query params from the current URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const statisticId = urlParams.get('id');
+const StatisticPage = ({ currentPath, statisticId: propStatisticId }: StatisticPageProps) => {
   
-  if (!statisticId) {
+  if (!propStatisticId) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -21,7 +20,7 @@ const StatisticPage = ({ currentPath }: StatisticPageProps) => {
     );
   }
   
-  const statistic = getStatisticEntry(statisticId);
+  const statistic = getStatisticEntry(propStatisticId);
   
   if (!statistic) {
     return (
