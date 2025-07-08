@@ -74,6 +74,7 @@ const Button = ({
   
   return (
     <Component
+      type={Component === 'button' ? 'button' : undefined}
       onClick={onClick}
       className={buttonClasses}
       {...props}

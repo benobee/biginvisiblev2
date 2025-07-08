@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { setTheme } from './utils/theme';
+import { initRevealAnimations } from './utils/animations';
 import Layout from './components/layout/Layout';
 import './styles/globals.css';
 import { ThemeModeContext } from './components/ThemeModeContext';
@@ -50,6 +51,12 @@ function PageWrapper({ children, currentPath }: PageWrapperProps) {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [currentPath]);
+
+  // Initialize animations globally
+  useEffect(() => {
+    const cleanup = initRevealAnimations();
+    return cleanup;
+  }, []);
 
   return (
     <ThemeModeContext.Provider value={{ isLightMode, setIsLightMode, isHomePage }}>

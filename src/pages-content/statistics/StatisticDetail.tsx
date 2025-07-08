@@ -7,7 +7,6 @@ import Button from '../../components/ui/Button';
 import CTASection from '../../components/ui/CTASection';
 import ServiceCard from '../../components/ServiceCard';
 import { ExternalLink, TrendingUp, Users, Target, Zap } from 'lucide-react';
-import { initRevealAnimations } from '../../utils/animations';
 import { type StatisticEntry, getStatisticEntry } from '../../data/statisticsDatabase';
 import { services, type Service } from '../../data/services';
 import DonutChart from '../../components/ui/DonutChart';
@@ -248,10 +247,6 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
   const sourceUrl = getSourceUrl(statistic.source);
   const images = getStatisticImages(statistic);
 
-  useEffect(() => {
-    const cleanup = initRevealAnimations();
-    return cleanup;
-  }, []);
 
   return (
     <>

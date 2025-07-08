@@ -7,7 +7,6 @@ import Button from '../../components/ui/Button';
 import CTASection from '../../components/ui/CTASection';
 import ServiceCarousel from '../../components/ServiceCarousel';
 import TimelineStep from '../../components/TimelineStep';
-import { initRevealAnimations } from '../../utils/animations';
 import ServiceSidebar from './ServiceSidebar';
 import { type Service } from '../../data/services';
 import ImpactStatisticsGrid from '../../components/ImpactStatisticsGrid';
@@ -152,10 +151,6 @@ const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service, currentPath 
     ctaText: generateCTAText(feature.title)
   }));
   
-  useEffect(() => {
-    const cleanup = initRevealAnimations();
-    return cleanup;
-  }, []);
   
   return (
     <div className="flex min-h-screen">

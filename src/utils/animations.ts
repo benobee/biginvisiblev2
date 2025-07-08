@@ -3,25 +3,38 @@
  * This function adds the 'visible' class to elements when they enter the viewport
  */
 export const initRevealAnimations = () => {
-  const handleScroll = () => {
-    const revealElements = document.querySelectorAll('.reveal-text');
-    
-    revealElements.forEach((element) => {
-      const elementTop = element.getBoundingClientRect().top;
-      const elementVisible = 150;
+  // Ensure DOM is ready
+  const initialize = () => {
+    const handleScroll = () => {
+      const revealElements = document.querySelectorAll('.reveal-text');
       
-      if (elementTop < window.innerHeight - elementVisible) {
-        element.classList.add('visible');
-      }
-    });
+      revealElements.forEach((element) => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+          element.classList.add('visible');
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    // Check immediately and after a short delay for SSR compatibility
+    handleScroll();
+    setTimeout(handleScroll, 100);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   };
-  
-  window.addEventListener('scroll', handleScroll);
-  handleScroll(); // Check on initial load
-  
-  return () => {
-    window.removeEventListener('scroll', handleScroll);
-  };
+
+  // If DOM is already loaded, initialize immediately
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialize);
+    return () => {}; // Return empty cleanup for consistency
+  } else {
+    return initialize();
+  }
 };
 
 /**

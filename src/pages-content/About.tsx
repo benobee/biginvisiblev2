@@ -8,17 +8,12 @@ import ValueCard from '../components/ValueCard';
 import FunFactCard from '../components/FunFactCard';
 import DataPoint from '../components/DataPoint';
 import CTASection from '../components/ui/CTASection';
-import { initRevealAnimations } from '../utils/animations';
 
 interface AboutProps {
   currentPath?: string;
 }
 
 const About = ({ currentPath }: AboutProps) => {
-  useEffect(() => {
-    const cleanup = initRevealAnimations();
-    return cleanup;
-  }, []);
   
   return (
     <>

@@ -7,7 +7,6 @@ import GridItem from '../components/ui/GridItem';
 import Button from '../components/ui/Button';
 import Section from '../components/ui/Section';
 import CTASection from '../components/ui/CTASection';
-import { initRevealAnimations } from '../utils/animations';
 
 // Category information with descriptions
 const categoryInfo = {
@@ -55,12 +54,6 @@ const Statistics = ({ currentPath }: StatisticsProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   
-  // Initialize reveal animations on component mount
-  useEffect(() => {
-    const cleanup = initRevealAnimations();
-    return cleanup;
-  }, []);
-
 
   // Close dropdown when clicking outside
   useEffect(() => {

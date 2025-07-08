@@ -3,7 +3,6 @@ import Section from '../components/ui/Section';
 import Grid from '../components/ui/Grid';
 import GridItem from '../components/ui/GridItem';
 import Button from '../components/ui/Button';
-import { initRevealAnimations } from '../utils/animations';
 
 interface QuestionnaireData {
   // Basic info
@@ -70,8 +69,25 @@ const Contact = ({ currentPath }: ContactProps) => {
   };
 
   const nextStep = () => {
+    console.log('Next button clicked, current step:', currentStep);
+    
+    // Basic validation for required fields on first step
+    if (currentStep === 0) {
+      if (!formData.name || !formData.email || !formData.company) {
+        alert('Please fill in all required fields (Name, Email, and Company) before proceeding.');
+        return;
+      }
+      // Basic email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+    }
+    
     if (currentStep < totalSteps - 1) {
       setCurrentStep(currentStep + 1);
+      console.log('Moving to step:', currentStep + 1);
     }
   };
 
@@ -120,10 +136,6 @@ const Contact = ({ currentPath }: ContactProps) => {
     return { services, packageTier };
   };
 
-  useEffect(() => {
-    const cleanup = initRevealAnimations();
-    return cleanup;
-  }, []);
 
   const questions = [
     // Step 0: Basic Info
@@ -528,18 +540,18 @@ const Contact = ({ currentPath }: ContactProps) => {
               <div className="flex justify-between mt-8">
                 <div>
                   {currentStep > 0 && (
-                    <Button variant="outline" onClick={prevStep}>
+                    <Button variant="outline" onClick={prevStep} as="button">
                       Previous
                     </Button>
                   )}
                 </div>
                 <div>
                   {currentStep < totalSteps - 1 ? (
-                    <Button variant="primary" onClick={nextStep}>
+                    <Button variant="primary" onClick={nextStep} as="button">
                       Next
                     </Button>
                   ) : (
-                    <Button variant="primary" onClick={handleSubmit}>
+                    <Button variant="primary" onClick={handleSubmit} as="button">
                       Get My Recommendations
                     </Button>
                   )}

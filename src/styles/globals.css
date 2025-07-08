@@ -168,6 +168,22 @@ section {
   transform: translateY(0);
 }
 
+/* Fallback for SSR - show text after a delay if animations haven't triggered */
+.reveal-text {
+  animation: revealFallback 0.1s ease forwards 2s;
+}
+
+.reveal-text.visible {
+  animation: none; /* Cancel fallback if properly revealed */
+}
+
+@keyframes revealFallback {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 768px) {
   html {
     font-size: 14px;

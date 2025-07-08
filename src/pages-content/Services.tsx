@@ -6,7 +6,6 @@ import GridItem from '../components/ui/GridItem';
 import Button from '../components/ui/Button';
 import CTASection from '../components/ui/CTASection';
 import ServiceCard from '../components/ServiceCard';
-import { initRevealAnimations } from '../utils/animations';
 import { services } from '../data/services';
 
 interface ServicesProps {
@@ -14,10 +13,6 @@ interface ServicesProps {
 }
 
 const Services = ({ currentPath }: ServicesProps) => {
-  useEffect(() => {
-    const cleanup = initRevealAnimations();
-    return cleanup;
-  }, []);
   
   return (
     <>

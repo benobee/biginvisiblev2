@@ -1,6 +1,5 @@
-import { useEffect, useRef, useContext } from 'react';
+import { useRef, useContext } from 'react';
 import { ThemeModeContext } from './ThemeModeContext';
-import { initRevealAnimations } from '../utils/animations';
 import styles from './HomePageHero.module.css';
 
 const HomePageHero = () => {
@@ -10,11 +9,6 @@ const HomePageHero = () => {
   const scrollToServices = () => {
     servicesRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
-  
-  useEffect(() => {
-    const cleanup = initRevealAnimations();
-    return cleanup;
-  }, []);
   
   return (
     <>

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import HomePageHero from '../components/HomePageHero';
 import Section from '../components/ui/Section';
 import SectionHeader from '../components/ui/SectionHeader';
@@ -7,18 +6,16 @@ import GridItem from '../components/ui/GridItem';
 import CTASection from '../components/ui/CTASection';
 import Button from '../components/ui/Button';
 import Quote from '../components/Quote';
-import { initRevealAnimations } from '../utils/animations';
 import Card from '../components/ui/Card';
 import StatisticsGrid from '../components/StatisticsGrid';
 import ServiceCard from '../components/ServiceCard';
 import { services } from '../data/services';
 
-const Home = () => {
-  
-  useEffect(() => {
-    const cleanup = initRevealAnimations();
-    return cleanup;
-  }, []);
+interface HomeProps {
+  currentPath?: string;
+}
+
+const Home = ({ currentPath }: HomeProps) => {
   
   return (
     <>

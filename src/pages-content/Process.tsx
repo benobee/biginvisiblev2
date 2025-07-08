@@ -7,7 +7,6 @@ import Button from '../components/ui/Button';
 import CTASection from '../components/ui/CTASection';
 import TimelineStep from '../components/TimelineStep';
 import FrameworkCard from '../components/FrameworkCard';
-import { initRevealAnimations } from '../utils/animations';
 import {
   AuthenticConnectionIcon,
   StrategicAlignmentIcon,
@@ -22,10 +21,6 @@ interface ProcessProps {
 }
 
 const Process = ({ currentPath }: ProcessProps) => {
-  useEffect(() => {
-    const cleanup = initRevealAnimations();
-    return cleanup;
-  }, []);
   
   return (
     <>

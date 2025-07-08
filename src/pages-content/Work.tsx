@@ -6,7 +6,6 @@ import GridItem from '../components/ui/GridItem';
 import Button from '../components/ui/Button';
 import CTASection from '../components/ui/CTASection';
 import Quote from '../components/Quote';
-import { initRevealAnimations } from '../utils/animations';
 import { projects } from '../data/projects';
 import { caseStudies } from '../data/caseStudies';
 
@@ -18,10 +17,6 @@ const Work = ({ currentPath }: WorkProps) => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [filteredProjects, setFilteredProjects] = useState(projects);
   
-  useEffect(() => {
-    const cleanup = initRevealAnimations();
-    return cleanup;
-  }, []);
   
   useEffect(() => {
     if (activeFilter === 'all') {
