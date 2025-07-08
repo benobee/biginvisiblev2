@@ -11,11 +11,7 @@ import StatisticsGrid from '../components/StatisticsGrid';
 import ServiceCard from '../components/ServiceCard';
 import { services } from '../data/services';
 
-interface HomeProps {
-  currentPath?: string;
-}
-
-const Home = ({ currentPath }: HomeProps) => {
+const Home = () => {
   
   return (
     <>

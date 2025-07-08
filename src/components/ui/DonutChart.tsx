@@ -28,8 +28,6 @@ const DonutChart = ({
   className = '',
   statisticType = 'percentage'
 }: DonutChartProps) => {
-  const [currentPercentage, setCurrentPercentage] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
   const chartRef = useRef<HTMLDivElement>(null);
 
   // Size configurations
@@ -121,59 +119,13 @@ const DonutChart = ({
   // Calculate circle properties
   const circumference = 2 * Math.PI * config.radius;
   const strokeDasharray = circumference;
-  const strokeDashoffset = circumference - (currentPercentage / 100) * circumference;
+  const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
-  // Intersection Observer for animation trigger
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isVisible) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (chartRef.current) {
-      observer.observe(chartRef.current);
-    }
-
-    return () => {
-      if (chartRef.current) {
-        observer.unobserve(chartRef.current);
-      }
-    };
-  }, [isVisible]);
-
-  // Animate percentage
-  useEffect(() => {
-    if (isVisible && animated) {
-      const duration = 2000;
-      const steps = 60;
-      const increment = percentage / steps;
-      const stepDuration = duration / steps;
-
-      let step = 0;
-      const timer = setInterval(() => {
-        step++;
-        const value = Math.min(increment * step, percentage);
-        setCurrentPercentage(Math.round(value));
-        
-        if (step >= steps) {
-          clearInterval(timer);
-        }
-      }, stepDuration);
-
-      return () => clearInterval(timer);
-    } else if (!animated) {
-      setCurrentPercentage(percentage);
-    }
-  }, [isVisible, percentage, animated]);
 
   // People icon variant
   if (variant === 'people') {
     const totalPeople = 10;
-    const activePeople = Math.round((currentPercentage / 100) * totalPeople);
+    const activePeople = Math.round((percentage / 100) * totalPeople);
     
     return (
       <div ref={chartRef} className={`flex flex-col items-center ${className}`}>
@@ -188,7 +140,7 @@ const DonutChart = ({
           ))}
         </div>
         <div className={`${textClass} font-bold ${colors.text} text-4xl`}>
-          {currentPercentage}%
+          {percentage}%
         </div>
         {showLabel && label && (
           <div className="text-sm text-gray-600 mt-2 text-center">
@@ -201,7 +153,7 @@ const DonutChart = ({
 
   // Pie chart variant (filled circle)
   if (variant === 'pie') {
-    const angle = (currentPercentage / 100) * 360;
+    const angle = (percentage / 100) * 360;
     const radius = config.radius;
     const centerX = config.containerSize / 2;
     const centerY = config.containerSize / 2;
@@ -243,16 +195,13 @@ const DonutChart = ({
               d={getPathData(angle)}
               fill="currentColor"
               className={colors.stroke}
-              style={{
-                transition: animated ? 'all 0.5s ease-in-out' : 'none'
-              }}
             />
           </svg>
           
           {/* Center percentage text */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className={`${textClass} font-bold text-white drop-shadow-lg`}>
-              {currentPercentage}%
+              {percentage}%
             </div>
           </div>
         </div>
@@ -322,19 +271,14 @@ const DonutChart = ({
             strokeLinecap="round"
             strokeDasharray={strokeDasharray}
             strokeDashoffset={strokeDashoffset}
-            style={{
-              transition: animated ? 'stroke-dashoffset 0.5s ease-in-out' : 'none'
-            }}
           />
         </svg>
         
-        {/* Center icon */}
+        {/* Center percentage */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <Users 
-            size={config.centerSize}
-            className={`${colors.text} opacity-90`}
-            strokeWidth={2.5}
-          />
+          <div className={`${textClass} font-bold ${colors.text}`}>
+            {percentage}%
+          </div>
         </div>
       </div>
       

@@ -38,11 +38,11 @@ const ServiceSidebar: React.FC<ServiceSidebarProps> = ({ currentPath }) => {
             }`}
           >
             <div 
-              className={`mr-3 p-2 rounded-lg bg-white border transition-all flex-shrink-0 ${
+              className={`mr-3 p-2 transition-all flex-shrink-0 ${
                 isActive ? 'border-[#ff2356]' : 'border-[#DADCE0]'
-              }`}
+              } ${isActive ? 'text-[#ff2356]' : 'text-[#9CA3AF]'}`}
             >
-              <IconComponent size={16} className={isActive ? 'text-[#ff2356]' : 'text-[#9CA3AF]'} />
+              <IconComponent size="xxs" />
             </div>
             <div className="text-left">
               <span className={`font-medium text-[14px] block ${isActive ? 'text-[#0F1923]' : 'text-[#6B7280]'}`}>

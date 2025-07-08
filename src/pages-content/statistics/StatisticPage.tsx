@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import StatisticDetail from './StatisticDetail';
 import { getStatisticEntry } from '../../data/statisticsDatabase';
 
@@ -7,7 +6,7 @@ interface StatisticPageProps {
   statisticId?: string | null;
 }
 
-const StatisticPage = ({ currentPath, statisticId: propStatisticId }: StatisticPageProps) => {
+const StatisticPage = ({ statisticId: propStatisticId }: StatisticPageProps) => {
   
   if (!propStatisticId) {
     return (

@@ -122,7 +122,7 @@ const StatisticCard = ({
       <div className="relative z-10 h-full flex flex-col justify-center text-center">
         {/* Percentage */}
         <div className={classes.percentage}>
-          {currentValue}%
+          {statistic.percentage}%
         </div>
         
         {/* Statement */}

@@ -10,7 +10,7 @@ import {
 export interface Service {
   id: string;
   title: string;
-  icon: React.ComponentType;
+  icon: React.ComponentType<{ size?: 'xxs' | 'xs' | 's' | 'l' | 'xl' | 'xxl' }>;
   shortDescription: string;
   detailedDescription: string;
   features: string[];
