@@ -161,9 +161,9 @@ const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service, currentPath 
           <Grid>
               <GridItem span={6}>
                 <div className="relative z-[3]">
-                  <h1 className="text-5xl md:text-6xl lg:text-7xl mb-6 font-bold leading-[1.1] tracking-[-0.02em] text-white reveal-text">
+                  {service.title && <h1 className="text-5xl md:text-6xl lg:text-7xl mb-6 font-bold leading-[1.1] tracking-[-0.02em] text-white reveal-text">
                     {service.title}
-                  </h1>
+                  </h1>}
                   <p className="text-lg md:text-xl lg:text-2xl mb-8 text-white/90 leading-[1.6] max-w-[650px] reveal-text">
                     {service.detailedDescription}
                   </p>
