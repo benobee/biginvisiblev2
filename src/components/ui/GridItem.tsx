@@ -1,4 +1,5 @@
 import { cn } from "../../lib/utils";
+import { useId } from "react";
 
 interface GridItemProps {
   children: React.ReactNode;
@@ -13,18 +14,28 @@ const GridItem = ({
   start,
   className,
 }: GridItemProps) => {
+  const id = useId();
+  const uniqueClass = `grid-item-${id.replace(/:/g, '-')}`;
+
+  // Create responsive styles for this specific grid item
+  const responsiveStyle = `
+    .${uniqueClass} {
+      grid-column: span 1;
+    }
+    @media (min-width: 768px) {
+      .${uniqueClass} {
+        grid-column: ${start ? `${start} / span ${span}` : `span ${span}`};
+      }
+    }
+  `;
+
   return (
-    <div
-      className={cn(
-        "md:col-span-full",
-        className
-      )}
-      style={{
-        gridColumn: start ? `${start} / span ${span}` : `span ${span}`
-      }}
-    >
-      {children}
-    </div>
+    <>
+      <style dangerouslySetInnerHTML={{ __html: responsiveStyle }} />
+      <div className={cn(uniqueClass, className)}>
+        {children}
+      </div>
+    </>
   );
 };
 

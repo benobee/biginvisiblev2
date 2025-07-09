@@ -21,21 +21,34 @@ const Grid = ({
     xxl: 'gap-48',
   };
 
+  // Create a custom style for responsive grid columns
+  const gridStyle = `
+    @media (max-width: 767px) {
+      .responsive-grid-${columns} {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+    }
+    @media (min-width: 768px) {
+      .responsive-grid-${columns} {
+        grid-template-columns: repeat(${columns}, minmax(0, 1fr));
+      }
+    }
+  `;
+
   return (
-    <div
-      className={cn(
-        'grid',
-        `grid-cols-${columns}`,
-        'md:grid-cols-4',
-        gapClasses[gap],
-        className
-      )}
-      style={{
-        gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`
-      }}
-    >
-      {children}
-    </div>
+    <>
+      <style dangerouslySetInnerHTML={{ __html: gridStyle }} />
+      <div
+        className={cn(
+          'grid',
+          `responsive-grid-${columns}`,
+          gapClasses[gap],
+          className
+        )}
+      >
+        {children}
+      </div>
+    </>
   );
 };
 
