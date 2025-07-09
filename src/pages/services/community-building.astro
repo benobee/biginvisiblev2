@@ -8,6 +8,6 @@ const currentPath = Astro.url.pathname;
 
 <Layout title="Community Building - Big Invisible" description="Building engaged communities around your brand." keywords="community building, brand community, engagement">
 	<PageWrapper client:load currentPath={currentPath}>
-		<CommunityBuildingPage currentPath={currentPath} />
+		<CommunityBuildingPage client:visible currentPath={currentPath} />
 	</PageWrapper>
 </Layout>

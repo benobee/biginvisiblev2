@@ -8,6 +8,6 @@ const currentPath = Astro.url.pathname;
 
 <Layout title="Brand Strategy - Big Invisible" description="Strategic brand development and positioning services." keywords="brand strategy, brand positioning, brand development">
 	<PageWrapper client:load currentPath={currentPath}>
-		<BrandStrategyPage currentPath={currentPath} />
+		<BrandStrategyPage client:visible currentPath={currentPath} />
 	</PageWrapper>
 </Layout>
