@@ -1,7 +1,7 @@
 import Section from './ui/Section';
 import SectionHeader from './ui/SectionHeader';
 import StatisticsGrid from './StatisticsGrid';
-import type { BrandingStatistic } from '../data/brandingStatistics';
+import type { StatisticEntry } from '../data/statisticsDatabase';
 
 interface StatisticsSectionProps {
   // Section content
@@ -13,7 +13,7 @@ interface StatisticsSectionProps {
   // Statistics configuration
   category?: string;
   categories?: string[];
-  statistics?: BrandingStatistic[];
+  statistics?: StatisticEntry[];
   randomCount?: number;
   
   // Grid configuration
@@ -26,7 +26,7 @@ interface StatisticsSectionProps {
   limit?: number;
   
   // Section styling
-  background?: 'primary' | 'secondary' | 'light' | 'dark';
+  background?: 'primary' | 'secondary' | 'light' | 'accent';
   className?: string;
 }
 
