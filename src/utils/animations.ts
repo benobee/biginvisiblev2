@@ -6,7 +6,7 @@ export const initRevealAnimations = () => {
   // Ensure DOM is ready
   const initialize = () => {
     const handleScroll = () => {
-      const revealElements = document.querySelectorAll('.reveal-text');
+      const revealElements = document.querySelectorAll('.reveal-text:not(.visible)');
       
       revealElements.forEach((element) => {
         const elementTop = element.getBoundingClientRect().top;
@@ -19,9 +19,8 @@ export const initRevealAnimations = () => {
     };
     
     window.addEventListener('scroll', handleScroll);
-    // Check immediately and after a short delay for SSR compatibility
-    handleScroll();
-    setTimeout(handleScroll, 100);
+    // Only check after a delay to avoid hydration mismatch
+    setTimeout(handleScroll, 250);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);

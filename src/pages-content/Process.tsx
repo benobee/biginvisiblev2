@@ -16,11 +16,7 @@ import {
   AdaptiveEvolutionIcon
 } from '../components/ui/ProcessIcons';
 
-interface ProcessProps {
-  currentPath?: string;
-}
-
-const Process = ({ currentPath }: ProcessProps) => {
+const Process = () => {
   
   return (
     <>

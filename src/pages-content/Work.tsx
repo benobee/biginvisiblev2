@@ -9,11 +9,7 @@ import Quote from '../components/Quote';
 import { projects } from '../data/projects';
 import { caseStudies } from '../data/caseStudies';
 
-interface WorkProps {
-  currentPath?: string;
-}
-
-const Work = ({ currentPath }: WorkProps) => {
+const Work = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [filteredProjects, setFilteredProjects] = useState(projects);
   

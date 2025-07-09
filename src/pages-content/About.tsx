@@ -9,11 +9,7 @@ import FunFactCard from '../components/FunFactCard';
 import DataPoint from '../components/DataPoint';
 import CTASection from '../components/ui/CTASection';
 
-interface AboutProps {
-  currentPath?: string;
-}
-
-const About = ({ currentPath }: AboutProps) => {
+const About = () => {
   
   return (
     <>

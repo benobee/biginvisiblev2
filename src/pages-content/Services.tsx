@@ -6,13 +6,9 @@ import GridItem from '../components/ui/GridItem';
 import Button from '../components/ui/Button';
 import CTASection from '../components/ui/CTASection';
 import ServiceCard from '../components/ServiceCard';
-import { services } from '../data/services';
+import { services } from '../data/services'
 
-interface ServicesProps {
-  currentPath?: string;
-}
-
-const Services = ({ currentPath }: ServicesProps) => {
+const Services = () => {
   
   return (
     <>
