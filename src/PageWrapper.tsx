@@ -31,14 +31,15 @@ function PageWrapper({ children, currentPath }: PageWrapperProps) {
       }
     }
   }, [currentPath]);
-  
+
   // Listen for scroll to determine theme mode, but only on home page
   useEffect(() => {
     const handleScroll = () => {
       // Only switch themes on home page
       if (currentPath === '/') {
-        // Switch to light mode when scrolled down more than 300px
-        if (window.scrollY > 300) {
+        // Switch to light mode when scrolled down more than 50% of viewport
+        const scrollThreshold = window.innerHeight * 0.5;
+        if (window.scrollY > scrollThreshold) {
           setIsLightMode(true);
           setTheme('light');
         } else {
