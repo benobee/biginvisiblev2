@@ -59,7 +59,7 @@
   padding: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .navLinks {
     position: fixed;
     top: 0;
@@ -113,7 +113,7 @@
   color: #ff2356;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .navLink {
     font-size: 1.25rem;
     margin: 1rem 0;
@@ -149,7 +149,7 @@
   color: #FFFFFF;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .ctaButton {
     margin-top: 2rem;
     padding: 1rem 2rem;
@@ -178,36 +178,41 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 12px 7px;
+  padding: 0;
+  display: flex;
 }
 
 .menuButton span {
   display: block;
   position: absolute;
   height: 2px;
-  width: 100%;
+  width: 30px;
   background: #0F1923;
   opacity: 1;
-  left: 0;
-  transform: rotate(0deg);
+  left: 50%;
+  transform: translateX(-50%) rotate(0deg);
   transition: all 0.25s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 .menuButton span:nth-child(1) {
-  top: 0px;
+  top: 11px;
 }
 
 .menuButton span:nth-child(2) {
-  top: 9px;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .menuButton span:nth-child(3) {
-  top: 18px;
+  bottom: 11px;
+  top: auto;
 }
 
 .menuButton.active span:nth-child(1) {
-  top: 9px;
-  transform: rotate(135deg);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(135deg);
+  background: rgba(173, 169, 169, 0.844);
 }
 
 .menuButton.active span:nth-child(2) {
@@ -215,16 +220,60 @@
 }
 
 .menuButton.active span:nth-child(3) {
-  top: 9px;
-  transform: rotate(-135deg);
+  top: 50%;
+  bottom: auto;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-135deg);
+  background: rgba(173, 169, 169, 0.844);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+  .header {
+    background-color: rgb(242, 242, 242);
+  }
+  
   .headerContainer {
     padding: 0 1rem;
+  }
+  
+  .nav {
+    justify-content: right;
+    position: relative;
+  }
+  
+  .logo {
+    position: absolute;
+    left: 0;
   }
 
   .menuButton {
     display: block;
+    position: relative;
+    z-index: 1001;
+  }
+}
+
+/* Hide hamburger menu on desktop screens (larger than tablet) */
+@media (min-width: 1025px) {
+  .menuButton {
+    display: none !important;
+  }
+  
+  .nav {
+    justify-content: space-between;
+  }
+  
+  .logo {
+    position: static;
+  }
+  
+  .navLinks {
+    display: flex !important;
+    position: static !important;
+    transform: none !important;
+    background-color: transparent !important;
+    flex-direction: row !important;
+    width: auto !important;
+    height: auto !important;
   }
 }

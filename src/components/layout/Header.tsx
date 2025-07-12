@@ -7,9 +7,24 @@ interface HeaderProps {
 
 const Header = ({ currentPath = '/' }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   
   // Hide navigation on individual service pages
   const isServicePage = currentPath.startsWith('/services/') && currentPath !== '/services';
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      // Set isScrolled when scrolled down more than 50px
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
   if (isServicePage) {
     return null;
@@ -20,7 +35,7 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
   };
   
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.headerContainer}>
         <nav className={styles.nav}>
           <a href="/" className={styles.logo} />
