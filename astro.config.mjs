@@ -11,14 +11,8 @@ export default defineConfig({
     webAnalytics: { enabled: true }
   }),
   vite: {
-    build: {
-      rollupOptions: {
-        output: {
-          entryFileNames: '_astro/[name].[hash].js',
-          chunkFileNames: '_astro/[name].[hash].js',
-          assetFileNames: '_astro/[name].[hash].[ext]'
-        }
-      }
+    ssr: {
+      noExternal: ['@astrojs/react']
     }
   }
 });
