@@ -8,7 +8,7 @@ interface LayoutProps {
 
 const Layout = ({ children, currentPath }: LayoutProps) => {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Header currentPath={currentPath} />
       <main className="min-h-[calc(100vh-100px)] w-full transition-colors duration-300">
         {children}

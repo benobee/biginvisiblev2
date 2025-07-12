@@ -83,16 +83,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 800;
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 h3 {
-  font-size: 1.875rem;
+  font-size: clamp(1.25rem, 3vw, 1.875rem);
 }
 
 p {
@@ -184,24 +184,54 @@ section {
   }
 }
 
+/* Mobile responsive adjustments */
 @media (max-width: 768px) {
+  :root {
+    --container-padding: 1rem;
+    --section-padding: 3rem;
+  }
+  
   html {
     font-size: 14px;
   }
-
-  h1 {
-    font-size: 2.5rem;
+  
+  body {
+    font-size: 0.875rem;
   }
-
-  h2 {
-    font-size: 1.875rem;
+  
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
   }
-
-  h3 {
-    font-size: 1.5rem;
+  
+  /* Ensure touch targets are at least 44x44px */
+  button, 
+  a.button,
+  .button {
+    min-height: 44px;
+    padding: 12px 20px;
+  }
+  
+  /* Better spacing for mobile */
+  .container {
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+  }
+  
+  section {
+    padding: var(--section-padding) 0;
   }
   
   .grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  :root {
+    --container-padding: 0.75rem;
+    --section-padding: 2rem;
   }
 }
