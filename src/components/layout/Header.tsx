@@ -9,9 +9,6 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   
-  // Hide navigation on individual service pages
-  const isServicePage = currentPath.startsWith('/services/') && currentPath !== '/services';
-  
   useEffect(() => {
     const handleScroll = () => {
       // Set isScrolled when scrolled down more than 50px
@@ -25,10 +22,6 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
-  if (isServicePage) {
-    return null;
-  }
   
   const handleLinkClick = () => {
     setIsMobileMenuOpen(false);
@@ -72,10 +65,19 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
             <li>
               <a 
                 href="/services" 
-                className={`${styles.navLink} ${currentPath === '/services' ? styles.active : ''}`}
+                className={`${styles.navLink} ${currentPath?.startsWith('/services') ? styles.active : ''}`}
                 onClick={handleLinkClick}
               >
                 Services
+              </a>
+            </li>
+            <li>
+              <a 
+                href="/statistics" 
+                className={`${styles.navLink} ${currentPath?.startsWith('/statistics') || currentPath?.startsWith('/stat-detail') ? styles.active : ''}`}
+                onClick={handleLinkClick}
+              >
+                Statistics
               </a>
             </li>
             <li>

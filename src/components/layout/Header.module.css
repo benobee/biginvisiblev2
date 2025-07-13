@@ -277,3 +277,76 @@
     height: auto !important;
   }
 }
+
+/* Breadcrumb styles */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.breadcrumbLink {
+  color: #0F1923;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.breadcrumbLink:hover {
+  color: #ff2356;
+}
+
+.breadcrumbLink::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: #ff2356;
+  transition: width 0.3s ease-in-out;
+}
+
+.breadcrumbLink:hover::after {
+  width: 100%;
+}
+
+.breadcrumbSeparator {
+  color: #0F1923;
+  opacity: 0.4;
+}
+
+.breadcrumbCurrent {
+  color: #ff2356;
+  font-weight: 600;
+}
+
+/* Mobile styles for breadcrumb */
+@media (max-width: 1024px) {
+  .breadcrumb {
+    font-size: 1.25rem;
+    color: #FFFFFF;
+  }
+  
+  .breadcrumbLink {
+    color: #FFFFFF;
+  }
+  
+  .breadcrumbLink:hover {
+    color: #ff2356;
+  }
+  
+  .breadcrumbSeparator {
+    color: #FFFFFF;
+    opacity: 0.4;
+  }
+  
+  .breadcrumbCurrent {
+    color: #ff2356;
+  }
+}

@@ -10,6 +10,7 @@ import { ExternalLink, TrendingUp, Users, Target, Zap } from 'lucide-react';
 import { type StatisticEntry, getStatisticEntry } from '../../data/statisticsDatabase';
 import { services, type Service } from '../../data/services';
 import DonutChart from '../../components/ui/DonutChart';
+import Breadcrumb from '../../components/ui/Breadcrumb';
 
 interface StatisticDetailProps {
   statistic: StatisticEntry;
@@ -250,8 +251,14 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
 
   return (
     <>
+      <Breadcrumb
+        items={[
+          { label: 'Statistics', href: '/statistics' },
+          { label: statistic.title }
+        ]}
+      />
       {/* Hero Section */}
-      <Section background="primary" className="min-h-[100vh] !bg-[#0F1923] text-white flex items-center relative overflow-hidden pt-[120px] pb-[60px]">
+      <Section background="primary" className="min-h-[90vh] !bg-[#0F1923] text-white flex items-center relative overflow-hidden pt-[0px] pb-[60px]">
         <Grid>
           <GridItem span={8}>
             <div className="relative z-[3]">

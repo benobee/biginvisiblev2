@@ -13,16 +13,19 @@ interface PageWrapperProps {
 function PageWrapper({ children, currentPath }: PageWrapperProps) {
   const [isLightMode, setIsLightMode] = useState(false);
   const isHomePage = currentPath === '/';
+  const isServicePage = currentPath.startsWith('/services/') && currentPath !== '/services';
+  const isStatisticsDetailPage = currentPath.startsWith('/stat-detail');
   
   // Update theme based on current path
   useEffect(() => {
-    // Set light mode for all pages except home
-    if (currentPath !== '/') {
+    // Set light mode for all pages except home, service pages, and statistics detail pages
+    if (!isHomePage && !isServicePage && !isStatisticsDetailPage) {
       setIsLightMode(true);
       setTheme('light');
-    } else {
-      // On home page, reset based on scroll position
-      if (window.scrollY > 300) {
+    } else if (isHomePage || isServicePage || isStatisticsDetailPage) {
+      // On home page, service pages, and statistics detail pages, set theme based on scroll position
+      const scrollThreshold = isHomePage ? 300 : 150; // Service and statistics pages switch earlier
+      if (window.scrollY > scrollThreshold) {
         setIsLightMode(true);
         setTheme('light');
       } else {
@@ -30,15 +33,18 @@ function PageWrapper({ children, currentPath }: PageWrapperProps) {
         setTheme('dark');
       }
     }
-  }, [currentPath]);
+  }, [currentPath, isHomePage, isServicePage, isStatisticsDetailPage]);
 
-  // Listen for scroll to determine theme mode, but only on home page
+  // Listen for scroll to determine theme mode on home page, service pages, and statistics detail pages
   useEffect(() => {
     const handleScroll = () => {
-      // Only switch themes on home page
-      if (currentPath === '/') {
-        // Switch to light mode when scrolled down more than 50% of viewport
-        const scrollThreshold = window.innerHeight * 0.5;
+      // Switch themes on home page, service pages, and statistics detail pages
+      if (isHomePage || isServicePage || isStatisticsDetailPage) {
+        // Different thresholds for different pages
+        const scrollThreshold = isHomePage 
+          ? window.innerHeight * 0.5  // Home page: 50% of viewport
+          : 150;                      // Service and statistics pages: 150px (just after breadcrumb)
+          
         if (window.scrollY > scrollThreshold) {
           setIsLightMode(true);
           setTheme('light');
@@ -51,7 +57,7 @@ function PageWrapper({ children, currentPath }: PageWrapperProps) {
     
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [currentPath]);
+  }, [currentPath, isHomePage, isServicePage, isStatisticsDetailPage]);
 
   // Initialize animations globally
   useEffect(() => {

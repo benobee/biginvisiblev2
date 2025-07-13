@@ -7,7 +7,7 @@ import Button from '../../components/ui/Button';
 import CTASection from '../../components/ui/CTASection';
 import ServiceCarousel from '../../components/ServiceCarousel';
 import TimelineStep from '../../components/TimelineStep';
-import ServiceSidebar from './ServiceSidebar';
+import Breadcrumb from '../../components/ui/Breadcrumb';
 import { type Service } from '../../data/services';
 import ImpactStatisticsGrid from '../../components/ImpactStatisticsGrid';
 import TestimonialsCarousel from '../../components/TestimonialsCarousel';
@@ -136,10 +136,9 @@ const getTestimonials = () => [
 
 interface ServiceTemplateProps {
   service: Service;
-  currentPath?: string;
 }
 
-const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service, currentPath }) => {
+const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
   const carouselImages = getCarouselImages(service.id);
   const testimonials = getTestimonials();
   
@@ -153,10 +152,13 @@ const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service, currentPath 
   
   
   return (
-    <div className="flex min-h-screen">
-      <ServiceSidebar currentServiceId={service.id} currentPath={currentPath} />
-      
-      <main className="flex-1 ml-[80px] lg:ml-[80px] transition-all duration-300">
+    <main className="min-h-screen">
+        <Breadcrumb 
+          items={[
+            { label: 'Services', href: '/services' },
+            { label: service.title }
+          ]}
+        />
         <Section background="primary" className="min-h-[85vh] !bg-[#0F1923] text-white flex items-center relative overflow-hidden pt-[120px] pb-[60px]">
           <Grid>
               <GridItem span={6}>
@@ -261,8 +263,7 @@ const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service, currentPath 
           buttonTo="/contact"
           buttonVariant="primaryInverse"
         />
-      </main>
-    </div>
+    </main>
   );
 };
 
