@@ -42,12 +42,25 @@
   letter-spacing: -0.02em;
   position: relative;
   z-index: 1001;
-  transition: color 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   text-decoration: none;
+  filter: brightness(1);
 }
 
 .logo span {
   color: #ff2356;
+}
+
+/* Dark mode logo brightness enhancement */
+:global(.dark) .logo,
+:global([data-theme="dark"]) .logo {
+  filter: brightness(1.5) contrast(1.1);
+}
+
+/* Additional brightness for theme-based dark modes */
+:global([data-theme="ocean"]) .logo,
+:global([data-theme="warm"]) .logo {
+  filter: brightness(1.3) contrast(1.05);
 }
 
 .navLinks {
