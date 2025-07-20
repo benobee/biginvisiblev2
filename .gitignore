@@ -44,3 +44,4 @@ node_modules/
 .next/cache/.tsbuildinfo
 .next/cache/eslint/.cache_bnuyi3
 .vercel
+.claude
