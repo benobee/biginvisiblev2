@@ -1,5 +1,6 @@
 import { useRef, useContext } from 'react';
 import { ThemeModeContext } from './ThemeModeContext';
+import SimpleBlueprintGrid from './SimpleBlueprintGrid';
 import styles from './HomePageHero.module.css';
 
 const HomePageHero = () => {
@@ -13,8 +14,9 @@ const HomePageHero = () => {
   return (
     <>
       <section className="min-h-screen bg-background text-white flex items-center relative overflow-hidden transition-all duration-500">
+        {/* Light mode background */}
         <div 
-          className={`absolute inset-0 z-10 ${styles.heroBackground}`}
+          className={`absolute inset-0 z-20 ${styles.heroBackground}`}
           style={{ opacity: isLightMode ? 1 : 0 }}
         >
           <img 
@@ -23,16 +25,24 @@ const HomePageHero = () => {
             className="w-full h-full object-cover opacity-30"
           />
         </div>
+
+        {/* Constellation Background - Always visible for testing */}
+        <div 
+          className={`absolute inset-0 z-30 ${styles.constellationLayer}`}
+          style={{ opacity: 0.8, pointerEvents: 'none' }}
+        >
+          <SimpleBlueprintGrid />
+        </div>
         
         <div className={styles.heroShape} />
         
-        <div className="section-container relative z-20">
+        <div className="section-container relative z-50">
           <div className="max-w-4xl">
             <div className="reveal-text text-sm sm:text-lg md:text-xl lg:text-2xl font-medium mb-6 sm:mb-8 text-accent uppercase tracking-wider">
               Branding Studio
             </div>
             <h1 className="reveal-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl mb-6 sm:mb-8 font-bold leading-none tracking-tight">
-              We make the <span className="text-accent">invisible</span> bonds between brands and people.
+              We make the <span className={`text-accent ${styles.fadeInCycle}`}>invisible</span> bonds between brands and people.
             </h1>
             <p className="reveal-text text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-12 opacity-80 leading-relaxed max-w-3xl">
               Transform your business into a trusted authority through our systematic approach — where strategic brand architecture meets meaningful community impact.

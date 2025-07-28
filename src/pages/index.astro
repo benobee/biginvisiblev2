@@ -2,11 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import PageWrapper from '../PageWrapper';
 import Home from '../pages-content/Home';
+import HomePageHero from '../components/HomePageHero';
 
 const currentPath = Astro.url.pathname;
 ---
 
 <Layout title="Big Invisible" description="Strategic branding and design agency creating powerful brands that resonate." keywords="biginvisible, branding, design, strategy, brand identity">
+	<HomePageHero client:load />
 	<PageWrapper client:load currentPath={currentPath}>
 		<Home />
 	</PageWrapper>

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Branding Analysis - Interactive Overlay</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        #background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        #background-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+            transition: transform 0.6s ease, filter 0.6s ease;
+            transform-origin: center center;
+        }
+        
+        #background-image.zoomed {
+            transform: scale(1.3);
+            filter: brightness(0.5);
+        }
+        
+        #overlay-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        .hotspot {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            pointer-events: all;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+        }
+        
+        .hotspot-marker {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+        
+        .hotspot-inner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 64, 128, 0.9);
+            border: 3px solid #fff;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .hotspot-outer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 64, 128, 0.5);
+            border-radius: 50%;
+            animation: ripple 2s infinite;
+        }
+        
+        .hotspot:hover .hotspot-inner {
+            background: #4080ff;
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        .info-panel {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 64, 128, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            max-width: 350px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: all;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .info-panel.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .info-panel h3 {
+            color: #ff4080;
+            font-size: 20px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        
+        .info-panel p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .info-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .metric {
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: #ff4080;
+            display: block;
+        }
+        
+        .metric-label {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 5px;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            opacity: 1;
+        }
+        
+        .close-btn::before,
+        .close-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 2px;
+            background: #fff;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+        
+        .close-btn::after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+        
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+            z-index: 30;
+        }
+        
+        #header h1 {
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 10px;
+        }
+        
+        #header p {
+            color: #888;
+            font-size: 16px;
+        }
+        
+        #controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 30;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 25px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        #controls button {
+            padding: 10px 20px;
+            background: transparent;
+            border: 1px solid #ff4080;
+            color: #ff4080;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        #controls button:hover {
+            background: #ff4080;
+            color: #fff;
+        }
+        
+        #controls button.active {
+            background: #ff4080;
+            color: #fff;
+        }
+        
+        .connection-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ff4080, transparent);
+            transform-origin: left center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            z-index: 15;
+        }
+        
+        .connection-line.active {
+            opacity: 0.5;
+            animation: flow 2s infinite;
+        }
+        
+        @keyframes flow {
+            0% { background-position: -100% 0; }
+            100% { background-position: 100% 0; }
+        }
+        
+        #brand-summary {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            width: 280px;
+            z-index: 30;
+            color: white;
+        }
+        
+        #brand-summary h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: white;
+            font-weight: 600;
+        }
+        
+        #brand-summary p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        
+        #brand-summary .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        #brand-summary .summary-item {
+            text-align: center;
+        }
+        
+        #brand-summary .summary-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: #ff4080;
+            display: block;
+        }
+        
+        #brand-summary .summary-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body>
+    <div id="background-container">
+        <img id="background-image" 
+             src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
+             alt="Restaurant Interior">
+    </div>
+    
+    <div id="header">
+        <h1>Restaurant Brand Ecosystem</h1>
+        <p>Explore the hidden complexity of brand touchpoints in a dining experience</p>
+    </div>
+    
+    <div id="overlay-container">
+        <!-- Hotspots will be dynamically added here -->
+    </div>
+    
+    <div id="controls">
+        <button id="show-all-btn">Show All</button>
+        <button id="hide-all-btn">Hide All</button>
+        <button id="connect-btn">Connect Points</button>
+    </div>
+    
+    <div id="brand-summary">
+        <h2>Brand Analysis</h2>
+        <p>Multiple touchpoints create a cohesive brand experience in this restaurant environment.</p>
+        <div class="summary-grid">
+            <div class="summary-item">
+                <div class="summary-value">12</div>
+                <div class="summary-label">Touchpoints</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-value">78%</div>
+                <div class="summary-label">Complexity</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-value">5</div>
+                <div class="summary-label">Systems</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Brand touchpoint data - positioned correctly for restaurant image
+        const brandTouchpoints = [
+            {
+                id: 'lighting',
+                x: 30,
+                y: 15,
+                title: 'Pendant Lighting',
+                description: 'Industrial pendant lights create warm ambiance while reinforcing the modern aesthetic. Each fixture contributes to brand atmosphere.',
+                impact: 85,
+                cost: 60,
+                connections: ['seating', 'bar']
+            },
+            {
+                id: 'bar',
+                x: 75,
+                y: 35,
+                title: 'Bar Counter',
+                description: 'The prominent bar serves as a focal point with exposed shelving displaying premium spirits and creating visual interest.',
+                impact: 90,
+                cost: 95,
+                connections: ['lighting', 'signage']
+            },
+            {
+                id: 'seating-left',
+                x: 20,
+                y: 65,
+                title: 'Booth Seating',
+                description: 'Comfortable booth seating with rich materials creates intimate dining spaces while maintaining the industrial aesthetic.',
+                impact: 75,
+                cost: 80,
+                connections: ['lighting', 'table-setting']
+            },
+            {
+                id: 'seating-right',
+                x: 85,
+                y: 70,
+                title: 'Table Seating',
+                description: 'Mix of high-top and standard tables provides flexible dining options while maintaining consistent design language.',
+                impact: 70,
+                cost: 65,
+                connections: ['bar', 'service']
+            },
+            {
+                id: 'table-setting',
+                x: 35,
+                y: 75,
+                title: 'Table Presentation',
+                description: 'Simple place settings with quality materials reflect the restaurant\'s commitment to understated elegance.',
+                impact: 65,
+                cost: 40,
+                connections: ['seating-left', 'menu']
+            },
+            {
+                id: 'walls',
+                x: 10,
+                y: 40,
+                title: 'Wall Treatments',
+                description: 'Exposed brick walls and dark finishes create texture and visual depth while supporting the industrial theme.',
+                impact: 60,
+                cost: 70,
+                connections: ['acoustics', 'seating-left']
+            },
+            {
+                id: 'flooring',
+                x: 50,
+                y: 85,
+                title: 'Flooring Design',
+                description: 'Dark wood floors provide warmth and sophistication while being practical for high-traffic restaurant use.',
+                impact: 55,
+                cost: 85,
+                connections: ['seating-left', 'acoustics']
+            },
+            {
+                id: 'ceiling',
+                x: 60,
+                y: 10,
+                title: 'Ceiling Design',
+                description: 'Exposed ceiling elements and strategic lighting placement create height and openness while maintaining intimacy.',
+                impact: 70,
+                cost: 60,
+                connections: ['lighting', 'acoustics']
+            },
+            {
+                id: 'digital',
+                x: 90,
+                y: 45,
+                title: 'Digital Integration',
+                description: 'Subtle integration of technology including POS systems and potential digital menu displays.',
+                impact: 75,
+                cost: 55,
+                connections: ['bar', 'service']
+            },
+            {
+                id: 'service',
+                x: 65,
+                y: 50,
+                title: 'Service Flow',
+                description: 'Layout designed for efficient service while maintaining guest comfort and staff workflow optimization.',
+                impact: 85,
+                cost: 45,
+                connections: ['bar', 'seating-right']
+            },
+            {
+                id: 'acoustics',
+                x: 45,
+                y: 30,
+                title: 'Acoustic Environment',
+                description: 'Material choices and layout design work together to create optimal sound levels for conversation.',
+                impact: 80,
+                cost: 50,
+                connections: ['walls', 'ceiling']
+            },
+            {
+                id: 'atmosphere',
+                x: 55,
+                y: 60,
+                title: 'Overall Atmosphere',
+                description: 'The combination of all elements creates a cohesive brand experience that feels both modern and welcoming.',
+                impact: 95,
+                cost: 30,
+                connections: ['lighting', 'service']
+            }
+        ];
+        
+        // Create hotspots
+        const overlayContainer = document.getElementById('overlay-container');
+        const backgroundImage = document.getElementById('background-image');
+        const hotspots = {};
+        const infoPanels = {};
+        const connectionLines = {};
+        let currentActivePanel = null;
+        
+        brandTouchpoints.forEach((point, index) => {
+            // Create hotspot
+            const hotspot = document.createElement('div');
+            hotspot.className = 'hotspot';
+            hotspot.style.left = point.x + '%';
+            hotspot.style.top = point.y + '%';
+            hotspot.setAttribute('data-id', point.id);
+            
+            hotspot.innerHTML = `
+                <div class="hotspot-marker">
+                    <div class="hotspot-outer"></div>
+                    <div class="hotspot-inner"></div>
+                </div>
+            `;
+            
+            // Create info panel
+            const infoPanel = document.createElement('div');
+            infoPanel.className = 'info-panel';
+            infoPanel.innerHTML = `
+                <div class="close-btn"></div>
+                <h3>${point.title}</h3>
+                <p>${point.description}</p>
+                <div class="info-metrics">
+                    <div class="metric">
+                        <span class="metric-value">${point.impact}%</span>
+                        <span class="metric-label">Brand Impact</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">${point.cost}%</span>
+                        <span class="metric-label">Cost Factor</span>
+                    </div>
+                </div>
+            `;
+            
+            // Position info panel
+            if (point.x > 50) {
+                infoPanel.style.left = (point.x - 30) + '%';
+            } else {
+                infoPanel.style.left = (point.x + 5) + '%';
+            }
+            
+            if (point.y > 50) {
+                infoPanel.style.top = (point.y - 20) + '%';
+            } else {
+                infoPanel.style.top = (point.y + 5) + '%';
+            }
+            
+            // Add event listeners
+            hotspot.addEventListener('click', () => {
+                // Close all other panels and zoom out if needed
+                Object.values(infoPanels).forEach(panel => panel.classList.remove('active'));
+                
+                // Zoom in and show panel
+                backgroundImage.classList.add('zoomed');
+                
+                // Set zoom origin to the clicked hotspot
+                backgroundImage.style.transformOrigin = `${point.x}% ${point.y}%`;
+                
+                infoPanel.classList.add('active');
+                currentActivePanel = infoPanel;
+            });
+            
+            infoPanel.querySelector('.close-btn').addEventListener('click', (e) => {
+                e.stopPropagation();
+                infoPanel.classList.remove('active');
+                backgroundImage.classList.remove('zoomed');
+                backgroundImage.style.transformOrigin = 'center center';
+                currentActivePanel = null;
+            });
+            
+            overlayContainer.appendChild(hotspot);
+            overlayContainer.appendChild(infoPanel);
+            
+            hotspots[point.id] = hotspot;
+            infoPanels[point.id] = infoPanel;
+        });
+        
+        // Create connection lines
+        function createConnectionLines() {
+            brandTouchpoints.forEach(point => {
+                point.connections.forEach(targetId => {
+                    const lineId = `${point.id}-${targetId}`;
+                    if (!connectionLines[lineId] && !connectionLines[`${targetId}-${point.id}`]) {
+                        const line = document.createElement('div');
+                        line.className = 'connection-line';
+                        
+                        const startPoint = brandTouchpoints.find(p => p.id === point.id);
+                        const endPoint = brandTouchpoints.find(p => p.id === targetId);
+                        
+                        const x1 = startPoint.x;
+                        const y1 = startPoint.y;
+                        const x2 = endPoint.x;
+                        const y2 = endPoint.y;
+                        
+                        const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+                        const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+                        
+                        line.style.left = x1 + '%';
+                        line.style.top = y1 + '%';
+                        line.style.width = distance + '%';
+                        line.style.transform = `rotate(${angle}deg)`;
+                        
+                        overlayContainer.appendChild(line);
+                        connectionLines[lineId] = line;
+                    }
+                });
+            });
+        }
+        
+        createConnectionLines();
+        
+        // Control buttons
+        document.getElementById('show-all-btn').addEventListener('click', () => {
+            Object.values(hotspots).forEach(hotspot => {
+                hotspot.style.display = 'block';
+            });
+        });
+        
+        document.getElementById('hide-all-btn').addEventListener('click', () => {
+            Object.values(hotspots).forEach(hotspot => {
+                hotspot.style.display = 'none';
+            });
+            Object.values(infoPanels).forEach(panel => {
+                panel.classList.remove('active');
+            });
+            backgroundImage.classList.remove('zoomed');
+            backgroundImage.style.transformOrigin = 'center center';
+            currentActivePanel = null;
+        });
+        
+        document.getElementById('connect-btn').addEventListener('click', function() {
+            this.classList.toggle('active');
+            Object.values(connectionLines).forEach(line => {
+                line.classList.toggle('active');
+            });
+        });
+        
+        
+        // Close panels when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.hotspot') && !e.target.closest('.info-panel') && !e.target.closest('#controls') && !e.target.closest('#brand-summary')) {
+                Object.values(infoPanels).forEach(panel => panel.classList.remove('active'));
+                backgroundImage.classList.remove('zoomed');
+                backgroundImage.style.transformOrigin = 'center center';
+                currentActivePanel = null;
+            }
+        });
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                Object.values(infoPanels).forEach(panel => panel.classList.remove('active'));
+                backgroundImage.classList.remove('zoomed');
+                backgroundImage.style.transformOrigin = 'center center';
+                currentActivePanel = null;
+            }
+        });
+    </script>
+</body>
+</html>

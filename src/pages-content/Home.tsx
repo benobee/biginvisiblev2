@@ -1,4 +1,3 @@
-import HomePageHero from '../components/HomePageHero';
 import Section from '../components/ui/Section';
 import SectionHeader from '../components/ui/SectionHeader';
 import Grid from '../components/ui/Grid';
@@ -12,10 +11,8 @@ import ServiceCard from '../components/ServiceCard';
 import { services } from '../data/services';
 
 const Home = () => {
-  
   return (
     <>
-      <HomePageHero />
 
       {/* Services Section */}
       <Section background="light" id="services">

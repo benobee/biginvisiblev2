@@ -10,7 +10,6 @@
   background: linear-gradient(135deg, rgba(255, 58, 70, 0.1) 0%, rgba(255, 58, 70, 0.05) 100%);
   background-size: cover;
   filter: blur(40px);
-  z-index: 1;
   animation: morphing 18s ease-in-out infinite;
   background: center no-repeat url("/images/inspiration/BigInvisible-background-pattern copy.png");
 }
@@ -19,25 +18,25 @@
   0% {
     opacity: 0;
     transform: translate(-50%, -50%) scale(300%) rotate(0deg);
-    filter: blur(32px);
+    filter: blur(19px);
   }
   25% {
-    opacity: 0.5;
+    opacity: 0.1;
     transform: translate(-50%, -50%) scale(280%) rotate(0);
-    filter: blur(32px);
+    filter: blur(15px);
   }
   50% {
-    opacity: 1;
+    opacity: 0.2;
     transform: translate(-50%, -50%) scale(270%) rotate(0);
-    filter: blur(32px);
+    filter: blur(20px);
   }
   53% {
-    opacity: 1;
+    opacity: 0.2;
     transform: translate(-50%, -50%) scale(260%) rotate(0deg);
     filter: blur(32px);
   }
   75% {
-    opacity: 0.7;
+    opacity: 0.1;
     transform: translate(-50%, -50%) scale(270%) rotate(0deg);
     filter: blur(35px);
   }
@@ -78,4 +77,99 @@
   100% {
     transform: translateY(100%);
   }
+}
+
+/* Fade Cycle Animation */
+.fadeInCycle {
+  opacity: 0;
+  animation: fadeInInit 3s ease-in-out 2s forwards, fadeInPulse 4s ease-in-out 5s infinite;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.fadeInCycle:active {
+  transform: scale(1.1);
+  opacity: 1 !important;
+  animation: none;
+}
+
+@keyframes fadeInInit {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInPulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Constellation Background Styles */
+.constellationLayer {
+  transition: opacity 0.5s ease-in-out;
+  background: 
+    linear-gradient(90deg, rgba(64, 128, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(rgba(64, 128, 255, 0.02) 1px, transparent 1px),
+    radial-gradient(ellipse at center, rgba(5, 15, 25, 0.9) 0%, rgba(0, 0, 0, 0.98) 100%);
+  background-size: 20px 20px, 20px 20px, 100% 100%;
+}
+
+.constellationLayer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(90deg, rgba(64, 128, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(64, 128, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(64, 128, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(64, 128, 255, 0.03) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  animation: blueprintGlow 6s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.constellationLayer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 100px 100px, rgba(64, 128, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 200px 200px, rgba(64, 128, 255, 0.1) 1px, transparent 1px);
+  background-size: 100px 100px;
+  animation: blueprintPulse 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+
+@keyframes blueprintGlow {
+  0% { opacity: 0.4; }
+  100% { opacity: 0.8; }
+}
+
+@keyframes blueprintPulse {
+  0% { opacity: 0.2; }
+  50% { opacity: 0.5; }
+  100% { opacity: 0.2; }
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.8; }
 }
