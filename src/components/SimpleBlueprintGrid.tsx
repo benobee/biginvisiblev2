@@ -268,19 +268,21 @@ const SimpleBlueprintGrid = () => {
       </svg>
 
       {/* Touch Points (Services) */}
-      {touchPoints.map((point) => {
+      {touchPoints.map((point, index) => {
         const isActive = activePoint === point.id;
         const isHovered = hoveredPoint === point.id;
         const isNearTop = point.y < 40; // Check if touch point is in top 40% of screen
+        const isLeftSide = point.x < 50; // Check if on left or right side
         
         return (
           <div
             key={point.id}
-            className={`${styles.touchPoint} ${isActive ? styles.touchPointActive : ''}`}
+            className={`${styles.touchPoint} ${isActive ? styles.touchPointActive : ''} ${isLeftSide ? styles.fadeInLeft : styles.fadeInRight}`}
             style={{
               left: `${point.x}%`,
               top: `${point.y}%`,
-            }}
+              '--animation-delay': `${index * 0.15}s`
+            } as React.CSSProperties}
             onClick={() => handleClick()}
             onMouseEnter={() => handleMouseEnter(point.id)}
             onMouseLeave={() => handleMouseLeave()}
@@ -311,7 +313,7 @@ const SimpleBlueprintGrid = () => {
       })}
 
       {/* Sub-Service Touch Points */}
-      {subServicePoints.map(subPoint => {
+      {subServicePoints.map((subPoint, index) => {
         const isParentHovered = hoveredPoint === subPoint.parentId;
         const isParentActive = activePoint === subPoint.parentId;
         const shouldHighlight = isParentHovered || isParentActive;
@@ -319,11 +321,12 @@ const SimpleBlueprintGrid = () => {
         return (
           <div
             key={subPoint.id}
-            className={`${styles.subServicePoint} ${shouldHighlight ? styles.subServicePointActive : ''} ${shouldHighlight ? styles.visible : ''}`}
+            className={`${styles.subServicePoint} ${shouldHighlight ? styles.subServicePointActive : ''} ${shouldHighlight ? styles.visible : ''} ${styles.fadeInScale}`}
             style={{
               left: `${subPoint.x}%`,
               top: `${subPoint.y}%`,
-            }}
+              '--animation-delay': `${(touchPoints.length * 0.15 + index * 0.05)}s`
+            } as React.CSSProperties}
           >
             <div className={styles.subServiceMarker}>
               <div 
