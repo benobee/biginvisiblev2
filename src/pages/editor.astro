@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TouchPointEditor from '../components/TouchPointEditor';
+
+// Sample initial points for demo
+const initialPoints = [
+  { id: 'service-1', name: 'Brand Strategy', x: 15, y: 35, type: 'service' as const },
+  { id: 'service-2', name: 'Visual Identity', x: 75, y: 30, type: 'service' as const },
+  { id: 'service-3', name: 'Digital Experience', x: 90, y: 45, type: 'service' as const },
+  { id: 'feature-1', name: 'Logo Design', x: 85, y: 25, type: 'feature' as const },
+  { id: 'feature-2', name: 'Brand Guidelines', x: 65, y: 35, type: 'feature' as const },
+];
+---
+
+<Layout title="Touch Point Editor - Big Invisible" description="Touch point position editor tool for precise coordinate placement">
+  <TouchPointEditor client:load initialPoints={initialPoints} />
+</Layout>

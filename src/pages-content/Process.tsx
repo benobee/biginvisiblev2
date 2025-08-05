@@ -24,9 +24,9 @@ const Process = () => {
         <Grid>
           <GridItem span={6}>
             <div className="relative z-10">
-              <h1 className="reveal-text text-4xl lg:text-5xl xl:text-6xl mb-6 font-bold leading-tight tracking-tight text-dark">The <span className="text-accent">Invisible Bond</span> Framework™</h1>
+              <h1 className="reveal-text text-4xl lg:text-5xl xl:text-6xl mb-6 font-bold leading-tight tracking-tight text-dark">How we <span className="text-accent">actually</span> work</h1>
               <p className="reveal-text text-lg lg:text-xl mb-8 opacity-80 leading-relaxed max-w-2xl text-dark">
-                Our systematic approach to building lasting brand relationships that strengthen entire business ecosystems.
+                Our (not-so-secret) formula for turning businesses into brands people remember, trust, and choose.
               </p>
             </div>
           </GridItem>
@@ -45,57 +45,57 @@ const Process = () => {
       
       <Section background="light">
         <SectionHeader
-          title="Our process"
-          description="We follow a structured yet flexible process that ensures we deliver results that exceed expectations while adapting to your unique needs."
+          title="The step-by-step breakdown"
+          description="Here's exactly how we turn your business into something people can't ignore (in a good way)."
           align="center"
         />
         
         <div>
           <TimelineStep
             phase={1}
-            title="Discovery"
-            description="We begin by deeply understanding your brand, business goals, audience, and market position. This foundational phase ensures all subsequent work is strategically aligned with your objectives."
+            title="Getting Curious"
+            description="We dig deep to understand what makes you tick, who your people are, and what you're up against. Think detective work, but with better coffee and fewer trench coats."
             deliverables={[
-              "Stakeholder interviews",
-              "Market research and analysis",
-              "Audience insights gathering",
-              "Competitive landscape review"
+              "Heart-to-heart conversations with your team",
+              "Market research that actually makes sense",
+              "Getting to know your people (really know them)",
+              "Checking out what everyone else is doing"
             ]}
           />
 
           <TimelineStep
             phase={2}
-            title="Strategy Development"
-            description="Based on our discoveries, we craft a comprehensive brand strategy that defines your unique market position and systematic approach to building trust with your audience."
+            title="Connecting the Dots"
+            description="Time to turn all those insights into a plan that actually works. We'll map out your sweet spot and figure out how to get people excited about what you do."
             deliverables={[
-              "Brand positioning",
-              "Messaging framework",
-              "Brand architecture",
-              "Communication strategy"
+              "Your unique spot in the market (finally figured out)",
+              "Words that work (not just sound smart)",
+              "How all your stuff fits together",
+              "A plan for talking to people"
             ]}
           />
 
           <TimelineStep
             phase={3}
-            title="Design Implementation"
-            description="We bring your brand to life through cohesive visual identity and consistent experiences across all touchpoints, ensuring every interaction reinforces your brand promise."
+            title="Making It Real"
+            description="This is where the magic happens—turning strategy into something you can see, touch, and feel. Every piece works together like a well-orchestrated symphony (but with better color palettes)."
             deliverables={[
-              "Visual identity development",
-              "Brand guidelines creation",
-              "Digital experience design",
-              "Marketing collateral design"
+              "A look that's unmistakably you",
+              "Guidelines that actually make sense",
+              "Digital experiences people enjoy",
+              "Marketing stuff that doesn't look like everyone else's"
             ]}
           />
 
           <TimelineStep
             phase={4}
-            title="Brand Evolution"
-            description="We provide ongoing support to help your brand grow and adapt while maintaining authenticity and scaling impact in your community and market."
+            title="Making It Stick"
+            description="Great brands aren't built overnight. We stick around to make sure everything keeps working as you grow, because we actually care how this turns out."
             deliverables={[
-              "Performance measurement",
-              "Brand refinement",
-              "Growth strategy",
-              "Community engagement"
+              "Keeping track of what's working",
+              "Tweaking things that need tweaking",
+              "Planning for what's next",
+              "Building your fan club"
             ]}
           />
         </div>
@@ -103,9 +103,9 @@ const Process = () => {
       
       <Section background="primary">
         <SectionHeader
-          subtitle="Our framework"
-          title="The pillars of our approach"
-          description="The Invisible Bond Framework™ is built on these key principles that guide our work and ensure meaningful results for our clients."
+          subtitle="What drives us"
+          title="The stuff we actually care about"
+          description="These aren't just fancy words on our website—they're the principles that guide everything we do."
           align="center"
         />
         
@@ -113,48 +113,48 @@ const Process = () => {
           <GridItem span={1}>
             <FrameworkCard
               icon={<AuthenticConnectionIcon />}
-              title="Authentic Connection"
-              description="Building genuine relationships between brands and their audiences based on shared values and transparent communication."
+              title="Real Connections"
+              description="We help you build relationships that actually matter—the kind where people choose you because they want to, not because they have to."
             />
           </GridItem>
           
           <GridItem span={1}>
             <FrameworkCard
               icon={<StrategicAlignmentIcon />}
-              title="Strategic Alignment"
-              description="Ensuring all brand elements and experiences are purposefully aligned with business objectives and audience needs."
+              title="Everything Works Together"
+              description="No random acts of branding here. Every piece of your brand should work toward the same goal—making your business successful."
             />
           </GridItem>
           
           <GridItem span={1}>
             <FrameworkCard
               icon={<CommunityIntegrationIcon />}
-              title="Community Integration"
-              description="Positioning brands as valuable contributors to their communities, fostering trust and loyalty beyond transactions."
+              title="Being Part of Something Bigger"
+              description="The best brands don't just sell stuff—they become part of their community's story. We help you earn your place in that narrative."
             />
           </GridItem>
           
           <GridItem span={1}>
             <FrameworkCard
               icon={<ConsistentExperienceIcon />}
-              title="Consistent Experience"
-              description="Creating cohesive brand experiences across all touchpoints that reinforce your brand promise and build recognition."
+              title="Same You, Everywhere"
+              description="Whether someone meets you on Instagram, your website, or in person, they should get the same feeling—that's how recognition works."
             />
           </GridItem>
           
           <GridItem span={1}>
             <FrameworkCard
               icon={<MeasurableImpactIcon />}
-              title="Measurable Impact"
-              description="Defining clear metrics to track brand performance and business growth resulting from our strategic interventions."
+              title="Results You Can Actually See"
+              description="Pretty pictures are nice, but we're here to move numbers. We track what matters so you know this stuff is actually working."
             />
           </GridItem>
           
           <GridItem span={1}>
             <FrameworkCard
               icon={<AdaptiveEvolutionIcon />}
-              title="Adaptive Evolution"
-              description="Building brands with flexibility to grow and evolve while maintaining their core essence and authentic connections."
+              title="Growing Without Losing Yourself"
+              description="Great brands evolve but never lose what made them great in the first place. We help you grow without becoming someone else."
             />
           </GridItem>
         </Grid>
@@ -164,10 +164,10 @@ const Process = () => {
         <Grid>
           <GridItem span={6}>
             <div className="reveal-text">
-              <h2 className="text-4xl font-bold mb-6 text-dark">Our collaborative approach</h2>
-              <p>We believe the best results come from true collaboration. Throughout our process, we work closely with you, treating you as a partner rather than just a client.</p>
-              <p>This collaborative approach ensures that the final outcome not only meets your business objectives but also authentically represents your brand's unique voice and values.</p>
-              <p>We maintain open communication, regular check-ins, and collaborative workshops to keep you involved and informed at every stage of the process.</p>
+              <h2 className="text-4xl font-bold mb-6 text-dark">We're in this together</h2>
+              <p>The best work happens when we're actually working together, not just for you. You know your business better than anyone—we just know how to make it irresistible.</p>
+              <p>That means no disappearing for weeks only to emerge with something that misses the mark. We keep you in the loop, ask for your input, and make sure you love where we're headed.</p>
+              <p>Think of us as that friend who's really good at design and strategy, but still needs you to tell them what actually matters to your customers.</p>
             </div>
           </GridItem>
           <GridItem span={6}>
@@ -184,9 +184,9 @@ const Process = () => {
       </Section>
       
       <CTASection
-        title="Ready to transform your brand?"
-        description="Let's apply our Invisible Bond Framework™ to create authentic connections that drive sustainable growth for your business."
-        buttonText="Schedule a consultation"
+        title="Ready to get started?"
+        description="Let's figure out what makes you different and turn that into something people can't ignore."
+        buttonText="Let's talk"
         buttonTo="/contact"
         buttonVariant="primaryInverse"
       />

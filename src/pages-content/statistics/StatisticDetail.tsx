@@ -26,57 +26,57 @@ const getStatisticExplanation = (statistic: StatisticEntry) => {
     icon: React.ComponentType;
   } } = {
     'social-media-facebook': {
-      overview: 'Facebook continues to dominate as the preferred platform for experiential marketing campaigns among professional marketers.',
-      whatItMeans: 'When brands want to create immersive, engaging experiences for their audience, Facebook provides the most effective tools and reach.',
-      whyItMatters: 'Experiential marketing creates deeper emotional connections with customers, leading to higher brand loyalty and word-of-mouth marketing.',
+      overview: 'Turns out Facebook is still the go-to when marketers want to create experiences people actually remember.',
+      whatItMeans: 'When brands want to do something cool and immersive (not just another ad), Facebook has the tools and the audience to make it happen.',
+      whyItMatters: 'Because experiences beat ads every time. People remember how you made them feel, not what you tried to sell them.',
       implications: [
-        'Facebook\'s diverse content formats (video, live, events) support rich brand experiences',
-        'The platform\'s sophisticated targeting allows for precise audience engagement',
-        'Community building features enable ongoing brand-customer relationships'
+        'Mix it up with video, live streams, and events (Facebook has them all)',
+        'Target the right people at the right time (their data game is strong)',
+        'Build communities, not just follower counts'
       ],
       icon: Users
     },
     'video-purchase': {
-      overview: 'Video content has become a critical driver of purchasing decisions, with nearly two-thirds of consumers making purchases after watching brand videos.',
-      whatItMeans: 'Video marketing isn\'t just about awareness—it directly influences buying behavior and converts viewers into customers.',
-      whyItMatters: 'This demonstrates the power of visual storytelling in building trust and conveying value propositions effectively.',
+      overview: 'Nearly two-thirds of people buy stuff after watching a brand video. Yeah, video works that well.',
+      whatItMeans: 'Videos don\'t just get views—they get wallets open. Show people what you\'re about, and they\'ll show you the money.',
+      whyItMatters: 'Because seeing is believing. A good video builds trust faster than a thousand words ever could.',
       implications: [
-        'Video content builds emotional connections that text and images alone cannot achieve',
-        'Product demonstrations and testimonials in video format increase purchase confidence',
-        'Video content is shared more frequently, extending organic reach'
+        'Videos create emotional connections that stick',
+        'Show your product in action (people want to see it work)',
+        'Videos get shared more (free marketing, anyone?)'
       ],
       icon: TrendingUp
     },
     'brand-name-decisions': {
-      overview: 'The brand name itself carries significant weight in consumer decision-making, influencing nearly 8 out of 10 purchase decisions.',
-      whatItMeans: 'Your brand name is often the first touchpoint consumers have with your business, and it can make or break their interest.',
-      whyItMatters: 'A strong, memorable brand name creates immediate recognition and can convey quality, trust, and value before customers know anything else about your product.',
+      overview: 'Your brand name influences almost 8 out of 10 purchase decisions. No pressure or anything.',
+      whatItMeans: 'Your name is doing heavy lifting before people even know what you do. Make it count.',
+      whyItMatters: 'A great name opens doors. A bad one? Well, you\'re starting the race with your shoelaces tied together.',
       implications: [
-        'Brand names that are easy to remember and pronounce have a competitive advantage',
-        'Names that evoke positive emotions or associations drive purchase intent',
-        'Consistent brand naming across product lines builds cumulative recognition'
+        'Pick a name people can actually pronounce (and remember)',
+        'Make it mean something (or at least feel like it does)',
+        'Keep it consistent across everything you do'
       ],
       icon: Target
     },
     'trust-requirement': {
-      overview: 'Trust is the foundation of all consumer purchasing decisions, with 81% of consumers requiring trust before they will consider buying from a brand.',
-      whatItMeans: 'Trust isn\'t just a nice-to-have in today\'s marketplace—it\'s a prerequisite for doing business with consumers.',
-      whyItMatters: 'Without trust, even the best products and marketing campaigns will fail to convert prospects into customers.',
+      overview: '81% of people need to trust you before they\'ll buy from you. Trust first, transactions second.',
+      whatItMeans: 'No trust, no sale. It\'s that simple. People have too many options to waste time on brands they don\'t believe in.',
+      whyItMatters: 'Because nobody buys from someone they don\'t trust. Would you?',
       implications: [
-        'Building trust should be the primary focus of all brand communications',
-        'Transparency in business practices and communications builds trust faster',
-        'Social proof and testimonials are crucial for establishing initial trust'
+        'Lead with honesty (people can smell BS a mile away)',
+        'Be transparent about... well, everything',
+        'Let your happy customers do the talking'
       ],
       icon: Users
     },
     'consistent-branding-revenue': {
-      overview: 'Companies with consistent branding see significant revenue growth, with 60% reporting 10-20% increases in revenue.',
-      whatItMeans: 'Brand consistency across all touchpoints isn\'t just about looking professional—it directly impacts your bottom line.',
-      whyItMatters: 'Consistent branding creates familiarity and trust, making customers more likely to choose your brand over competitors.',
+      overview: '60% of companies with consistent branding see 10-20% revenue jumps. Consistency literally pays.',
+      whatItMeans: 'When everything looks and feels like it belongs together, people pay attention (and pay money).',
+      whyItMatters: 'Consistency builds familiarity. Familiarity builds trust. Trust builds revenue. See how that works?',
       implications: [
-        'All brand touchpoints should follow the same visual and messaging guidelines',
-        'Employee training on brand standards is essential for consistency',
-        'Regular brand audits help maintain consistency as your business grows'
+        'Make sure everything matches (yes, everything)',
+        'Train your team on brand standards (consistency is a team sport)',
+        'Check yourself regularly (brands drift without maintenance)'
       ],
       icon: TrendingUp
     }
@@ -85,13 +85,13 @@ const getStatisticExplanation = (statistic: StatisticEntry) => {
 
   // Default explanation for statistics not specifically mapped
   const defaultExplanation = {
-    overview: `This statistic reveals important insights about consumer behavior and brand perception in today's marketplace.`,
-    whatItMeans: `The ${statistic.percentage}% figure demonstrates a significant trend that impacts how businesses should approach their branding and marketing strategies.`,
-    whyItMatters: `Understanding this consumer behavior pattern is crucial for businesses looking to build stronger brand connections and drive growth.`,
+    overview: `Here's a stat that'll make you rethink how you're doing business.`,
+    whatItMeans: `${statistic.percentage}% is not just a number—it's a wake-up call about what your customers actually care about.`,
+    whyItMatters: `Ignore this at your own risk. Smart brands use insights like this to get ahead (and stay there).`,
     implications: [
-      'Brands that align with this trend are more likely to succeed in competitive markets',
-      'This insight can inform strategic decisions about brand positioning and messaging',
-      'Companies ignoring this trend may miss opportunities for customer engagement'
+      'Get on board or get left behind (harsh but true)',
+      'Use this to make smarter decisions about your brand',
+      'Miss this trend, miss your customers'
     ],
     icon: Zap
   };
@@ -263,7 +263,7 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
           <GridItem span={8}>
             <div className="relative z-[3]">
               <div className="inline-flex items-center mb-6 reveal-text">
-                <span className="text-white/80 text-lg">Branding Statistic</span>
+                <span className="text-white/80 text-lg">The numbers don't lie</span>
               </div>
               
               <div className="mb-8 reveal-text">
@@ -292,7 +292,7 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
                   </Button>
                 )}
                 <Button to="/contact" variant="primary" size="medium">
-                  Apply This Insight
+                  Use this insight
                 </Button>
               </div>
             </div>
@@ -304,8 +304,8 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
       {/* What It Means Section */}
       <Section background="light">
         <SectionHeader
-          subtitle="Understanding the data"
-          title="What this statistic means"
+          subtitle="Let's break it down"
+          title="What this actually means for you"
           align="center"
         />
         
@@ -315,7 +315,7 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
             <Grid>
               <GridItem span={12}>
                 <div className="pr-8">
-                  <h3 className="text-3xl font-bold text-gray-900 mb-6">Key Insights</h3>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">The real story here</h3>
                   <p className="text-xl leading-relaxed text-gray-700 mb-6">
                     {statistic.synopsis}
                   </p>
@@ -327,12 +327,12 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
       {/* Related Findings Section */}
       {statistic.relatedFindings.length > 0 && (
         <div>
-         <h3 className="text-3xl font-bold text-gray-900">Supporting research confirms this insight</h3>
+         <h3 className="text-3xl font-bold text-gray-900">This isn't just one stat—it's part of a bigger picture</h3>
           <div className="mt-16 mx-auto">
             <div className="prose prose-lg max-w-none">
               <p className="text-xl leading-relaxed text-gray-700 mb-8">
-                  The {statistic.percentage}% figure we've explored becomes even more compelling when we look at supporting research. 
-                  Multiple studies have examined this phenomenon from different angles, each adding crucial context to our understanding.
+                  That {statistic.percentage}% we just talked about? It's not alone. 
+                  Other smart people have been digging into this too, and guess what they found...
               </p>
               <Grid className="reveal-text" columns={1}>                
                 {statistic.relatedFindings.map((relatedId, index) => {
@@ -340,10 +340,10 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
                   if (!relatedStatistic) return null;
                   
                   const connectors = [
-                    "Additionally, let's look at another statistic",
-                    "Building on this trend, research brings further evidence",
-                    "This pattern is reinforced by findings that",
-                    "Further supporting this insight,"
+                    "And it gets better",
+                    "Here's another piece of the puzzle",
+                    "Want more proof? Check this out",
+                    "The plot thickens"
                   ];
                   
                   return (
@@ -360,7 +360,7 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
                           />
                         </div>
                         <p className="text-lg text-gray-700 leading-relaxed mb-6 w-5/6">
-                          {index < connectors.length ? connectors[index] : `Research also reveals an important insight from ${relatedStatistic.source}`}. 
+                          {index < connectors.length ? connectors[index] : `Here's what ${relatedStatistic.source} found`}: 
                           {' '}{relatedStatistic.synopsis} 
                         </p>
                         </div>
@@ -388,7 +388,7 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
                                 size="small"
                                 to={`/stat-detail?id=${relatedStatistic.id}`}
                               >
-                                Explore this insight →
+                                Dig deeper →
                               </Button>
                           </div>
                           </div>
@@ -406,8 +406,8 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
               </div>
                <div className="mt-12 p-6 bg-accent/5 rounded-xl border border-accent/20">
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    <strong>The collective insight:</strong> These interconnected findings paint a comprehensive picture of current market dynamics. 
-                    When viewed together, they reveal patterns that individual statistics might miss, providing a more complete foundation for strategic decision-making.
+                    <strong>Here's the big picture:</strong> All these stats are telling the same story from different angles. 
+                    Put them together and you've got a roadmap for what actually works (and what doesn't).
                   </p>
                 </div>
             </div>
@@ -419,8 +419,8 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
             {/* What It Means Section */}
       <Section background="primary">
         <SectionHeader
-          subtitle="Using on the data"
-          title="How it relates to your brand"
+          subtitle="Now for the good part"
+          title="What this means for your brand"
           align="center"
         />
         
@@ -440,12 +440,12 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
               </GridItem>
               <GridItem span={6}>
                 <div className="pl-8">
-                  <h3 className="text-3xl font-bold text-gray-900 mb-6">Why This Matters</h3>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">Why you should care</h3>
                   <p className="text-xl leading-relaxed text-gray-700 mb-6">
                     {explanation.whyItMatters}
                   </p>
                   <p className="text-lg leading-relaxed text-gray-600">
-                    Understanding these consumer trends allows businesses to make informed decisions about their brand strategy, resource allocation, and market positioning to stay ahead of the competition.
+                    Get this right and you're golden. Get it wrong and... well, let's not go there. The good news? Now you know what to focus on.
                   </p>
                 </div>
               </GridItem>
@@ -457,12 +457,12 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
             <Grid>
               <GridItem span={6}>
                 <div className="pr-8">
-                  <h3 className="text-3xl font-bold text-gray-900 mb-6">Business Implications</h3>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">What this means for business</h3>
                   <p className="text-xl leading-relaxed text-gray-700 mb-6">
                     {explanation.implications[0]}
                   </p>
                   <p className="text-lg leading-relaxed text-gray-600">
-                    Companies that act on these insights typically see improved customer engagement, higher conversion rates, and stronger brand loyalty compared to those who ignore market trends.
+                    Act on this and watch good things happen: more engagement, better conversions, customers who actually stick around. Ignore it? Your competitors won't.
                   </p>
                 </div>
               </GridItem>
@@ -494,12 +494,12 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
               </GridItem>
               <GridItem span={6}>
                 <div className="pl-8">
-                  <h3 className="text-3xl font-bold text-gray-900 mb-6">Strategic Implementation</h3>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">Making it happen</h3>
                   <p className="text-xl leading-relaxed text-gray-700 mb-6">
-                    The most successful brands don't just understand these statistics—they build comprehensive strategies around them. This requires a systematic approach to brand development that considers both current market conditions and future trends.
+                    Knowing is half the battle. The other half? Actually doing something about it. Smart brands turn insights like this into action plans that work.
                   </p>
                   <p className="text-lg leading-relaxed text-gray-600">
-                    Implementing changes based on these insights often involves cross-functional collaboration, from marketing and design teams to customer service and product development.
+                    Fair warning: this isn't a one-person job. You'll need your whole team on board—from the folks designing your stuff to the ones talking to customers.
                   </p>
                 </div>
               </GridItem>
@@ -512,9 +512,9 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
       {relatedServices.length > 0 && (
         <Section background="light">
           <SectionHeader
-            subtitle="Related services"
-            title="How we can help you leverage this insight"
-            description="Our strategic services are designed to help you capitalize on these market trends and consumer behaviors."
+            subtitle="Want to use this insight?"
+            title="Here's how we can help"
+            description="We've got the tools and know-how to turn this stat into your competitive advantage. (Yes, really.)"
             align="center"
           />
           
@@ -532,9 +532,9 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
 
       {/* CTA Section */}
       <CTASection
-        title="Ready to apply these insights to your brand?"
-        description="Let's discuss how this data can inform your brand strategy and drive meaningful results for your business."
-        buttonText="Start the conversation"
+        title="Ready to put this insight to work?"
+        description="Let's chat about how to use what you just learned to make your brand impossible to ignore."
+        buttonText="Let's talk"
         buttonTo="/contact"
         buttonVariant="primaryInverse"
       />

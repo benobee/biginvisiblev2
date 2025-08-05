@@ -31,55 +31,55 @@ export const services: Service[] = [
     id: 'brand-strategy',
     title: 'Brand Strategy',
     icon: BrandStrategyIcon,
-    shortDescription: 'Develop a clear, compelling brand strategy that differentiates your business and resonates with your target audience.',
-    detailedDescription: 'Your brand strategy is the foundation of everything you do. We work with you to define your brand\'s unique position in the market, understand your audience deeply, and create a strategic roadmap that guides all your brand decisions. Our comprehensive approach ensures your brand not only stands out but also builds meaningful connections with your community.',
+    shortDescription: 'Figure out what makes you different and why people should care. (Spoiler: You\'re more interesting than you think.)',
+    detailedDescription: 'Every great brand starts with knowing who you are and why you matter. We\'ll help you find your sweet spot – that perfect place where what you\'re amazing at meets what people actually need. No corporate fluff, just clear thinking about your brand that actually makes sense.',
     features: [
-      'Brand positioning',
-      'Audience research',
-      'Competitive analysis',
-      'Brand messaging'
+      'Finding your sweet spot',
+      'Getting to know your people',
+      'Checking out the competition',
+      'Saying it right'
     ],
     expandedFeatures: [
       {
-        title: 'Brand Positioning',
-        description: 'Define your unique market position and value proposition that sets you apart from competitors while resonating with your target audience.'
+        title: 'Finding Your Sweet Spot',
+        description: 'We\'ll help you find that perfect place where what you\'re great at meets what people actually need. It\'s like matchmaking, but for brands.'
       },
       {
-        title: 'Audience Research',
-        description: 'Deep dive into understanding your customers\' needs, behaviors, and motivations to create more targeted and effective brand communications.'
+        title: 'Getting to Know Your People',
+        description: 'Let\'s figure out who your people are, what keeps them up at night, and what makes them tick. Real insights, not just demographics.'
       },
       {
-        title: 'Competitive Analysis',
-        description: 'Comprehensive analysis of your competitive landscape to identify opportunities and develop strategies that give you a sustainable advantage.'
+        title: 'Scoping Out the Competition',
+        description: 'We\'ll peek at what everyone else is doing, then help you zag while they zig. Because being different is your superpower.'
       },
       {
-        title: 'Brand Messaging',
-        description: 'Craft compelling, consistent messaging that communicates your brand\'s value and personality across all touchpoints and channels.'
+        title: 'Finding Your Voice',
+        description: 'Words matter. We\'ll help you find the right ones – the kind that make people stop scrolling and start caring.'
       }
     ],
     process: [
       {
-        title: 'Research & Discovery',
-        description: 'We start by understanding your business, industry, and audience through comprehensive research and stakeholder interviews.'
+        title: 'Getting Curious',
+        description: 'We dig into your business, chat with your team, and ask the questions that matter. Think detective work, but with better coffee.'
       },
       {
-        title: 'Strategic Framework',
-        description: 'Develop a clear strategic framework that defines your brand positioning, personality, and messaging architecture.'
+        title: 'Connecting the Dots',
+        description: 'Time to turn all those insights into a plan that actually works. We\'ll map out where you are, where you\'re going, and how to get there.'
       },
       {
-        title: 'Validation & Refinement',
-        description: 'Test and refine the strategy with key stakeholders and target audience feedback to ensure market fit.'
+        title: 'Making It Stick',
+        description: 'We\'ll test drive your new strategy with real people. If something\'s not working, we\'ll tweak it until it does.'
       },
       {
-        title: 'Implementation Guide',
-        description: 'Create detailed guidelines and tools to help your team implement the strategy consistently across all channels.'
+        title: 'Your Brand Playbook',
+        description: 'You get a guide that makes sense to everyone – from your CEO to your newest intern. No decoder ring required.'
       }
     ],
     outcomes: [
-      'Clear brand positioning that differentiates you in the market',
-      'Deep understanding of your target audience and their needs',
-      'Compelling brand messaging that resonates and converts',
-      'Strategic framework to guide all future brand decisions'
+      'A brand position so clear, even your mom will get what you do',
+      'You\'ll know your customers better than they know themselves',
+      'Words that make people actually want to work with you',
+      'A roadmap you\'ll actually use (not just file away)'
     ],
     heroImage: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
   },
@@ -87,55 +87,55 @@ export const services: Service[] = [
     id: 'visual-identity',
     title: 'Visual Identity',
     icon: VisualIdentityIcon,
-    shortDescription: 'Create a cohesive visual system that communicates your brand\'s personality and values across all touchpoints.',
-    detailedDescription: 'Your visual identity is how your audience first experiences your brand. We create comprehensive visual systems that not only look beautiful but also strategically communicate your brand\'s essence. From logos to color palettes, typography to imagery, every element works together to create a memorable and impactful brand presence.',
+    shortDescription: 'Make your brand look as good as your product works. (First impressions count, even in sweatpants.)',
+    detailedDescription: 'Good design isn\'t just about looking pretty – it\'s about being unforgettable. We\'ll create a visual identity that feels like you, works everywhere, and makes your competition a little jealous. From logos to colors to that perfect font, we\'ve got you covered.',
     features: [
-      'Logo design',
-      'Color palette',
-      'Typography system',
-      'Brand guidelines'
+      'Logos that stick',
+      'Colors that pop',
+      'Type that talks',
+      'Rules that make sense'
     ],
     expandedFeatures: [
       {
-        title: 'Logo Design',
-        description: 'Create distinctive, memorable logos that capture your brand essence and work effectively across all applications and sizes.'
+        title: 'A Logo That Works Everywhere',
+        description: 'From business cards to billboards, your logo needs to look great at any size. We\'ll make sure it does (and that people remember it).'
       },
       {
-        title: 'Color Palette',
-        description: 'Develop strategic color systems that evoke the right emotions and ensure consistency across all brand touchpoints.'
+        title: 'Colors That Tell Your Story',
+        description: 'Colors do more than look nice – they make people feel things. We\'ll pick the ones that say exactly what you want to say.'
       },
       {
-        title: 'Typography System',
-        description: 'Select and customize typography that enhances readability while reinforcing your brand personality and hierarchy.'
+        title: 'Type That Speaks Volumes',
+        description: 'The right fonts can whisper elegance or shout excitement. We\'ll find the ones that say exactly what you mean.'
       },
       {
-        title: 'Brand Guidelines',
-        description: 'Comprehensive style guides that ensure consistent application of your visual identity across all media and platforms.'
+        title: 'A Guide Everyone Gets',
+        description: 'No more design disasters. Your team gets a guide so clear, they can\'t mess it up (we\'ve tested this theory).'
       }
     ],
     process: [
       {
-        title: 'Creative Brief',
-        description: 'Define the visual direction based on your brand strategy, target audience, and competitive landscape.'
+        title: 'Setting the Scene',
+        description: 'We start by figuring out what "you" looks like. Mood boards, inspiration, and lots of "what if we tried..." conversations.'
       },
       {
-        title: 'Concept Development',
-        description: 'Explore multiple creative directions and concepts that bring your brand personality to life visually.'
+        title: 'Sketching & Scheming',
+        description: 'This is where the magic happens. We\'ll explore different directions until we find the one that makes you say "That\'s it!"'
       },
       {
-        title: 'Design Refinement',
-        description: 'Refine and perfect the chosen direction, ensuring it works across all required applications.'
+        title: 'Making It Perfect',
+        description: 'We\'ll tweak, polish, and perfect until every pixel is in its happy place. Obsessive? Maybe. Worth it? Absolutely.'
       },
       {
-        title: 'System Creation',
-        description: 'Build a comprehensive visual system with guidelines for consistent implementation.'
+        title: 'Building Your Toolkit',
+        description: 'You get all the files, fonts, and guidance you need to keep looking great. Forever. (Or at least until your next rebrand.)'
       }
     ],
     outcomes: [
-      'Distinctive visual identity that stands out in your market',
-      'Consistent brand presence across all touchpoints',
-      'Professional brand guidelines for team implementation',
-      'Increased brand recognition and memorability'
+      'A look so distinctive, people will recognize you from across the room',
+      'Design consistency that makes your brand feel bigger than it is',
+      'A style guide your whole team will actually use',
+      'The kind of brand people remember (and want to work with)'
     ],
     heroImage: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
   },
@@ -143,55 +143,55 @@ export const services: Service[] = [
     id: 'digital-experience',
     title: 'Digital Experience',
     icon: DigitalExperienceIcon,
-    shortDescription: 'Design intuitive, engaging digital experiences that strengthen your brand and drive meaningful connections.',
-    detailedDescription: 'In today\'s digital world, your online presence is often the first and most important touchpoint with your audience. We design digital experiences that not only look great but also function seamlessly, convert effectively, and strengthen your brand relationships at every interaction.',
+    shortDescription: 'Build digital experiences people actually enjoy using. (Crazy concept, we know.)',
+    detailedDescription: 'Your website shouldn\'t feel like homework. We create digital experiences that work like they should, look like they mean it, and turn visitors into fans. No tech headaches, no design disasters – just sites and apps people love to use.',
     features: [
-      'Website design',
-      'User experience (UX)',
-      'User interface (UI)',
-      'Digital strategy'
+      'Sites that sell',
+      'Journeys that make sense',
+      'Interfaces that click',
+      'Strategies that work'
     ],
     expandedFeatures: [
       {
-        title: 'Website Design',
-        description: 'Create stunning, responsive websites that effectively communicate your brand and convert visitors into customers.'
+        title: 'Websites That Work Hard',
+        description: 'Beautiful is great, but beautiful AND functional? That\'s the sweet spot. We build sites that look good and get results.'
       },
       {
-        title: 'User Experience (UX)',
-        description: 'Design intuitive user journeys that make it easy for your audience to find what they need and take desired actions.'
+        title: 'Paths People Actually Follow',
+        description: 'Ever been lost on a website? Yeah, we hate that too. We\'ll make sure your visitors find what they need without the treasure map.'
       },
       {
-        title: 'User Interface (UI)',
-        description: 'Craft beautiful, functional interfaces that reflect your brand while providing excellent usability and accessibility.'
+        title: 'Buttons People Want to Click',
+        description: 'Good design isn\'t just pretty – it\'s intuitive. We make interfaces that feel right from the first click.'
       },
       {
-        title: 'Digital Strategy',
-        description: 'Develop comprehensive digital strategies that align with your business goals and user needs across all platforms.'
+        title: 'A Plan That Makes Sense',
+        description: 'Random tactics are for amateurs. We\'ll build you a digital strategy that actually connects the dots.'
       }
     ],
     process: [
       {
-        title: 'Discovery & Planning',
-        description: 'Understand your users, goals, and technical requirements to create a strategic foundation for design.'
+        title: 'Figuring Out What Works',
+        description: 'Before we build anything, we need to know who\'s using it and why. Consider this the "measure twice" part.'
       },
       {
-        title: 'UX Design',
-        description: 'Map user journeys, create wireframes, and design the optimal experience for your audience.'
+        title: 'Mapping the Journey',
+        description: 'We\'ll sketch out how people move through your site. Think of it as GPS for your users – no wrong turns allowed.'
       },
       {
-        title: 'Visual Design',
-        description: 'Apply your brand identity to create beautiful, engaging interfaces that delight users.'
+        title: 'Making It Beautiful',
+        description: 'Time to make it shine. We\'ll bring your brand to life in pixels, making sure every screen feels like you.'
       },
       {
-        title: 'Testing & Optimization',
-        description: 'Test with real users and optimize the experience based on feedback and performance data.'
+        title: 'Real People, Real Feedback',
+        description: 'We test with actual humans (novel idea, right?). If something\'s not working, we fix it. Simple as that.'
       }
     ],
     outcomes: [
-      'Engaging digital experiences that convert visitors',
-      'Improved user satisfaction and engagement metrics',
-      'Consistent brand experience across all digital touchpoints',
-      'Scalable digital foundation for future growth'
+      'A site that turns browsers into buyers (without being pushy)',
+      'Happy users who find what they need without swearing',
+      'Digital presence that feels as good as your real-world brand',
+      'A foundation that grows with you (not against you)'
     ],
     heroImage: 'https://images.unsplash.com/photo-1559028006-448665bd7c7f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
   },
@@ -199,55 +199,55 @@ export const services: Service[] = [
     id: 'content-strategy',
     title: 'Content Strategy',
     icon: ContentStrategyIcon,
-    shortDescription: 'Develop a content strategy that tells your brand story and engages your audience across all channels.',
-    detailedDescription: 'Great content doesn\'t just inform—it inspires, engages, and builds relationships. We help you develop content strategies that tell your unique story, provide value to your audience, and support your business goals across every channel and touchpoint.',
+    shortDescription: 'Tell stories that stick. (Because nobody remembers boring.)',
+    detailedDescription: 'Good content isn\'t just words on a page – it\'s the voice that builds relationships. We\'ll help you find stories worth telling and ways to tell them that matter. No fluffy filler, just content that connects.',
     features: [
-      'Content planning',
-      'Storytelling',
-      'Content creation',
-      'Content distribution'
+      'Stories that sell',
+      'Words that work',
+      'Content that connects',
+      'Messages that move'
     ],
     expandedFeatures: [
       {
-        title: 'Content Planning',
-        description: 'Develop strategic content plans that align with your business goals and audience needs across all channels.'
+        title: 'Planning Worth Following',
+        description: 'Random posts aren\'t a strategy. We\'ll map out what to say, when to say it, and where your people are actually listening.'
       },
       {
-        title: 'Storytelling',
-        description: 'Craft compelling brand narratives that resonate with your audience and differentiate you from competitors.'
+        title: 'Stories That Sell (Without Selling)',
+        description: 'Everyone loves a good story. We\'ll find yours and tell it in a way that makes people lean in, not tune out.'
       },
       {
-        title: 'Content Creation',
-        description: 'Produce high-quality content that engages your audience and supports your brand objectives across formats.'
+        title: 'Content That Counts',
+        description: 'Quality over quantity, always. We create stuff people actually want to read, watch, and share.'
       },
       {
-        title: 'Content Distribution',
-        description: 'Optimize content distribution strategies to reach your audience where they are most engaged and receptive.'
+        title: 'Getting It Out There',
+        description: 'Great content stuck in a drawer helps nobody. We\'ll make sure your stories reach the right people at the right time.'
       }
     ],
     process: [
       {
-        title: 'Content Audit',
-        description: 'Analyze existing content to identify gaps, opportunities, and areas for improvement.'
+        title: 'Taking Stock',
+        description: 'Let\'s see what you\'ve got already. We\'ll figure out what\'s working, what isn\'t, and what\'s missing.'
       },
       {
-        title: 'Strategy Development',
-        description: 'Create a comprehensive content strategy aligned with your brand and business objectives.'
+        title: 'Building Your Blueprint',
+        description: 'Every great content program needs a plan. We\'ll create one that makes sense for your business and your sanity.'
       },
       {
-        title: 'Content Creation',
-        description: 'Develop engaging content that tells your story and provides value to your audience.'
+        title: 'Bringing Stories to Life',
+        description: 'Time to turn strategy into stories people actually want to consume. We\'ll create content that earns attention instead of demanding it.'
       },
       {
-        title: 'Performance Optimization',
-        description: 'Monitor content performance and optimize based on engagement and conversion metrics.'
+        title: 'Making It Better',
+        description: 'We\'ll keep an eye on what\'s working (and what isn\'t) so your content keeps getting stronger, not staler.'
       }
     ],
     outcomes: [
-      'Consistent, engaging content across all channels',
-      'Stronger brand storytelling and audience connection',
-      'Improved content performance and engagement',
-      'Clear content guidelines for ongoing success'
+      'Content that people look forward to reading',
+      'Stories that make customers feel like insiders',
+      'Results that actually move your business forward',
+      'A content system that runs without daily drama'
     ],
     heroImage: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
   },
@@ -255,55 +255,55 @@ export const services: Service[] = [
     id: 'brand-architecture',
     title: 'Brand Architecture',
     icon: BrandArchitectureIcon,
-    shortDescription: 'Structure your brand portfolio to maximize clarity, relevance, and impact across all your offerings.',
-    detailedDescription: 'As businesses grow and evolve, managing multiple brands, products, or services becomes complex. We help you create clear, strategic brand architecture that maximizes the value of your entire portfolio while ensuring each element supports your overall business objectives.',
+    shortDescription: 'Organize your brand family so it actually makes sense. (No more family dysfunction.)',
+    detailedDescription: 'Got multiple brands, products, or services? We\'ll help you organize them so customers understand how they fit together (and you don\'t lose your mind managing them). Think of it as family therapy for your brand portfolio.',
     features: [
-      'Brand hierarchy',
-      'Sub-brand strategy',
-      'Brand extensions',
-      'Portfolio management'
+      'Family tree that works',
+      'Sub-brand harmony',
+      'Smart growth plans',
+      'Portfolio that purrs'
     ],
     expandedFeatures: [
       {
-        title: 'Brand Hierarchy',
-        description: 'Design clear brand hierarchies that show the relationship between your master brand and sub-brands or products.'
+        title: 'Your Brand Family Tree',
+        description: 'We\'ll map out how all your brands relate to each other so customers (and your team) can actually follow the connections.'
       },
       {
-        title: 'Sub-brand Strategy',
-        description: 'Develop strategies for sub-brands that maintain connection to the master brand while serving specific audiences.'
+        title: 'Playing Well Together',
+        description: 'Your sub-brands need to feel like family, not distant cousins. We\'ll make sure they work together instead of against each other.'
       },
       {
-        title: 'Brand Extensions',
-        description: 'Plan strategic brand extensions that leverage your existing brand equity while entering new markets or categories.'
+        title: 'Growing Smart, Not Just Big',
+        description: 'When it\'s time to expand, we\'ll help you do it in a way that builds on what you\'ve already got instead of starting from scratch.'
       },
       {
-        title: 'Portfolio Management',
-        description: 'Create systems for managing your entire brand portfolio effectively while maximizing synergies and market impact.'
+        title: 'Keeping Everyone in Line',
+        description: 'Managing multiple brands doesn\'t have to be chaos. We\'ll create systems that keep everyone marching in the same direction.'
       }
     ],
     process: [
       {
-        title: 'Portfolio Analysis',
-        description: 'Assess your current brand portfolio, identifying strengths, gaps, and optimization opportunities.'
+        title: 'Taking Inventory',
+        description: 'Let\'s see what you\'ve got and how it\'s working. We\'ll find the gaps, overlaps, and missed opportunities hiding in plain sight.'
       },
       {
-        title: 'Architecture Design',
-        description: 'Design the optimal brand architecture structure based on your business strategy and market needs.'
+        title: 'Building the Blueprint',
+        description: 'Time to design a structure that actually makes sense for your business and your customers. No more brand spaghetti.'
       },
       {
-        title: 'Implementation Planning',
-        description: 'Create detailed plans for implementing the new architecture across all touchpoints and communications.'
+        title: 'Making It Happen',
+        description: 'A great plan on paper is just expensive wallpaper. We\'ll map out exactly how to roll out your new structure without breaking anything.'
       },
       {
-        title: 'Governance Framework',
-        description: 'Establish governance frameworks to maintain architectural integrity as your business evolves.'
+        title: 'Rules That Stick',
+        description: 'We\'ll set up simple guidelines so your brand architecture stays organized as you grow (instead of becoming a hot mess).'
       }
     ],
     outcomes: [
-      'Clear, strategic brand architecture that supports growth',
-      'Maximized brand equity across your entire portfolio',
-      'Improved market clarity and customer understanding',
-      'Scalable framework for future brand decisions'
+      'A brand family that works together instead of against each other',
+      'Every brand pulling its weight and then some',
+      'Customers who get what you do (and why it matters)',
+      'A system that grows with you, not against you'
     ],
     heroImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
   },
@@ -311,55 +311,55 @@ export const services: Service[] = [
     id: 'community-building',
     title: 'Community Building',
     icon: CommunityBuildingIcon,
-    shortDescription: 'Develop strategies to build and nurture communities around your brand, fostering loyalty and advocacy.',
-    detailedDescription: 'The strongest brands don\'t just have customers—they have communities. We help you build authentic communities around your brand that foster deep connections, drive loyalty, and turn customers into advocates who amplify your message and support your growth.',
+    shortDescription: 'Turn customers into fans, and fans into family. (The kind that actually likes each other.)',
+    detailedDescription: 'Great brands don\'t just sell stuff – they bring people together. We\'ll help you build a community that feels less like a customer database and more like a group of friends who happen to love what you do. Because loyalty you can\'t buy is worth way more than loyalty you can.',
     features: [
-      'Community strategy',
-      'Engagement programs',
-      'Ambassador programs',
-      'Community events'
+      'Belonging blueprints',
+      'Connection catalysts',
+      'Champion cultivation',
+      'Gathering greatness'
     ],
     expandedFeatures: [
       {
-        title: 'Community Strategy',
-        description: 'Develop comprehensive strategies for building and nurturing communities that align with your brand values and business goals.'
+        title: 'Building Your Tribe',
+        description: 'Every great community starts with a plan. We\'ll figure out who your people are, where they hang out, and how to bring them together.'
       },
       {
-        title: 'Engagement Programs',
-        description: 'Create programs and initiatives that encourage active participation and strengthen community bonds.'
+        title: 'Keeping the Magic Alive',
+        description: 'Communities need more than a Facebook group. We\'ll create programs that give people real reasons to stick around and participate.'
       },
       {
-        title: 'Ambassador Programs',
-        description: 'Identify and nurture brand ambassadors who can authentically advocate for your brand within the community.'
+        title: 'Finding Your Champions',
+        description: 'Some people will love what you do so much they\'ll tell everyone. We\'ll help you find those people and give them reasons to keep talking.'
       },
       {
-        title: 'Community Events',
-        description: 'Plan and execute events that bring your community together and strengthen relationships with your brand.'
+        title: 'Bringing People Together',
+        description: 'Nothing beats face-to-face (or screen-to-screen) connection. We\'ll create events that feel less like marketing and more like hanging out.'
       }
     ],
     process: [
       {
-        title: 'Community Research',
-        description: 'Research your existing community and identify opportunities for growth and deeper engagement.'
+        title: 'Getting to Know Your People',
+        description: 'Before we build anything, we need to understand who\'s already in your corner and what makes them tick. Stalking, but legal.'
       },
       {
-        title: 'Strategy Development',
-        description: 'Create a comprehensive community building strategy that aligns with your brand and business objectives.'
+        title: 'Crafting the Plan',
+        description: 'Random acts of community don\'t work. We\'ll create a thoughtful strategy that turns strangers into superfans over time.'
       },
       {
-        title: 'Program Launch',
-        description: 'Launch community programs and initiatives designed to foster engagement and build relationships.'
+        title: 'Going Live',
+        description: 'Time to put the plan into action. We\'ll launch your community programs with the kind of excitement that gets people talking.'
       },
       {
-        title: 'Growth & Optimization',
-        description: 'Monitor community health and optimize programs based on engagement and feedback metrics.'
+        title: 'Keeping It Growing',
+        description: 'Communities are living things. We\'ll keep an eye on the pulse and adjust things to keep your people happy and engaged.'
       }
     ],
     outcomes: [
-      'Engaged, loyal community around your brand',
-      'Increased customer advocacy and word-of-mouth marketing',
-      'Valuable customer insights and feedback loops',
-      'Sustainable framework for community growth'
+      'A tribe of people who genuinely care about your success',
+      'Customers who sell for you (because they want to, not because you asked)',
+      'Feedback that actually helps you get better',
+      'A community that grows itself (the dream, right?)'
     ],
     heroImage: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
   }

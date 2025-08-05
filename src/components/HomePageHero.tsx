@@ -37,7 +37,7 @@ const HomePageHero = () => {
         <div className={styles.heroShape} />
         
         <div className="section-container relative z-50">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl m-auto">
             <div className="reveal-text text-sm sm:text-lg md:text-xl lg:text-2xl font-medium mb-6 sm:mb-8 text-accent uppercase tracking-wider">
               Branding Studio
             </div>
@@ -45,7 +45,7 @@ const HomePageHero = () => {
               We make the <span className={`text-accent ${styles.fadeInCycle}`}>invisible</span> bonds between brands and people.
             </h1>
             <p className="reveal-text text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-12 opacity-80 leading-relaxed max-w-3xl">
-              Transform your business into a trusted authority through our systematic approach — where strategic brand architecture meets meaningful community impact.
+              We help businesses find what makes them different and turn that into something people actually care about. No fluff, no buzzwords—just clear thinking about brands that work.
             </p>
             <div className="reveal-text flex flex-col sm:flex-row gap-3 sm:gap-4">
               <a 

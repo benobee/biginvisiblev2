@@ -245,8 +245,7 @@ const SimpleBlueprintGrid = () => {
         {subServicePoints.map(subPoint => {
           const parentPoint = touchPoints.find(p => p.id === subPoint.parentId);
           const isParentHovered = hoveredPoint === subPoint.parentId;
-          const isParentActive = activePoint === subPoint.parentId;
-          const shouldShowLine = isParentHovered || isParentActive;
+          const shouldShowLine = isParentHovered;
           
           if (!parentPoint || !shouldShowLine) return null;
           
@@ -315,8 +314,7 @@ const SimpleBlueprintGrid = () => {
       {/* Sub-Service Touch Points */}
       {subServicePoints.map((subPoint, index) => {
         const isParentHovered = hoveredPoint === subPoint.parentId;
-        const isParentActive = activePoint === subPoint.parentId;
-        const shouldHighlight = isParentHovered || isParentActive;
+        const shouldHighlight = isParentHovered;
         
         return (
           <div

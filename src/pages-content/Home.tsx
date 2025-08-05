@@ -17,8 +17,8 @@ const Home = () => {
       {/* Services Section */}
       <Section background="light" id="services">
         <SectionHeader
-          subtitle="Services"
-          title="Building authentic brand connections through strategic design"
+          subtitle="What we do"
+          title="We make brands people actually remember"
           align="center"
         />
           
@@ -35,8 +35,8 @@ const Home = () => {
       {/* Process Section */}
       <Section background="primary">
         <SectionHeader
-          subtitle="Our Process"
-          title="The Invisible Bond Framework™"
+          subtitle="How we work"
+          title="Our (not-so-secret) formula"
           align="center"
         />
           
@@ -46,8 +46,8 @@ const Home = () => {
               <Card padding='small'>
                 <div className="reveal-text relative">
                   <div className="text-6xl font-bold text-brand-accent/10 absolute -top-10 -left-2 z-0">01</div>
-                  <h3 className="text-xl font-bold mb-4 relative z-10">Discovery</h3>
-                  <p className='pt-6'>We begin by deeply understanding your brand.</p>
+                  <h3 className="text-xl font-bold mb-4 relative z-10">Getting Curious</h3>
+                  <p className='pt-6'>We dig deep to figure out what makes you tick (and what makes you different).</p>
                 </div>
               </Card>
 
@@ -57,8 +57,8 @@ const Home = () => {
               <Card padding='small'>
                 <div className="reveal-text relative">
                   <div className="text-6xl font-bold text-brand-accent/10 absolute -top-10 -left-2 z-0">02</div>
-                  <h3 className="text-xl font-bold mb-4 relative z-10">Strategy</h3>
-                  <p className='pt-6'>Based on our discoveries, we craft a comprehensive brand strategy.</p>
+                  <h3 className="text-xl font-bold mb-4 relative z-10">Connecting the Dots</h3>
+                  <p className='pt-6'>Time to turn those insights into a plan that actually works for your business.</p>
                 </div>
               </Card>
             </GridItem>
@@ -67,8 +67,8 @@ const Home = () => {
               <Card padding='small'>
                 <div className="reveal-text relative">
                   <div className="text-6xl font-bold text-brand-accent/10 absolute -top-10 -left-2 z-0">03</div>
-                  <h3 className="text-xl font-bold mb-4 relative z-10">Design</h3>
-                  <p className='pt-6'>We bring your brand to life through cohesive visual identity and consistent experiences.</p>
+                  <h3 className="text-xl font-bold mb-4 relative z-10">Making It Real</h3>
+                  <p className='pt-6'>This is where the magic happens—turning strategy into something you can see and feel.</p>
                 </div>
               </Card>
             </GridItem>
@@ -77,8 +77,8 @@ const Home = () => {
               <Card padding='small'>
                 <div className="reveal-text relative">
                   <div className="text-6xl font-bold text-brand-accent/10 absolute -top-10 -left-2 z-0">04</div>
-                  <h3 className="text-xl font-bold mb-4 relative z-10">Implementation</h3>
-                  <p className='pt-6'>We provide ongoing support to help your brand grow and adapt.</p>
+                  <h3 className="text-xl font-bold mb-4 relative z-10">Making It Stick</h3>
+                  <p className='pt-6'>We stick around to make sure everything works like it should (because we care how this turns out).</p>
                 </div>
               </Card>
             </GridItem>
@@ -91,7 +91,7 @@ const Home = () => {
               size="medium"
               className="reveal-text"
             >
-              Learn about our process
+              See how we work
             </Button>
           </div>
       </Section>
@@ -99,9 +99,9 @@ const Home = () => {
       {/* Branding Statistics Section */}
       <Section background="light">
         <SectionHeader
-          subtitle="The power of branding"
-          title="Why strategic branding matters"
-          description="Data-driven insights that demonstrate the real impact of thoughtful brand development on business growth and customer relationships."
+          subtitle="The numbers don't lie"
+          title="Why good branding actually matters"
+          description="Real data that shows what happens when you get your brand right (spoiler: good things)."
           align="center"
         />
         
@@ -123,7 +123,7 @@ const Home = () => {
             size="medium"
             className="reveal-text"
           >
-            See more statistics
+            Show me the data
           </Button>
         </div>
       </Section>
@@ -131,8 +131,8 @@ const Home = () => {
       {/* Featured Work Section */}
       <Section background="primary">
         <SectionHeader
-          subtitle="Featured Work"
-          title="Building brands that matter"
+          subtitle="Our work"
+          title="Brands we're actually proud of"
           align="center"
         />
           
@@ -186,9 +186,9 @@ const Home = () => {
 
       {/* Contact CTA Section */}
       <CTASection
-        title="Ready to begin?"
-        description="Let's create the authentic connections that will transform your business into a trusted authority."
-        buttonText="Start Your Project"
+        title="Ready to get started?"
+        description="Let's figure out what makes you different and turn that into something people care about."
+        buttonText="Let's talk"
         buttonTo="/contact"
         buttonVariant="primaryInverse"
       />

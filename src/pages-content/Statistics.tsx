@@ -12,32 +12,32 @@ import CTASection from '../components/ui/CTASection';
 const categoryInfo = {
   'brand-strategy': {
     name: 'Brand Strategy',
-    description: 'Data on brand positioning, trust, and strategic decision-making',
+    description: 'Numbers that prove getting your strategy right matters',
     icon: Target
   },
   'visual-identity': {
     name: 'Visual Identity',
-    description: 'Statistics on logos, colors, and visual brand elements',
+    description: 'Why looking good actually affects your bottom line',
     icon: Palette
   },
   'digital-experience': {
     name: 'Digital Experience',
-    description: 'Insights on digital touchpoints and online brand interactions',
+    description: 'Data on what happens when your website actually works',
     icon: Monitor
   },
   'content-strategy': {
     name: 'Content Strategy',
-    description: 'Data on content effectiveness and engagement',
+    description: 'Proof that good content beats mediocre content every time',
     icon: FileText
   },
   'community-building': {
     name: 'Community Building',
-    description: 'Statistics on audience engagement and community development',
+    description: 'Stats that show why having fans beats having customers',
     icon: Users
   },
   'brand-architecture': {
     name: 'Brand Architecture',
-    description: 'Data on brand structure and organizational branding',
+    description: 'Evidence that organized brands outperform chaotic ones',
     icon: Layers
   }
 };
@@ -163,14 +163,14 @@ const Statistics = () => {
             <GridItem span={6}>
               <div className="relative z-10">
                 <h1 className="reveal-text text-4xl lg:text-5xl xl:text-6xl mb-6 font-bold leading-tight tracking-tight text-dark">
-                  Branding <span className="text-accent">Statistics</span>
+                  The <span className="text-accent">numbers</span> don't lie
                 </h1>
                 <p className="reveal-text text-lg lg:text-xl mb-8 opacity-80 leading-relaxed max-w-2xl text-dark">
-                  Explore {summary.total} data-driven insights across {categories.length} categories. 
-                  Make informed brand decisions with verified research and industry benchmarks.
+                  {summary.total} real stats across {categories.length} categories that prove good branding actually works. 
+                  No fluff, no made-up numbers—just data you can trust.
                 </p>
                 <Button to="/contact" variant="primary" className="reveal-text">
-                  Apply these insights
+                  Let's use this data
                 </Button>
               </div>
             </GridItem>
@@ -190,7 +190,7 @@ const Statistics = () => {
 
       {/* Categories Section */}
       <Section background="secondary" spacing="normal">
-        <h2 className="text-3xl font-bold text-center mb-12 reveal-text">Browse by Category</h2>
+        <h2 className="text-3xl font-bold text-center mb-12 reveal-text">Find what you're looking for</h2>
           
           {/* Filters */}
           <div className="bg-white rounded-xl shadow-lg mb-8 reveal-text">
@@ -212,7 +212,7 @@ const Statistics = () => {
                   <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
                   <input
                     type="text"
-                    placeholder="Search statistics by title, content, source, or category..."
+                    placeholder="Search for what you need..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-accent focus:border-accent"
@@ -375,8 +375,8 @@ const Statistics = () => {
           {filteredStatistics.length === 0 && (
             <div className="text-center py-16 reveal-text">
               <TrendingUp className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-xl font-medium text-gray-500 mb-2">No statistics found</h3>
-              <p className="text-gray-400">Try adjusting your filters or selecting a different category.</p>
+              <h3 className="text-xl font-medium text-gray-500 mb-2">Nothing here yet</h3>
+              <p className="text-gray-400">Try tweaking your search or picking a different category. The data's here somewhere.</p>
             </div>
           )}
 
@@ -384,9 +384,9 @@ const Statistics = () => {
 
       {/* CTA Section */}
       <CTASection
-        title="Ready to Apply These Insights?"
-        description="Transform these statistics into actionable brand strategies. Let's discuss how these insights can drive your brand forward."
-        buttonText="Start Your Brand Journey"
+        title="Ready to put this to work?"
+        description="All this data is nice, but it's what you do with it that counts. Let's turn these insights into something that actually moves your business forward."
+        buttonText="Let's talk strategy"
         buttonTo="/contact"
         buttonVariant="primaryInverse"
       />

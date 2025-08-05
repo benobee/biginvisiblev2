@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
+import { useContext } from 'react';
 import Section from '../../components/ui/Section';
 import SectionHeader from '../../components/ui/SectionHeader';
-import Grid from '../../components/ui/Grid';
-import GridItem from '../../components/ui/GridItem';
 import Button from '../../components/ui/Button';
 import CTASection from '../../components/ui/CTASection';
 import ServiceCarousel from '../../components/ServiceCarousel';
@@ -11,6 +9,9 @@ import Breadcrumb from '../../components/ui/Breadcrumb';
 import { type Service } from '../../data/services';
 import ImpactStatisticsGrid from '../../components/ImpactStatisticsGrid';
 import TestimonialsCarousel from '../../components/TestimonialsCarousel';
+import ServiceBlueprintGrid from '../../components/ServiceBlueprintGrid';
+import { ThemeModeContext } from '../../components/ThemeModeContext';
+import styles from '../../components/HomePageHero.module.css';
 import './ServiceTemplate.css';
 
 // Design/Graphics focused images for carousel from Unsplash - all unique images
@@ -141,6 +142,7 @@ interface ServiceTemplateProps {
 const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
   const carouselImages = getCarouselImages(service.id);
   const testimonials = getTestimonials();
+  const { isLightMode } = useContext(ThemeModeContext);
   
   // Create carousel items from expanded features
   const carouselItems = service.expandedFeatures.map((feature, index) => ({
@@ -159,30 +161,59 @@ const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
             { label: service.title }
           ]}
         />
-        <Section background="primary" className="min-h-[85vh] !bg-[#0F1923] text-white flex items-center relative overflow-hidden pt-[120px] pb-[60px]">
-          <Grid>
-              <GridItem span={6}>
-                <div className="relative z-[3]">
-                  {service.title && <h1 className="text-5xl md:text-6xl lg:text-7xl mb-6 font-bold leading-[1.1] tracking-[-0.02em] text-white reveal-text">
-                    {service.title}
-                  </h1>}
-                  <p className="text-lg md:text-xl lg:text-2xl mb-8 text-white/90 leading-[1.6] max-w-[650px] reveal-text">
-                    {service.detailedDescription}
-                  </p>
-                  <Button to="/contact" variant="primary" size="large" className="reveal-text">
+        <Section background="primary" className="h-[calc(100vh-112px)] !bg-[#0F1923] text-white flex items-center relative overflow-hidden">
+          {/* Light mode background */}
+          <div 
+            className={`absolute inset-0 z-20 ${styles.heroBackground}`}
+            style={{ opacity: isLightMode ? 1 : 0 }}
+          >
+            <img 
+              src={service.heroImage}
+              alt="Hero background"
+              className="w-full h-full object-cover opacity-30"
+            />
+          </div>
+
+          {/* Service Blueprint Grid - Full screen */}
+          <div 
+            className={`absolute inset-0 z-30 ${styles.constellationLayer}`}
+            style={{ opacity: 0.8, pointerEvents: 'auto' }}
+          >
+            <ServiceBlueprintGrid service={service} />
+          </div>
+          
+          <div className={styles.heroShape} />
+          
+          <div className="section-container relative z-50">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+              {/* Left column - Content */}
+              <div className="max-w-2xl">
+                {service.title && <h1 className="reveal-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl mb-6 sm:mb-8 font-bold leading-none tracking-tight text-white">
+                  {service.title}
+                </h1>}
+                <p className="reveal-text text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-12 opacity-80 leading-relaxed">
+                  {service.detailedDescription}
+                </p>
+                <div className="reveal-text flex flex-col sm:flex-row gap-3 sm:gap-4">
+                  <Button to="/contact" variant="primary" size="large" className="inline-block bg-accent text-white px-6 sm:px-8 py-3 sm:py-4 font-medium text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 border border-accent hover:bg-transparent hover:text-accent no-underline text-center min-h-[44px] flex items-center justify-center">
                     Get started today
                   </Button>
+                  <a 
+                    href="#services" 
+                    className="inline-block bg-transparent text-white px-6 sm:px-8 py-3 sm:py-4 font-medium text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 border border-white/20 hover:border-white no-underline text-center min-h-[44px] flex items-center justify-center"
+                  >
+                    Explore services
+                  </a>
                 </div>
-              </GridItem>
-              <GridItem span={6}>
-                <div className="h-[500px] relative rounded-2xl overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.3)] reveal-text">
-                  <img src={service.heroImage} alt={service.title} className="w-full h-full object-cover" />
-                </div>
-              </GridItem>
-            </Grid>
+              </div>
+              
+              {/* Right column - Empty space for touch points to show through */}
+              <div className="hidden lg:block"></div>
+            </div>
+          </div>
         </Section>
         
-        <Section background="light">
+        <Section background="light" id="services">
           <SectionHeader
             subtitle="What we do"
             title={`${service.title} Services`}
