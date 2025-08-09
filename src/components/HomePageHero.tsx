@@ -41,7 +41,7 @@ const HomePageHero = () => {
             <div className="reveal-text text-sm sm:text-lg md:text-xl lg:text-2xl font-medium mb-6 sm:mb-8 text-accent uppercase tracking-wider">
               Branding Studio
             </div>
-            <h1 className="reveal-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl mb-6 sm:mb-8 font-bold leading-none tracking-tight">
+            <h1 className="reveal-text text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl mb-6 sm:mb-8 font-bold leading-none tracking-tight">
               We make the <span className={`text-accent ${styles.fadeInCycle}`}>invisible</span> bonds between brands and people.
             </h1>
             <p className="reveal-text text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-12 opacity-80 leading-relaxed max-w-3xl">
@@ -50,13 +50,13 @@ const HomePageHero = () => {
             <div className="reveal-text flex flex-col sm:flex-row gap-3 sm:gap-4">
               <a 
                 href="/contact" 
-                className="inline-block bg-accent text-white px-6 sm:px-8 py-3 sm:py-4 font-medium text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 border border-accent hover:bg-transparent hover:text-accent no-underline text-center min-h-[44px] flex items-center justify-center"
+                className="bg-accent text-white px-6 sm:px-8 py-3 sm:py-4 font-medium text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 border border-accent hover:bg-transparent hover:text-accent no-underline text-center min-h-[44px] flex items-center justify-center"
               >
                 Start a project
               </a>
               <a 
                 href="/work" 
-                className="inline-block bg-transparent text-white px-6 sm:px-8 py-3 sm:py-4 font-medium text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 border border-white/20 hover:border-white no-underline text-center min-h-[44px] flex items-center justify-center"
+                className="bg-transparent text-white px-6 sm:px-8 py-3 sm:py-4 font-medium text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 border border-white/20 hover:border-white no-underline text-center min-h-[44px] flex items-center justify-center"
               >
                 View our work
               </a>

@@ -1,0 +1,6 @@
+{
+  "command": "yarn dev",
+  "serverUrl": "http://localhost:4321",
+  "authenticateProxy": false,
+  "commitMode": "commits"
+}

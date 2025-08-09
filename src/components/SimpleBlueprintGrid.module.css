@@ -385,3 +385,14 @@
   0% { background-position: -100% 0; }
   100% { background-position: 100% 0; }
 }
+
+/* Hide interactive touch points and related elements on small screens (mobile) */
+@media (max-width: 640px) {
+  .touchPoint,
+  .subServicePoint,
+  .connectionsContainer,
+  .particlesContainer {
+    display: none !important;
+    pointer-events: none !important;
+  }
+}
