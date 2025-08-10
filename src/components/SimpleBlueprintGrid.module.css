@@ -7,6 +7,27 @@
   z-index: 1;
 }
 
+/* Centered Title */
+.centeredTitle {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+  pointer-events: none;
+  opacity: var(--services-progress, 0);
+  transition: opacity 0.5s ease;
+}
+
+.centeredTitle h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
 /* Debug indicator */
 .debugIndicator {
   position: absolute;
@@ -409,6 +430,11 @@
   .particlesContainer {
     display: none !important;
     pointer-events: none !important;
+  }
+  
+  /* Make title smaller on mobile */
+  .centeredTitle h1 {
+    font-size: 2rem;
   }
 }
 

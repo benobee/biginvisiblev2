@@ -114,9 +114,9 @@ const SimpleBlueprintGrid: React.FC<SimpleBlueprintGridProps> = ({ progress, gri
   // Calculate visibility states based on progress thresholds
   const prefersReduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   
-  const particleThreshold = 0.05;
-  const subServiceThreshold = 0.5;
-  const serviceThreshold = 0.6;
+  const particleThreshold = 0.02;
+  const subServiceThreshold = 0.2;
+  const serviceThreshold = 0.3;
 
   const showParticles = prefersReduced || (gridVisible && progress >= particleThreshold);
   const showSubServices = prefersReduced || (gridVisible && progress >= subServiceThreshold);
@@ -141,8 +141,8 @@ const SimpleBlueprintGrid: React.FC<SimpleBlueprintGridProps> = ({ progress, gri
 
     // thresholds expressed as fractions of hero progress (0 -> 1)
     const particleThreshold = 0.05; // particles show very early
-    const subServiceThreshold = 0.45; // sub-services in mid progress
-    const serviceThreshold = 0.75; // services later in the scroll
+    const subServiceThreshold = 0.35; // sub-services in mid progress
+    const serviceThreshold = 0.45; // services later in the scroll
 
     const particlesProgress = progress >= particleThreshold ? '1' : '0';
     const subservicesProgress = progress >= subServiceThreshold ? '1' : '0';
@@ -256,9 +256,12 @@ const SimpleBlueprintGrid: React.FC<SimpleBlueprintGridProps> = ({ progress, gri
 
   return (
     <div ref={containerRef} className={styles.container} suppressHydrationWarning={true}>
+      {/* Centered Title */}
+      {<div className={styles.centeredTitle}>
+        <h1>Your brand</h1>
+      </div>}
       {/* CSS Blueprint Grid Background */}
       <div className={styles.blueprintGrid} />
-      
       {/* Floating particles */}
       <div className={styles.particlesContainer}>
         {Array.from({ length: 30 }, (_, i) => {
