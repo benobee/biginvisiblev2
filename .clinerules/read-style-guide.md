@@ -1,0 +1,1 @@
+read the CLAUDE.md file before making changes to ensure it adheres to the code base and site style
