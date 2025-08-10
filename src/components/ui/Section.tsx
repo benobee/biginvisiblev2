@@ -1,3 +1,6 @@
+import React from 'react';
+import { themeClasses } from '../../utils/theme';
+
 interface SectionProps {
   children: React.ReactNode;
   background?: 'primary' | 'secondary' | 'accent' | 'light';
@@ -8,10 +11,10 @@ interface SectionProps {
 
 const getSectionClasses = (background: string, spacing: string) => {
   const backgroundClasses = {
-    primary: 'bg-white',
-    secondary: 'bg-gray-100',
-    accent: 'bg-accent',
-    light: 'bg-gray-light'
+    primary: themeClasses.bg.primary, // bg-bg-primary -> uses CSS variables
+    secondary: themeClasses.bg.alt,   // bg-bg-alt
+    accent: themeClasses.bg.accent,   // bg-accent
+    light: themeClasses.bg.light      // bg-bg-light
   };
   
   const spacingClasses = {

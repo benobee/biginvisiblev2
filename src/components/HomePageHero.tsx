@@ -13,18 +13,7 @@ const HomePageHero = () => {
   
   return (
     <>
-      <section className="min-h-screen bg-background text-white flex items-center relative overflow-hidden transition-all duration-500">
-        {/* Light mode background */}
-        <div 
-          className={`absolute inset-0 z-20 ${styles.heroBackground}`}
-          style={{ opacity: isLightMode ? 1 : 0 }}
-        >
-          <img 
-            src="https://images.unsplash.com/photo-1557682250-33bd709cbe85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80" 
-            alt="Hero background"
-            className="w-full h-full object-cover opacity-30"
-          />
-        </div>
+      <section data-theme="dark" style={{ background: 'rgb(5 25 35) !important;'}} className="min-h-screen bg-background text-white flex items-center relative overflow-hidden transition-all duration-500">
 
         {/* Constellation Background - Always visible for testing */}
         <div 

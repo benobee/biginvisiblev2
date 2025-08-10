@@ -41,9 +41,7 @@ function PageWrapper({ children, currentPath }: PageWrapperProps) {
       // Switch themes on home page, service pages, and statistics detail pages
       if (isHomePage || isServicePage || isStatisticsDetailPage) {
         // Different thresholds for different pages
-        const scrollThreshold = isHomePage 
-          ? window.innerHeight * 0.5  // Home page: 50% of viewport
-          : 150;                      // Service and statistics pages: 150px (just after breadcrumb)
+        const scrollThreshold = 150;
           
         if (window.scrollY > scrollThreshold) {
           setIsLightMode(true);
