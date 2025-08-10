@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { getAllSimpleServiceTouchPoints, simpleServiceConstellations } from '../data/serviceConstellationSimple';
 import styles from './SimpleBlueprintGrid.module.css';
 
@@ -95,7 +95,13 @@ const createSubServiceTouchPoints = (serviceTouchPoints: TouchPoint[]) => {
   return subServices;
 };
 
-const SimpleBlueprintGrid = () => {
+interface SimpleBlueprintGridProps {
+  progress: number;
+  gridVisible?: boolean;
+}
+
+const SimpleBlueprintGrid: React.FC<SimpleBlueprintGridProps> = ({ progress, gridVisible = true }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [touchPoints] = useState<TouchPoint[]>(createTouchPoints());
   const [subServicePoints] = useState<TouchPoint[]>(() => createSubServiceTouchPoints(createTouchPoints()));
   const [hoveredPoint, setHoveredPoint] = useState<string | null>(null);
@@ -104,6 +110,58 @@ const SimpleBlueprintGrid = () => {
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
   const [resumeTimeout, setResumeTimeout] = useState<NodeJS.Timeout | null>(null);
   const [initialTimeout, setInitialTimeout] = useState<NodeJS.Timeout | null>(null);
+
+  // Calculate visibility states based on progress thresholds
+  const prefersReduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  const particleThreshold = 0.05;
+  const subServiceThreshold = 0.5;
+  const serviceThreshold = 0.6;
+
+  const showParticles = prefersReduced || (gridVisible && progress >= particleThreshold);
+  const showSubServices = prefersReduced || (gridVisible && progress >= subServiceThreshold);
+  const showServices = prefersReduced || (gridVisible && progress >= serviceThreshold);
+
+  console.log('Visibility states:', { progress, showParticles, showSubServices, showServices });
+
+  // Set CSS custom properties based on progress thresholds - much simpler and more reliable
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const prefersReduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReduced) {
+      // If reduced motion, show everything immediately
+      container.style.setProperty('--particles-progress', '1');
+      container.style.setProperty('--subservices-progress', '1');
+      container.style.setProperty('--services-progress', '1');
+      return;
+    }
+
+    // thresholds expressed as fractions of hero progress (0 -> 1)
+    const particleThreshold = 0.05; // particles show very early
+    const subServiceThreshold = 0.45; // sub-services in mid progress
+    const serviceThreshold = 0.75; // services later in the scroll
+
+    const particlesProgress = progress >= particleThreshold ? '1' : '0';
+    const subservicesProgress = progress >= subServiceThreshold ? '1' : '0';
+    const servicesProgress = progress >= serviceThreshold ? '1' : '0';
+
+    // Set CSS custom properties - let CSS handle the staggered reveals
+    container.style.setProperty('--particles-progress', particlesProgress);
+    container.style.setProperty('--subservices-progress', subservicesProgress);
+    container.style.setProperty('--services-progress', servicesProgress);
+
+    // Debug logging - check if CSS properties are actually being set
+    console.log('Progress:', progress, 'GridVisible:', gridVisible, 'Particles:', particlesProgress, 'SubServices:', subservicesProgress, 'Services:', servicesProgress);
+    console.log('Container element:', container);
+    console.log('CSS properties set:', {
+      particles: container.style.getPropertyValue('--particles-progress'),
+      subservices: container.style.getPropertyValue('--subservices-progress'),
+      services: container.style.getPropertyValue('--services-progress')
+    });
+  }, [progress, gridVisible]);
 
   // Auto-rotate through touch points every 3 seconds with initial delay
   useEffect(() => {
@@ -197,24 +255,38 @@ const SimpleBlueprintGrid = () => {
 
 
   return (
-    <div className={styles.container}>
+    <div ref={containerRef} className={styles.container} suppressHydrationWarning={true}>
       {/* CSS Blueprint Grid Background */}
       <div className={styles.blueprintGrid} />
       
       {/* Floating particles */}
       <div className={styles.particlesContainer}>
-        {Array.from({ length: 30 }, (_, i) => (
-          <div
-            key={i}
-            className={styles.particle}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              '--animation-duration': `${3 + Math.random() * 4}s`,
-              '--animation-delay': `${Math.random() * 2}s`
-            } as React.CSSProperties}
-          />
-        ))}
+        {Array.from({ length: 30 }, (_, i) => {
+          // Use deterministic values based on index to avoid hydration mismatch
+          // Better distribution using multiple seeds
+          const seed1 = (i * 0.618033988749) % 1; // Golden ratio
+          const seed2 = (i * 0.414213562373) % 1; // Silver ratio
+          const left = seed1 * 100;
+          const top = seed2 * 100;
+          const duration = 3 + (seed1 * 4);
+          const delay = seed2 * 2;
+          
+          return (
+            <div
+              key={i}
+              className={styles.particle}
+              style={{
+                left: `${left}%`,
+                top: `${top}%`,
+                '--animation-duration': `${duration}s`,
+                '--animation-delay': `${delay}s`,
+                opacity: showParticles ? 0.2 : 0,
+                transition: 'opacity 0.4s ease',
+                transitionDelay: `${delay}s`
+              } as React.CSSProperties}
+            />
+          );
+        })}
       </div>
 
       {/* Connection lines */}
@@ -271,16 +343,18 @@ const SimpleBlueprintGrid = () => {
         const isActive = activePoint === point.id;
         const isHovered = hoveredPoint === point.id;
         const isNearTop = point.y < 40; // Check if touch point is in top 40% of screen
-        const isLeftSide = point.x < 50; // Check if on left or right side
         
         return (
           <div
             key={point.id}
-            className={`${styles.touchPoint} ${isActive ? styles.touchPointActive : ''} ${isLeftSide ? styles.fadeInLeft : styles.fadeInRight}`}
+            className={`${styles.touchPoint} ${isActive ? styles.touchPointActive : ''}`}
             style={{
               left: `${point.x}%`,
               top: `${point.y}%`,
-              '--animation-delay': `${index * 0.15}s`
+              '--animation-delay': `${index * 0.15}s`,
+              opacity: showServices ? 1 : 0,
+              transition: 'opacity 0.5s ease',
+              transitionDelay: `${index * 0.15}s`
             } as React.CSSProperties}
             onClick={() => handleClick()}
             onMouseEnter={() => handleMouseEnter(point.id)}
@@ -319,11 +393,14 @@ const SimpleBlueprintGrid = () => {
         return (
           <div
             key={subPoint.id}
-            className={`${styles.subServicePoint} ${shouldHighlight ? styles.subServicePointActive : ''} ${shouldHighlight ? styles.visible : ''} ${styles.fadeInScale}`}
+            className={`${styles.subServicePoint} ${shouldHighlight ? styles.subServicePointActive : ''}`}
             style={{
               left: `${subPoint.x}%`,
               top: `${subPoint.y}%`,
-              '--animation-delay': `${(touchPoints.length * 0.15 + index * 0.05)}s`
+              '--animation-delay': `${(touchPoints.length * 0.15 + index * 0.05)}s`,
+              opacity: showSubServices ? 0.2 : 0,
+              transition: 'opacity 0.4s ease',
+              transitionDelay: `${(touchPoints.length * 0.15 + index * 0.05)}s`
             } as React.CSSProperties}
           >
             <div className={styles.subServiceMarker}>
