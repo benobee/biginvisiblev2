@@ -3,8 +3,10 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  overflow: hidden;
+  overflow: visible; /* allow points to render outside the container so orbits aren't clamped */
   z-index: 1;
+  perspective: 1000px;
+  perspective-origin: center center;
 }
 
 /* Centered Title */
@@ -102,21 +104,18 @@
   pointer-events: auto !important;
   transform: translate(-50%, -50%);
   z-index: 100;
-  opacity: var(--services-progress, 0);
+  opacity: 0;
   animation-delay: var(--animation-delay);
-  animation-fill-mode: forwards;
-  animation-duration: 0.8s;
+  animation-fill-mode: both;
+  animation-duration: 1.2s;
   animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
-  transition: opacity 0.5s ease;
+  transition: none;
 }
 
-/* When services are visible, trigger the entrance animations */
-.touchPoint[style*="--services-progress: 1"] {
-  animation-name: fadeInBounceLeft;
-}
-
-.touchPoint.fadeInRight[style*="--services-progress: 1"] {
-  animation-name: fadeInBounceRight;
+/* When services are visible, trigger fade in animation */
+.touchPointVisible {
+  animation-name: fadeInService;
+  opacity: 1;
 }
 
 /* Sub-service touch point container - controlled by CSS custom property */
@@ -127,16 +126,17 @@
   pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: 18;
-  opacity: var(--subservices-progress, 0);
-  transition: opacity 0.4s ease;
+  opacity: 0;
   animation-delay: var(--animation-delay);
-  animation-fill-mode: forwards;
-  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-duration: 0.8s;
+  transition: none;
 }
 
-/* When sub-services are visible, trigger the entrance animation */
-.subServicePoint[style*="--subservices-progress: 1"] {
+/* When sub-services are visible, trigger fade in animation */
+.subServicePointVisible {
   animation-name: fadeInScale;
+  opacity: 1;
 }
 
 /* Remove this rule - it's overriding our CSS custom property control */
@@ -341,33 +341,18 @@
 }
 
 /* Animations */
-@keyframes fadeInBounceLeft {
+@keyframes fadeInService {
   0% {
     opacity: 0;
-    transform: translate(-150%, -50%);
+    transform: translate(-50%, -50%) scale(0.3);
   }
-  60% {
-    opacity: 1;
-    transform: translate(-40%, -50%);
+  50% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1.1);
   }
   100% {
     opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-}
-
-@keyframes fadeInBounceRight {
-  0% {
-    opacity: 0;
-    transform: translate(50%, -50%);
-  }
-  60% {
-    opacity: 1;
-    transform: translate(-60%, -50%);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 
@@ -376,8 +361,12 @@
     opacity: 0;
     transform: translate(-50%, -50%) scale(0);
   }
+  50% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
   100% {
-    opacity: 0.3;
+    opacity: 1;
     transform: translate(-50%, -50%) scale(1);
   }
 }

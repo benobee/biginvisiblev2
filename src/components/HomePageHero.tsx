@@ -13,8 +13,8 @@ const HomePageHero: React.FC = () => {
   const [gridVisible, setGridVisible] = useState(false);
 
   // Tuning values (can be adjusted)
-  const scrollMultiplier = 4; // wrapper height in viewports (2 = 200vh)
-  const moveDistanceVh = 150; // how many vh the content should move up at 100% progress
+  const scrollMultiplier = 2; // wrapper height in viewports (2 = 200vh)
+  const moveDistanceVh = 130; // how many vh the content should move up at 100% progress
 
   const scrollToServices = () => {
     servicesRef.current?.scrollIntoView({ behavior: 'smooth' });
