@@ -527,8 +527,6 @@ const SimpleBlueprintGrid: React.FC<SimpleBlueprintGridProps> = ({ progress, gri
     }
   };
 
-  const showDebug = false;
-
   return (
     <div ref={containerRef} className={styles.container} suppressHydrationWarning={true}>
       {/* Centered Title */}

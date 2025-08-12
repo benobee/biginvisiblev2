@@ -2,6 +2,7 @@ import React, { useRef, useContext, useEffect, useState } from 'react';
 import { ThemeModeContext } from './ThemeModeContext';
 import SimpleBlueprintGrid from './SimpleBlueprintGrid';
 import styles from './HomePageHero.module.css';
+import ConstellationBackground from './ConstellationBackground';
 
 const HomePageHero: React.FC = () => {
   const servicesRef = useRef<HTMLDivElement>(null);
@@ -122,7 +123,8 @@ const HomePageHero: React.FC = () => {
             className={`${styles.constellationLayer}`}
             style={{ display: 'none', opacity: 0, pointerEvents: 'none' }}
           >
-            <SimpleBlueprintGrid progress={gridProgress} gridVisible={gridVisible} />
+            {gridProgress > 0.4 && <SimpleBlueprintGrid progress={gridProgress} gridVisible={gridVisible} />}
+            {gridProgress > 0.4 && <ConstellationBackground />}
           </div>
 
           <div className={styles.heroShape} />
