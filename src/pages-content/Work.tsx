@@ -6,6 +6,8 @@ import GridItem from '../components/ui/GridItem';
 import Button from '../components/ui/Button';
 import CTASection from '../components/ui/CTASection';
 import Quote from '../components/Quote';
+import FullScreenHero from '../components/ui/FullScreenHero';
+import styles from '../components/ui/FullScreenHero.module.css';
 import { projects } from '../data/projects';
 import { caseStudies } from '../data/caseStudies';
 
@@ -24,30 +26,14 @@ const Work = () => {
   
   return (
     <>
-      <section className="min-h-[70vh] bg-white text-dark flex items-center relative overflow-hidden pt-[120px]">
-        <div className="section-container">
-          <Grid>
-            <GridItem span={6}>
-              <div className="relative z-10">
-                <h1 className="reveal-text text-4xl lg:text-5xl xl:text-6xl mb-6 font-bold leading-tight tracking-tight text-dark">Our <span className="text-accent">Work</span></h1>
-                <p className="reveal-text text-lg lg:text-xl mb-8 opacity-80 leading-relaxed max-w-2xl text-dark">
-                  Explore our portfolio of projects that have helped transform businesses into trusted community leaders.
-                </p>
-              </div>
-            </GridItem>
-            <GridItem span={6}>
-              <div className="reveal-text relative h-96 rounded-xl overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
-                  alt="Our portfolio" 
-                  className="w-full h-full object-cover opacity-80"
-                />
-                <div className="absolute inset-0 bg-black/20"></div>
-              </div>
-            </GridItem>
-          </Grid>
-        </div>
-      </section>
+      <FullScreenHero
+        title={<>Our work <span className={`text-accent ${styles.fadeInCycle}`}>tells stories</span></>}
+        description="Explore our portfolio of projects that have helped transform businesses into trusted community leaders."
+        imageUrl="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+        imageAlt="Our portfolio"
+        overlayOpacity={0.6}
+        textAlign="left"
+      />
       
       <Section background="secondary">
         <SectionHeader

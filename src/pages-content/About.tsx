@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Section from '../components/ui/Section';
 import SectionHeader from '../components/ui/SectionHeader';
 import Grid from '../components/ui/Grid';
@@ -8,35 +7,21 @@ import ValueCard from '../components/ValueCard';
 import FunFactCard from '../components/FunFactCard';
 import DataPoint from '../components/DataPoint';
 import CTASection from '../components/ui/CTASection';
+import FullScreenHero from '../components/ui/FullScreenHero';
+import styles from '../components/ui/FullScreenHero.module.css';
 
 const About = () => {
   
   return (
     <>
-      <section className="min-h-[70vh] bg-white text-dark flex items-center relative overflow-hidden pt-[120px]">
-        <div className="section-container">
-          <Grid>
-            <GridItem span={6}>
-              <div className="relative z-10">
-                <h1 className="reveal-text text-4xl lg:text-5xl xl:text-6xl mb-6 font-bold leading-tight tracking-tight text-dark">We are <span className="text-accent">Big Invisible</span></h1>
-                <p className="reveal-text text-lg lg:text-xl mb-8 opacity-80 leading-relaxed max-w-2xl text-dark">
-                  A brand architecture studio that helps businesses build authentic connections with their communities through strategic design and meaningful experiences.
-                </p>
-              </div>
-            </GridItem>
-            <GridItem span={6}>
-              <div className="reveal-text relative h-96 rounded-xl overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
-                  alt="Big Invisible Team" 
-                  className="w-full h-full object-cover opacity-80"
-                />
-                <div className="absolute inset-0 bg-black/20"></div>
-              </div>
-            </GridItem>
-          </Grid>
-        </div>
-      </section>
+      <FullScreenHero
+        title={<>We are <span className={`text-accent ${styles.fadeInCycle}`}>Big Invisible</span></>}
+        description="A brand architecture studio that helps businesses build authentic connections with their communities through strategic design and meaningful experiences."
+        imageUrl="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+        imageAlt="Big Invisible Team"
+        overlayOpacity={0.6}
+        textAlign="left"
+      />
       
       <Section background="light">
         <SectionHeader

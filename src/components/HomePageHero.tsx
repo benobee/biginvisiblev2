@@ -141,7 +141,7 @@ const HomePageHero: React.FC = () => {
                 Branding Studio
               </div>
               <h1 className="reveal-text text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl mb-6 sm:mb-8 font-bold leading-none tracking-tight">
-                We make the <span className={`text-accent ${styles.fadeInCycle}`}>invisible</span> bonds between brands and people.
+                We create the <span className={`text-accent ${styles.fadeInCycle}`}>invisible</span> connections between brands and people.
               </h1>
               <p className="reveal-text text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-12 opacity-80 leading-relaxed max-w-3xl">
                 We help businesses find what makes them different and turn that into something people actually care about. No fluff, no buzzwords—just clear thinking about brands that work.

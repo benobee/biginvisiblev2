@@ -7,6 +7,8 @@ import GridItem from '../components/ui/GridItem';
 import Button from '../components/ui/Button';
 import Section from '../components/ui/Section';
 import CTASection from '../components/ui/CTASection';
+import FullScreenHero from '../components/ui/FullScreenHero';
+import styles from '../components/ui/FullScreenHero.module.css';
 
 // Category information with descriptions
 const categoryInfo = {
@@ -157,36 +159,14 @@ const Statistics = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="min-h-[70vh] bg-white text-dark flex items-center relative overflow-hidden pt-[120px]">
-        <div className="section-container">
-          <Grid>
-            <GridItem span={6}>
-              <div className="relative z-10">
-                <h1 className="reveal-text text-4xl lg:text-5xl xl:text-6xl mb-6 font-bold leading-tight tracking-tight text-dark">
-                  The <span className="text-accent">numbers</span> don't lie
-                </h1>
-                <p className="reveal-text text-lg lg:text-xl mb-8 opacity-80 leading-relaxed max-w-2xl text-dark">
-                  {summary.total} real stats across {categories.length} categories that prove good branding actually works. 
-                  No fluff, no made-up numbers—just data you can trust.
-                </p>
-                <Button to="/contact" variant="primary" className="reveal-text">
-                  Let's use this data
-                </Button>
-              </div>
-            </GridItem>
-            <GridItem span={6}>
-              <div className="reveal-text relative h-96 rounded-xl overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
-                  alt="Data analytics and business insights" 
-                  className="w-full h-full object-cover opacity-80"
-                />
-                <div className="absolute inset-0 bg-black/20"></div>
-              </div>
-            </GridItem>
-          </Grid>
-        </div>
-      </section>
+      <FullScreenHero
+        title={<>Our impact <span className={`text-accent ${styles.fadeInCycle}`}>shows</span></>}
+        description={`${summary.total} real stats across ${categories.length} categories that prove good branding actually works. No fluff, no made-up numbers—just data you can trust.`}
+        imageUrl="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+        imageAlt="Data analytics and business insights"
+        overlayOpacity={0.6}
+        textAlign="left"
+      />
 
       {/* Categories Section */}
       <Section background="secondary" spacing="normal">

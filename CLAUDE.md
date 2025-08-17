@@ -117,6 +117,37 @@ npm run preview   # Preview production
 - Framework → System / Approach
 - Solutions → Help / What we do
 
+### Hero Header Style Guide
+
+#### Pattern: Dual-Reading Headers
+Hero headers should work as complete sentences both WITH and WITHOUT the accent text:
+- Base sentence must be grammatically correct without the accent word
+- Accent word adds emphasis and deeper meaning when revealed
+- Use fadeInCycle animation for accent text reveals
+
+#### Structure:
+```jsx
+<FullScreenHero
+  title={<>First line<br />second line <span className={`text-accent ${styles.fadeInCycle}`}>reveal</span><br />third line</>}
+  textAlign="left"
+/>
+```
+
+#### Examples:
+- **Home:** "We create the **invisible** connections between brands and people"
+  - Without: "We create the connections between brands and people"
+- **About:** "We build brands **that matter**"
+  - Without: "We build brands"
+- **Process:** "Our process<br />creates **authentic**<br />connections"
+  - Without: "Our process creates connections"
+
+#### Visual Guidelines:
+- Use line breaks (`<br />`) for multi-line headers
+- Place reveal word strategically for maximum impact
+- Accent text uses red color (#ff4080 or #ff2356)
+- Animation: 3s fade in with continuous pulse
+- Left-align for non-home pages using FullScreenHero
+
 ### Copy Examples
 
 #### Before/After Transformations

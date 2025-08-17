@@ -513,8 +513,13 @@ const Contact = () => {
 
   return (
     <>
-      <Section background="accent" className="pt-80">
-        <Grid>
+      <Section background="accent" className="pt-40">
+        <div className="text-left">
+          <h1 className="reveal-text text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-black leading-tight tracking-tight">
+            Trust is made
+          </h1>
+        </div>
+        <Grid className="pt-20">
           <GridItem span={8}>
             <div className="reveal-text bg-white border border-gray-200 p-8 rounded-xl shadow-sm">
               <div className="w-full bg-gray-200 rounded-full h-2 mb-6">
