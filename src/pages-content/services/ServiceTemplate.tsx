@@ -176,7 +176,7 @@ const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
 
           {/* Service Blueprint Grid - Full screen */}
           <div 
-            className={`absolute inset-0 z-30 ${styles.constellationLayer}`}
+            className="absolute inset-0 z-30"
             style={{ opacity: 0.8, pointerEvents: 'auto' }}
           >
             <ServiceBlueprintGrid service={service} />

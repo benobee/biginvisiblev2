@@ -27,6 +27,9 @@ interface TouchPoint {
   name: string;
   x: number;
   y: number;
+  radius: number;      // Orbital radius
+  angle: number;       // Current angle in orbit
+  speed: number;       // Angular velocity (Kepler's law)
   color: string;
   size: number;
   glow: number;
@@ -67,13 +70,27 @@ const ConstellationBackground = () => {
       const serviceTouchPoints = getAllServiceTouchPoints();
       console.log({ serviceConstellations });
       
-      // Create 2D constellation layout
+      // Create orbital layout for services with different radii
+      const centerX = width * 0.5;
+      const centerY = height * 0.5;
+      const minServiceRadius = Math.min(width, height) * 0.2;  // Closest service orbit
+      const maxServiceRadius = Math.min(width, height) * 0.35; // Farthest service orbit
+      
       const points: TouchPoint[] = serviceTouchPoints.map((service, index) => {
-        const angle = (index / serviceTouchPoints.length) * Math.PI * 2;
-        const radius = Math.min(width, height) * 0.3;
-        const centerX = width * 0.5;
-        const centerY = height * 0.5;
+        // Distribute services across different orbital radii
+        const radiusRange = maxServiceRadius - minServiceRadius;
+        const radius = minServiceRadius + (radiusRange * (index / (serviceTouchPoints.length - 1)));
         
+        // Initial angle - spread them out evenly but with some variation
+        const baseAngle = (index / serviceTouchPoints.length) * Math.PI * 2;
+        const angleVariation = (Math.random() - 0.5) * 0.3; // Add some randomness
+        const angle = baseAngle + angleVariation;
+        
+        // Calculate orbital speed using Kepler's third law: speed ∝ 1/√radius
+        const keplerConstant = 0.0005; // Adjust for visible but slow rotation
+        const speed = keplerConstant / Math.sqrt(radius / minServiceRadius);
+        
+        // Initial position based on angle and radius
         const x = centerX + Math.cos(angle) * radius;
         const y = centerY + Math.sin(angle) * radius;
         
@@ -85,6 +102,9 @@ const ConstellationBackground = () => {
           name: service.name,
           x,
           y,
+          radius,
+          angle,
+          speed,
           color,
           size: service.size,
           glow: service.glow,
@@ -110,8 +130,6 @@ const ConstellationBackground = () => {
       setParticles(newParticles);
 
       // Initialize orbital points
-      const centerX = width * 0.5;
-      const centerY = height * 0.5;
       const minRadius = Math.min(width, height) * 0.15;
       const maxRadius = Math.min(width, height) * 0.45;
       
@@ -222,6 +240,19 @@ const ConstellationBackground = () => {
         ctx.fill();
       });
 
+      // Update service positions based on orbital motion
+      touchPoints.forEach(point => {
+        // Update angle based on Kepler's law speed
+        point.angle += point.speed;
+        if (point.angle > Math.PI * 2) {
+          point.angle -= Math.PI * 2;
+        }
+        
+        // Calculate new position based on updated angle
+        point.x = centerX + Math.cos(point.angle) * point.radius;
+        point.y = centerY + Math.sin(point.angle) * point.radius;
+      });
+
       // Draw constellation connections
       touchPoints.forEach(point => {
         if (point.connections) {
@@ -233,11 +264,6 @@ const ConstellationBackground = () => {
           });
         }
       });
-
-      // Draw touch points (stars)
-      // touchPoints.forEach(point => {
-      //   drawTouchPoint(ctx, point, hoveredPoint === point.id);
-      // });
 
       animationRef.current = requestAnimationFrame(animate);
     };

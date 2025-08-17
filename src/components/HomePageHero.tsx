@@ -73,7 +73,9 @@ const HomePageHero: React.FC = () => {
       observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (!gridRef.current) return;
-          if (entry.isIntersecting) {
+          // Only show grid when hero section is actually visible in viewport
+          // Using intersectionRatio to ensure at least some part is visible
+          if (entry.isIntersecting && entry.intersectionRatio > 0) {
             gridRef.current.style.display = 'block';
             // ensure opacity change happens on next frame for smoother transition
             requestAnimationFrame(() => {
@@ -81,13 +83,16 @@ const HomePageHero: React.FC = () => {
             });
             setGridVisible(true);
           } else {
-            // hide immediately to avoid overlaying other site sections (like footer)
+            // hide immediately to avoid overlaying other site sections
             gridRef.current.style.opacity = '0';
             gridRef.current.style.display = 'none';
             setGridVisible(false);
           }
         });
-      }, { threshold: 0 });
+      }, { 
+        threshold: [0, 0.01], // Trigger at 0% and 1% visibility
+        rootMargin: '0px' // No margin extension
+      });
       observer.observe(wrapperRef.current);
     } else if (gridRef.current) {
       // fallback: hide grid
