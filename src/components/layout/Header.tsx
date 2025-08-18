@@ -46,15 +46,6 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
           <ul className={`${styles.navLinks} ${isMobileMenuOpen ? styles.open : ''}`}>
             <li>
               <a 
-                href="/about" 
-                className={`${styles.navLink} ${currentPath === '/about' ? styles.active : ''}`}
-                onClick={handleLinkClick}
-              >
-                About
-              </a>
-            </li>
-            <li>
-              <a 
                 href="/process" 
                 className={`${styles.navLink} ${currentPath === '/process' ? styles.active : ''}`}
                 onClick={handleLinkClick}
@@ -87,6 +78,15 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
                 onClick={handleLinkClick}
               >
                 Work
+              </a>
+            </li>
+            <li>
+              <a 
+                href="/about" 
+                className={`${styles.navLink} ${currentPath === '/about' ? styles.active : ''}`}
+                onClick={handleLinkClick}
+              >
+                About
               </a>
             </li>
             <li>
