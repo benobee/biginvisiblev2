@@ -17,10 +17,12 @@ const About = () => {
       <FullScreenHero
         title={<>We are <span className={`text-accent ${styles.fadeInCycle}`}>Big Invisible</span></>}
         description="A brand architecture studio that helps businesses build authentic connections with their communities through strategic design and meaningful experiences."
-        imageUrl="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+        imageUrl="https://cdn.builder.io/api/v1/image/assets%2F588c931751e44954ba83f0b968e6223f%2Fff1f2f5915614643b411ded67accad84"
         imageAlt="Big Invisible Team"
-        overlayOpacity={0.6}
+        overlayOpacity={0.5}
         textAlign="left"
+        overlayBackgroundColor="black"
+        overlayBackgroundImage="https://cdn.builder.io/api/v1/image/assets%2F588c931751e44954ba83f0b968e6223f%2F6779b4c99c104fe3856a55f52e5329d9"
       />
       
       <Section background="light">

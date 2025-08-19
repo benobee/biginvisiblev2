@@ -23,10 +23,11 @@ const Process = () => {
       <FullScreenHero
         title={<>Our process<br />creates <span className={`text-accent ${styles.fadeInCycle}`}>authentic</span><br />connections</>}
         description="Our (not-so-secret) formula for turning businesses into brands people remember, trust, and choose."
-        imageUrl="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+        imageUrl="https://cdn.builder.io/api/v1/image/assets%2F588c931751e44954ba83f0b968e6223f%2Fe6527affe87c4e0f87071798b370a958"
         imageAlt="Our process"
         overlayOpacity={0.6}
         textAlign="left"
+        overlayBackgroundImage="https://cdn.builder.io/api/v1/image/assets%2F588c931751e44954ba83f0b968e6223f%2F12b6009479c9400faee3b191d8178f7d"
       />
       
       <Section background="light">

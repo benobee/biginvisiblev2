@@ -29,10 +29,11 @@ const Work = () => {
       <FullScreenHero
         title={<>Our work <span className={`text-accent ${styles.fadeInCycle}`}>tells stories</span></>}
         description="Explore our portfolio of projects that have helped transform businesses into trusted community leaders."
-        imageUrl="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+        imageUrl="https://cdn.builder.io/api/v1/image/assets%2F588c931751e44954ba83f0b968e6223f%2F7c77c90db1e541e8aaef19abd70cd562"
         imageAlt="Our portfolio"
         overlayOpacity={0.6}
         textAlign="left"
+        overlayBackgroundImage="https://cdn.builder.io/api/v1/image/assets%2F588c931751e44954ba83f0b968e6223f%2F57dbe18ee298439dbeaeede42fa878fb"
       />
       
       <Section background="secondary">

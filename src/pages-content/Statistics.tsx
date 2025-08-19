@@ -162,10 +162,11 @@ const Statistics = () => {
       <FullScreenHero
         title={<>Our impact <span className={`text-accent ${styles.fadeInCycle}`}>shows</span></>}
         description={`${summary.total} real stats across ${categories.length} categories that prove good branding actually works. No fluff, no made-up numbers—just data you can trust.`}
-        imageUrl="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+        imageUrl="https://cdn.builder.io/api/v1/image/assets%2F588c931751e44954ba83f0b968e6223f%2Fca1a134675df472e9302c33e421994bd"
         imageAlt="Data analytics and business insights"
         overlayOpacity={0.6}
         textAlign="left"
+        overlayBackgroundImage="https://cdn.builder.io/api/v1/image/assets%2F588c931751e44954ba83f0b968e6223f%2Fb733ef7e748846c083e86988b1f3e1f9"
       />
 
       {/* Categories Section */}

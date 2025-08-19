@@ -10,6 +10,8 @@ interface FullScreenHeroProps {
   overlayOpacity?: number;
   textAlign?: 'left' | 'center' | 'right';
   animateAccent?: boolean;
+  overlayBackgroundImage?: string;
+  overlayBackgroundColor?: string;
 }
 
 const FullScreenHero: React.FC<FullScreenHeroProps> = ({
@@ -20,7 +22,9 @@ const FullScreenHero: React.FC<FullScreenHeroProps> = ({
   imageAlt = 'Hero image',
   overlayOpacity = 0.5,
   textAlign = 'center',
-  animateAccent = true
+  animateAccent = true,
+  overlayBackgroundImage,
+  overlayBackgroundColor = '#000000'
 }) => {
   const alignmentClasses = {
     left: 'text-left items-start',
@@ -35,19 +39,40 @@ const FullScreenHero: React.FC<FullScreenHeroProps> = ({
   };
 
   return (
-    <section className="relative w-full h-[73vh] min-h-[500px] mt-[80px] flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src={imageUrl}
-          alt={imageAlt}
-          className="w-full h-full object-cover"
-        />
-        {/* Overlay */}
-        <div 
-          className="absolute inset-0 bg-black"
-          style={{ opacity: overlayOpacity }}
-        />
+    <section className="relative w-full h-[90vh] min-h-[500px] mt-[80px] flex items-center justify-center overflow-hidden">
+      {/* Background Image - Max width 2048px */}
+      <div className="absolute inset-0 z-0 flex justify-center">
+        <div className="relative w-full h-full">
+          <img 
+            src={imageUrl}
+            alt={imageAlt}
+            className="w-full h-full object-cover"
+          />
+          {/* Overlay */}
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundColor: overlayBackgroundColor,
+              opacity: overlayOpacity,
+              ...(overlayBackgroundImage && {
+                backgroundImage: `url(${overlayBackgroundImage})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover'
+              })
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundColor: overlayBackgroundColor,
+              opacity: overlayOpacity,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'top center',
+              backgroundSize: 'cover'
+            }}
+          />
+        </div>
       </div>
 
       {/* Content */}
