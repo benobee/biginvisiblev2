@@ -164,7 +164,7 @@ const Statistics = () => {
         description={`${summary.total} real stats across ${categories.length} categories that prove good branding actually works. No fluff, no made-up numbers—just data you can trust.`}
         imageUrl="https://cdn.builder.io/api/v1/image/assets%2F588c931751e44954ba83f0b968e6223f%2Fca1a134675df472e9302c33e421994bd"
         imageAlt="Data analytics and business insights"
-        overlayOpacity={0.6}
+        overlayOpacity={0.4}
         textAlign="left"
         overlayBackgroundImage="https://cdn.builder.io/api/v1/image/assets%2F588c931751e44954ba83f0b968e6223f%2Fb733ef7e748846c083e86988b1f3e1f9"
       />

@@ -15,20 +15,13 @@ const ParallaxWorkSection: React.FC = () => {
     '/brand-images/NLT-LOGO-ONE-COLOR-04.png',
     '/brand-images/NLT-Logos-Final_NLT-Logo-SidebySide.png',
     '/brand-images/NORDIC-LogoCOLORTEST.svg',
-    '/brand-images/SSI-compare-image.jpg',
     '/brand-images/SSI_logo_final_1_SSI-full-color.png',
     '/brand-images/Scout-School-logo-R1-01.png',
-    '/brand-images/Scout-card-mockup-op2 copy.jpg',
     '/brand-images/WIAP Square.svg',
     '/brand-images/edgewater-beach-poulsbo-logo-abbrv.png',
-    '/brand-images/fabric-pop-up-straight-display-01_1 copy.jpg',
     '/brand-images/no room for squares.svg',
-    '/brand-images/scout-art.jpeg',
-    '/brand-images/scout-hat.jpeg',
     '/brand-images/scout-logo-hx4.png',
-    '/brand-images/scout-pad.jpeg',
-    '/brand-images/scout-values-wall.jpeg',
-  ];
+  ]
 
   // Shuffle function for randomizing array
   const shuffleArray = (array: string[]) => {
@@ -43,14 +36,13 @@ const ParallaxWorkSection: React.FC = () => {
   // Memoize the shuffled images so they don't change on re-renders
   const shuffledImages = useMemo(() => shuffleArray(allBrandImages), []);
   
-  // Distribute images across 4 rows evenly
+  // Distribute images across 3 rows evenly
   const brandImages = useMemo(() => {
-    const imagesPerRow = Math.ceil(shuffledImages.length / 4);
+    const imagesPerRow = Math.ceil(shuffledImages.length / 3);
     return {
       row1: shuffledImages.slice(0, imagesPerRow),
       row2: shuffledImages.slice(imagesPerRow, imagesPerRow * 2),
-      row3: shuffledImages.slice(imagesPerRow * 2, imagesPerRow * 3),
-      row4: shuffledImages.slice(imagesPerRow * 3)
+      row3: shuffledImages.slice(imagesPerRow * 2)
     };
   }, [shuffledImages]);
 
@@ -112,7 +104,7 @@ const ParallaxWorkSection: React.FC = () => {
 
   // Different parallax speeds for each row - diagonal movement (reversed)
   const getTransform = (rowIndex: number) => {
-    const speeds = [0.08, 0.12, 0.16, 0.2]; // Different speeds for 4 rows
+    const speeds = [0.08, 0.14, 0.2]; // Different speeds for 3 rows
     const baseMovement = scrollProgress * speeds[rowIndex] * 15; // Reduced movement distance
     
     // Move from upper right to lower left (reversed)
@@ -124,17 +116,18 @@ const ParallaxWorkSection: React.FC = () => {
     
     return `translate(${translateX * direction}%, ${translateY * direction}%)`;
   };
+  
+  const indexLocationMap: { [key: string]: string } = {
+    '0': '60%',
+    '1': '50%',
+    '2': '65%'
+  };
 
   return (
     <section 
       ref={sectionRef}
-      className="relative w-full h-[150vh] bg-gray-50 overflow-hidden flex items-center justify-center"
+      className="relative w-full h-[100vh] bg-gray-50 overflow-hidden flex items-center justify-center"
     >
-      {/* Debug indicator - remove after testing */}
-      <div className="fixed top-20 right-4 z-50 bg-black text-white p-2 rounded text-xs">
-        Scroll: {(scrollProgress * 100).toFixed(0)}%
-      </div>
-      
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-gray-100" />
       
@@ -158,7 +151,7 @@ const ParallaxWorkSection: React.FC = () => {
         
         {/* Angled perspective container - 45 degree diagonal view (reversed) */}
         <div 
-          className="absolute inset-0 flex items-center justify-center overflow-visible"
+          className="absolute inset-0 h-[100vh] flex items-center justify-center overflow-visible"
           style={{
             perspective: '2000px',
             perspectiveOrigin: '50% 50%'
@@ -177,8 +170,8 @@ const ParallaxWorkSection: React.FC = () => {
                 key={key}
                 className="absolute w-[600%] flex items-center justify-center gap-12"
                 style={{
-                  top: `${5 + rowIndex * 25}%`,
-                  left: '50%',
+                  top: `${10 + rowIndex * 30}%`,
+                  left: `${indexLocationMap[String(rowIndex)]}`,
                   transform: `translateX(-50%) ${getTransform(rowIndex)}`,
                   transition: 'transform 0.1s linear',
                   willChange: 'transform'

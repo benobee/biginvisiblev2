@@ -19,7 +19,7 @@ const About = () => {
         description="A brand architecture studio that helps businesses build authentic connections with their communities through strategic design and meaningful experiences."
         imageUrl="https://cdn.builder.io/api/v1/image/assets%2F588c931751e44954ba83f0b968e6223f%2Fff1f2f5915614643b411ded67accad84"
         imageAlt="Big Invisible Team"
-        overlayOpacity={0.5}
+        overlayOpacity={0.4}
         textAlign="left"
         overlayBackgroundColor="black"
         overlayBackgroundImage="https://cdn.builder.io/api/v1/image/assets%2F588c931751e44954ba83f0b968e6223f%2F6779b4c99c104fe3856a55f52e5329d9"

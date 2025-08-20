@@ -3,6 +3,8 @@ import Section from '../components/ui/Section';
 import SectionHeader from '../components/ui/SectionHeader';
 import Grid from '../components/ui/Grid';
 import GridItem from '../components/ui/GridItem';
+import MasonryGrid from '../components/ui/MasonryGrid';
+import MasonryItem from '../components/ui/MasonryItem';
 import Button from '../components/ui/Button';
 import CTASection from '../components/ui/CTASection';
 import Quote from '../components/Quote';
@@ -10,6 +12,7 @@ import FullScreenHero from '../components/ui/FullScreenHero';
 import styles from '../components/ui/FullScreenHero.module.css';
 import { projects } from '../data/projects';
 import { caseStudies } from '../data/caseStudies';
+import { cn } from '../lib/utils';
 
 const Work = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -117,20 +120,39 @@ const Work = () => {
           </button>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredProjects.map(project => (
-            <div 
-              key={project.id} 
-              className="reveal-text aspect-video overflow-hidden relative rounded-xl group"
-            >
-              <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-black/70 flex flex-col justify-end p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <h3 className="text-xl mb-2 text-white">{project.title}</h3>
-                <div className="text-sm text-accent">{project.category}</div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <MasonryGrid columns={{ default: 1, md: 2, lg: 3 }} gap="medium">
+          {filteredProjects.map((project, index) => {
+            // Create varying sizes for more interesting masonry layout
+            const sizes: ('small' | 'medium' | 'large')[] = ['medium', 'large', 'small', 'medium', 'large', 'small', 'medium', 'small'];
+            const size = sizes[index % sizes.length];
+            
+            // Determine if image should have natural aspect ratio or be constrained
+            const isLogo = project.image.includes('.png') || project.image.includes('.svg');
+            
+            return (
+              <MasonryItem key={project.id} size={size} className="reveal-text">
+                <div className="overflow-hidden relative rounded-xl group bg-gray-100 dark:bg-gray-800">
+                  <div className={isLogo ? "p-8 flex items-center justify-center min-h-48" : "aspect-[4/3]"}>
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className={cn(
+                        "transition-transform duration-500 group-hover:scale-105",
+                        isLogo 
+                          ? "max-w-full max-h-full object-contain" 
+                          : "w-full h-full object-cover"
+                      )}
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-black/70 flex flex-col justify-end p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <h3 className="text-xl mb-2 text-white font-bold">{project.title}</h3>
+                    <div className="text-sm text-accent">{project.category}</div>
+                  </div>
+                </div>
+              </MasonryItem>
+            );
+          })}
+        </MasonryGrid>
       </Section>
       
       <Section>

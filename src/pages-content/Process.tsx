@@ -25,7 +25,7 @@ const Process = () => {
         description="Our (not-so-secret) formula for turning businesses into brands people remember, trust, and choose."
         imageUrl="https://cdn.builder.io/api/v1/image/assets%2F588c931751e44954ba83f0b968e6223f%2Fe6527affe87c4e0f87071798b370a958"
         imageAlt="Our process"
-        overlayOpacity={0.6}
+        overlayOpacity={0.4}
         textAlign="left"
         overlayBackgroundImage="https://cdn.builder.io/api/v1/image/assets%2F588c931751e44954ba83f0b968e6223f%2F12b6009479c9400faee3b191d8178f7d"
       />

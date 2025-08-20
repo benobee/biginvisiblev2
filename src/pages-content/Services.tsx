@@ -18,7 +18,7 @@ const Services = () => {
         description="Every service we offer is designed to build authentic connections between your business and your community."
         imageUrl="https://cdn.builder.io/api/v1/image/assets%2F588c931751e44954ba83f0b968e6223f%2Fa1cd3ece91724b54a242c58508a074cb"
         imageAlt="Brand architecture services"
-        overlayOpacity={0.6}
+        overlayOpacity={0.4}
         textAlign="left"
         overlayBackgroundImage="https://cdn.builder.io/api/v1/image/assets%2F588c931751e44954ba83f0b968e6223f%2Fcfc4bd3f7669486fbc175d06a52681f8"
       />
