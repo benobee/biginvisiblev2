@@ -105,7 +105,9 @@ const ParallaxWorkSection: React.FC = () => {
   // Different parallax speeds for each row - diagonal movement (reversed)
   const getTransform = (rowIndex: number) => {
     const speeds = [0.08, 0.14, 0.2]; // Different speeds for 3 rows
-    const baseMovement = scrollProgress * speeds[rowIndex] * 15; // Reduced movement distance
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const movementScale = isMobile ? 8 : 15; // Less movement on mobile
+    const baseMovement = scrollProgress * speeds[rowIndex] * movementScale;
     
     // Move from upper right to lower left (reversed)
     const translateX = -baseMovement; // Negative for left movement
@@ -126,24 +128,24 @@ const ParallaxWorkSection: React.FC = () => {
   return (
     <section 
       ref={sectionRef}
-      className="relative w-full h-[100vh] bg-gray-50 overflow-hidden flex items-center justify-center"
+      className="relative w-full h-[57vw] max-h-[150vh] bg-gray-50 overflow-hidden flex items-center justify-center"
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-gray-100" />
       
       {/* Content wrapper with perspective */}
-      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
+      <div className="relative z-10 w-full h-full flex flex-col">
         {/* Header text - sticky at top */}
-        <div className="sticky top-20 z-20 text-center px-4 py-8 w-full">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+        <div className="top-0 z-20 text-center px-3 py-4 sm:px-4 sm:py-6 md:py-8 w-full">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4">
             Our Work
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-6">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto mb-3 sm:mb-4 md:mb-6">
             Brands we've transformed into community leaders
           </p>
           <a
             href="/work"
-            className="inline-block bg-accent text-white px-8 py-4 font-medium text-sm uppercase tracking-wider transition-all duration-300 border border-accent hover:bg-transparent hover:text-accent"
+            className="inline-block bg-accent text-white px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 font-medium text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 border border-accent hover:bg-transparent hover:text-accent"
           >
             View All Projects
           </a>
@@ -151,9 +153,9 @@ const ParallaxWorkSection: React.FC = () => {
         
         {/* Angled perspective container - 45 degree diagonal view (reversed) */}
         <div 
-          className="absolute inset-0 h-[100vh] flex items-center justify-center overflow-visible"
+          className="absolute inset-0 h-[57vw] max-h-[150vh] flex items-center justify-center overflow-visible"
           style={{
-            perspective: '2000px',
+            perspective: 'clamp(800px, 150vw, 2000px)',
             perspectiveOrigin: '50% 50%'
           }}
         >
@@ -164,13 +166,13 @@ const ParallaxWorkSection: React.FC = () => {
               transformStyle: 'preserve-3d'
             }}
           >
-            {/* Four rows of brand images - positioned diagonally (reversed) */}
+            {/* Three rows of brand images - positioned diagonally (reversed) */}
             {Object.entries(brandImages).map(([key, images], rowIndex) => (
               <div
                 key={key}
-                className="absolute w-[600%] flex items-center justify-center gap-12"
+                className="absolute w-[600%] flex items-center justify-center gap-2 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10"
                 style={{
-                  top: `${10 + rowIndex * 30}%`,
+                  top: `${15 + rowIndex * 28}%`,
                   left: `${indexLocationMap[String(rowIndex)]}`,
                   transform: `translateX(-50%) ${getTransform(rowIndex)}`,
                   transition: 'transform 0.1s linear',
@@ -181,10 +183,12 @@ const ParallaxWorkSection: React.FC = () => {
                 {images.map((image, index) => (
                   <div
                     key={`${key}-${index}`}
-                    className="flex-shrink-0 bg-white rounded-xl shadow-xl p-8 hover:shadow-2xl transition-shadow duration-300 mx-4"
+                    className="flex-shrink-0 bg-white rounded-md sm:rounded-lg md:rounded-xl shadow-md sm:shadow-lg md:shadow-xl hover:shadow-2xl transition-shadow duration-300"
                     style={{
-                      width: '480px',  // Reduced size to help with spacing
-                      height: '320px'   // Reduced size to help with spacing
+                      width: 'clamp(100px, 20vw, 650px)',
+                      height: 'clamp(70px, 14vw, 600px)',
+                      padding: 'clamp(8px, 2vw, 32px)',
+                      margin: '0 clamp(4px, 1vw, 16px)'
                     }}
                   >
                     <img

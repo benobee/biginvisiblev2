@@ -13,6 +13,8 @@ import styles from '../components/ui/FullScreenHero.module.css';
 import { projects } from '../data/projects';
 import { caseStudies } from '../data/caseStudies';
 import { cn } from '../lib/utils';
+import TestimonialsCarousel from '../components/TestimonialsCarousel';
+import { getTestimonials } from './services/ServiceTemplate';
 
 const Work = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -144,7 +146,7 @@ const Work = () => {
                       )}
                     />
                   </div>
-                  <div className="absolute inset-0 bg-black/70 flex flex-col justify-end p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <div className="absolute inset-0 flex flex-col justify-end p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <h3 className="text-xl mb-2 text-white font-bold">{project.title}</h3>
                     <div className="text-sm text-accent">{project.category}</div>
                   </div>
@@ -182,15 +184,14 @@ const Work = () => {
         </Grid>
       </Section>
       
-      <Section background="secondary" className="text-center">
-        <Quote 
-          variant="work"
-          text="Working with Big Invisible was transformational. They didn't just create a beautiful brand—they helped us understand who we really are and gave us the tools to communicate that authentically to our community."
-          author="Sarah Mitchell"
-          role="CEO"
-          company="Coastal Heritage Foundation"
-          className="reveal-text"
-        />
+      {/* Testimonial Section */}
+      <Section background="light">
+          <div className="reveal-text">
+            <TestimonialsCarousel
+              testimonials={getTestimonials()}
+              autoPlayDelay={6000}
+            />
+          </div>
       </Section>
       
       <CTASection
