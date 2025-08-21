@@ -132,8 +132,6 @@ const HomePageHero: React.FC = () => {
             {gridProgress > 0.4 && <ConstellationBackground />}
           </div>
 
-          <div className={styles.heroShape} />
-
           {/* The block that will translate upward as the user scrolls */}
           <div ref={contentRef} className={`${styles.heroContent} section-container relative z-50`}>
             <div className="max-w-4xl m-auto">

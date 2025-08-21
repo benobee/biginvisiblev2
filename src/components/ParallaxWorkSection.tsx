@@ -19,7 +19,7 @@ const ParallaxWorkSection: React.FC = () => {
     '/brand-images/Scout-School-logo-R1-01.png',
     '/brand-images/WIAP Square.svg',
     '/brand-images/edgewater-beach-poulsbo-logo-abbrv.png',
-    '/brand-images/no room for squares.svg',
+    '/brand-images/WIAP-no room for squares.svg',
     '/brand-images/scout-logo-hx4.png',
   ]
 

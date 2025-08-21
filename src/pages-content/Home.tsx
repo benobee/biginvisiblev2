@@ -10,6 +10,8 @@ import StatisticsGrid from '../components/StatisticsGrid';
 import ServiceCard from '../components/ServiceCard';
 import ParallaxWorkSection from '../components/ParallaxWorkSection';
 import { services } from '../data/services';
+import TestimonialsCarousel from '../components/TestimonialsCarousel';
+import { getTestimonials } from './services/ServiceTemplate';
 
 const Home = () => {
   return (
@@ -38,36 +40,14 @@ const Home = () => {
         <ParallaxWorkSection />
       </div>
 
-            {/* Branding Statistics Section */}
+      {/* Testimonial Section */}
       <Section background="light">
-        <SectionHeader
-          subtitle="The numbers don't lie"
-          title="Why good branding actually matters"
-          description="Real data that shows what happens when you get your brand right (spoiler: good things)."
-          align="center"
-        />
-        
-        <div className="mt-16 reveal-text">
-          <StatisticsGrid
-            randomCount={3}
-            columns={3}
-            gap="small"
-            variant="default"
-            showSource={false}
-            clickable
-          />
-        </div>
-        
-        <div className="mt-8 text-center">
-          <Button 
-            to="/statistics" 
-            variant="outline" 
-            size="medium"
-            className="reveal-text"
-          >
-            Show me the data
-          </Button>
-        </div>
+          <div className="mt-16 reveal-text">
+            <TestimonialsCarousel
+              testimonials={getTestimonials()}
+              autoPlayDelay={6000}
+            />
+          </div>
       </Section>
 
       {/* Process Section */}
@@ -134,16 +114,36 @@ const Home = () => {
           </div>
       </Section>
 
-      {/* Testimonial Section */}
+            {/* Branding Statistics Section */}
       <Section background="light">
-        <Quote 
-          variant="work"
-          text="Big Invisible didn't just redesign our brand — they transformed how our entire community sees us. We've gone from another local business to the trusted leader our neighbors turn to first."
-          author="Sarah Chen"
-          role="CEO"
-          company="TechFlow Solutions"
-          className="reveal-text"
+        <SectionHeader
+          subtitle="The numbers don't lie"
+          title="Why good branding actually matters"
+          description="Real data that shows what happens when you get your brand right (spoiler: good things)."
+          align="center"
         />
+        
+        <div className="mt-16 reveal-text">
+          <StatisticsGrid
+            randomCount={3}
+            columns={3}
+            gap="small"
+            variant="default"
+            showSource={false}
+            clickable
+          />
+        </div>
+        
+        <div className="mt-8 text-center">
+          <Button 
+            to="/statistics" 
+            variant="outline" 
+            size="medium"
+            className="reveal-text"
+          >
+            Show me the data
+          </Button>
+        </div>
       </Section>
 
       {/* Contact CTA Section */}

@@ -91,7 +91,7 @@ const generateCTAText = (featureTitle: string) => {
 };
 
 // Sample testimonials data
-const getTestimonials = () => [
+export const getTestimonials = () => [
   {
     id: '1',
     quote: 'Working with this team transformed our brand identity completely. The strategic approach and attention to detail exceeded our expectations.',
@@ -181,8 +181,6 @@ const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
           >
             <ServiceBlueprintGrid service={service} />
           </div>
-          
-          <div className={styles.heroShape} />
           
           <div className="section-container relative z-50">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
