@@ -89,7 +89,7 @@ const Services = () => {
           <GridItem span={6}>
             <div className="reveal-text relative h-full min-h-[500px] rounded-xl overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                src="/images/ingrid_design.jpg" 
                 alt="Our collaborative process" 
                 className="w-full h-full object-cover opacity-80"
               />

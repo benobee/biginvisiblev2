@@ -87,7 +87,7 @@ const Process = () => {
           />
         </div>
       </Section>
-      
+
       <Section background="primary">
         <SectionHeader
           subtitle="What drives us"
@@ -147,32 +147,9 @@ const Process = () => {
         </Grid>
       </Section>
       
-      <Section background="light">
-        <Grid>
-          <GridItem span={6}>
-            <div className="reveal-text">
-              <h2 className="text-4xl font-bold mb-6 text-dark">We're in this together</h2>
-              <p>The best work happens when we're actually working together, not just for you. You know your business better than anyone—we just know how to make it irresistible.</p>
-              <p>That means no disappearing for weeks only to emerge with something that misses the mark. We keep you in the loop, ask for your input, and make sure you love where we're headed.</p>
-              <p>Think of us as that friend who's really good at design and strategy, but still needs you to tell them what actually matters to your customers.</p>
-            </div>
-          </GridItem>
-          <GridItem span={6}>
-            <div className="reveal-text relative h-96 rounded-xl overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                alt="Collaborative approach" 
-                className="w-full h-full object-cover opacity-80"
-              />
-              <div className="absolute inset-0 bg-black/20"></div>
-            </div>
-          </GridItem>
-        </Grid>
-      </Section>
-      
       <CTASection
-        title="Ready to get started?"
-        description="Let's figure out what makes you different and turn that into something people can't ignore."
+        title="We're in this together"
+        description="Think of us as that friend who's really good at design and strategy, but still needs you to tell them what actually matters to your customers. Let's figure out what makes you different and turn that into something people can't ignore."
         buttonText="Let's talk"
         buttonTo="/contact"
         buttonVariant="primaryInverse"

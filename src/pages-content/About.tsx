@@ -33,21 +33,9 @@ const About = () => {
         />
         
         <Grid>
-          <GridItem span={6}>
-            <div className="reveal-text h-96 bg-gray-200 mb-8 rounded-xl overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                alt="About Big Invisible" 
-                className="w-full h-full object-cover opacity-80"
-              />
-            </div>
-          </GridItem>
-          <GridItem span={6}>
+          <GridItem span={12}>
             <div className="reveal-text">
-              <h3 className="text-3xl font-bold mb-6 text-dark">Our philosophy</h3>
-              <p>We believe that the most powerful elements of a brand are often invisible — the emotional connections, trust, and community relationships that drive long-term success.</p>
-              <p >Our approach focuses on making these invisible bonds visible through strategic design and meaningful experiences that resonate with your audience.</p>
-              <p >By architecting these connections with intention, we help businesses transform into trusted community leaders that drive sustainable growth.</p>
+              <p>We believe that the most powerful elements of a brand are often invisible — the emotional connections, trust, and community relationships that drive long-term success. Our approach focuses on making these invisible bonds visible through strategic design and meaningful experiences that resonate with your audience. By architecting these connections with intention, we help businesses transform into trusted community leaders that drive sustainable growth.</p>
             </div>
           </GridItem>
         </Grid>
@@ -57,7 +45,6 @@ const About = () => {
         <SectionHeader
           subtitle="Our team"
           title="Meet the people behind Big Invisible"
-          description="We're a diverse team of strategists, designers, and creative thinkers passionate about building authentic brand connections."
           align="center"
         />
         

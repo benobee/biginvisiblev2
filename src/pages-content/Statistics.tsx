@@ -211,7 +211,7 @@ const Statistics = () => {
                 {/* Filters Row */}
                 <div className="flex flex-wrap items-center gap-4">
                   {/* Category Multi-Select Dropdown */}
-                  <div className="relative" ref={dropdownRef}>
+                  {/* <div className="relative" ref={dropdownRef}>
                     <button
                       onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                       className={`flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm transition-colors ${
@@ -279,10 +279,10 @@ const Statistics = () => {
                         </div>
                       </div>
                     )}
-                  </div>
+                  </div> */}
 
                   {/* Verification Filter */}
-                  <label className="flex items-center gap-2 cursor-pointer">
+                  {/* <label className="flex items-center gap-2 cursor-pointer">
                     <input
                       type="checkbox"
                       checked={showVerifiedOnly}
@@ -290,10 +290,10 @@ const Statistics = () => {
                       className="rounded border-gray-300 text-accent focus:ring-accent"
                     />
                     <span className="text-sm text-gray-700">Verified only</span>
-                  </label>
+                  </label> */}
                   
                   {/* Sort By */}
-                  <div className="flex items-center gap-2 ml-auto">
+                  {/* <div className="flex items-center gap-2 ml-auto">
                     <span className="text-sm text-gray-700">Sort by:</span>
                     <select
                       value={sortBy}
@@ -303,11 +303,11 @@ const Statistics = () => {
                       <option value="percentage">Percentage</option>
                       <option value="credibility">Credibility</option>
                     </select>
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* Active Filters Display */}
-                {(selectedCategories.length > 0 || searchQuery) && (
+                {/* {(selectedCategories.length > 0 || searchQuery) && (
                   <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-gray-100">
                     <span className="text-xs text-gray-500">Active filters:</span>
                     {searchQuery && (
@@ -336,7 +336,7 @@ const Statistics = () => {
                       </span>
                     ))}
                   </div>
-                )}
+                )} */}
               </div>
             </div>
           </div>

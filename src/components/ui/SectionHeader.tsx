@@ -1,7 +1,7 @@
 interface SectionHeaderProps {
   title: string;
   subtitle?: string;
-  description?: string;
+  description?: React.ReactNode;
   align?: 'left' | 'center' | 'right';
   className?: string;
 }
