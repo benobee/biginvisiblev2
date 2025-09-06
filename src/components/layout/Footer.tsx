@@ -9,7 +9,7 @@ const Footer = () => {
         <div className={styles.footerGrid}>
           <div className={styles.footerColumn}>
             <h4>Big<span className={styles.accent}>Invisible</span></h4>
-            <p>We architect the invisible bonds that transform businesses into trusted community leaders, building authentic relationships that drive sustainable growth.</p>
+            <p>We create the invisible bonds between brands and people.</p>
             <div className={styles.socialLinks}>
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">

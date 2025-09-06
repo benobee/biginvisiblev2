@@ -3,7 +3,6 @@ import Section from '../../components/ui/Section';
 import SectionHeader from '../../components/ui/SectionHeader';
 import Button from '../../components/ui/Button';
 import CTASection from '../../components/ui/CTASection';
-import ServiceCarousel from '../../components/ServiceCarousel';
 import TimelineStep from '../../components/TimelineStep';
 import Breadcrumb from '../../components/ui/Breadcrumb';
 import { type Service } from '../../data/services';
@@ -13,6 +12,33 @@ import ServiceBlueprintGrid from '../../components/ServiceBlueprintGrid';
 import { ThemeModeContext } from '../../components/ThemeModeContext';
 import styles from '../../components/HomePageHero.module.css';
 import './ServiceTemplate.css';
+import { 
+  Target, 
+  Users, 
+  TrendingUp, 
+  MessageSquare, 
+  Palette, 
+  Layers, 
+  FileText, 
+  Package,
+  Monitor,
+  MousePointer,
+  Globe,
+  Link,
+  Calendar,
+  Edit3,
+  PenTool,
+  Share2,
+  GitBranch,
+  Briefcase,
+  Maximize2,
+  Grid,
+  Users2,
+  CalendarCheck,
+  UserCheck,
+  Zap
+} from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 // Design/Graphics focused images for carousel from Unsplash - all unique images
 const getCarouselImages = (serviceId: string) => {
@@ -90,6 +116,38 @@ const generateCTAText = (featureTitle: string) => {
   return ctaMap[featureTitle] || 'Get Started';
 };
 
+// Get icon for feature title
+const getFeatureIcon = (featureTitle: string): LucideIcon => {
+  const iconMap: { [key: string]: LucideIcon } = {
+    'Brand Positioning': Target,
+    'Audience Research': Users,
+    'Competitive Analysis': TrendingUp,
+    'Brand Messaging': MessageSquare,
+    'Logo Design': Palette,
+    'Visual Systems': Layers,
+    'Brand Guidelines': FileText,
+    'Digital Assets': Package,
+    'Website Design': Monitor,
+    'User Experience': MousePointer,
+    'Digital Strategy': Globe,
+    'Platform Integration': Link,
+    'Content Planning': Calendar,
+    'Editorial Strategy': Edit3,
+    'Content Creation': PenTool,
+    'Content Distribution': Share2,
+    'Brand Hierarchy': GitBranch,
+    'Portfolio Strategy': Briefcase,
+    'Brand Extensions': Maximize2,
+    'Sub-brand Development': Grid,
+    'Community Strategy': Users2,
+    'Engagement Planning': CalendarCheck,
+    'Stakeholder Alignment': UserCheck,
+    'Community Activation': Zap
+  };
+  
+  return iconMap[featureTitle] || Target;
+};
+
 // Sample testimonials data
 export const getTestimonials = () => [
   {
@@ -136,13 +194,6 @@ const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
   const testimonials = getTestimonials();
   const { isLightMode } = useContext(ThemeModeContext);
   
-  // Create carousel items from expanded features
-  const carouselItems = service.expandedFeatures.map((feature, index) => ({
-    title: feature.title,
-    description: feature.description,
-    image: carouselImages[index % carouselImages.length],
-    ctaText: generateCTAText(feature.title)
-  }));
   
   
   return (
@@ -211,12 +262,38 @@ const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
             align="center"
           />
           
-          <div className="mt-16 reveal-text">
-            <ServiceCarousel 
-              items={carouselItems}
-              autoPlayDelay={6000}
-              className="shadow-2xl"
-            />
+          {/* Service Feature Cards - Single column with icons */}
+          <div className="mt-16">
+            <div className="grid grid-cols-1 gap-6">
+              {service.expandedFeatures.map((feature, index) => {
+                // Use different icons based on index to ensure variety
+                const iconArray = [Target, Users, TrendingUp, MessageSquare, Palette, Layers, FileText, Package];
+                const Icon = iconArray[index % iconArray.length];
+                
+                return (
+                  <div 
+                    key={index} 
+                    className="bg-gray-100 rounded-lg shadow-lg p-8 md:p-10 reveal-text"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0">
+                        <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
+                          <Icon className="w-6 h-6 text-accent" />
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                          {feature.title}
+                        </h3>
+                        <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                          {feature.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </Section>
         
