@@ -93,14 +93,6 @@ const generateCTAText = (featureTitle: string) => {
 // Sample testimonials data
 export const getTestimonials = () => [
   {
-    id: '1',
-    quote: 'Working with this team transformed our brand identity completely. The strategic approach and attention to detail exceeded our expectations.',
-    author: 'Sarah Johnson',
-    position: 'Marketing Director',
-    company: 'TechFlow Solutions',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b647?w=150&h=150&fit=crop&auto=format'
-  },
-  {
     id: '2',
     quote: 'Their expertise in digital strategy helped us reach new audiences and significantly increase our online engagement. Highly recommended!',
     author: 'Michael Chen',

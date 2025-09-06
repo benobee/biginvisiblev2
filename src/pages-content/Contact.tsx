@@ -616,7 +616,7 @@ const Contact = () => {
                 </h3>
                 <p className="text-sm leading-relaxed opacity-80 text-dark">
                   Prefer to reach out directly?<br />
-                  <a href="mailto:hello@biginvisible.com" className="text-accent hover:underline">hello@biginvisible.com</a>
+                  <a href="mailto:info@biginvisible.com" className="text-accent hover:underline">info@biginvisible.com</a>
                   <br /><br />
                   <em>We typically respond to emails within 4-6 hours during business days.</em>
                 </p>

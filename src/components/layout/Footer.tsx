@@ -62,8 +62,7 @@ const Footer = () => {
           <div className={styles.footerColumn}>
             <h4>Contact</h4>
             <ul className={styles.footerLinks}>
-              <li><a href="mailto:hello@biginvisible.com">hello@biginvisible.com</a></li>
-              <li><a href="tel:+12065551234">+1 (206) 555-1234</a></li>
+              <li><a href="mailto:info@biginvisible.com">info@biginvisible.com</a></li>
               <li>Seattle, WA</li>
             </ul>
           </div>
