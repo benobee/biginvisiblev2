@@ -1,5 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { statisticsDatabase } from '../data/statisticsDatabase';
+
+// Group statistics by category
+const statisticsByCategory = statisticsDatabase.reduce((acc, stat) => {
+  stat.categories.forEach(category => {
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    // Avoid duplicates
+    if (!acc[category].some(s => s.id === stat.id)) {
+      acc[category].push({
+        name: stat.title,
+        href: `/stat-detail/${stat.id}`,
+        id: stat.id
+      });
+    }
+  });
+  return acc;
+}, {} as Record<string, Array<{name: string, href: string, id: string}>>);
+
+// Format category names for display
+const formatCategoryName = (category: string) => {
+  return category.split('-').map(word => 
+    word.charAt(0).toUpperCase() + word.slice(1)
+  ).join(' ');
+};
 
 // Define your site structure
 const siteStructure = [
@@ -26,6 +52,11 @@ const siteStructure = [
       { name: 'Community Building', href: '/services/community-building' },
     ]
   },
+  // Add statistics sections by category
+  ...Object.entries(statisticsByCategory).map(([category, stats]) => ({
+    title: `Statistics: ${formatCategoryName(category)}`,
+    links: stats.sort((a, b) => a.name.localeCompare(b.name))
+  })),
   {
     title: 'Legal',
     links: [
