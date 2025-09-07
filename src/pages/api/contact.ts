@@ -151,7 +151,7 @@ function formatEmailContent(data: any): string {
           </div>
           <div class="field">
             <div class="field-label">Email:</div>
-            <div class="field-value"><a href="mailto:${data.email}">${data.email}</a></div>
+            <div class="field-value">${data.email}</div>
           </div>
           <div class="field">
             <div class="field-label">Company:</div>
@@ -308,7 +308,7 @@ function formatConfirmationEmail(data: any): string {
             <a href="https://biginvisible.com/work" class="button">View Our Work</a>
           </div>
 
-          <p>If you have any immediate questions, don't hesitate to reach out directly at <a href="mailto:info@biginvisible.com">info@biginvisible.com</a>.</p>
+          <p>If you have any immediate questions, don't hesitate to reach out directly at info@biginvisible.com.</p>
           
           <p>We look forward to helping you transform your brand!</p>
           
