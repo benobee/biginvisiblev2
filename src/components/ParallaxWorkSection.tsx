@@ -4,6 +4,7 @@ const ParallaxWorkSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   // All brand images from folder (excluding PDFs and .mov files)
   const allBrandImages = [
@@ -23,18 +24,25 @@ const ParallaxWorkSection: React.FC = () => {
     '/brand-images/scout-logo-hx4.png',
   ]
 
-  // Shuffle function for randomizing array
+  // Use a deterministic shuffle based on array index to avoid hydration mismatches
   const shuffleArray = (array: string[]) => {
     const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
+    // Simple deterministic shuffle based on index
+    for (let i = 0; i < shuffled.length; i++) {
+      const j = (i * 7 + 3) % shuffled.length;
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     return shuffled;
   };
 
   // Memoize the shuffled images so they don't change on re-renders
-  const shuffledImages = useMemo(() => shuffleArray(allBrandImages), []);
+  const shuffledImages = useMemo(() => {
+    // Only shuffle on client to avoid hydration mismatch
+    if (typeof window === 'undefined') {
+      return allBrandImages;
+    }
+    return shuffleArray(allBrandImages);
+  }, []);
   
   // Distribute images across 3 rows evenly
   const brandImages = useMemo(() => {
@@ -48,6 +56,18 @@ const ParallaxWorkSection: React.FC = () => {
 
   useEffect(() => {
     setIsMounted(true);
+    
+    // Check if mobile on mount and resize
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
 
   useEffect(() => {
@@ -125,6 +145,56 @@ const ParallaxWorkSection: React.FC = () => {
     '2': '65%'
   };
 
+  // Mobile layout - Instagram feed style
+  if (isMobile) {
+    return (
+      <section 
+        ref={sectionRef}
+        className="relative w-full bg-gray-50 py-12"
+      >
+        {/* Background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-gray-100" />
+        
+        {/* Content wrapper */}
+        <div className="relative z-10 w-full">
+          {/* Header text */}
+          <div className="text-center px-4 pb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">
+              Our Work
+            </h2>
+            <p className="text-base text-gray-600 max-w-2xl mx-auto mb-6">
+              Brands we've transformed into community leaders
+            </p>
+            <a
+              href="/work"
+              className="inline-block bg-accent text-white px-6 py-3 font-medium text-sm uppercase tracking-wider transition-all duration-300 border border-accent hover:bg-transparent hover:text-accent"
+            >
+              View All Projects
+            </a>
+          </div>
+          
+          {/* Instagram-style feed - single column */}
+          <div className="px-4 space-y-4 max-w-md mx-auto">
+            {shuffledImages.map((image, index) => (
+              <div
+                key={`mobile-${index}`}
+                className="bg-white rounded-lg shadow-lg p-6"
+              >
+                <img
+                  src={image}
+                  alt={`Brand ${index + 1}`}
+                  className="w-full h-48 object-contain"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Desktop layout - with all the fancy animations
   return (
     <section 
       ref={sectionRef}
