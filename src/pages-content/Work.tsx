@@ -7,14 +7,14 @@ import styles from '../components/ui/FullScreenHero.module.css';
 const Work = () => {
   // Simple portfolio items - just the essentials
   const portfolioItems = [
-    { src: '/brand-images/scout-logo-hx4.png', title: 'Scout Restaurant' },
+    { src: '/brand-images/scout-logo-hx4.png', title: 'Scout Real Estate' },
     { src: '/brand-images/WIAP Square.svg', title: 'WIAP' },
     { src: '/brand-images/NLT-Logos-Final_NLT-Logo-SidebySide.png', title: 'Next Level Teams' },
-    { src: '/brand-images/MCRE-wide-04.svg', title: 'MCRE Real Estate', category: 'Real Estate' },
+    { src: '/brand-images/MCRE-wide-04.svg', title: 'Michelle Cook Real Estate', category: 'Real Estate' },
     { src: '/brand-images/BC-LOGO-FINAL_Logo-build-1a.png', title: 'Build Community', category: 'Community Development' },
     { src: '/brand-images/SSI_logo_final_1_SSI-full-color.png', title: 'SSI Solutions', category: 'Technology' },
     { src: '/brand-images/metro-logo.png', title: 'Metropolist', category: 'Urban Development' },
-    { src: '/brand-images/edgewater-beach-poulsbo-logo-abbrv.png', title: 'Edgewater Beach', category: 'Brand Identity' },
+    { src: '/brand-images/edgewater-beach-poulsbo-logo-abbrv.png', title: 'Edgewater Beach Community', category: 'Brand Identity' },
     { src: '/brand-images/FO-LOGO-CAMPAIGN-01.png', title: 'Fred Obee Campaign', category: 'Marketing' },
     { src: '/brand-images/Scout-School-logo-R1-01.png', title: 'Scout School', category: 'Community Building' },
     { src: '/brand-images/MCRE-emblem-nobckg-02.svg', title: 'MCRE Emblem', category: 'Corporate Identity' },

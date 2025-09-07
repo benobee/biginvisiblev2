@@ -416,14 +416,10 @@
   .touchPoint,
   .subServicePoint,
   .connectionsContainer,
-  .particlesContainer {
+  .particlesContainer,
+  .centeredTitle {
     display: none !important;
     pointer-events: none !important;
-  }
-  
-  /* Make title smaller on mobile */
-  .centeredTitle h1 {
-    font-size: 2rem;
   }
 }
 

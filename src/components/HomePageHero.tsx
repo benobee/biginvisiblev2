@@ -12,19 +12,30 @@ const HomePageHero: React.FC = () => {
   const { isLightMode } = useContext(ThemeModeContext);
   const [gridProgress, setGridProgress] = useState(0);
   const [gridVisible, setGridVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Tuning values (can be adjusted)
-  const scrollMultiplier = 2; // wrapper height in viewports (2 = 200vh)
-  const moveDistanceVh = 130; // how many vh the content should move up at 100% progress
+  // Check if mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 640);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Tuning values (can be adjusted) - use 1x height on mobile
+  const scrollMultiplier = isMobile ? 1 : 2; // wrapper height in viewports (1 = 100vh on mobile, 2 = 200vh on desktop)
+  const moveDistanceVh = isMobile ? 0 : 130; // no movement on mobile, 130vh movement on desktop
 
   const scrollToServices = () => {
     servicesRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   useEffect(() => {
-    // Respect reduced motion
+    // Respect reduced motion or mobile
     const prefersReduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) {
+    if (prefersReduced || isMobile) {
       if (contentRef.current) contentRef.current.style.transform = 'none';
       if (gridRef.current) {
         gridRef.current.style.opacity = '0';
@@ -111,7 +122,7 @@ const HomePageHero: React.FC = () => {
       cancelAnimationFrame(rafId);
       if (observer && wrapperRef.current) observer.unobserve(wrapperRef.current);
     };
-  }, []);
+  }, [isMobile, moveDistanceVh]);
 
   return (
     <>
@@ -122,15 +133,17 @@ const HomePageHero: React.FC = () => {
           style={{ background: 'rgb(5 25 35) !important' }}
           className={`${styles.pinnedHero} min-h-screen bg-background text-white flex items-center relative overflow-hidden transition-all duration-500`}
         >
-          {/* Constellation Background - fixed to viewport while hero is present */}
-          <div
-            ref={gridRef}
-            className={`${styles.constellationLayer}`}
-            style={{ display: 'none', opacity: 0, pointerEvents: 'none' }}
-          >
-            {gridProgress > 0.4 && <SimpleBlueprintGrid progress={gridProgress} gridVisible={gridVisible} />}
-            {gridProgress > 0.4 && <ConstellationBackground />}
-          </div>
+          {/* Constellation Background - fixed to viewport while hero is present - not rendered on mobile */}
+          {!isMobile && (
+            <div
+              ref={gridRef}
+              className={`${styles.constellationLayer}`}
+              style={{ display: 'none', opacity: 0, pointerEvents: 'none' }}
+            >
+              {gridProgress > 0.4 && <SimpleBlueprintGrid progress={gridProgress} gridVisible={gridVisible} />}
+              {gridProgress > 0.4 && <ConstellationBackground />}
+            </div>
+          )}
 
           {/* The block that will translate upward as the user scrolls */}
           <div ref={contentRef} className={`${styles.heroContent} section-container relative z-50`}>

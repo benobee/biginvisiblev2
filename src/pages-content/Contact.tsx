@@ -27,6 +27,13 @@ interface QuestionnaireData {
   additionalInfo: string;
 }
 
+interface ValidationErrors {
+  name?: string;
+  email?: string;
+  company?: string;
+  phone?: string;
+}
+
 const Contact = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<QuestionnaireData>({
@@ -46,12 +53,79 @@ const Contact = () => {
     primaryGoals: [],
     additionalInfo: ''
   });
+  
+  const [errors, setErrors] = useState<ValidationErrors>({});
+  const [touched, setTouched] = useState<Set<keyof ValidationErrors>>(new Set());
 
   const totalSteps = 10;
   const progress = ((currentStep + 1) / totalSteps) * 100;
 
+  // Validation helper functions
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validateField = (field: keyof ValidationErrors, value: string): string | undefined => {
+    switch (field) {
+      case 'name':
+        return value.trim() === '' ? 'Name is required' : undefined;
+      case 'email':
+        if (value.trim() === '') return 'Email is required';
+        if (!validateEmail(value)) return 'Please enter a valid email address';
+        return undefined;
+      case 'company':
+        return value.trim() === '' ? 'Company name is required' : undefined;
+      default:
+        return undefined;
+    }
+  };
+
+  const validateStep0 = (): boolean => {
+    const newErrors: ValidationErrors = {};
+    
+    const nameError = validateField('name', formData.name);
+    if (nameError) newErrors.name = nameError;
+    
+    const emailError = validateField('email', formData.email);
+    if (emailError) newErrors.email = emailError;
+    
+    const companyError = validateField('company', formData.company);
+    if (companyError) newErrors.company = companyError;
+    
+    setErrors(newErrors);
+    
+    // Mark all fields as touched if there are errors
+    if (Object.keys(newErrors).length > 0) {
+      setTouched(new Set(['name', 'email', 'company']));
+    }
+    
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleInputChange = (field: keyof QuestionnaireData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    
+    // Real-time validation for basic info fields
+    if (field === 'name' || field === 'email' || field === 'company') {
+      // Clear error when user starts typing
+      if (touched.has(field as keyof ValidationErrors)) {
+        const error = validateField(field as keyof ValidationErrors, value);
+        setErrors(prev => ({
+          ...prev,
+          [field]: error
+        }));
+      }
+    }
+  };
+
+  const handleFieldBlur = (field: keyof ValidationErrors) => {
+    setTouched(prev => new Set([...prev, field]));
+    const error = validateField(field, formData[field]);
+    setErrors(prev => ({
+      ...prev,
+      [field]: error
+    }));
   };
 
   const handleMultiSelect = (field: keyof QuestionnaireData, value: string) => {
@@ -67,16 +141,9 @@ const Contact = () => {
   const nextStep = () => {
     console.log('Next button clicked, current step:', currentStep);
     
-    // Basic validation for required fields on first step
+    // Validation for first step
     if (currentStep === 0) {
-      if (!formData.name || !formData.email || !formData.company) {
-        alert('Please fill in all required fields (Name, Email, and Company) before proceeding.');
-        return;
-      }
-      // Basic email validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(formData.email)) {
-        alert('Please enter a valid email address.');
+      if (!validateStep0()) {
         return;
       }
     }
@@ -144,37 +211,61 @@ const Contact = () => {
             <div className="mb-6">
               <label className="block text-sm font-medium mb-2 text-dark">Your Name *</label>
               <input
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-colors text-dark bg-white"
+                className={`w-full px-4 py-3 border rounded-lg outline-none transition-all text-dark bg-white ${
+                  errors.name && touched.has('name')
+                    ? 'border-red-500 focus:ring-2 focus:ring-red-500 focus:border-red-500'
+                    : 'border-gray-300 focus:ring-2 focus:ring-accent focus:border-accent'
+                }`}
                 value={formData.name}
                 onChange={(e) => handleInputChange('name', e.target.value)}
+                onBlur={() => handleFieldBlur('name')}
                 placeholder="John Smith"
                 required
               />
+              {errors.name && touched.has('name') && (
+                <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+              )}
             </div>
           </GridItem>
           <GridItem span={1}>
             <div className="mb-6">
               <label className="block text-sm font-medium mb-2 text-dark">Email Address *</label>
               <input
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-colors text-dark bg-white"
+                className={`w-full px-4 py-3 border rounded-lg outline-none transition-all text-dark bg-white ${
+                  errors.email && touched.has('email')
+                    ? 'border-red-500 focus:ring-2 focus:ring-red-500 focus:border-red-500'
+                    : 'border-gray-300 focus:ring-2 focus:ring-accent focus:border-accent'
+                }`}
                 type="email"
                 value={formData.email}
                 onChange={(e) => handleInputChange('email', e.target.value)}
+                onBlur={() => handleFieldBlur('email')}
                 placeholder="john@company.com"
                 required
               />
+              {errors.email && touched.has('email') && (
+                <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+              )}
             </div>
           </GridItem>
           <GridItem span={1}>
             <div className="mb-6">
               <label className="block text-sm font-medium mb-2 text-dark">Company Name *</label>
               <input
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-colors text-dark bg-white"
+                className={`w-full px-4 py-3 border rounded-lg outline-none transition-all text-dark bg-white ${
+                  errors.company && touched.has('company')
+                    ? 'border-red-500 focus:ring-2 focus:ring-red-500 focus:border-red-500'
+                    : 'border-gray-300 focus:ring-2 focus:ring-accent focus:border-accent'
+                }`}
                 value={formData.company}
                 onChange={(e) => handleInputChange('company', e.target.value)}
+                onBlur={() => handleFieldBlur('company')}
                 placeholder="Your Company"
                 required
               />
+              {errors.company && touched.has('company') && (
+                <p className="mt-1 text-sm text-red-500">{errors.company}</p>
+              )}
             </div>
           </GridItem>
           <GridItem span={1}>
@@ -515,7 +606,7 @@ const Contact = () => {
     <>
       <Section background="accent" className="pt-40">
         <div className="text-left">
-          <h1 className="reveal-text text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-black leading-tight tracking-tight">
+          <h1 className="reveal-text text-4xl md:text-6xl lg:text-6xl xl:text-6xl font-bold text-black leading-tight tracking-tight">
             Trust is made
           </h1>
         </div>

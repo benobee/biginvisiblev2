@@ -181,7 +181,7 @@ const ServiceBlueprintGrid = ({ service }: ServiceBlueprintGridProps) => {
       </div>
 
       {/* Connection Lines - SVG approach */}
-      <svg className={styles.connectionsContainer}>
+      {/* <svg className={styles.connectionsContainer}>
         {subServicePoints.map(subPoint => {
           const isSubPointHovered = hoveredPoint === subPoint.id;
           const isSubPointActive = activePoint === subPoint.id;
@@ -204,7 +204,7 @@ const ServiceBlueprintGrid = ({ service }: ServiceBlueprintGridProps) => {
             />
           );
         })}
-      </svg>
+      </svg> */}
 
       {/* Main Service Touch Point */}
       <div
@@ -217,7 +217,7 @@ const ServiceBlueprintGrid = ({ service }: ServiceBlueprintGridProps) => {
         onMouseEnter={() => handleMouseEnter(mainServicePoint.id)}
         onMouseLeave={() => handleMouseLeave()}
       >
-        <div className={styles.hotspotMarker}>
+        {/* <div className={styles.hotspotMarker}>
           <div 
             className={styles.hotspotOuter}
             style={{
@@ -234,14 +234,14 @@ const ServiceBlueprintGrid = ({ service }: ServiceBlueprintGridProps) => {
               height: '24px'
             }}
           />
-        </div>
+        </div> */}
 
         {/* Label */}
-        <div 
+        {/* <div 
           className={`${styles.touchPointLabel} ${hoveredPoint === mainServicePoint.id ? styles.touchPointLabelVisible : ''}`}
         >
           {mainServicePoint.name}
-        </div>
+        </div> */}
       </div>
 
       {/* Sub-Service Touch Points */}
@@ -262,19 +262,19 @@ const ServiceBlueprintGrid = ({ service }: ServiceBlueprintGridProps) => {
             onMouseEnter={() => handleMouseEnter(subPoint.id)}
             onMouseLeave={() => handleMouseLeave()}
           >
-            <div className={styles.subServiceMarker}>
+            {/* <div className={styles.subServiceMarker}>
               <div 
                 className={styles.subServiceInner}
                 style={{
                   background: `${subPoint.color}e6`
                 }}
               />
-            </div>
+            </div> */}
 
             {/* Sub-service label */}
-            <div className={`${styles.subServiceLabel} ${(isHovered || isActive) ? styles.touchPointLabelVisible : ''}`}>
+            {/* <div className={`${styles.subServiceLabel} ${(isHovered || isActive) ? styles.touchPointLabelVisible : ''}`}>
               {subPoint.name}
-            </div>
+            </div> */}
           </div>
         );
       })}

@@ -51,14 +51,12 @@ const Home = () => {
       </Section>
 
       {/* Process Section */}
-      <Section background="primary">
+      {/* <Section background="primary">
         <SectionHeader
           subtitle="How we work"
           title="Our (not-so-secret) formula"
           align="center"
         />
-          
-          {/* Process Steps */}
           <Grid gap="large" className="mt-16">
             <GridItem span={3}>
               <Card padding='small'>
@@ -112,10 +110,10 @@ const Home = () => {
               See how we work
             </Button>
           </div>
-      </Section>
+      </Section> */}
 
             {/* Branding Statistics Section */}
-      <Section background="light">
+      {/* <Section background="light">
         <SectionHeader
           subtitle="The numbers don't lie"
           title="Why good branding actually matters"
@@ -144,7 +142,7 @@ const Home = () => {
             Show me the data
           </Button>
         </div>
-      </Section>
+      </Section> */}
 
       {/* Contact CTA Section */}
       <CTASection

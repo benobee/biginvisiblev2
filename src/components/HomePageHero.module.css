@@ -207,3 +207,10 @@
     transform: none !important;
   }
 }
+
+/* Hide constellation layer on mobile devices */
+@media (max-width: 640px) {
+  .constellationLayer {
+    display: none !important;
+  }
+}
