@@ -11,16 +11,11 @@ const ParallaxWorkSection: React.FC = () => {
     '/brand-images/BC-LOGO-FINAL_Logo-build-1a.png',
     '/brand-images/FO-LOGO-CAMPAIGN-01.png',
     '/brand-images/MCRE-LJ-stacked-02.svg',
-    '/brand-images/MCRE-emblem-nobckg-02.svg',
-    '/brand-images/MCRE-wide-04.svg',
     '/brand-images/NLT-LOGO-ONE-COLOR-04.png',
-    '/brand-images/NLT-Logos-Final_NLT-Logo-SidebySide.png',
     '/brand-images/NORDIC-LogoCOLORTEST.svg',
     '/brand-images/SSI_logo_final_1_SSI-full-color.png',
-    '/brand-images/Scout-School-logo-R1-01.png',
     '/brand-images/WIAP Square.svg',
     '/brand-images/edgewater-beach-poulsbo-logo-abbrv.png',
-    '/brand-images/WIAP-no room for squares.svg',
     '/brand-images/scout-logo-hx4.png',
   ]
 
@@ -160,10 +155,10 @@ const ParallaxWorkSection: React.FC = () => {
           {/* Header text */}
           <div className="text-center px-4 pb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-3">
-              Our Work
+              Client List
             </h2>
             <p className="text-base text-gray-600 max-w-2xl mx-auto mb-6">
-              Brands we've transformed into community leaders
+              Brands we've worked with
             </p>
             <a
               href="/work"
@@ -208,10 +203,10 @@ const ParallaxWorkSection: React.FC = () => {
         {/* Header text - sticky at top */}
         <div className="top-0 z-20 text-center px-3 py-4 sm:px-4 sm:py-6 md:py-8 w-full">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4">
-            Our Work
+            Client List
           </h2>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto mb-3 sm:mb-4 md:mb-6">
-            Brands we've transformed into community leaders
+            Brands we've worked with
           </p>
           <a
             href="/work"
