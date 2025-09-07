@@ -4,6 +4,7 @@ import { initRevealAnimations } from './utils/animations';
 import Layout from './components/layout/Layout';
 import './styles/globals.css';
 import { ThemeModeContext } from './components/ThemeModeContext';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 interface PageWrapperProps {
   children: React.ReactNode;
@@ -65,9 +66,10 @@ function PageWrapper({ children, currentPath }: PageWrapperProps) {
 
   return (
     <ThemeModeContext.Provider value={{ isLightMode, setIsLightMode, isHomePage }}>
-      <Layout currentPath={currentPath}>
-        {children}
-      </Layout>
+      <SpeedInsights />
+        <Layout currentPath={currentPath}>
+          {children}
+        </Layout>
     </ThemeModeContext.Provider>
   );
 }
