@@ -56,6 +56,9 @@ const Contact = () => {
   
   const [errors, setErrors] = useState<ValidationErrors>({});
   const [touched, setTouched] = useState<Set<keyof ValidationErrors>>(new Set());
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitMessage, setSubmitMessage] = useState('');
 
   const totalSteps = 10;
   const progress = ((currentStep + 1) / totalSteps) * 100;
@@ -160,9 +163,62 @@ const Contact = () => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log('Questionnaire submitted:', formData);
-    alert('Thank you! We\'ll analyze your responses and get back to you with personalized recommendations within 24 hours.');
+    
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setSubmitMessage('');
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok) {
+        setSubmitStatus('success');
+        setSubmitMessage('Thank you! We\'ll analyze your responses and get back to you with personalized recommendations within 24 hours. Check your email for confirmation.');
+        
+        // Reset form after successful submission
+        setTimeout(() => {
+          setCurrentStep(0);
+          setFormData({
+            name: '',
+            email: '',
+            company: '',
+            phone: '',
+            businessStage: '',
+            companySize: '',
+            industry: '',
+            currentChallenges: [],
+            brandMaturity: '',
+            digitalPresence: '',
+            communityGoals: '',
+            projectTimeline: '',
+            budget: '',
+            primaryGoals: [],
+            additionalInfo: ''
+          });
+          setErrors({});
+          setTouched(new Set());
+        }, 5000);
+      } else {
+        setSubmitStatus('error');
+        setSubmitMessage(result.error || 'Something went wrong. Please try again or contact us directly at info@biginvisible.com');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+      setSubmitMessage('Unable to submit form. Please check your connection and try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const getRecommendations = () => {
@@ -629,10 +685,26 @@ const Contact = () => {
                 </div>
               ))}
               
+              {/* Success/Error Messages */}
+              {submitStatus !== 'idle' && (
+                <div className={`mb-6 p-4 rounded-lg ${
+                  submitStatus === 'success' 
+                    ? 'bg-green-50 border border-green-200 text-green-800'
+                    : 'bg-red-50 border border-red-200 text-red-800'
+                }`}>
+                  <p className="text-sm font-medium">{submitMessage}</p>
+                </div>
+              )}
+              
               <div className="flex justify-between mt-8">
                 <div>
                   {currentStep > 0 && (
-                    <Button variant="outline" onClick={prevStep} as="button">
+                    <Button 
+                      variant="outline" 
+                      onClick={isSubmitting ? undefined : prevStep} 
+                      as="button"
+                      className={isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}
+                    >
                       Previous
                     </Button>
                   )}
@@ -643,8 +715,27 @@ const Contact = () => {
                       Next
                     </Button>
                   ) : (
-                    <Button variant="primary" onClick={handleSubmit} as="button">
-                      Get My Recommendations
+                    <Button 
+                      variant="primary" 
+                      onClick={(isSubmitting || submitStatus === 'success') ? undefined : handleSubmit} 
+                      as="button"
+                      className={`relative ${(isSubmitting || submitStatus === 'success') ? 'opacity-75 cursor-not-allowed' : ''}`}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <span className="opacity-0">Get My Recommendations</span>
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                          </div>
+                        </>
+                      ) : submitStatus === 'success' ? (
+                        'Submitted Successfully!'
+                      ) : (
+                        'Get My Recommendations'
+                      )}
                     </Button>
                   )}
                 </div>
