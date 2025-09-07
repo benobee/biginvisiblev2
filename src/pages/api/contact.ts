@@ -6,7 +6,7 @@ const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 // Email configuration
 const EMAIL_TO = import.meta.env.EMAIL_TO || 'info@biginvisible.com';
-const EMAIL_FROM = import.meta.env.EMAIL_FROM || 'Big Invisible <noreply@biginvisible.com>';
+const EMAIL_FROM = import.meta.env.EMAIL_FROM || 'Big Invisible <info@biginvisible.com>';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
