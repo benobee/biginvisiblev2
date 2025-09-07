@@ -1,0 +1,214 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Define your site structure
+const siteStructure = [
+  {
+    title: 'Main Pages',
+    links: [
+      { name: 'Home', href: '/' },
+      { name: 'About', href: '/about' },
+      { name: 'Process', href: '/process' },
+      { name: 'Services', href: '/services' },
+      { name: 'Work', href: '/work' },
+      { name: 'Statistics', href: '/statistics' },
+      { name: 'Contact', href: '/contact' },
+    ]
+  },
+  {
+    title: 'Services',
+    links: [
+      { name: 'Brand Strategy', href: '/services/brand-strategy' },
+      { name: 'Visual Identity', href: '/services/visual-identity' },
+      { name: 'Digital Experience', href: '/services/digital-experience' },
+      { name: 'Content Strategy', href: '/services/content-strategy' },
+      { name: 'Brand Architecture', href: '/services/brand-architecture' },
+      { name: 'Community Building', href: '/services/community-building' },
+    ]
+  },
+  {
+    title: 'Legal',
+    links: [
+      { name: 'Privacy Policy', href: '/privacy' },
+      { name: 'Terms of Service', href: '/terms' },
+    ]
+  },
+  {
+    title: 'Resources',
+    links: [
+      { name: 'XML Sitemap (for search engines)', href: '/sitemap.xml' },
+    ]
+  }
+];
+---
+
+<Layout title="Sitemap - Big Invisible">
+  <div class="sitemap-container">
+    <div class="sitemap-header">
+      <h1>Sitemap</h1>
+      <p>A complete overview of all pages on Big Invisible</p>
+    </div>
+
+    <div class="sitemap-content">
+      {siteStructure.map((section) => (
+        <div class="sitemap-section">
+          <h2>{section.title}</h2>
+          <ul>
+            {section.links.map((link) => (
+              <li>
+                <a href={link.href}>{link.name}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .sitemap-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 20px 80px;
+    min-height: 100vh;
+  }
+
+  .sitemap-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .sitemap-header h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .sitemap-header p {
+    font-size: 1.25rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .sitemap-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+  }
+
+  .sitemap-section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .sitemap-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .sitemap-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+  }
+
+  .sitemap-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sitemap-section li {
+    margin-bottom: 12px;
+  }
+
+  .sitemap-section a {
+    color: #666;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    display: inline-block;
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .sitemap-section a::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateX(-5px);
+  }
+
+  .sitemap-section a:hover {
+    color: #667eea;
+  }
+
+  .sitemap-section a:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .sitemap-container {
+      background: #0a0a0a;
+    }
+
+    .sitemap-header p {
+      color: #999;
+    }
+
+    .sitemap-section {
+      background: #1a1a1a;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .sitemap-section:hover {
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .sitemap-section h2 {
+      color: #fff;
+      border-bottom-color: #333;
+    }
+
+    .sitemap-section a {
+      color: #999;
+    }
+
+    .sitemap-section a:hover {
+      color: #764ba2;
+    }
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .sitemap-container {
+      padding: 100px 20px 60px;
+    }
+
+    .sitemap-content {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .sitemap-section {
+      padding: 25px;
+    }
+  }
+</style>
