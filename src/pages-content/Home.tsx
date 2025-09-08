@@ -21,7 +21,7 @@ const Home = () => {
       <Section background="light" id="services">
         <SectionHeader
           subtitle="What we do"
-          title="We make brands people actually remember"
+          title="We make brands work better"
           align="center"
         />
           
