@@ -130,7 +130,6 @@ const HomePageHero: React.FC = () => {
       <div ref={wrapperRef} data-theme="dark" className={styles.heroScrollWrapper} style={{ height: `${scrollMultiplier * 100}vh`, background: 'rgb(5 25 35) !important;' }}>
         <section
           data-theme="dark"
-          style={{ background: 'rgb(5 25 35) !important' }}
           className={`${styles.pinnedHero} min-h-screen bg-background text-white flex items-center relative overflow-hidden transition-all duration-500`}
         >
           {/* Constellation Background - fixed to viewport while hero is present - not rendered on mobile */}

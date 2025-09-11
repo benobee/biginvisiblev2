@@ -55,7 +55,7 @@
     linear-gradient(90deg, rgba(64, 128, 255, 0.1) 1px, transparent 1px);
   background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
   /* Darken the blueprint background so the hero retains its dark overlay */
-  background-color: rgba(5, 15, 25, 0.95);
+  background-color: radial-gradient(ellipse at center, rgba(19, 58, 98, 0.9) 0%, rgba(0, 0, 0, 0.98) 100%);;
   z-index: 1;
 }
 
