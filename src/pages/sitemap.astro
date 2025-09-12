@@ -12,7 +12,7 @@ const statisticsByCategory = statisticsDatabase.reduce((acc, stat) => {
     if (!acc[category].some(s => s.id === stat.id)) {
       acc[category].push({
         name: stat.title,
-        href: `/stat-detail/${stat.id}`,
+        href: `/stat-detail?id=${stat.id}`,
         id: stat.id
       });
     }

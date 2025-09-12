@@ -47,7 +47,7 @@ export const projects = [
   },
   {
     id: 6,
-    title: 'SSI Solutions',
+    title: 'SSI Construction',
     category: 'Logo Design, Brand Comparison',
     image: '/brand-images/SSI-compare-image.jpg',
     span: 6,

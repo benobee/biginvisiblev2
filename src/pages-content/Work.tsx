@@ -12,7 +12,7 @@ const Work = () => {
     { src: '/brand-images/NLT-Logos-Final_NLT-Logo-SidebySide.png', title: 'Next Level Teams' },
     { src: '/brand-images/MCRE-wide-04.svg', title: 'Michelle Cook Real Estate', category: 'Real Estate' },
     { src: '/brand-images/BC-LOGO-FINAL_Logo-build-1a.png', title: 'Build Community', category: 'Community Development' },
-    { src: '/brand-images/SSI_logo_final_1_SSI-full-color.png', title: 'SSI Solutions', category: 'Technology' },
+    { src: '/brand-images/SSI_logo_final_1_SSI-full-color.png', title: 'SSI Construction', category: 'Technology' },
     { src: '/brand-images/metro-logo.png', title: 'Metropolist', category: 'Urban Development' },
     { src: '/brand-images/edgewater-beach-poulsbo-logo-abbrv.png', title: 'Edgewater Beach Community', category: 'Brand Identity' },
     { src: '/brand-images/FO-LOGO-CAMPAIGN-01.png', title: 'Fred Obee Campaign', category: 'Marketing' },
