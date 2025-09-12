@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageWrapper from '../../PageWrapper';
+import StatisticPage from '../../pages-content/statistics/StatisticPage';
+
+const currentPath = Astro.url.pathname;
+const { id } = Astro.params;
+
+// For static site generation, we need to provide all possible paths
+export async function getStaticPaths() {
+  const { statisticsDatabase } = await import('../../data/statisticsDatabase');
+  
+  return statisticsDatabase.map(stat => ({
+    params: { id: stat.id }
+  }));
+}
+---
+
+<Layout title="Statistic - Big Invisible" description="Understand branding statistics. Discover insights on brand strategy, visual identity, digital experience, and more." keywords="kitsap, poulsbo, washington, seattle, branding statistics, brand insights, marketing data, brand strategy, visual identity, digital experience, content strategy, community building, brand architecture">
+	<PageWrapper client:load currentPath={currentPath}>
+		<StatisticPage client:visible currentPath={currentPath} statisticId={id} />
+	</PageWrapper>
+</Layout>

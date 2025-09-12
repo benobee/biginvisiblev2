@@ -1,14 +1,12 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import PageWrapper from '../PageWrapper';
-import StatisticPage from '../pages-content/statistics/StatisticPage';
-
-const currentPath = Astro.url.pathname;
+// This page handles legacy URLs with query parameters and redirects to the new path-based URLs
 const statisticId = Astro.url.searchParams.get('id');
----
 
-<Layout title="Statistic - Big Invisible" description="Understand branding statistics. Discover insights on brand strategy, visual identity, digital experience, and more." keywords="kitsap, poulsbo, washington, seattle, branding statistics, brand insights, marketing data, brand strategy, visual identity, digital experience, content strategy, community building, brand architecture">
-	<PageWrapper client:load currentPath={currentPath}>
-		<StatisticPage client:visible currentPath={currentPath} statisticId={statisticId} />
-	</PageWrapper>
-</Layout>
+if (statisticId) {
+  // Redirect to the new URL structure
+  return Astro.redirect(`/stat-detail/${statisticId}`, 301);
+}
+
+// If no ID is provided, redirect to the statistics page
+return Astro.redirect('/statistics', 301);
+---
