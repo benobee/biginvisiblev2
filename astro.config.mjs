@@ -24,19 +24,7 @@ export default defineConfig({
       filter: (page) => {
         // Exclude the editor page and API routes from sitemap
         return !page.includes('/editor') && !page.includes('/api/');
-      },
-      // Ensure proper canonical URLs
-      serialize: (item) => {
-        // Remove trailing slashes except for the root
-        if (item.url !== 'https://biginvisible.com/' && item.url.endsWith('/')) {
-          item.url = item.url.slice(0, -1);
-        }
-        return item;
-      },
-      // Set change frequency and priority for homepage
-      changefreq: 'weekly',
-      priority: 0.7,
-      lastmod: new Date()
+      }
     })
   ],
   output: 'server',
