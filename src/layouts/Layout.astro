@@ -7,6 +7,18 @@ export interface Props {
 }
 
 const { title, description = 'Big Invisible - Strategic branding and design agency', keywords = 'biginvisible, branding, design, strategy' } = Astro.props;
+
+// Generate canonical URL safely
+let canonicalURL = 'https://biginvisible.com';
+try {
+  // Use the pathname from Astro.url if available
+  const pathname = Astro.url?.pathname || '/';
+  // Ensure we use the non-www version and remove any trailing slashes except for root
+  canonicalURL = `https://biginvisible.com${pathname === '/' ? '' : pathname.replace(/\/$/, '')}`;
+} catch (e) {
+  // Fallback to base URL if there's any error
+  canonicalURL = 'https://biginvisible.com';
+}
 ---
 
 <!DOCTYPE html>
@@ -21,14 +33,17 @@ const { title, description = 'Big Invisible - Strategic branding and design agen
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={canonicalURL} />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
   </head>
