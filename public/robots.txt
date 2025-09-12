@@ -1,0 +1,13 @@
+# Robots.txt for biginvisible.com
+# Allow all crawlers
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /editor
+
+# Sitemap location
+Sitemap: https://biginvisible.com/sitemap-index.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

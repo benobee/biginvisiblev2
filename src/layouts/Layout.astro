@@ -7,6 +7,9 @@ export interface Props {
 }
 
 const { title, description = 'Big Invisible - Strategic branding and design agency', keywords = 'biginvisible, branding, design, strategy' } = Astro.props;
+
+// Generate canonical URL
+const canonicalURL = new URL(Astro.url.pathname, 'https://biginvisible.com');
 ---
 
 <!DOCTYPE html>
@@ -21,14 +24,17 @@ const { title, description = 'Big Invisible - Strategic branding and design agen
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={canonicalURL.href} />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL.href} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL.href} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
   </head>
