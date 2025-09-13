@@ -142,8 +142,6 @@ const Contact = () => {
   };
 
   const nextStep = () => {
-    console.log('Next button clicked, current step:', currentStep);
-    
     // Validation for first step
     if (currentStep === 0) {
       if (!validateStep0()) {
@@ -153,7 +151,6 @@ const Contact = () => {
     
     if (currentStep < totalSteps - 1) {
       setCurrentStep(currentStep + 1);
-      console.log('Moving to step:', currentStep + 1);
     }
   };
 
@@ -164,8 +161,6 @@ const Contact = () => {
   };
 
   const handleSubmit = async () => {
-    console.log('Questionnaire submitted:', formData);
-    
     setIsSubmitting(true);
     setSubmitStatus('idle');
     setSubmitMessage('');

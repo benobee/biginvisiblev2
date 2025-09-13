@@ -387,16 +387,6 @@ const SimpleBlueprintGrid: React.FC<SimpleBlueprintGridProps> = ({ progress, gri
   // Debug info for Visual Identity rendering issues
   const visualIndex = touchPoints.findIndex(p => p.id === 'visual-identity-main');
   const visualPos = visualIndex !== -1 ? currentTouchPointPositions[visualIndex] : null;
-  console.log('DEBUG visual-identity', {
-    visualIndex,
-    visualPos,
-    showServices,
-    showSubServices,
-    gridVisible,
-    progress
-  });
-
-  console.log('Visibility states:', { progress, showParticles, showSubServices, showServices });
 
   // Set CSS custom properties based on progress thresholds - much simpler and more reliable
   useEffect(() => {
@@ -427,14 +417,6 @@ const SimpleBlueprintGrid: React.FC<SimpleBlueprintGridProps> = ({ progress, gri
     container.style.setProperty('--subservices-progress', subservicesProgress);
     container.style.setProperty('--services-progress', servicesProgress);
 
-    // Debug logging - check if CSS properties are actually being set
-    console.log('Progress:', progress, 'GridVisible:', gridVisible, 'Particles:', particlesProgress, 'SubServices:', subservicesProgress, 'Services:', servicesProgress);
-    console.log('Container element:', container);
-    console.log('CSS properties set:', {
-      particles: container.style.getPropertyValue('--particles-progress'),
-      subservices: container.style.getPropertyValue('--subservices-progress'),
-      services: container.style.getPropertyValue('--services-progress')
-    });
   }, [progress, gridVisible]);
 
   // Auto-rotate through touch points every 3 seconds with initial delay

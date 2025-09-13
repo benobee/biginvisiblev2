@@ -68,7 +68,6 @@ const ConstellationBackground = () => {
       if (width === 0 || height === 0) return;
 
       const serviceTouchPoints = getAllServiceTouchPoints();
-      console.log({ serviceConstellations });
       
       // Create orbital layout for services with different radii
       const centerX = width * 0.5;
@@ -166,7 +165,6 @@ const ConstellationBackground = () => {
       });
 
       setOrbitalPoints(newOrbitalPoints);
-      console.log('Orbital points created:', newOrbitalPoints.length);
     }, 100); // 100ms delay to ensure canvas is ready
 
     return () => clearTimeout(timer);
