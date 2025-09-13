@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import SpeedInsights from "@vercel/speed-insights/astro"
 export interface Props {
   title: string;
@@ -48,7 +49,7 @@ try {
     <meta property="twitter:description" content={description} />
     
     <!-- View Transitions for smooth navigation -->
-    <meta name="view-transition" content="same-origin" />
+    <ClientRouter />
     
     <!-- Simple prefetch on hover for faster navigation -->
     <script>
