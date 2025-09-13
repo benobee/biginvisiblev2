@@ -8,6 +8,6 @@ const currentPath = Astro.url.pathname;
 
 <Layout title="About - Big Invisible" description="What makes us tick? Learn more about our mission and values." keywords="kitsap, poulsbo, seattle, washington, biginvisible, about, mission, values">
 	<PageWrapper client:load currentPath={currentPath}>
-		<AboutPage />
+		<AboutPage client:visible />
 	</PageWrapper>
 </Layout>

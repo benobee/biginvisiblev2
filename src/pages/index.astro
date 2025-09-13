@@ -8,8 +8,8 @@ const currentPath = Astro.url.pathname;
 ---
 
 <Layout title="Big Invisible" description="Strategic branding and design agency creating powerful brands that resonate." keywords="kitsap, poulsbo, seattle, washington, biginvisible, branding, design, strategy, brand identity">
-	<HomePageHero client:load />
+	<HomePageHero client:visible />
 	<PageWrapper client:load currentPath={currentPath}>
-		<Home client:load />
+		<Home client:visible />
 	</PageWrapper>
 </Layout>
