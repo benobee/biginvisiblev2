@@ -8,21 +8,22 @@ const ParallaxWorkSection: React.FC = () => {
 
   // All brand images from folder (excluding PDFs and .mov files)
   const allBrandImages = [
+    '/brand-images/Costco-logo-500x281.png',
     '/brand-images/BC-LOGO-FINAL_Logo-build-1a.png',
     '/brand-images/FO-LOGO-CAMPAIGN-01.png',
     '/brand-images/MCRE-LJ-stacked-02.svg',
     '/brand-images/jones_mandel_logo_circle.png',
-    '/brand-images/New_Balance_logo.svg.png',
+    '/brand-images/all-access-equipment.jpg',
     '/brand-images/NLT-LOGO-ONE-COLOR-04.png',
     '/brand-images/NORDIC-LogoCOLORTEST.svg',
     '/brand-images/SSI_logo_final_1_SSI-full-color.png',
-    '/brand-images/Costco-logo-500x281.png',
     '/brand-images/metropolist-M-gold-8-1.png',
     '/brand-images/WIAP Square.svg',
     '/brand-images/scout-logo-hx4.png',
     '/brand-images/honey_and_the_moon.jpg',
     '/brand-images/edgewater-beach-poulsbo-logo-abbrv.png',
-    '/brand-images/sfc-logo-13_E3927C7D-F3E2-45F7-95C300DD2D9CF822_3870bbef-5064-4841-a1a7286f692ac1d4.jpg'
+    '/brand-images/sfc-logo-13_E3927C7D-F3E2-45F7-95C300DD2D9CF822_3870bbef-5064-4841-a1a7286f692ac1d4.jpg',
+    '/brand-images/New_Balance_logo.svg.png',
   ]
 
   // Use a deterministic shuffle based on array index to avoid hydration mismatches
