@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.15s ease-in-out;
 }
 
 .header.scrolled {
@@ -41,7 +41,7 @@
   letter-spacing: -0.02em;
   position: relative;
   z-index: 1001;
-  transition: all 0.3s ease-in-out;
+  transition: opacity 0.15s ease-in-out;
   text-decoration: none;
   filter: brightness(1);
 }
@@ -82,7 +82,7 @@
     flex-direction: column;
     justify-content: center;
     transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.2s ease-in-out;
     z-index: 1000;
   }
   
@@ -98,7 +98,7 @@
   letter-spacing: 0.05em;
   padding: 0.5rem 0;
   position: relative;
-  transition: color 0.3s ease-in-out;
+  transition: color 0.15s ease-in-out;
   text-decoration: none;
 }
 
@@ -110,7 +110,7 @@
   bottom: 0;
   left: 0;
   background-color: #ff2356;
-  transition: width 0.3s ease-in-out;
+  transition: width 0.15s ease-in-out;
 }
 
 .navLink.active::after {
@@ -146,7 +146,7 @@
   font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.15s ease-in-out;
   text-decoration: none;
   display: inline-block;
 }
@@ -203,7 +203,7 @@
   opacity: 1;
   left: 50%;
   transform: translateX(-50%) rotate(0deg);
-  transition: all 0.25s ease-in-out, background-color 0.3s ease-in-out;
+  transition: all 0.15s ease-in-out;
 }
 
 .menuButton span:nth-child(1) {
