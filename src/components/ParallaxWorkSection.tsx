@@ -127,17 +127,16 @@ const ParallaxWorkSection: React.FC = () => {
   // Different parallax speeds for each row - diagonal movement (reversed)
   const getTransform = (rowIndex: number) => {
     const speeds = [0.08, 0.14, 0.2]; // Different speeds for 3 rows
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     const movementScale = isMobile ? 8 : 15; // Less movement on mobile
     const baseMovement = scrollProgress * speeds[rowIndex] * movementScale;
-    
+
     // Move from upper right to lower left (reversed)
     const translateX = -baseMovement; // Negative for left movement
     const translateY = baseMovement * 0.3; // Reduced vertical movement
-    
+
     // Alternate direction for some rows for visual interest
     const direction = rowIndex % 2 === 1 ? -1 : 1;
-    
+
     return `translate(${translateX * direction}%, ${translateY * direction}%)`;
   };
   

@@ -62,16 +62,6 @@ const FullScreenHero: React.FC<FullScreenHeroProps> = ({
               })
             }}
           />
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundColor: overlayBackgroundColor,
-              opacity: overlayOpacity,
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'top center',
-              backgroundSize: 'cover'
-            }}
-          />
         </div>
       </div>
 

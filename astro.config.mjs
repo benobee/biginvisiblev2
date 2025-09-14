@@ -14,6 +14,7 @@ const statisticUrls = statisticsDatabase.map(stat =>
 
 // https://astro.build/config
 export default defineConfig({
+  prefetch: true,
   site: 'https://biginvisible.com',
   integrations: [
     react(),

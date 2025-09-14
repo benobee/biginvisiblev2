@@ -48,60 +48,8 @@ try {
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     
-    <!-- View Transitions for smooth navigation -->
-    <!-- <ClientRouter /> -->
-    
-    <!-- Fix for ClientRouter click binding delay -->
-    <script>
-      // Ensure ClientRouter click handlers are bound immediately
-      // This prevents the delay caused by heavy scripts blocking the main thread
-      if (typeof window !== 'undefined') {
-        // Force immediate binding of click handlers after DOM is ready
-        const ensureRouterReady = () => {
-          // Trigger a fake navigation event to ensure router is initialized
-          const event = new Event('astro:page-load');
-          document.dispatchEvent(event);
-          
-          // Also ensure all links are immediately clickable
-          document.querySelectorAll('a[href^="/"]').forEach(link => {
-            // Remove any existing click handlers that might be blocking
-            const newLink = link.cloneNode(true);
-            link.parentNode?.replaceChild(newLink, link);
-          });
-        };
-        
-        // Run immediately when DOM is interactive
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', ensureRouterReady);
-        } else {
-          // DOM is already ready
-          ensureRouterReady();
-        }
-        
-        // Prefetch setup with lower priority
-        const setupPrefetch = () => {
-          document.querySelectorAll('a[href^="/"]').forEach(link => {
-            link.addEventListener('mouseenter', () => {
-              const href = link.getAttribute('href');
-              if (href && !document.querySelector(`link[rel="prefetch"][href="${href}"]`)) {
-                const prefetchLink = document.createElement('link');
-                prefetchLink.rel = 'prefetch';
-                prefetchLink.href = href;
-                document.head.appendChild(prefetchLink);
-              }
-            }, { passive: true });
-          });
-        };
-        
-        // Setup prefetch when browser is idle (lower priority)
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(setupPrefetch, { timeout: 3000 });
-        } else {
-          setTimeout(setupPrefetch, 100);
-        }
-      }
-    </script>
   </head>
+  <ClientRouter />
   <body>
     <slot />
     <SpeedInsights />
