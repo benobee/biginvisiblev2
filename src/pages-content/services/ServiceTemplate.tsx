@@ -325,17 +325,6 @@ const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
             description={`When you work with us, you'll get ${service.outcomes[0].toLowerCase()}, ${service.outcomes[1].toLowerCase()}, ${service.outcomes[2].toLowerCase()}, and ${service.outcomes[3].toLowerCase()}.`}
             align="center"
           />
-          
-          <div className="mt-16 reveal-text">
-            <ImpactStatisticsGrid
-              serviceCategory={service.id}
-              columns={4}
-              gap="large"
-              variant="default"
-              showSource={false}
-              limit={4}
-            />
-          </div>
         </Section>
         
         <Section background="primary">

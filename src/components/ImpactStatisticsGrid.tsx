@@ -1,6 +1,7 @@
 import Grid from './ui/Grid';
 import GridItem from './ui/GridItem';
 import ImpactStatisticCard from './ImpactStatisticCard';
+import StatisticCard from './StatisticCard';
 import { getStatisticsByCategories, type StatisticEntry } from '../data/statisticsDatabase';
 
 interface ImpactStatisticsGridProps {
@@ -14,6 +15,9 @@ interface ImpactStatisticsGridProps {
   // Card configuration
   variant?: 'default' | 'large' | 'minimal' | 'featured';
   showSource?: boolean;
+  showPercentage?: boolean;
+  // When true, render the statistics-page detail card (StatisticCard) instead of the impact card
+  useDetailCard?: boolean;
   limit?: number;
   className?: string;
 }
@@ -25,6 +29,8 @@ const ImpactStatisticsGrid = ({
   gap = 'large',
   variant = 'default',
   showSource = false,
+  showPercentage = true,
+  useDetailCard = false,
   limit,
   className = ''
 }: ImpactStatisticsGridProps) => {
@@ -51,11 +57,25 @@ const ImpactStatisticsGrid = ({
       <Grid columns={columns} gap={gap}>
         {statsToShow.map((statistic) => (
           <GridItem key={statistic.id} span={1}>
-            <ImpactStatisticCard 
-              statistic={statistic}
-              variant={variant}
-              showSource
-            />
+            {useDetailCard ? (
+              <StatisticCard
+                statistic={{ 
+                  ...statistic, 
+                  percentage: statistic.impactPercentage, 
+                  statement: statistic.impactStatement 
+                }}
+                variant={variant}
+                showSource={showSource}
+                clickable={false}
+              />
+            ) : (
+              <ImpactStatisticCard 
+                statistic={statistic}
+                variant={variant}
+                showSource={showSource}
+                showPercentage={showPercentage}
+              />
+            )}
           </GridItem>
         ))}
       </Grid>

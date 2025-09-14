@@ -89,7 +89,7 @@ const getStatisticExplanation = (statistic: StatisticEntry) => {
     whatItMeans: `${statistic.percentage}% is not just a number—it's a wake-up call about what your customers actually care about.`,
     whyItMatters: `Ignore this at your own risk. Smart brands use insights like this to get ahead (and stay there).`,
     implications: [
-      'Get on board or get left behind (harsh but true)',
+      'Get on board or get left behind',
       'Use this to make smarter decisions about your brand',
       'Miss this trend, miss your customers'
     ],
@@ -247,8 +247,8 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
   const relatedServices = getRelatedServices(statistic);
   const sourceUrl = getSourceUrl(statistic.source);
   const images = getStatisticImages(statistic);
-
-
+  const mappedRelatedFindings = statistic.relatedFindings.length > 0 && statistic.relatedFindings.map((relatedId) => getStatisticEntry(relatedId)).filter(item => !!item);
+  console.log(mappedRelatedFindings);
   return (
     <>
       <Breadcrumb
@@ -325,7 +325,7 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
           </div>
         </div>
       {/* Related Findings Section */}
-      {statistic.relatedFindings.length > 0 && (
+      {mappedRelatedFindings && mappedRelatedFindings.length > 0 && (
         <div>
          <h3 className="text-3xl font-bold text-gray-900">This isn't just one stat—it's part of a bigger picture</h3>
           <div className="mt-16 mx-auto">
@@ -426,20 +426,10 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
         
         <div className="mt-16 mx-auto">
           {/* Why This Matters - Right Text, Left Image */}
-          <div className="mb-32 reveal-text">
+          <div className="reveal-text">
             <Grid>
-              <GridItem span={6}>
-                <div className="relative h-80 rounded-2xl overflow-hidden shadow-lg">
-                  <img 
-                    src={images.strategy} 
-                    alt="Strategic business planning and growth"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                </div>
-              </GridItem>
-              <GridItem span={6}>
-                <div className="pl-8">
+              <GridItem span={12}>
+                <div>
                   <h3 className="text-3xl font-bold text-gray-900 mb-6">Why you should care</h3>
                   <p className="text-xl leading-relaxed text-gray-700 mb-6">
                     {explanation.whyItMatters}
@@ -449,15 +439,9 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
                   </p>
                 </div>
               </GridItem>
-            </Grid>
-          </div>
-
-          {/* Business Implications - Left Text, Right Image */}
-          <div className="mb-32 reveal-text">
-            <Grid>
-              <GridItem span={6}>
+              <GridItem span={12}>
                 <div className="pr-8">
-                  <h3 className="text-3xl font-bold text-gray-900 mb-6">What this means for business</h3>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">Make a choice</h3>
                   <p className="text-xl leading-relaxed text-gray-700 mb-6">
                     {explanation.implications[0]}
                   </p>
@@ -466,34 +450,8 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
                   </p>
                 </div>
               </GridItem>
-              <GridItem span={6}>
-                <div className="relative h-80 rounded-2xl overflow-hidden shadow-lg">
-                  <img 
-                    src={images.implementation} 
-                    alt="Business strategy implementation and results"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                </div>
-              </GridItem>
-            </Grid>
-          </div>
-
-          {/* Strategic Implementation - Right Text, Left Image */}
-          <div className="reveal-text">
-            <Grid>
-              <GridItem span={6}>
-                <div className="relative h-80 rounded-2xl overflow-hidden shadow-lg">
-                  <img 
-                    src={images.results} 
-                    alt="Team collaboration and strategic planning"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                </div>
-              </GridItem>
-              <GridItem span={6}>
-                <div className="pl-8">
+              <GridItem span={12}>
+                <div>
                   <h3 className="text-3xl font-bold text-gray-900 mb-6">Making it happen</h3>
                   <p className="text-xl leading-relaxed text-gray-700 mb-6">
                     Knowing is half the battle. The other half? Actually doing something about it. Smart brands turn insights like this into action plans that work.
@@ -505,6 +463,7 @@ const StatisticDetail: React.FC<StatisticDetailProps> = ({ statistic }) => {
               </GridItem>
             </Grid>
           </div>
+
         </div>
       </Section>
 

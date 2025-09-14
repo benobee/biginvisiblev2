@@ -149,26 +149,6 @@ const About = () => {
         </Grid>
       </Section>
       
-      <Section background="primary">
-        <Grid columns={4} gap="large">
-          <GridItem span={1}>
-            <DataPoint value="50+" label="Happy Clients" />
-          </GridItem>
-          
-          <GridItem span={1}>
-            <DataPoint value="95%" label="Client Retention" />
-          </GridItem>
-          
-          <GridItem span={1}>
-            <DataPoint value="120+" label="Projects Completed" />
-          </GridItem>
-          
-          <GridItem span={1}>
-            <DataPoint value="∞" label="Dog Treats Given" />
-          </GridItem>
-        </Grid>
-      </Section>
-      
       <CTASection
         title="Ready to work with us?"
         description="Let's create authentic connections that transform your business and strengthen your community. Coffee and dog pics included."

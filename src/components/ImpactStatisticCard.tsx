@@ -6,6 +6,7 @@ interface ImpactStatisticCardProps {
   statistic: StatisticEntry;
   variant?: 'default' | 'large' | 'minimal' | 'featured';
   showSource?: boolean;
+  showPercentage?: boolean;
   className?: string;
 }
 
@@ -13,6 +14,7 @@ const ImpactStatisticCard = ({
   statistic, 
   variant = 'default', 
   showSource = false,
+  showPercentage = true,
   className = '' 
 }: ImpactStatisticCardProps) => {
   const [currentValue, setCurrentValue] = useState(0);
@@ -115,9 +117,11 @@ const ImpactStatisticCard = ({
       
       <div className="relative z-10 h-full flex flex-col justify-center text-center">
         {/* Percentage */}
-        <div className={classes.percentage}>
-          {currentValue}%
-        </div>
+        {showPercentage && (
+          <div className={classes.percentage}>
+            {currentValue}%
+          </div>
+        )}
         
         {/* Statement */}
         <p className={classes.statement}>
