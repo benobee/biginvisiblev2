@@ -236,12 +236,12 @@ const ServiceTemplate: React.FC<ServiceTemplateProps> = ({ service }) => {
                   {service.detailedDescription}
                 </p>
                 <div className="reveal-text flex flex-col sm:flex-row gap-3 sm:gap-4">
-                  <Button to="/contact" variant="primary" size="large" className="inline-block bg-accent text-white px-6 sm:px-8 py-3 sm:py-4 font-medium text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 border border-accent hover:bg-transparent hover:text-accent no-underline text-center min-h-[44px] flex items-center justify-center">
+                  <Button to="/contact" variant="primary" size="large" className="bg-accent text-white px-6 sm:px-8 py-3 sm:py-4 font-medium text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 border border-accent hover:bg-transparent hover:text-accent no-underline text-center min-h-[44px] flex items-center justify-center">
                     Get started today
                   </Button>
                   <a 
                     href="#services" 
-                    className="inline-block bg-transparent text-white px-6 sm:px-8 py-3 sm:py-4 font-medium text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 border border-white/20 hover:border-white no-underline text-center min-h-[44px] flex items-center justify-center"
+                    className="bg-transparent text-white px-6 sm:px-8 py-3 sm:py-4 font-medium text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 border border-white/20 hover:border-white no-underline text-center min-h-[44px] flex items-center justify-center"
                   >
                     Explore services
                   </a>
